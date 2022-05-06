@@ -8,7 +8,7 @@ export default function Hero() {
   useEffect(() => {
     const slideInterval = setInterval(() => {
       setCurrentSlide(currentSlide < 2 ? currentSlide + 1 : 0);
-    }, 3000);
+    }, 5000);
     //clearInterval(slideInterval);
     return () => clearInterval(slideInterval);
   });
@@ -35,7 +35,7 @@ export default function Hero() {
                 <img
                   src={imageUrl}
                   alt='slide image'
-                  className='h-full mix-blend-multiply w-full object-contain'
+                  className='h-full mix-blend-multiply w-full object-cover'
                 />
               </div>
             </section>
