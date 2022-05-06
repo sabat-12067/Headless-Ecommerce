@@ -13,7 +13,7 @@ export default function Home({ products }) {
   )
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const response = await fetch(
     'https://asmn-shopping-cart.herokuapp.com/api/shopping-carts?populate=*'
   );
