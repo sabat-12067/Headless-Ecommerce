@@ -7,7 +7,7 @@ export default function DesktopNavigation() {
   return (
     <nav className='flex items-center w-screen justify-between p-6 text-[white] uppercase tracking-wider absolute'>
       <div className='font-["Arima_Madurai"] font-bold lg:text-lg md:text-sm md:w-2 hover:scale-105 duration-300 ease-linear '>
-        <Link href='/'>Asuman's Supermarket</Link>
+        <Link href='/'>Asuman&#39;s Supermarket</Link>
       </div>
       <div className='flex justify-between w-[70%]'>
         <ul className='flex justify-between items-center w-[50%]'>

@@ -37,7 +37,7 @@ function MobileNavigation() {
 const StaticNavigation = ({ setIsMobileNavOpen, isMobileNavOpen }) => {
   return (
     <div className='text-[white] font-["Arima_Madurai"] font-bold text-[1.3rem] flex justify-between w-full items-center p-4 pr-2 bg-primary-9'>
-      <Link href='/'>Asuman's Supermarket</Link>
+      <Link href='/'>Asuman&#39;s Supermarket</Link>
       <HiShoppingCart className='w-8 h-8' />
       <HamurgerMenu
         isMobileNavOpen={isMobileNavOpen}
