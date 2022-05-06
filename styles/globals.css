@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-primary-1 leading-7 text-base md:text-lg font-[lato] font-light text-primary-8 
+    @apply bg-primary-3 leading-7 text-base md:text-lg font-[lato] font-light text-primary-8 
 }
 ul {
   @apply list-none

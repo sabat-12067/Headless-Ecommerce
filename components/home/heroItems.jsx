@@ -3,7 +3,7 @@ const heroItems = [
     imageUrl:
       'https://www.ubuy.ug/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvOTFzaXdGS1NxOEwuX0FDX1NMMTUwMF8uanBn.jpg',
     h3: ' Trusted By Shoppers All Over the country.',
-    h1: ' No better way to shop for groceries',
+    h1: 'No better way to shop for groceries',
   },
   {
     imageUrl:

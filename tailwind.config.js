@@ -34,8 +34,8 @@ module.exports = {
       'secondary-10': '#7c2d12',
     },
     gridTemplateColumns: {
-      'autofill-sm': 'repeat(auto-fill, minmax(200px, 1fr))',
-      'autofill-lg': 'repeat(auto-fit, minmax(300px, 1fr))'
+      'autofill-sm': 'repeat(auto-fill, minmax(150px, 1fr))',
+      'autofill-lg': 'repeat(auto-fit, minmax(250px, 1fr))'
     },
     keyframes: {
       wiggle: {
