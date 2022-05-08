@@ -3,15 +3,17 @@ import Carousel from '../../components/details/Carousel';
 import ProductInfo from '../../components/details/ProductInfo';
 import Buttons from '../../components/details/Buttons';
 import Description from '../../components/details/Description';
+import Cart from '../../components/Cart';
 
-export default function Product({ product }) {
+export default function Product({ product, productId }) {
   const singleProduct = product.attributes;
  
   return (
-    <section className='pt-20'>
+    <section className='pt-16 relative'>
+      <Cart />
       <Carousel singleProduct={singleProduct} />
       <ProductInfo singleProduct={singleProduct} />
-      <Buttons />
+      <Buttons singleProduct={singleProduct} productId={productId} />
       <Description singleProduct={singleProduct} />
     </section>
   );
@@ -30,6 +32,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       product,
+      productId,
     },
   };
 }

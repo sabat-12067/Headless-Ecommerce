@@ -17,17 +17,15 @@ export default function Description({ singleProduct }) {
   return (
     <section className='px-4'>
       {/*Descriptions container */}
-      <div className='shadow rounded-sm shadow-secondary-9 p-3'>
        <p className='font-bold'>Description</p>
         <p>
-          {readMore ? description : description.substr(0, 200)}
+          {readMore ? description : description.substr(0, 100)}
           <button
-            className='px-2 text-sm py-2 bg-primary-1 text-primary-8'
+            className='px-2 text-sm py-2 bg-primary-3 text-primary-8'
             onClick={() => setReadMore(!readMore)}>
             {readMore ? 'Read less' : '... Read more'}
           </button>{' '}
         </p>
-      </div>
       {/*Specifications container */}
       <div className='mt-12 py-2 border-t-2 border-b-2 overflow-hidden'>
         <div

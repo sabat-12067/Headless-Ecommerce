@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 const listItems = ['categories', 'about', 'contact us'];
 
-export default function DesktopNavigation() {
+export default function DesktopNavigation({ quantity }) {
   return (
-    <nav className='flex items-center w-screen justify-between p-6 text-[white] uppercase tracking-wider absolute'>
+    <nav className='flex items-center w-screen justify-between py-4 px-6 text-[white] uppercase tracking-wider absolute bg-primary-9'>
       <div className='font-["Arima_Madurai"] font-bold lg:text-lg md:text-sm md:w-2 hover:scale-105 duration-300 ease-linear '>
         <Link href='/'>Asuman&#39;s Supermarket</Link>
       </div>
@@ -23,7 +23,14 @@ export default function DesktopNavigation() {
             );
           })}
         </ul>
-        <HiShoppingCart className='w-8 h-8 md:h-6 md:w-6 cursor-pointer hover:scale-105 duration-300 ease-linear self-center' />
+        <div className='relative flex'>
+          <HiShoppingCart className='w-8 h-8 md:h-9 md:w-9 cursor-pointer hover:scale-105 duration-300 ease-linear self-center' />
+          {quantity >= 1 ? (
+            <p className='absolute bg-secondary-8 text-xs px-1 py-0.5 items-center top-2 right-1 rounded-lg font-bold'>
+              {quantity}
+            </p>
+          ) : null}
+        </div>
         <div className='flex items-center'>
           <Button action={'sign-up'} />
           <Button action={'login'} />
