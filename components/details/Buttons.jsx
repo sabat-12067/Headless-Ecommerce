@@ -6,7 +6,7 @@ import { cartActions } from '../../store/cartSlice';
 
 //This component is for the 'edit quantity',  'add to cart' and the 'buy now' buttons of the product details screen/page.
 
-export default function buttons({ singleProduct, productId }) {
+export default function Buttons({ singleProduct, productId }) {
   const quantity = useSelector((state) => state.quantityValue.quantity);
 
   const dispatch = useDispatch();
