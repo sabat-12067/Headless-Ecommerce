@@ -53,7 +53,7 @@ const CartContainer = () => {
             {numberOfCartItems} Item{numberOfCartItems > 1 ? 's' : null} added
           </p>
           <div className='w-full'>
-            {cartItems.map((item) => {
+            {cartItems.map((item, index) => {
               const {
                 id,
                 name,
@@ -66,7 +66,7 @@ const CartContainer = () => {
               } = item;
 
               return (
-                <div className='p-2 border-t-[1px] border-b-[1px] b-primary-10 w-full'>
+                <div className='p-2 border-t-[1px] border-b-[1px] b-primary-10 w-full' key={index}>
                   <div className='flex text-xs sm:text-sm font-medium'>
                     <img
                       src={imageUrl}
