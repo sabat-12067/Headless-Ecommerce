@@ -7,14 +7,18 @@ import Cart from '../../components/Cart';
 
 export default function Product({ product, productId }) {
   const singleProduct = product.attributes;
- 
+
   return (
-    <section className='pt-16 relative'>
+    <section className='pt-[56px]'>
       <Cart />
+      <div className='md:flex max-w-6xl mx-auto'>
       <Carousel singleProduct={singleProduct} />
-      <ProductInfo singleProduct={singleProduct} />
-      <Buttons singleProduct={singleProduct} productId={productId} />
-      <Description singleProduct={singleProduct} />
+      <div>
+        <ProductInfo singleProduct={singleProduct} />
+        <Buttons singleProduct={singleProduct} productId={productId} />
+        <Description singleProduct={singleProduct} />
+      </div>
+      </div>
     </section>
   );
 }

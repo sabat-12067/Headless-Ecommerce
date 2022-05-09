@@ -3,10 +3,10 @@ import Link from 'next/link';
 
 const listItems = ['categories', 'about', 'contact us'];
 
-export default function DesktopNavigation({ quantity }) {
+export default function DesktopNavigation({ toggleCart, numberOfCartItems }) {
   return (
-    <nav className='flex items-center w-screen justify-between py-4 px-6 text-[white] uppercase tracking-wider absolute bg-primary-9'>
-      <div className='font-["Arima_Madurai"] font-bold lg:text-lg md:text-sm md:w-2 hover:scale-105 duration-300 ease-linear '>
+    <nav className='hidden md:flex items-center w-screen justify-between py-2 px-6 text-[white] uppercase tracking-wider absolute bg-primary-9'>
+      <div className='font-["Arima_Madurai"] font-bold lg:text-base md:text-sm md:w-2 hover:scale-105 duration-300 ease-linear'>
         <Link href='/'>Asuman&#39;s Supermarket</Link>
       </div>
       <div className='flex justify-between w-[70%]'>
@@ -15,7 +15,7 @@ export default function DesktopNavigation({ quantity }) {
             return (
               <li
                 key={index}
-                className='lg:text-[1rem] md:text-[10px] font-semibold hover:translate-x-2 duration-300 ease-linear'>
+                className='lg:text-xs md:text-[10px] font-semibold hover:translate-x-2 duration-300 ease-linear'>
                 <Link href={`/${listItem.split(' ').join('')}`}>
                   {listItem}
                 </Link>
@@ -23,11 +23,12 @@ export default function DesktopNavigation({ quantity }) {
             );
           })}
         </ul>
-        <div className='relative flex'>
+        {/**Cart icon container */}
+        <div className='relative flex' onClick={toggleCart}>
           <HiShoppingCart className='w-8 h-8 md:h-9 md:w-9 cursor-pointer hover:scale-105 duration-300 ease-linear self-center' />
-          {quantity >= 1 ? (
+          {numberOfCartItems >= 1 ? (
             <p className='absolute bg-secondary-8 text-xs px-1 py-0.5 items-center top-2 right-1 rounded-lg font-bold'>
-              {quantity}
+              {numberOfCartItems}
             </p>
           ) : null}
         </div>
@@ -42,7 +43,7 @@ export default function DesktopNavigation({ quantity }) {
 
 const Button = ({ action }) => {
   return (
-    <button className='py-3  md:py-1 md:px-5 capitalize lg:text-[1rem] md:text-[10px] ml-4 font-semibold'>
+    <button className='py-2.5 px-5 capitalize text-xs ml-4 font-semibold'>
       {action}
     </button>
   );

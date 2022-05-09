@@ -35,7 +35,8 @@ module.exports = {
     },
     gridTemplateColumns: {
       'autofill-sm': 'repeat(auto-fill, minmax(150px, 1fr))',
-      'autofill-lg': 'repeat(auto-fit, minmax(250px, 1fr))'
+      'autofill-lg': 'repeat(auto-fit, minmax(250px, 1fr))',
+      'autofill-details': 'repeat(auto-fit, minmax(250px, 1fr))',
     },
     keyframes: {
       wiggle: {

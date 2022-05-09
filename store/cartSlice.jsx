@@ -29,8 +29,42 @@ const cartSlice = createSlice({
         });
       }
     },
-    removeItem(state, action) {},
-    setShowCart(state, action) {
+
+    //delete item from cart
+    removeItem(state, action) {
+      const id = action.payload
+      const productToBeDeleted = state.cartItemsList.find(item => item.id === id);
+      if(productToBeDeleted) {
+         state.cartItemsList = state.cartItemsList.filter(item => item.id !== id)
+      }
+    },
+    
+    //increment quantity of item within cart
+    incrementCartQuantity(state, action) {
+        const id = action.payload;
+        state.cartItemsList.map(item => {
+          if(item.id === id) {
+            item.quantity += 1;
+            item.totalPrice = item.quantity * item.price;
+          }
+        })
+      },
+   
+    //decrement quantity of item within cart
+      decrementCartQuantity(state, action) {
+        const id = action.payload;
+        state.cartItemsList.map(item => {
+          if(item.id === id) {
+            item.quantity -= 1;
+            if(item.quantity <= 1) {
+              item.quantity = 1;
+            }
+            item.totalPrice = item.quantity * item.price;
+          }
+        })
+      },
+    
+      setShowCart(state, action) {
        state.showCart = !state.showCart;
     }
   }

@@ -17,7 +17,7 @@ export default function Hero() {
     <section className='w-screen h-screen relative top-18 overflow-hidden'>
       <div className='h-full flex w-[fit-content] '>
         {heroItems.map((heroItem, index) => {
-          const { h3, h1, imageUrl, span } = heroItem;
+          const { h3, h1, imageUrl } = heroItem;
 
           return (
             <section

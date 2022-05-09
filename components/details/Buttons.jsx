@@ -18,18 +18,15 @@ export default function Buttons({ singleProduct, productId }) {
     const imageThumbnail = image.data[0].attributes.formats.thumbnail.url
     
     //change the price to a number
-    const productPriceNumber = price.split(' ')[1].split(',').join('');
-
-    //convert the price from a string to an interger so it can be used in the calculations of the total price
-    const productPriceNumberInt = parseInt(productPriceNumber);
+    const productPriceNumber = price.replace(/\D/g, '');
 
   const addToCart = () => {
-    console.log('Item added to cart');
+  
     dispatch(
       cartActions.addToCart({
         id: productId,
         name,
-        price: productPriceNumberInt,
+        price: productPriceNumber,
         image: imageThumbnail,
         discountPrice,
         discountPercentage,
@@ -64,14 +61,14 @@ export default function Buttons({ singleProduct, productId }) {
           />
         </div>
       </div>
-      <div>
+      <div className='relative'>
         <button
-          className='text-center w-full bg-secondary-1 mt-6 mb-4 py-4 text-2xl text-primary-10 flex flex-row items-center justify-center border-[1px] border-primary-10 outline-none rounded-none uppercase'
+          className='text-center w-full bg-secondary-1 mt-6 mb-4 text-2xl text-primary-10 flex flex-row items-center justify-center border-[1px] border-primary-10 outline-none rounded-none uppercase'
           onClick={addToCart}>
-          <HiOutlineShoppingCart className='absolute left-[5rem]' />
+          <HiOutlineShoppingCart className='absolute left-8 sm:left-20' />
           Add to cart
         </button>
-        <button className='text-center w-full bg-primary-10 mb-12 py-4 text-[1.5rem] text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase'>
+        <button className='text-center w-full bg-primary-10 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase'>
           Buy it now
         </button>
       </div>
