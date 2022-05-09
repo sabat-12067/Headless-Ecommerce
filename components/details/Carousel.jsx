@@ -88,7 +88,7 @@ const Images = ({ image }) => {
         </div>
       </div>
       {/*Thumbnails Container*/}
-      <div className='relative lg:top-[500px] md:top-[400px] flex pl-2'>
+      <div className='relative lg:top-[500px] md:top-[400px] hidden md:flex pl-2'>
         {image.data.map((image, index) => {
           return (
             <article key={index} className=''>
