@@ -6,6 +6,7 @@ const cartSlice = createSlice({
     cartItemsList: [],
     totalQuantity: 0,
     showCart: false,
+    buyItNowItemDetails: '',
   },
   reducers: {
     addToCart(state, action) {
@@ -66,6 +67,19 @@ const cartSlice = createSlice({
     
       setShowCart(state, action) {
        state.showCart = !state.showCart;
+    },
+   
+    //item info for the order summary section of the details page
+    buyItNow(state, action) {
+      const buyItNowItem = action.payload;
+      state.buyItNowItemDetails = {
+        name: buyItNowItem.name,
+        price: buyItNowItem.price,
+        quantity: buyItNowItem.quantity,
+        imageUrl: buyItNowItem.imageThumbnail,
+        discountPrice: buyItNowItem.discountPrice,
+        discountPercentage: buyItNowItem.discountPercentage,
+      };
     }
   }
 });

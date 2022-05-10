@@ -62,6 +62,8 @@ function MySwiper({ image }) {
 //This component is for displaying images of the product on medium and large screens (screens above 768px)
 const Images = ({ image }) => {
 
+  console.log(image.data.length);
+
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
   //set current slide index to the index of the image that is clicked
@@ -72,30 +74,34 @@ const Images = ({ image }) => {
   return (
     <section>
       {/*Container for slide images */}
-      <div className='hidden md:block overflow-hidden'>
-        <div className='flex'>
+      <div className='hidden md:block overflow-hidden h-[600px]'>
+        <div className='flex h-full relative w-[95%]'>
           {image.data.map((image, index) => {
             return (
               <article
                 key={index}
-                className={`absolute z-90 ${
+                className={`h-full ${
                   currentSlideIndex === index ? 'opacity-100' : 'opacity-0'
                 }`}>
-                <img src={image.attributes.url} alt='slide image' className='rounded-xl mt-8 md:w-[350px] lg:w-[450px] '/>
+                <img
+                  src={image.attributes.url}
+                  alt='slide image'
+                  className='rounded-xl mt-8 ml-4 absolute h-full object-cover'
+                />
               </article>
             );
           })}
         </div>
       </div>
       {/*Thumbnails Container*/}
-      <div className='relative lg:top-[500px] md:top-[400px] hidden md:flex pl-2'>
+      <div className={`hidden md:flex pl-4 pt-4 ${image.data.length <= 1 ? 'md:hidden' : 'null' }`}>
         {image.data.map((image, index) => {
           return (
             <article key={index} className=''>
               <img
                 src={image.attributes.formats.thumbnail.url}
                 alt='slide image'
-                className='mr-2 w-20 h-20 rounded-lg cursor-pointer'
+                className='mr-4 w-20 h-20 rounded-lg cursor-pointer'
                 onClick={() => changeSlide(index)}
               />
             </article>

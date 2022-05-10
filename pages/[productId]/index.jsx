@@ -13,7 +13,7 @@ export default function Product({ product, productId }) {
       <Cart />
       <div className='md:flex max-w-6xl mx-auto'>
       <Carousel singleProduct={singleProduct} />
-      <div>
+      <div className='w-full'>
         <ProductInfo singleProduct={singleProduct} />
         <Buttons singleProduct={singleProduct} productId={productId} />
         <Description singleProduct={singleProduct} />

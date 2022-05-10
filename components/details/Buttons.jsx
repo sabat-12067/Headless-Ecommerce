@@ -3,6 +3,7 @@ import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { useSelector, useDispatch } from 'react-redux';
 import { quantityActions } from '../../store/quantitySlice';
 import { cartActions } from '../../store/cartSlice';
+import Link from 'next/link';
 
 //This component is for the 'edit quantity',  'add to cart' and the 'buy now' buttons of the product details screen/page.
 
@@ -20,8 +21,7 @@ export default function Buttons({ singleProduct, productId }) {
     //change the price to a number
     const productPriceNumber = price.replace(/\D/g, '');
 
-  const addToCart = () => {
-  
+  const addToCart = () => { 
     dispatch(
       cartActions.addToCart({
         id: productId,
@@ -34,6 +34,12 @@ export default function Buttons({ singleProduct, productId }) {
       })
     );
   };
+
+    const buyItNow = () => {
+      dispatch(
+        cartActions.buyItNow({name, price, imageThumbnail, discountPrice, discountPercentage, quantity})
+      );
+    };
 
   const handleIncrement = () => {
     dispatch(quantityActions.increment());
@@ -65,12 +71,14 @@ export default function Buttons({ singleProduct, productId }) {
         <button
           className='text-center w-full bg-secondary-1 mt-6 mb-4 text-2xl text-primary-10 flex flex-row items-center justify-center border-[1px] border-primary-10 outline-none rounded-none uppercase'
           onClick={addToCart}>
-          <HiOutlineShoppingCart className='absolute left-8 sm:left-20' />
+          <HiOutlineShoppingCart className='absolute left-8 sm:left-20 md:left-12 lg:left-28' />
           Add to cart
         </button>
-        <button className='text-center w-full bg-primary-10 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase'>
-          Buy it now
-        </button>
+        <Link href='/information'>
+          <button className='text-center w-full bg-primary-10 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase' onClick={buyItNow}>
+            Buy it now
+          </button>
+        </Link>
       </div>
     </section>
   );
