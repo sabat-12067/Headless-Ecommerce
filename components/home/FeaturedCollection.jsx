@@ -46,8 +46,8 @@ const SingleProduct = ({
 }) => {
   return (
     <article className='font-medium relative text-sm md:text-lg text-primary-8 bg-[white] m-1 rounded-md  p-3 shadow-lg'>
-      <Link href={`/${productId}`}>
-        <a className='flex flex-col items-center'>
+      <Link href={`/${productId}`} passHref>
+        <div className='flex flex-col items-center'>
           <img src={imageUrl} alt={name} className='whitespace-nowrap' />
           <h3 className='p-3 text-sm md:text-lg'>{name}</h3>
           <p className='font-bold '>{price}</p>
@@ -55,7 +55,7 @@ const SingleProduct = ({
           <p className='bg-secondary-4 rounded-xl px-3 py-1 outline-none font-bold text-primary-8 absolute top-[12px] text-base animate-wiggle'>
             - {discountPercentage}
           </p>
-        </a>
+        </div>
       </Link>
     </article>
   );

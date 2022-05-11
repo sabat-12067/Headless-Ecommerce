@@ -1,7 +1,7 @@
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { cartActions } from '../../../store/cartSlice';
 
 export default function BuyNowSummary() {
@@ -9,6 +9,12 @@ export default function BuyNowSummary() {
   const buyItNowItemDetails = useSelector(
     (state) => state.cart.buyItNowItemDetails
   );
+
+  // const [buyIt, setBuyIt] = useState()
+   
+  // useEffect(() => {
+  //   setBuyIt(buyItNowItemDetails)
+  // , [buyItNowItemDetails]})
    
     const { price, quantity } =
       buyItNowItemDetails;

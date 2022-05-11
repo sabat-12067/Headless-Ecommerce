@@ -74,8 +74,10 @@ export default function Buttons({ singleProduct, productId }) {
           <HiOutlineShoppingCart className='absolute left-8 sm:left-20 md:left-12 lg:left-28' />
           Add to cart
         </button>
-        <Link href='/information'>
-          <button className='text-center w-full bg-primary-10 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase' onClick={buyItNow}>
+        <Link href='/information' passHref>
+          <button
+            className='text-center w-full bg-primary-10 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase'
+            onClick={buyItNow}>
             Buy it now
           </button>
         </Link>
