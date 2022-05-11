@@ -74,7 +74,7 @@ const cartSlice = createSlice({
       const buyItNowItem = action.payload;
       state.buyItNowItemDetails = {
         name: buyItNowItem.name,
-        price: buyItNowItem.price,
+        price: buyItNowItem.price.replace(/\D/g, ''),
         quantity: buyItNowItem.quantity,
         imageUrl: buyItNowItem.imageThumbnail,
         discountPrice: buyItNowItem.discountPrice,

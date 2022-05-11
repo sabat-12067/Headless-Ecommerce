@@ -9,17 +9,11 @@ export default function BuyNowSummary() {
   const buyItNowItemDetails = useSelector(
     (state) => state.cart.buyItNowItemDetails
   );
-
-  // const [buyIt, setBuyIt] = useState()
-   
-  // useEffect(() => {
-  //   setBuyIt(buyItNowItemDetails)
-  // , [buyItNowItemDetails]})
    
     const { price, quantity } =
       buyItNowItemDetails;
 
-    const subTotal = price.replace(/\D/g, '') * quantity;
+    const subTotal = price * quantity;
     console.log(subTotal);
   const estimatedTaxes = 0.03 * subTotal;
   const total = (subTotal + estimatedTaxes).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
