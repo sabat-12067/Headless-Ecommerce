@@ -14,6 +14,7 @@ export default function BuyNowSummary() {
       buyItNowItemDetails;
 
     const subTotal = price.replace(/\D/g, '') * quantity;
+    console.log(subTotal);
   const estimatedTaxes = 0.03 * subTotal;
   const total = (subTotal + estimatedTaxes).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
 

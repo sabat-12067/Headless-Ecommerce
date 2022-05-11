@@ -1,7 +1,7 @@
 
 ## Challenges
 
-### 1. Grabbing props from one component and used in the another component.
+### 1. Grabbing props from one component to be used in the another component.
 By default, props can only be passed from parent to child. Props can't to be passed from one sibling to another. 
 
 But that can be solved through lifting state - controlling state of the donor sibling component within the parent component so props can now be passed from the parent component to both sibling components. 
