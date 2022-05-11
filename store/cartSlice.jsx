@@ -19,14 +19,14 @@ const cartSlice = createSlice({
         existingProduct.totalPrice = existingProduct.quantity * existingProduct.price 
       } else {
         state.cartItemsList.push({
-         id: newProduct.id,
-         name: newProduct.name,
-         price: newProduct.price,
-         quantity: newProduct.quantity,
-         imageUrl: newProduct.image,
-         discountPrice: newProduct.discountPrice,
-         discountPercentage: newProduct.discountPercentage,
-         totalPrice: newProduct.price * newProduct.quantity,
+          id: newProduct.id,
+          name: newProduct.name,
+          price: newProduct.price,
+          quantity: newProduct.quantity,
+          imageUrl: newProduct.image,
+          discountPrice: newProduct.discountPrice,
+          discountPercentage: newProduct.discountPercentage,
+          totalPrice: newProduct.price * newProduct.quantity,
         });
       }
     },

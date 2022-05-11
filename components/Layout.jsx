@@ -14,8 +14,11 @@ export default function Layout(props) {
      if (router.pathname === "/information") {
         setShowNavigation(false);
         setShowFooter(false);
+     } else {
+        setShowNavigation(true);
+        setShowFooter(true);
      }
-   }, []);
+   }, [router.pathname]);
 
 
   return (
