@@ -1,8 +1,9 @@
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { cartActions } from '../../../store/cartSlice';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
+
+//This component is for the order summary information when customer has clicked on the buy now button
 
 export default function BuyNowSummary() {
   const [showOrderSummary, setShowOrderSummary] = useState(false)
@@ -14,7 +15,7 @@ export default function BuyNowSummary() {
       buyItNowItemDetails;
 
     const subTotal = price * quantity;
-    console.log(subTotal);
+    //console.log(subTotal);
   const estimatedTaxes = 0.03 * subTotal;
   const total = (subTotal + estimatedTaxes).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
 

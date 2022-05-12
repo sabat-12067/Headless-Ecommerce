@@ -5,6 +5,8 @@ import Buttons from '../../components/details/Buttons';
 import Description from '../../components/details/Description';
 import Cart from '../../components/Cart';
 
+//This page is the details page. It is displayed when customer clicks a product in the home page.
+
 export default function Product({ product, productId }) {
   const singleProduct = product.attributes;
 

@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { useDispatch, useSelector } from 'react-redux';
+import { productIdActions } from '../../store/productIdSlice';
 
 export default function FeaturedCollection({ products }) {
   //console.log(products);
@@ -44,10 +46,16 @@ const SingleProduct = ({
   imageUrl,
   productId
 }) => {
+  const dispatch = useDispatch();
+
+  const grabProductId = () => {
+      dispatch(productIdActions.setProductId({productId}));
+  }
+
   return (
     <article className='font-medium relative text-sm md:text-lg text-primary-8 bg-[white] m-1 rounded-md  p-3 shadow-lg'>
       <Link href={`/${productId}`} passHref>
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center' onClick={grabProductId}>
           <img src={imageUrl} alt={name} className='whitespace-nowrap' />
           <h3 className='p-3 text-sm md:text-lg'>{name}</h3>
           <p className='font-bold '>{price}</p>

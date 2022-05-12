@@ -62,7 +62,7 @@ function MySwiper({ image }) {
 //This component is for displaying images of the product on medium and large screens (screens above 768px)
 const Images = ({ image }) => {
 
-  console.log(image.data.length);
+ // console.log(image.data.length);
 
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 

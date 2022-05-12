@@ -14,14 +14,14 @@ export default function Buttons({ singleProduct, productId }) {
 
   const { price, name, image, discountPrice, discountPercentage } =
     singleProduct;
-    
-    //grab thumbnail - of the first image - of the product
-    const imageThumbnail = image.data[0].attributes.formats.thumbnail.url
-    
-    //change the price to a number
-    const productPriceNumber = price.replace(/\D/g, '');
 
-  const addToCart = () => { 
+  //grab thumbnail - of the first image - of the product
+  const imageThumbnail = image.data[0].attributes.formats.thumbnail.url;
+
+  //change the price to a number
+  const productPriceNumber = price.replace(/\D/g, '');
+
+  const addToCart = () => {
     dispatch(
       cartActions.addToCart({
         id: productId,
@@ -30,16 +30,23 @@ export default function Buttons({ singleProduct, productId }) {
         image: imageThumbnail,
         discountPrice,
         discountPercentage,
-        quantity
+        quantity,
       })
     );
   };
 
-    const buyItNow = () => {
-      dispatch(
-        cartActions.buyItNow({name, price, imageThumbnail, discountPrice, discountPercentage, quantity})
-      );
-    };
+  const buyItNow = () => {
+    dispatch(
+      cartActions.buyItNow({
+        name,
+        price,
+        imageThumbnail,
+        discountPrice,
+        discountPercentage,
+        quantity,
+      })
+    );
+  };
 
   const handleIncrement = () => {
     dispatch(quantityActions.increment());
@@ -53,6 +60,7 @@ export default function Buttons({ singleProduct, productId }) {
     <section className='px-4'>
       <div>
         <p className='text-base pb-1'>Quantity</p>
+                  {/* Edit Quantity container */}
         <div className='flex items-center border-[1px] justify-between px-2 py-2.5 w-40'>
           <BiMinus
             className='w-6 h-6 font-bold lg:cursor-pointer'
@@ -68,13 +76,15 @@ export default function Buttons({ singleProduct, productId }) {
         </div>
       </div>
       <div className='relative'>
-        <button
-          className='text-center w-full bg-secondary-1 mt-6 mb-4 text-2xl text-primary-10 flex flex-row items-center justify-center border-[1px] border-primary-10 outline-none rounded-none uppercase'
-          onClick={addToCart}>
-          <HiOutlineShoppingCart className='absolute left-8 sm:left-20 md:left-12 lg:left-28' />
-          Add to cart
-        </button>
-        <Link href='/information' passHref>
+                          {/*Add to cart button */}
+          <button
+            className='text-center w-full bg-secondary-1 mt-6 mb-4 text-2xl text-primary-10 flex flex-row items-center justify-center border-[1px] border-primary-10 outline-none rounded-none uppercase'
+            onClick={addToCart}>
+            <HiOutlineShoppingCart className='absolute left-8 sm:left-20 md:left-12 lg:left-28' />
+            Add to cart
+          </button>
+                     {/*Buy It Now button */}
+        <Link href='/information/buynow' passHref>
           <button
             className='text-center w-full bg-primary-10 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase'
             onClick={buyItNow}>

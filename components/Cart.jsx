@@ -10,31 +10,30 @@ const Cart = () => {
   return showCart && <CartContainer />;
 };
 
-
 const CartContainer = () => {
   const dispatch = useDispatch();
-  
+
   const cartItems = useSelector((state) => state.cart.cartItemsList);
-  
+
   const numberOfCartItems = cartItems.length;
- 
+
   const handleIncrement = (id) => {
     dispatch(cartActions.incrementCartQuantity(id));
   };
-  
+
   const handleDecrement = (id) => {
     dispatch(cartActions.decrementCartQuantity(id));
   };
 
   const removeItem = (id) => {
     dispatch(cartActions.removeItem(id));
-  }
+  };
 
   let totalPriceOfAllItems = 0;
 
-  cartItems.map(item => {
+  cartItems.map((item) => {
     totalPriceOfAllItems += item.totalPrice;
-  })
+  });
 
   return (
     <section
@@ -66,7 +65,9 @@ const CartContainer = () => {
               } = item;
 
               return (
-                <div className='p-2 border-t-[1px] border-b-[1px] b-primary-10 w-full' key={index}>
+                <div
+                  className='p-2 border-t-[1px] border-b-[1px] b-primary-10 w-full'
+                  key={index}>
                   <div className='flex text-xs sm:text-sm font-medium'>
                     <img
                       src={imageUrl}
@@ -130,9 +131,11 @@ const CartContainer = () => {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </p>
           </div>
-          <button className='w-full uppercase bg-primary-10 rounded-none text-lg sm:text-xl'>
-            continue to checkout
-          </button>{' '}
+          <Link href='/information/cart' passHref>
+            <button className='w-full uppercase bg-primary-10 rounded-none text-lg sm:text-xl'>
+              continue to checkout
+            </button>
+          </Link>
           <p className='pt-2 underline'>
             <Link href='./'>Continue Shopping</Link>{' '}
           </p>
