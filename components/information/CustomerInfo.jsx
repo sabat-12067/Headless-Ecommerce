@@ -48,42 +48,42 @@ const ContactInfo = () => {
 };
 
 const ShippingAddress = () => {
+  const inputStyles =
+    'text-sm rounded-md bg-primary-4 text-primary-10 outline-1 outline-secondary-5 text-sm w-full w-full px-2 py-3 text-sm my-1 font-medium';
   return (
     <div className=''>
       <h4 className='text-left py-2'>Shipping address</h4>
-      <input
-        type='text'
-        placeholder='Country/region'
-        className='w-full px-2 py-3 text-sm'
-      />
+      <input type='text' placeholder='Country/region' className={inputStyles} />
       <input
         type='text'
         placeholder='First name (optional)'
-        className='w-full px-2 py-3 text-sm my-2'
+        className={inputStyles}
       />
       <input
         type='text'
         placeholder='Last name'
-        className='w-full px-2 py-3 text-sm'
+        className={inputStyles}
       />
       <input
         type='text'
         placeholder='Address'
-        className='w-full px-2 py-3 text-sm my-2'
+        className={inputStyles}
       />
       <input
         type='text'
         placeholder='Apartment, suite, etc. (optional)'
-        className='w-full px-2 py-3 text-sm'
+        className={inputStyles}
       />
       <input
         type='text'
         placeholder='City'
-        className='w-full px-2 py-3 text-sm mt-2' 
+        className={inputStyles}
       />
       <div>
-       <input type="checkbox" id='save-info' />
-       <label htmlFor="save-info" className='ml-2'>Save this information for next time</label>
+        <input type='checkbox' id='save-info' />
+        <label htmlFor='save-info' className='ml-2'>
+          Save this information for next time
+        </label>
       </div>
     </div>
   );
