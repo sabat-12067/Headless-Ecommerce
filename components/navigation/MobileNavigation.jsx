@@ -18,7 +18,7 @@ const listItems = [
   { text: 'shipping', icon: <FaShippingFast /> },
 ];
 
-function MobileNavigation({ numberOfCartItems, toggleCart }) {
+function MobileNavigation({ totalQuantity, toggleCart }) {
   
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
@@ -27,7 +27,7 @@ function MobileNavigation({ numberOfCartItems, toggleCart }) {
       <StaticNavigation
         setIsMobileNavOpen={setIsMobileNavOpen}
         isMobileNavOpen={isMobileNavOpen}
-        numberOfCartItems={numberOfCartItems}
+        totalQuantity={totalQuantity}
         toggleCart={toggleCart}
       />
       <ToggledNavigation
@@ -38,16 +38,20 @@ function MobileNavigation({ numberOfCartItems, toggleCart }) {
   );
 }
 
-const StaticNavigation = ({ setIsMobileNavOpen, isMobileNavOpen, numberOfCartItems, toggleCart }) => {
-
+const StaticNavigation = ({
+  setIsMobileNavOpen,
+  isMobileNavOpen,
+  totalQuantity,
+  toggleCart,
+}) => {
   return (
     <div className='text-[white] font-["Arima_Madurai"] font-bold text-lg flex justify-between w-full items-center p-4 pr-2 bg-primary-9'>
       <Link href='/'>Asuman&#39;s Supermarket</Link>
       <div className='relative flex' onClick={toggleCart}>
         <HiShoppingCart className='w-8 h-8' />
-        {numberOfCartItems >= 1 ? (
-          <p className='absolute bg-secondary-8 text-xs px-1 py-0.5 items-center top-2 right-1 rounded-lg font-bold'>
-            {numberOfCartItems}
+        {totalQuantity >= 1 ? (
+          <p className='absolute bg-secondary-8 text-xs top-2 right-0 px-1 rounded-[50%] font-bold '>
+            {totalQuantity}
           </p>
         ) : null}
       </div>

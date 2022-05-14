@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const listItems = ['categories', 'about', 'contact us'];
 
-export default function DesktopNavigation({ toggleCart, numberOfCartItems }) {
+export default function DesktopNavigation({ toggleCart, totalQuantity }) {
   return (
     <nav className='hidden md:flex items-center w-screen justify-between py-2 px-6 text-[white] uppercase tracking-wider absolute bg-primary-9'>
       <div className='font-["Arima_Madurai"] font-bold lg:text-base md:text-sm md:w-2 hover:scale-105 duration-300 ease-linear'>
@@ -26,12 +26,13 @@ export default function DesktopNavigation({ toggleCart, numberOfCartItems }) {
         {/**Cart icon container */}
         <div className='relative flex' onClick={toggleCart}>
           <HiShoppingCart className='w-8 h-8 md:h-9 md:w-9 cursor-pointer hover:scale-105 duration-300 ease-linear self-center' />
-          {numberOfCartItems >= 1 ? (
+          {totalQuantity >= 1 ? (
             <p className='absolute bg-secondary-8 text-xs px-1 py-0.5 items-center top-2 right-1 rounded-lg font-bold'>
-              {numberOfCartItems}
+              {totalQuantity}
             </p>
           ) : null}
         </div>
+        {/**Sign-up and login buttons */}
         <div className='flex items-center'>
           <Button action={'sign-up'} />
           <Button action={'login'} />

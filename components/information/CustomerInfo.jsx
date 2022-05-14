@@ -35,7 +35,7 @@ const ContactInfo = () => {
       <input
         type='text'
         placeholder='Email or mobile number'
-        className='w-full px-2 py-3 text-sm'
+        className='w-full px-2 py-4 rounded-md text-sm'
       />
       <div className='flex items-center py-2'>
         <input type='checkbox' id='subscribe' />
@@ -49,7 +49,7 @@ const ContactInfo = () => {
 
 const ShippingAddress = () => {
   const inputStyles =
-    'text-sm rounded-md bg-primary-4 text-primary-10 outline-1 outline-secondary-5 text-sm w-full w-full px-2 py-3 text-sm my-1 font-medium';
+    'text-sm rounded-md bg-primary-4 text-primary-10 outline-1 outline-secondary-5 text-sm w-full w-full px-2 py-4 text-sm my-2 font-medium';
   return (
     <div className=''>
       <h4 className='text-left py-2'>Shipping address</h4>
@@ -94,7 +94,7 @@ const Navigation = () => {
 
   return (
     <div className='my-3 flex items-center flex-col'>
-      <button className='w-full text-base bg-secondary-9'>
+      <button className='w-full text-base bg-primary-9'>
         Continue to shipping
       </button>
       <div className='flex py-2'>

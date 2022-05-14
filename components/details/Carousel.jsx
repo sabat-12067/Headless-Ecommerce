@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { BiHighlight } from 'react-icons/bi';
 
 export default function Carousel({ singleProduct }) {
      
@@ -62,8 +63,6 @@ function MySwiper({ image }) {
 //This component is for displaying images of the product on medium and large screens (screens above 768px)
 const Images = ({ image }) => {
 
- // console.log(image.data.length);
-
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
   //set current slide index to the index of the image that is clicked
@@ -96,12 +95,17 @@ const Images = ({ image }) => {
       {/*Thumbnails Container*/}
       <div className={`hidden md:flex pl-4 pt-4 ${image.data.length <= 1 ? 'md:hidden' : 'null' }`}>
         {image.data.map((image, index) => {
+           const imageId = image.id;
           return (
-            <article key={index} className=''>
+            <article key={index} data-id={index}>
               <img
                 src={image.attributes.formats.thumbnail.url}
                 alt='slide image'
-                className='mr-4 w-20 h-20 rounded-lg cursor-pointer'
+                className={`mr-4 w-20 h-20 rounded-lg cursor-pointer ${
+                  currentSlideIndex === index
+                    ? 'opacity-50 border-2 border-primary-10'
+                    : 'opacity-100 border-0'
+                }`}
                 onClick={() => changeSlide(index)}
               />
             </article>

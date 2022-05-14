@@ -18,11 +18,11 @@ export default function Description({ singleProduct }) {
     <section className='px-4'>
       {/*Descriptions container */}
       <div className='md:max-w-[500px]'>
-       <p className='font-bold'>Description</p>
+        <p className='font-bold'>Description</p>
         <p>
           {readMore ? description : description.substr(0, 100)}
           <button
-            className='px-2 text-sm py-2 bg-secondary-1 text-primary-9'
+            className='px-2 text-sm py-2 bg-primary-2 text-primary-9'
             onClick={() => setReadMore(!readMore)}>
             {readMore ? 'Read less' : '... Read more'}
           </button>

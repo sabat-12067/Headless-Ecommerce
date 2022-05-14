@@ -108,7 +108,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@reduxjs/toolkit@^1.8.1":
+"@reduxjs/toolkit@^1.5.1", "@reduxjs/toolkit@^1.8.1":
   "integrity" "sha512-Q6mzbTpO9nOYRnkwpDlFOAbQnd3g7zj7CtHAZWz5SzE5lcV97Tf8f3SzOO8BoPOMYBFgfZaqTUZqgGu+a0+Fng=="
   "resolved" "https://registry.npmjs.org/@reduxjs/toolkit/-/toolkit-1.8.1.tgz"
   "version" "1.8.1"
@@ -1752,6 +1752,13 @@
   "integrity" "sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q=="
   "resolved" "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.4.1.tgz"
   "version" "2.4.1"
+
+"redux-toolkit-form@^1.2.1":
+  "integrity" "sha512-IUS+PLO++1tgOx5+oGbhR0vlCX+5MQF0i7+gbGSUqjv5oOaWLQLnH9SdPRJ+tO2XeXWqI5j5t6AHCkponCSyvA=="
+  "resolved" "https://registry.npmjs.org/redux-toolkit-form/-/redux-toolkit-form-1.2.1.tgz"
+  "version" "1.2.1"
+  dependencies:
+    "@reduxjs/toolkit" "^1.5.1"
 
 "redux@^4", "redux@^4.1.2", "redux@^4.2.0":
   "integrity" "sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA=="

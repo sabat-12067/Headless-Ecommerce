@@ -9,7 +9,7 @@ export default function cart() {
       <h2 className='text-primary-10 text-left font-["Arima_Madurai"] font-bold text-lg md:hidden py-6 px-4 '>
         Asuman&#39;s Supermarket
       </h2>
-      <div>
+      <div className="lg:flex">
         <CartSummary />
         <div>
           <h2 className='text-primary-10 text-left font-["Arima_Madurai"] font-bold text-lg py-6 px-4 hidden'>

@@ -14,20 +14,20 @@ export default function MainNavigation() {
    };
      
     const cartItems = useSelector((state) => state.cart.cartItemsList);
-    const numberOfCartItems = cartItems.length;
 
-  const quantity = useSelector((state) => state.quantityValue.quantity);
+  let totalQuantity = 0;
+
+  cartItems.map(cartItem => {
+    totalQuantity += cartItem.quantity;
+  })
 
   return (
     <nav className='relative z-30'>
       <DesktopNavigation
-        numberOfCartItems={numberOfCartItems}
+        totalQuantity={totalQuantity}
         toggleCart={toggleCart}
       />
-      <MobileNavigation
-        numberOfCartItems={numberOfCartItems}
-        toggleCart={toggleCart}
-      />
+      <MobileNavigation totalQuantity={totalQuantity} toggleCart={toggleCart} />
     </nav>
   );
 }
