@@ -6,7 +6,7 @@ import { Children } from 'react';
 
 //This page is displayed when customer clicks the 'add to cart' button
 
-export default function cart({ children }) {
+export default function InfoLayout({ children }) {
   const isAddToCartBtnClicked = useSelector(
     (state) => state.cart.isAddToCartBtnClicked
   );

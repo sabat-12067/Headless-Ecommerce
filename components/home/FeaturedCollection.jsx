@@ -53,7 +53,7 @@ const SingleProduct = ({
   }
 
   return (
-    <article className='font-medium relative text-sm md:text-lg text-primary-11 bg-[white] mb-8'>
+    <article className='font-medium relative text-sm md:text-lg text-primary-11 bg-[white] mb-8 lg:cursor-pointer'>
       <Link href={`/${productId}`} passHref>
         <div className='flex flex-col items-center' onClick={grabProductId}>
           <img src={imageUrl} alt={name} className='' />
