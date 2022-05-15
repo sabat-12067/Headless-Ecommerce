@@ -46,6 +46,7 @@ export default function Buttons({ singleProduct, productId }) {
         quantity,
       })
     );
+    dispatch(cartActions.setIsBuyItNowBtnClicked());
   };
 
   const handleIncrement = () => {
@@ -55,12 +56,13 @@ export default function Buttons({ singleProduct, productId }) {
   const handleDecrement = () => {
     dispatch(quantityActions.decrement());
   };
+  // console.log('is Add To Cart Button Clicked:', isAddToCartClicked);
 
   return (
     <section className='px-4'>
       <div>
         <p className='text-base pb-1'>Quantity</p>
-                  {/* Edit Quantity container */}
+        {/* Edit Quantity container */}
         <div className='flex items-center border-[1px] justify-between px-2 py-2.5 w-40'>
           <BiMinus
             className='w-6 h-6 font-bold lg:cursor-pointer'
@@ -76,15 +78,15 @@ export default function Buttons({ singleProduct, productId }) {
         </div>
       </div>
       <div className='relative'>
-                          {/*Add to cart button */}
-          <button
-            className='text-center w-full bg-primary-2 mt-6 mb-4 text-2xl text-primary-10 flex flex-row items-center justify-center border-[1px] border-primary-10 outline-none rounded-none uppercase'
-            onClick={addToCart}>
-            <HiOutlineShoppingCart className='absolute left-8 sm:left-20 md:left-12 lg:left-28' />
-            Add to cart
-          </button>
-                     {/*Buy It Now button */}
-        <Link href='/information/buynow' passHref>
+        {/*Add to cart button */}
+        <button
+          className='text-center w-full bg-primary-2 mt-6 mb-4 text-2xl text-primary-10 flex flex-row items-center justify-center border-[1px] border-primary-10 outline-none rounded-none uppercase'
+          onClick={addToCart}>
+          <HiOutlineShoppingCart className='absolute left-8 sm:left-20 md:left-12 lg:left-28' />
+          Add to cart
+        </button>
+        {/*Buy It Now button */}
+        <Link href='/information' passHref>
           <button
             className='text-center w-full bg-primary-11 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase'
             onClick={buyItNow}>

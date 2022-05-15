@@ -6,13 +6,13 @@
 
 @layer base {
   body {
-    @apply bg-primary-2 leading-7 text-base md:text-lg font-[lato] font-light text-primary-8 
+    @apply bg-secondary-2 leading-7 text-base md:text-lg font-[lato] font-light text-primary-11 
 }
 ul {
   @apply list-none
 }
 button {
-  @apply bg-secondary-6 text-[white] font-extrabold py-4 rounded border-0 outline-none text-xl tracking-[1.2px] px-7 md:px-[4rem] md:py-[1.5rem] md:text-3xl lg:cursor-pointer lg:hover:scale-105 duration-300 ease-linear
+  @apply bg-primary-11 text-[white] font-extrabold py-4 rounded border-0 outline-none text-xl tracking-[1.2px] px-7 md:px-[4rem] md:py-[1.5rem] md:text-3xl lg:cursor-pointer lg:hover:scale-105 duration-300 ease-linear
 }
 h1,
 h2,

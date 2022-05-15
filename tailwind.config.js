@@ -22,6 +22,7 @@ module.exports = {
       'primary-9': '#1f2937',
       'primary-10': '#111827',
       'primary-11': 'hsl(205, 100%, 21%)',
+      'white': '#fff',
 
       'secondary-1': '#fff7ed',
       'secondary-2': '#ffedd5',
@@ -35,9 +36,10 @@ module.exports = {
       'secondary-10': '#7c2d12',
     },
     gridTemplateColumns: {
-      'autofill-sm': 'repeat(auto-fill, minmax(150px, 1fr))',
-      'autofill-lg': 'repeat(auto-fit, minmax(250px, 1fr))',
+      'autofill-sm': 'repeat(auto-fill, minmax(170px, 1fr))',
+      'autofill-lg': 'repeat(auto-fit, minmax(260px, 1fr))',
       'autofill-details': 'repeat(auto-fit, minmax(250px, 1fr))',
+      'grid-sm': 'repeat(2, 2fr)'
     },
     keyframes: {
       wiggle: {

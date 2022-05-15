@@ -81,7 +81,7 @@ const ProductInfo = ({ buyItNowItemDetails }) => {
       </div>
       <div className='w-[60%] sm:w-auto text-right'>
         <p className='font-bold text-sm text-secondary-7 '>
-         {price}
+        UGX {price}
         </p>
         <p className='font-medium line-through text-sm'>{discountPrice}</p>
       </div>

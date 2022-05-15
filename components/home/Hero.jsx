@@ -28,7 +28,7 @@ export default function Hero() {
               <div className='flex-col items-center justify-center flex absolute h-full w-full z-10 text-[white]'>
                 <h3 className='uppercase px-4'>{h3}</h3>
                 <h1 className='mt-8'>{h1}</h1>
-                <button className='mt-32'>Shop Now</button>
+                <button className='mt-32 rounded-none w-[80%] md:w-[50%] lg:[20%]'>Shop Now</button>
               </div>
               <FiArrowDownCircle className='absolute top-[90%] right-6 text-secondary-8 z-100 w-8 h-8 animate-bounce' />
               <div className='h-full bg-[#374151] w-full'>

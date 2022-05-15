@@ -4,6 +4,8 @@ import { BiPlus, BiMinus } from 'react-icons/bi';
 import { cartActions } from '../store/cartSlice';
 import Link from 'next/link';
 
+//THIS component is for displaying the cart after clicking the cart icon
+
 const Cart = () => {
   const showCart = useSelector((state) => state.cart.showCart);
 
@@ -34,6 +36,16 @@ const CartContainer = () => {
   cartItems.map((item) => {
     totalPriceOfAllItems += item.totalPrice;
   });
+
+   const isAddToCartClicked = useSelector(
+     (state) => state.cart.isAddToCartBtnClicked
+   );
+
+   const setIsAddToCartBtnClicked = () => {
+      dispatch(cartActions.setIsAddToCartBtnClicked());
+    };
+
+    console.log('Is Add To Cart Button Clicked?', isAddToCartClicked);
 
   return (
     <section
@@ -131,8 +143,8 @@ const CartContainer = () => {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </p>
           </div>
-          <Link href='/information/cart' passHref>
-            <button className='w-full uppercase bg-primary-10 rounded-none text-lg sm:text-xl'>
+          <Link href='/information' passHref>
+            <button className='w-full uppercase bg-primary-10 rounded-none text-lg sm:text-xl' onClick={setIsAddToCartBtnClicked}>
               continue to checkout
             </button>
           </Link>

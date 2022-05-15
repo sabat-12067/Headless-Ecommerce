@@ -4,9 +4,10 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     cartItemsList: [],
-    totalQuantity: 0,
     showCart: false,
     buyItNowItemDetails: '',
+    isBuyItNowBtnClicked: false,
+    isAddToCartBtnClicked: false,
   },
   reducers: {
     addToCart(state, action) {
@@ -80,6 +81,15 @@ const cartSlice = createSlice({
         discountPrice: buyItNowItem.discountPrice,
         discountPercentage: buyItNowItem.discountPercentage,
       };
+    },
+    setIsBuyItNowBtnClicked(state, action) {
+      state.isBuyItNowBtnClicked = true;
+      state.isAddToCartBtnClicked = false;
+    },
+    setIsAddToCartBtnClicked(state, action) {
+      state.isAddToCartBtnClicked = true;
+      state.isBuyItNowBtnClicked = false;
+      console.log('add to cart button clicked');
     }
   }
 });

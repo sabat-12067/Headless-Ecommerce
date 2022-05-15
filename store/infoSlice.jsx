@@ -2,7 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const informationSlice = createSlice({
   name: 'userInfo',
-  initialState: { userInfo: '', subscribe: false, saveUserInfo: false },
+  initialState: {
+    userInfo: '',
+    subscribe: false,
+    saveUserInfo: false,
+    isValidated: false,
+  },
   reducers: {
     setUserInfo(state, action) {
       const infoDetails = action.payload;
@@ -22,10 +27,14 @@ const informationSlice = createSlice({
     },
     setSaveUserInfo(state, action) {
       state.saveUserInfo = true;
-    }
+    },
+    setIsValidated(state, action) {
+      state.isValidated = action.payload;
+    },
   },
 });
 
 export const informationActions = informationSlice.actions;
 
 export default informationSlice;
+

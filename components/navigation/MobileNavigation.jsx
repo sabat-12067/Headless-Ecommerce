@@ -77,12 +77,13 @@ const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
       <ul className='pt-[5rem] text-[white] uppercase font-bold tracking-wider '>
         {listItems.map((listItem, index) => {
           const { icon, text } = listItem;
+          const linkTo = text === 'home' ? '/' : `/${text.split(' ').join('')}`;
           return (
             <li
               key={index}
               className='border-b-[1px] border-b-[white] flex items-center '>
               <div className='mr-3 text-[1.5rem]'>{icon}</div>
-              <Link href={`/${text.split(' ').join('')}`}>{text}</Link>
+              <Link href={linkTo}>{text}</Link>
             </li>
           );
         })}
