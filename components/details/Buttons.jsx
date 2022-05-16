@@ -18,15 +18,12 @@ export default function Buttons({ singleProduct, productId }) {
   //grab thumbnail - of the first image - of the product
   const imageThumbnail = image.data[0].attributes.formats.thumbnail.url;
 
-  //change the price to a number
-  const productPriceNumber = price.replace(/\D/g, '');
-
   const addToCart = () => {
     dispatch(
       cartActions.addToCart({
         id: productId,
         name,
-        price: productPriceNumber,
+        price: price,
         image: imageThumbnail,
         discountPrice,
         discountPercentage,

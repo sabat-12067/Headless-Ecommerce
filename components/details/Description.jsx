@@ -20,7 +20,7 @@ export default function Description({ singleProduct }) {
       <div className='md:max-w-[500px]'>
         <p className='font-bold'>Description</p>
         <p>
-          {readMore ? description : description.substr(0, 100)}
+          {readMore ? description : description.substr(0, 250)}
           <button
             className='px-2 text-sm py-2 bg-secondary-2 text-primary-9'
             onClick={() => setReadMore(!readMore)}>

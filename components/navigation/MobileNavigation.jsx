@@ -46,7 +46,7 @@ const StaticNavigation = ({
 }) => {
   return (
     <div className='text-[white] font-["Arima_Madurai"] font-bold text-lg flex justify-between w-full items-center p-4 pr-2 bg-primary-9'>
-      <Link href='/'>Asuman&#39;s Supermarket</Link>
+      <Link href='/'>Asuman Sounds</Link>
       <div className='relative flex' onClick={toggleCart}>
         <HiShoppingCart className='w-8 h-8' />
         {totalQuantity >= 1 ? (

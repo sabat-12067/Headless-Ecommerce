@@ -14,7 +14,7 @@ export default function InfoLayout({ children }) {
   return (
     <section className=''>
       <h2 className='text-primary-10 text-left font-["Arima_Madurai"] font-bold text-lg md:hidden py-6 px-4 '>
-        Asuman&#39;s Supermarket
+        Asuman Sounds
       </h2>
       <div className='lg:flex'>
         {/*If 'continue to check out' button is clicked, cartSummary component is displayed and buynowsummary component is displayed when the customer takes the 'buy it now' path */}
