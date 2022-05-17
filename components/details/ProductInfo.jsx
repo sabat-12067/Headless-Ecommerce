@@ -1,5 +1,5 @@
 
-//This component is for the name of the product and the product prices
+//This component is for the name of the product and the product prices on the details page. 
 
 export default function ProductInfo({ singleProduct }) {
 
@@ -10,7 +10,7 @@ export default function ProductInfo({ singleProduct }) {
       (price * 100) / (100 - discountPercentage);
 
       //convert to two decimal places
-      discountPrice = Math.round((discountPrice * 100) / 100).toFixed(2)
+      discountPrice = ((discountPrice * 100) / 100).toFixed(2)
 
   return (
     <section className='p-4 md:pt-8'>

@@ -16,6 +16,7 @@ const CartContainer = () => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state) => state.cart.cartItemsList);
+  console.log('cartItems:', cartItems);
 
   const numberOfCartItems = cartItems.length;
 
@@ -34,18 +35,17 @@ const CartContainer = () => {
   let totalPriceOfAllItems = 0;
 
   cartItems.map((item) => {
-    totalPriceOfAllItems += item.totalPrice;
+    totalPriceOfAllItems += (item.totalPrice);
   });
 
-   const isAddToCartClicked = useSelector(
-     (state) => state.cart.isAddToCartBtnClicked
-   );
+  const formattedTotalPriceOfAllItems = (
+    (totalPriceOfAllItems * 100) /
+    100
+  ).toFixed(2);
 
    const setIsAddToCartBtnClicked = () => {
       dispatch(cartActions.setIsAddToCartBtnClicked());
     };
-
-    console.log('Is Add To Cart Button Clicked?', isAddToCartClicked);
 
   return (
     <section
@@ -76,6 +76,8 @@ const CartContainer = () => {
                 totalPrice,
               } = item;
 
+              const formatedTotalPrice = ((totalPrice * 100 ) / 100).toFixed(2);
+
               return (
                 <div
                   className='p-2 border-t-[1px] border-b-[1px] b-primary-10 w-full'
@@ -89,11 +91,11 @@ const CartContainer = () => {
                     <div>
                       <p className='text-base font-bold'>{name}</p>
                       <p className='text-sm font-medium'>
-                        UGX {/*Add a coma (,) every after 3 digits*/}
+                        USD {/*Add a coma (,) every after 3 digits*/}
                         {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                       </p>
                       <div className='flex'>
-                        <p className='line-through mr-2'>{discountPrice}</p>
+                        <p className='line-through mr-2'>USD {discountPrice}</p>
                         <p className='font-bold bg-secondary-3 px-2 rounded-sm text-secondary-7 w-[fit-content] '>
                           - {discountPercentage}
                         </p>
@@ -103,8 +105,8 @@ const CartContainer = () => {
                   <div className='flex w-full  justify-between font-bold py-2'>
                     <p>Total Amount:</p>
                     <p>
-                      UGX {/*Add a coma (,) every after 3 digits*/}
-                      {totalPrice
+                      USD {/*Add a coma (,) every after 3 digits*/}
+                      {formatedTotalPrice
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                     </p>
@@ -137,8 +139,8 @@ const CartContainer = () => {
           <div className='flex justify-between w-full font-bold font-["Arima_Madurai"] pt-4 text-secondary-10'>
             <p>Subtotal</p>
             <p>
-              UGX{' '}
-              {totalPriceOfAllItems
+              USD{' '}
+              {formattedTotalPriceOfAllItems
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </p>

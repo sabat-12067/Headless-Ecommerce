@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { quantityActions } from '../../store/quantitySlice';
 import { cartActions } from '../../store/cartSlice';
 import Link from 'next/link';
+import { formatprice } from '../HorLine';
 
 //This component is for the 'edit quantity',  'add to cart' and the 'buy now' buttons of the product details screen/page.
 
@@ -12,8 +13,12 @@ export default function Buttons({ singleProduct, productId }) {
 
   const dispatch = useDispatch();
 
-  const { price, name, image, discountPrice, discountPercentage } =
+  const { price, name, image, discountPercentage } =
     singleProduct;
+
+      let discountPrice = (price * 100) / (100 - discountPercentage);
+      discountPrice = formatprice(discountPrice);
+
 
   //grab thumbnail - of the first image - of the product
   const imageThumbnail = image.data[0].attributes.formats.thumbnail.url;

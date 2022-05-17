@@ -8,6 +8,7 @@ import { useState } from 'react';
 export default function CartSummary() {
   const [showOrderSummary, setShowOrderSummary] = useState(false);
   const cartItemsDetails = useSelector((state) => state.cart.cartItemsList);
+  console.log(cartItemsDetails);
 
   let totalPriceOfCartItems = 0;
 
@@ -17,10 +18,12 @@ export default function CartSummary() {
 
   //NOTE: '.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ' inserts commas every 3 digits
 
-  const estimatedTaxes = 0.03 * totalPriceOfCartItems;
-  const total = (totalPriceOfCartItems + estimatedTaxes)
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  let estimatedTaxes = 0.03 * totalPriceOfCartItems;
+  estimatedTaxes = ((estimatedTaxes * 100) / 100 ).toFixed(2);
+
+  let total = (totalPriceOfCartItems + parseFloat(estimatedTaxes))
+  total = ((total * 100) / 100).toFixed(2);
+
 
   return (
     <section className='bg-primary-3 '>
@@ -60,7 +63,9 @@ const OrderSummaryHeader = ({
           }`}
         />
       </div>
-      <p className='font-bold text-right'>UGX {total}</p>
+      <p className='font-bold text-right'>
+        USD {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+      </p>
     </section>
   );
 };
@@ -93,7 +98,8 @@ const ProductInfo = ({ cartItemsDetails }) => {
       {cartItemsDetails.map((cartItem, index) => {
         const { name, imageUrl, discountPrice, totalPrice, quantity } =
           cartItem;
-          const totalDiscountPrice = discountPrice.replace(/\D/g, '') * quantity;
+          
+          const totalDiscountPrice = discountPrice * quantity;
         return (
           <div className='flex justify-between items-center mt-2 relative' key={index}>
             <div className='flex items-center'>
@@ -111,11 +117,11 @@ const ProductInfo = ({ cartItemsDetails }) => {
             </div>
             <div className='w-[60%] sm:w-auto text-right'>
               <p className='font-bold text-sm text-secondary-7 '>
-                UGX{' '}
+                USD{' '}
                 {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               </p>
               <p className='font-medium line-through text-sm'>
-                UGX {totalDiscountPrice
+                USD {totalDiscountPrice
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               </p>
@@ -133,7 +139,7 @@ const Costs = ({ totalPriceOfCartItems, estimatedTaxes }) => {
       <div className='flex w-full justify-between font-semibold'>
         <p>Subtotal</p>
         <p>
-          UGX{' '}
+          USD{' '}
           {totalPriceOfCartItems
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
@@ -146,7 +152,7 @@ const Costs = ({ totalPriceOfCartItems, estimatedTaxes }) => {
       <div className='flex w-full justify-between font-medium'>
         <p>Taxes (estimated)</p>
         <p>
-          UGX {estimatedTaxes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          USD {estimatedTaxes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
         </p>
       </div>
     </section>
@@ -157,7 +163,9 @@ const Total = ({ total }) => {
   return (
     <div className='flex w-full justify-between font-semibold py-2'>
       <p className=''>Total</p>
-      <p className='text-lg text-secondary-8'>UGX {total}</p>
+      <p className='text-lg text-secondary-8'>
+        USD {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+      </p>
     </div>
   );
 };

@@ -2,32 +2,49 @@ import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { formatprice } from '../../HorLine';
 
 //This component is for the order summary information when customer has clicked on the buy now button
 
 export default function BuyNowSummary() {
-  const [showOrderSummary, setShowOrderSummary] = useState(false)
+  const [showOrderSummary, setShowOrderSummary] = useState(false);
   const buyItNowItemDetails = useSelector(
     (state) => state.cart.buyItNowItemDetails
   );
-   
-    const { price, quantity } =
-      buyItNowItemDetails;
 
-    const subTotal = price * quantity;
-    //console.log(subTotal);
-  const estimatedTaxes = 0.03 * subTotal;
-  const total = (subTotal + estimatedTaxes).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); 
+  const { price, quantity} = buyItNowItemDetails;
+
+  const subTotal = price * quantity;
+
+  let estimatedTaxes = 0.03 * subTotal;
+  estimatedTaxes = formatprice(estimatedTaxes);
+
+  let total = parseFloat(subTotal) + parseFloat(estimatedTaxes);
+  total = formatprice(total);
 
   return (
     <section className='bg-primary-3 '>
-      <OrderSummaryHeader total={total} setShowOrderSummary={setShowOrderSummary} showOrderSummary={showOrderSummary} />
-      <OrderSummaryInfo buyItNowItemDetails={buyItNowItemDetails} subTotal={subTotal} total={total} estimatedTaxes={estimatedTaxes} showOrderSummary={showOrderSummary} />
+      <OrderSummaryHeader
+        total={total}
+        setShowOrderSummary={setShowOrderSummary}
+        showOrderSummary={showOrderSummary}
+      />
+      <OrderSummaryInfo
+        buyItNowItemDetails={buyItNowItemDetails}
+        subTotal={subTotal}
+        total={total}
+        estimatedTaxes={estimatedTaxes}
+        showOrderSummary={showOrderSummary}
+      />
     </section>
   );
 }
 
-const OrderSummaryHeader = ({total, setShowOrderSummary, showOrderSummary}) => {
+const OrderSummaryHeader = ({
+  total,
+  setShowOrderSummary,
+  showOrderSummary,
+}) => {
   return (
     <section
       className='flex w-full p-4 justify-between  border-t-2 border-b-2 border-primary-4 text-sm items-center md:text-base'
@@ -43,12 +60,18 @@ const OrderSummaryHeader = ({total, setShowOrderSummary, showOrderSummary}) => {
           }`}
         />
       </div>
-      <p className='font-bold text-right'>UGX {total}</p>
+      <p className='font-bold text-right'>USD {total}</p>
     </section>
   );
 };
 
-const OrderSummaryInfo = ({ buyItNowItemDetails, subTotal, estimatedTaxes, total, showOrderSummary }) => {
+const OrderSummaryInfo = ({
+  buyItNowItemDetails,
+  subTotal,
+  estimatedTaxes,
+  total,
+  showOrderSummary,
+}) => {
   return (
     <section
       className={`px-4 border-b-2 border-primary-4 overflow-hidden ${
@@ -62,8 +85,12 @@ const OrderSummaryInfo = ({ buyItNowItemDetails, subTotal, estimatedTaxes, total
 };
 
 const ProductInfo = ({ buyItNowItemDetails }) => {
-  const { name, price, imageUrl, discountPrice, quantity } =
+  const { name, price, imageUrl, discountPercentage, quantity } =
     buyItNowItemDetails;
+
+       let discountPrice = (price * 100) / (100 - discountPercentage);
+       discountPrice = formatprice(discountPrice);
+
   return (
     <div className='relative flex justify-between items-center  border-b-2 border-primary-4 py-4'>
       <div className='flex items-center'>
@@ -80,21 +107,19 @@ const ProductInfo = ({ buyItNowItemDetails }) => {
         </div>
       </div>
       <div className='w-[60%] sm:w-auto text-right'>
-        <p className='font-bold text-sm text-secondary-7 '>
-        UGX {price}
-        </p>
-        <p className='font-medium line-through text-sm'>{discountPrice}</p>
+        <p className='font-bold text-sm text-secondary-7 '>USD {price}</p>
+        <p className='font-medium line-through text-sm'>USD {discountPrice}</p>
       </div>
     </div>
   );
 };
 
-const Costs = ({subTotal, estimatedTaxes}) => {
+const Costs = ({ subTotal, estimatedTaxes }) => {
   return (
     <section className='text-sm items-center  border-b-2 border-primary-4 py-4'>
       <div className='flex w-full justify-between font-semibold'>
         <p>Subtotal</p>
-        <p>UGX {subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+        <p>$ {subTotal}</p>
       </div>
       <div className='flex w-full justify-between my-1 font-medium'>
         <p>Shipping</p>
@@ -102,19 +127,17 @@ const Costs = ({subTotal, estimatedTaxes}) => {
       </div>
       <div className='flex w-full justify-between font-medium'>
         <p>Taxes (estimated)</p>
-        <p>
-          UGX {estimatedTaxes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-        </p>
+        <p>USD {estimatedTaxes}</p>
       </div>
     </section>
   );
 };
 
-const Total = ({total}) => {
+const Total = ({ total }) => {
   return (
     <div className='flex w-full justify-between font-semibold py-2'>
       <p className=''>Total</p>
-      <p className='text-lg text-secondary-8'>UGX {total}</p>
+      <p className='text-lg text-secondary-8'>USD {total}</p>
     </div>
   );
-}
+};
