@@ -1,10 +1,11 @@
-import CustomerInfo from '../../components/information/CustomerInfo';
+import CustomerInfo from '../../components/information/Address';
 import CartSummary from './orderSummary/CartSummary';
 import BuyNowSummary from './orderSummary/BuyNowSummary';
 import { useSelector } from 'react-redux';
 import { Children } from 'react';
+import { CurrentPage } from '../CurrentPage';
 
-//This page is displayed when customer clicks the 'add to cart' button
+//This is the layout component for checkout pages i.e shipping, payment, address
 
 export default function InfoLayout({ children }) {
   const isAddToCartBtnClicked = useSelector(
@@ -23,6 +24,7 @@ export default function InfoLayout({ children }) {
           <h2 className='text-primary-10 text-left font-["Arima_Madurai"] font-bold text-lg py-6 px-4 hidden'>
             Asuman&#39;s Supermarket
           </h2>
+          <CurrentPage />
           { children }
         </div>
       </div>

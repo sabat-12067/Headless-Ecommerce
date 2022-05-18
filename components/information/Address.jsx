@@ -1,17 +1,16 @@
 import React from 'react';
-import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
+import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { informationActions } from '../../store/infoSlice';
 import { useRouter } from 'next/router';
+import { CurrentPage } from '../CurrentPage';
 
-export default function CustomerInfo() {
-  const isValidated = useSelector(state => state.information.isValidated)
+export default function Address() {
   return (
     <section className='px-2'>
-      <CurrentPage />
-      <CustomerDetails />
+      <AddressDetails />
       <Navigation />
     </section>
   );
@@ -19,21 +18,7 @@ export default function CustomerInfo() {
   
 ]}
 
-const CurrentPage = () => {
-  return (
-    <div className='flex items-center text-xs py-3 font-medium'>
-      <p className='mr-1'>Cart</p>
-      <MdKeyboardArrowRight className='w-5 h-5' />
-      <p className='mx-1 text-secondary-8'>Customer Info</p>
-      <MdKeyboardArrowRight className='w-5 h-5' />
-      <p className='mx-1'>Shipping</p>
-      <MdKeyboardArrowRight className='w-5 h-5' />
-      <p className='ml-1'>Payment</p>
-    </div>
-  );
-};
-
-const CustomerDetails = () => {
+const AddressDetails = () => {
   const dispatch = useDispatch();
 
   //console.log(errors);
@@ -41,8 +26,7 @@ const CustomerDetails = () => {
 
    //OnSubmit() function is only called when the form is validated
   const onSubmit = (data) => {
-    console.log(data);
-    dispatch(informationActions.setIsValidated(true));
+   // console.log(data);
     router.push('/information/shipping');
   };
   const inputStyles =
@@ -50,7 +34,6 @@ const CustomerDetails = () => {
 
   const {
     register,
-    watch,
     formState: { errors },
     handleSubmit,
   } = useForm();
@@ -157,7 +140,9 @@ const Navigation = () => {
   );
 };
 
-//This is an Alert Component
+
+
+//This is an Alert Component for displaying error messages
 const Alert = ({ msg }) => {
   return (
     <div className='flex items-center justify-center text-[red] font-bold tracking-wide relative'>

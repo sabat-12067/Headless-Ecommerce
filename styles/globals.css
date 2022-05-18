@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-secondary-2 leading-7 text-base md:text-lg font-[lato] font-light text-primary-11 
+    @apply bg-secondary-2 leading-7 text-base md:text-lg font-[lato] font-light text-primary-11 box-border
 }
 ul {
   @apply list-none
@@ -18,7 +18,7 @@ h1,
 h2,
 h3,
 h4 {
-  @apply text-center capitalize leading-[2.5rem]
+  @apply text-center capitalize leading-[3rem]
 }
 h1 {
   @apply text-4xl font-['Old_Standard_TT'] font-bold  md:text-[2.5rem] lg:text-6xl leading-[3rem] tracking-wide

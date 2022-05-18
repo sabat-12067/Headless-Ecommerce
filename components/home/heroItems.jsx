@@ -1,21 +1,20 @@
 const heroItems = [
   {
     imageUrl:
-      'https://www.ubuy.ug/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvOTFzaXdGS1NxOEwuX0FDX1NMMTUwMF8uanBn.jpg',
-    h3: ' Trusted By Shoppers All Over the country.',
-    h1: 'No better way to shop for groceries',
+      'https://d27jswm5an3efw.cloudfront.net/app/uploads/2019/11/audio-file-types-36.jpg',
+    h3: 'If you are looking for a new audio device to add to your collection,',
+    h1: 'look no further!',
   },
   {
     imageUrl:
-      'https://st.depositphotos.com/1031551/2470/i/950/depositphotos_24701081-stock-photo-shopping-cart-in-a-supermarket.jpg',
-    h3: 'Want to shop for quality grocery? Look no more!',
-    h1: 'want the best at an affordable price?',
+      'https://media.istockphoto.com/photos/audio-speaker-background-with-neon-lights-picture-id1145058898?k=20&m=1145058898&s=612x612&w=0&h=HP59nrigk2Xu3-97y_R2eQTly3tE1yqTzmZdczXh5Vw=',
+    h3: 'We deal in the best quality audio devices',
+    h1: 'that are beloved by those who use them.',
   },
   {
-    imageUrl:
-      'https://news.okstate.edu/articles/agriculture/images/shopping_cart_banner.jpg',
-    h3: 'Come and discover convenient and quality products',
-    h1: 'With the best and fast services',
+    imageUrl: 'https://pwndshop.com/wp-content/uploads/2021/12/yu-thumb.jpg',
+    h3: 'Are you looking for an excellent speaker brand?',
+    h1: 'then check out our collection of speakers',
   },
 ];
 

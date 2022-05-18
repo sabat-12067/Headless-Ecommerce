@@ -11,7 +11,7 @@ export default function Layout(props) {
 
    useEffect(() => {
      //hide footer and navigation when user is on the details page
-     if (router.pathname === "/information" || router.pathname === "/information/shipping") {
+     if (router.pathname === "/information/address" || router.pathname === "/information/shipping" || router.pathname === "/information/payment") {
         setShowNavigation(false);
         setShowFooter(false);
      } else {

@@ -16,7 +16,7 @@ const CartContainer = () => {
   const dispatch = useDispatch();
 
   const cartItems = useSelector((state) => state.cart.cartItemsList);
-  console.log('cartItems:', cartItems);
+  //console.log('cartItems:', cartItems);
 
   const numberOfCartItems = cartItems.length;
 
@@ -145,7 +145,7 @@ const CartContainer = () => {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </p>
           </div>
-          <Link href='/information' passHref>
+          <Link href='/information/address' passHref>
             <button className='w-full uppercase bg-primary-10 rounded-none text-lg sm:text-xl' onClick={setIsAddToCartBtnClicked}>
               continue to checkout
             </button>

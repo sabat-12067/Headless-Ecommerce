@@ -88,7 +88,7 @@ export default function Buttons({ singleProduct, productId }) {
           Add to cart
         </button>
         {/*Buy It Now button */}
-        <Link href='/information' passHref>
+        <Link href='/information/address' passHref>
           <button
             className='text-center w-full bg-primary-11 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase'
             onClick={buyItNow}>
