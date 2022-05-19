@@ -92,22 +92,26 @@ const ProductInfo = ({ buyItNowItemDetails }) => {
        discountPrice = formatprice(discountPrice);
 
   return (
-    <div className='relative flex justify-between items-center  border-b-2 border-primary-4 py-4'>
+    <div className='flex justify-between items-center border-primary-4 py-4 relative'>
       <div className='flex items-center'>
         <img
           src={imageUrl}
           alt={`Thumbnail of ${name}`}
           className='rounded-lg w-20 h-20'
         />
-        <button className='absolute text-[white] px-2.5 py-1 rounded-[50%] text-sm top-1 left-16'>
+        <p className='absolute text-white w-5 h-5 text-xs rounded-[50%] text-center flex items-center justify-center top-[6px] font-bold left-[70px] bg-primary-11'>
           {quantity}
-        </button>
-        <div className='p-2 w-[60%] sm:w-full'>
-          <p className='font-bold text-sm text-secondary-7'>{name}</p>
+        </p>
+        <div className='p-2 pl-4 w-[70%] sm:w-full'>
+          <p className='font-bold text-xs sm:text-sm text-secondary-7'>
+            {name}
+          </p>
         </div>
       </div>
-      <div className='w-[60%] sm:w-auto text-right'>
-        <p className='font-bold text-sm text-secondary-7 '>USD {price}</p>
+      <div className='w-[50%] sm:w-auto text-right'>
+        <p className='font-bold text-xs sm:text-sm text-secondary-7 '>
+          USD {price}
+        </p>
         <p className='font-medium line-through text-sm'>USD {discountPrice}</p>
       </div>
     </div>

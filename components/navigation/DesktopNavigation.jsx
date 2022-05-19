@@ -27,7 +27,7 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
         <div className='relative flex' onClick={toggleCart}>
           <HiShoppingCart className='w-8 h-8 md:h-9 md:w-9 cursor-pointer hover:scale-105 duration-300 ease-linear self-center' />
           {totalQuantity >= 1 ? (
-            <p className='absolute bg-secondary-8 text-xs px-1 py-0.5 items-center top-2 right-1 rounded-lg font-bold'>
+            <p className='absolute pt-[1px] bg-secondary-8 text-xs top-2 right-0 w-5 h-5 rounded-[50%] flex items-center justify-center font-bold cursor-pointer'>
               {totalQuantity}
             </p>
           ) : null}

@@ -50,7 +50,7 @@ const StaticNavigation = ({
       <div className='relative flex' onClick={toggleCart}>
         <HiShoppingCart className='w-8 h-8' />
         {totalQuantity >= 1 ? (
-          <p className='absolute bg-secondary-8 text-xs top-2 right-0 px-1 rounded-[50%] font-bold '>
+          <p className='absolute pt-[3px] bg-secondary-8 text-xs top-2 right-0 w-4 h-4 rounded-[50%] flex items-center justify-center font-bold'>
             {totalQuantity}
           </p>
         ) : null}

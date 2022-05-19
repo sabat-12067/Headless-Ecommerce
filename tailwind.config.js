@@ -23,6 +23,7 @@ module.exports = {
       'primary-10': '#111827',
       'primary-11': 'hsl(205, 100%, 21%)',
       'white': '#fff',
+      'red': 'hsl(0, 100%, 50%)',
 
       'secondary-1': '#fff7ed',
       'secondary-2': '#ffedd5',

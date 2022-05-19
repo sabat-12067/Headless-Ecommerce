@@ -2,13 +2,14 @@ import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { formatprice } from '../../HorLine' 
 
 //This component is used to display the cart summary when customer clicks the 'continue to checkout' button of the cart section
 
 export default function CartSummary() {
   const [showOrderSummary, setShowOrderSummary] = useState(false);
   const cartItemsDetails = useSelector((state) => state.cart.cartItemsList);
-  console.log(cartItemsDetails);
+  //console.log(cartItemsDetails);
 
   let totalPriceOfCartItems = 0;
 
@@ -99,29 +100,36 @@ const ProductInfo = ({ cartItemsDetails }) => {
         const { name, imageUrl, discountPrice, totalPrice, quantity } =
           cartItem;
           
-          const totalDiscountPrice = discountPrice * quantity;
+          let totalDiscountPrice = discountPrice * quantity;
+          totalDiscountPrice = formatprice(totalDiscountPrice);
+          
         return (
-          <div className='flex justify-between items-center mt-2 relative' key={index}>
+          <div
+            className='flex justify-between items-center mt-2 relative py-2.5'
+            key={index}>
             <div className='flex items-center'>
               <img
                 src={imageUrl}
                 alt={`Thumbnail of ${name}`}
                 className='rounded-lg w-20 h-20'
               />
-              <button className='absolute text-[white] px-2.5 py-1 rounded-[50%] text-sm top-0'>
+              <p className='absolute text-white w-5 h-5 text-xs rounded-[50%] top-0 text-center flex items-center justify-center font-bold left-[70px] bg-primary-11'>
                 {quantity}
-              </button>
-              <div className='p-2 w-[60%] sm:w-full'>
-                <p className='font-bold text-sm text-secondary-7'>{name}</p>
+              </p>
+              <div className='p-2 pl-4 w-[70%] sm:w-full'>
+                <p className='font-bold text-xs sm:text-sm text-secondary-7'>
+                  {name}
+                </p>
               </div>
             </div>
-            <div className='w-[60%] sm:w-auto text-right'>
-              <p className='font-bold text-sm text-secondary-7 '>
+            <div className='w-[50%] sm:w-auto text-right'>
+              <p className='font-bold text-xs sm:text-sm text-secondary-7 '>
                 USD{' '}
                 {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               </p>
               <p className='font-medium line-through text-sm'>
-                USD {totalDiscountPrice
+                USD{' '}
+                {totalDiscountPrice
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               </p>

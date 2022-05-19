@@ -1,17 +1,17 @@
-import React from 'react';
-import { MdKeyboardArrowLeft } from 'react-icons/md';
+
 import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { informationActions } from '../../store/infoSlice';
 import { useRouter } from 'next/router';
 import { CurrentPage } from '../CurrentPage';
+import { Navigation, Button } from '../HorLine'
 
 export default function Address() {
+   const productId = useSelector((state) => state.Id.id);
   return (
     <section className='px-2'>
       <AddressDetails />
-      <Navigation />
+      <Navigation path={`/${productId}`} pathName='Return to Cart' />
     </section>
   );
 [
@@ -114,31 +114,27 @@ const AddressDetails = () => {
               Save this information for next time
             </label>
           </div>
-          <button
-            type='submit'
-            className='bg-primary-11 py-4 px-12 text-lg font-bold text-[white] w-full mt-6 '>
-            Continue to shipping
-          </button>
+          <Button type='submit' text='Continue to shipping'/>
         </div>
       </form>
     </div>
   );
 };
 
-const Navigation = () => {
-  const productId = useSelector((state) => state.Id.id);
+// const Navigation = () => {
+//   const productId = useSelector((state) => state.Id.id);
 
-  return (
-    <div className='my-3 flex items-center flex-col'>
-      <div className='flex py-2'>
-        <MdKeyboardArrowLeft className='w-5 h-5' />
-        <p className='ml-1 text-sm text-center '>
-          <Link href={`/${productId}`}>Return to cart</Link>
-        </p>
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div className='my-3 flex items-center flex-col'>
+//       <div className='flex py-2'>
+//         <MdKeyboardArrowLeft className='w-5 h-5' />
+//         <p className='ml-1 text-sm text-center '>
+//           <Link href={`/${productId}`}>Return to cart</Link>
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
 
 
 

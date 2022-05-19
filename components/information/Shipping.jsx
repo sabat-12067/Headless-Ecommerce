@@ -8,26 +8,25 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { informationActions } from '../../store/infoSlice';
 import { useRouter } from 'next/router';
-import { ImCross } from 'react-icons/im';
 import { CurrentPage } from '../CurrentPage';
 //import Shipping from '../../pages/information/shipping';
+import { Alert, Button } from '../HorLine';
+import { Navigation } from '../HorLine';
 
 export default function CustomerInfo() {
-  const isValidated = useSelector((state) => state.information.isValidated);
   return (
     <section className='px-2'>
       <Shipping />
-      <Navigation />
+      <Navigation path='/information/address' pathName='Return To Address' />
     </section>
   );
   [];
 }
 
 const Shipping = () => {
-
   const [shippingMethodSelected, setShippingMethodSelected] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  
+
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -39,10 +38,10 @@ const Shipping = () => {
       setShippingMethodSelected(false);
       setShowAlert(true);
     }
-  }
+  };
 
   console.log(shippingMethodSelected);
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (shippingMethodSelected) {
@@ -52,12 +51,17 @@ const Shipping = () => {
     }
     //router.push('/information/payment');
   };
-  
+
   const dispatch = useDispatch();
-  
+
   return (
     <section className='px-3'>
-      {showAlert && <Alert setShowAlert={setShowAlert}/>}
+      {showAlert && (
+        <Alert
+          setShowAlert={setShowAlert}
+          msg='Please select a shipping method'
+        />
+      )}
       <h2 className='text-left pt-4 text-xl md:2xl lg:3xl font-bold tracking-wide border-b-2 pb-3'>
         Shipping
       </h2>
@@ -81,33 +85,23 @@ const Shipping = () => {
             shippingTime='1-2 business days'
             shippingCost='$ 25'
           />
-          <button
+          <Button
             type='submit'
-            className='bg-primary-11 py-4 px-12 text-lg font-bold text-[white] w-full mt-6 '>
-            Continue to payment
-          </button>
+            disabled={!shippingMethodSelected}
+            text='Proceed to payment'
+          />
         </form>
       </div>
     </section>
   );
 };
 
-
-const Navigation = () => {
-  return (
-    <div className='my-3 flex items-center flex-col'>
-      <div className='flex py-2'>
-        <MdKeyboardArrowLeft className='w-5 h-5' />
-        <p className='ml-1 text-sm text-center '>
-          <Link href={'/information/address'}>Return to information </Link>
-        </p>
-      </div>
-    </div>
-  );
-};
-
-
-const FormInput = ({ shippingCost, shippingTime, shippingMethod, handleChange }) => {
+const FormInput = ({
+  shippingCost,
+  shippingTime,
+  shippingMethod,
+  handleChange,
+}) => {
   return (
     <div className='pt-3 pb-5 flex items-start w-full justify-between border-b-[1px]'>
       <div className='flex'>
@@ -131,24 +125,3 @@ const FormInput = ({ shippingCost, shippingTime, shippingMethod, handleChange })
     </div>
   );
 };
-
-export const Alert = ({ setShowAlert }) => {
-  //clear alert after 3 secs
-  useEffect(() => {
-    const alertTimeOut = setTimeout(() => {
-      setShowAlert(false);
-    }, 3000);
-
-    //clean up function
-    return () => clearTimeout(alertTimeOut);
-  }, []);
-
-  return (
-    <div className='flex items-center justify-center fixed top-0 left-0 w-full bg-secondary-3'>
-      <p className='text-center font-bold text-secondary-8 w-full py-2'>
-        Please select a shipping method
-      </p>
-         <ImCross className='mr-5' onClick={() => setShowAlert(false)}/>
-    </div>
-  );
-}
