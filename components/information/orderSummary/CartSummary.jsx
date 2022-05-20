@@ -2,7 +2,8 @@ import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { formatprice } from '../../HorLine' 
+import { formatPrice } from '../../HorLine'
+import { formatpriceWithCommas } from '../../HorLine'; 
 
 //This component is used to display the cart summary when customer clicks the 'continue to checkout' button of the cart section
 
@@ -20,11 +21,10 @@ export default function CartSummary() {
   //NOTE: '.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ' inserts commas every 3 digits
 
   let estimatedTaxes = 0.03 * totalPriceOfCartItems;
-  estimatedTaxes = ((estimatedTaxes * 100) / 100 ).toFixed(2);
+  estimatedTaxes = formatPrice(estimatedTaxes);
 
   let total = (totalPriceOfCartItems + parseFloat(estimatedTaxes))
-  total = ((total * 100) / 100).toFixed(2);
-
+  total = formatPrice(total);
 
   return (
     <section className='bg-primary-3 '>
@@ -65,7 +65,7 @@ const OrderSummaryHeader = ({
         />
       </div>
       <p className='font-bold text-right'>
-        USD {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        USD {total}
       </p>
     </section>
   );
@@ -101,7 +101,9 @@ const ProductInfo = ({ cartItemsDetails }) => {
           cartItem;
           
           let totalDiscountPrice = discountPrice * quantity;
-          totalDiscountPrice = formatprice(totalDiscountPrice);
+          totalDiscountPrice = formatPrice(totalDiscountPrice);
+
+          const formatTotalPrice = formatPrice(totalPrice);
           
         return (
           <div
@@ -125,13 +127,11 @@ const ProductInfo = ({ cartItemsDetails }) => {
             <div className='w-[50%] sm:w-auto text-right'>
               <p className='font-bold text-xs sm:text-sm text-secondary-7 '>
                 USD{' '}
-                {totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                {formatTotalPrice}
               </p>
               <p className='font-medium line-through text-sm'>
                 USD{' '}
-                {totalDiscountPrice
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                {totalDiscountPrice}
               </p>
             </div>
           </div>
@@ -148,9 +148,7 @@ const Costs = ({ totalPriceOfCartItems, estimatedTaxes }) => {
         <p>Subtotal</p>
         <p>
           USD{' '}
-          {totalPriceOfCartItems
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          {formatPrice(totalPriceOfCartItems)}
         </p>
       </div>
       <div className='flex w-full justify-between my-1 font-medium'>
@@ -160,7 +158,7 @@ const Costs = ({ totalPriceOfCartItems, estimatedTaxes }) => {
       <div className='flex w-full justify-between font-medium'>
         <p>Taxes (estimated)</p>
         <p>
-          USD {estimatedTaxes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          USD {estimatedTaxes}
         </p>
       </div>
     </section>
@@ -172,7 +170,7 @@ const Total = ({ total }) => {
     <div className='flex w-full justify-between font-semibold py-2'>
       <p className=''>Total</p>
       <p className='text-lg text-secondary-8'>
-        USD {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        USD {total}
       </p>
     </div>
   );

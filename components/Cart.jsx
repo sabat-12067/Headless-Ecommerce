@@ -3,7 +3,7 @@ import { MdOutlineDelete } from 'react-icons/md';
 import { BiPlus, BiMinus } from 'react-icons/bi';
 import { cartActions } from '../store/cartSlice';
 import Link from 'next/link';
-import { formatprice } from './HorLine';
+import { formatPrice } from './HorLine';
 import { ImCross } from 'react-icons/im';
 
 //THIS component is for displaying the cart after clicking the cart icon
@@ -53,7 +53,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
     totalPriceOfAllItems += item.totalPrice;
   });
 
-  const formattedTotalPriceOfAllItems = formatprice(totalPriceOfAllItems);
+  const formattedTotalPriceOfAllItems = formatPrice(totalPriceOfAllItems);
 
   const setIsAddToCartBtnClicked = () => {
     dispatch(cartActions.setIsAddToCartBtnClicked());
@@ -68,9 +68,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
         </p>
         <p className='text-secondary-7'>
           USD{' '}
-          {formattedTotalPriceOfAllItems
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          {formattedTotalPriceOfAllItems}
         </p>
       </div>
       <div className='w-full'>
@@ -86,7 +84,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
             totalPrice,
           } = item;
 
-          const formatedTotalPrice = ((totalPrice * 100) / 100).toFixed(2);
+          const formatedTotalPrice = formatPrice(totalPrice);
 
           return (
             <div
@@ -116,9 +114,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
                 <p>Total Amount:</p>
                 <p>
                   USD {/*Add a coma (,) every after 3 digits*/}
-                  {formatedTotalPrice
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  {formatedTotalPrice}
                 </p>
               </div>
               <div className='flex w-full justify-between pt-3'>
@@ -155,9 +151,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
           checkout{' '}
           <span className='text-secondary-7'>
             (USD{' '}
-            {formattedTotalPriceOfAllItems
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            {formattedTotalPriceOfAllItems}
             )
           </span>
         </button>

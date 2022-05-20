@@ -38,9 +38,11 @@ const Shipping = () => {
       setShippingMethodSelected(false);
       setShowAlert(true);
     }
+     console.log(value);
+     dispatch(informationActions.deliveryMethod(value));
   };
 
-  console.log(shippingMethodSelected);
+ // console.log(shippingMethodSelected);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +51,6 @@ const Shipping = () => {
     } else {
       setShowAlert(true);
     }
-    //router.push('/information/payment');
   };
 
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { formatprice } from '../../HorLine';
+import { formatPrice } from '../../HorLine';
 
 //This component is for the order summary information when customer has clicked on the buy now button
 
@@ -17,10 +17,10 @@ export default function BuyNowSummary() {
   const subTotal = price * quantity;
 
   let estimatedTaxes = 0.03 * subTotal;
-  estimatedTaxes = formatprice(estimatedTaxes);
+  estimatedTaxes = formatPrice(estimatedTaxes);
 
   let total = parseFloat(subTotal) + parseFloat(estimatedTaxes);
-  total = formatprice(total);
+  total = formatPrice(total);
 
   return (
     <section className='bg-primary-3 '>
@@ -89,7 +89,7 @@ const ProductInfo = ({ buyItNowItemDetails }) => {
     buyItNowItemDetails;
 
        let discountPrice = (price * 100) / (100 - discountPercentage);
-       discountPrice = formatprice(discountPrice);
+       discountPrice = formatPrice(discountPrice);
 
   return (
     <div className='flex justify-between items-center border-primary-4 py-4 relative'>
@@ -123,7 +123,7 @@ const Costs = ({ subTotal, estimatedTaxes }) => {
     <section className='text-sm items-center  border-b-2 border-primary-4 py-4'>
       <div className='flex w-full justify-between font-semibold'>
         <p>Subtotal</p>
-        <p>$ {subTotal}</p>
+        <p>$ {formatPrice(subTotal)}</p>
       </div>
       <div className='flex w-full justify-between my-1 font-medium'>
         <p>Shipping</p>

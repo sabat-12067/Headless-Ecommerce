@@ -13,11 +13,20 @@ const HorLine = () => {
   );
 }
 
-
+//convert price to two decimal places
 export const formatprice = (price) => {
   return ((price * 100) / 100).toFixed(2);
 }
 
+//convert price to string with commas
+export const formatpriceWithCommas = (price) => {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+//convert price to string with commas and two decimal places
+export const formatPrice = (price) => {
+  return ((price * 100) / 100).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 export const Alert = ({ setShowAlert, msg }) => {
   //clear alert after 3 secs
@@ -57,7 +66,7 @@ export const Navigation = ({ path, pathName }) => {
 export const Button = ({ text, onClick, type, disabled }) => {
   return (
     <button
-      className='bg-primary-11 py-4 px-12 text-lg font-bold text-[white] w-full mt-6 disabled:opacity-50'
+      className='bg-primary-11 py-4 px-12 text-lg font-bold text-[white] w-full mt-6 disabled:opacity-50 uppercase rounded-none tracking-wider'
       onClick={onClick}
       type={type} disabled={disabled}>
       {text}

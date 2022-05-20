@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { Alert } from '../HorLine';
 import { Navigation } from '../HorLine';
 import { Button } from '../HorLine';
+import { informationActions } from '../../store/infoSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Payment() {
   return (
@@ -30,59 +32,75 @@ const PaymentInfo = () => {
         <h4 className='text-left pt-4'>Payment information</h4>
         <p className='text-sm'>All transactions are secure and encrypted.</p>
         <div className='flex items-center py-2 flex-col'>
-          <InputElement placeholder='Card number' value='4334 2211 1203 6853' />
-          <InputElement placeholder='Name on card' value='Asuman Ssendegeya' />
-          <InputElement placeholder='Expiration date' value='05/25' />
-          <InputElement placeholder='CVV' value='588' />
+          <InputElement value='4124 7598 3491 2028' />
+          <InputElement value='Adam Porter' />
+          <InputElement value='05/25' />
+          <InputElement value='465' />
         </div>
       </div>
     </section>
   );
 };
 
-const InputElement = ({ placeholder, value }) => {
+const InputElement = ({ placeholder, value}) => {
   return (
     <input
       autoComplete='on'
       placeholder={placeholder}
       className={inputStyles}
       value={value}
+      readOnly
     />
   );
 };
 
+
 const BillingAddress = () => {
   const router = useRouter();
 
-  const [defaultAddressChecked, setDefaultAddressChecked] = useState(false);
-  const [differentAddressChecked, setDifferentAddressChecked] = useState(false);
+  const [shippingAddressSelected, setShippingAddressSelected] = useState(false);
+  const [differentAddressSelected, setDifferentAddressSelected] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  
 
-  const handleDefault = (e) => {
-    setDefaultAddressChecked(true);
-    setDifferentAddressChecked(false);
-    const shippingMethod = e.target.value;
-    //console.log(shippingMethod);
+  //grab shipping address filled from the address page
+  const firstShippingAddress = useSelector((state) => state.information.addressInfo);
+  
+  //shipping address filled from the address page is set as the billing address unless "use a different address" is selected
+  const [newAddressInfo, setNewAddressInfo] = useState(firstShippingAddress);
+
+  const dispatch = useDispatch();
+
+  //function runs when user clicks on the checkbox, with "same as shipping address"
+  const handleDefault = () => {
+    setShippingAddressSelected(true);
+    setDifferentAddressSelected(false);
   };
 
+  //function runs when user clicks on the checkbox, with "different address"
   const handleDifferent = () => {
-    setDefaultAddressChecked(false);
-    setDifferentAddressChecked(true);
+    setDifferentAddressSelected(true);
+    setShippingAddressSelected(false);
   };
-
-  //console.log(defaultAddressChecked, differentAddressChecked);
 
   //OnSubmit() function is only called when the form is validated
   const onSubmit = (data) => {
-    if (!defaultAddressChecked && !differentAddressChecked) {
+    if (!shippingAddressSelected && !differentAddressSelected) {
       setShowAlert(true);
       return;
     } else {
       setShowAlert(false);
     }
-    //console.log(data);
+
+    //change shipping/billing address to the new address (data) when user clicks on " use a different address"
+    if (differentAddressSelected) {
+      setNewAddressInfo(data);
+    }
+    
     router.push('/information/review');
   };
+  
+  dispatch(informationActions.setNewAddressInfo(newAddressInfo));
 
   const {
     register,
@@ -115,7 +133,7 @@ const BillingAddress = () => {
                 value='same address'
                 onChange={handleDefault}
               />
-              <label htmlFor='defaultAddress' className='font-medium text-sm'>
+              <label htmlFor='defaultAddress' className='font-medium text-base'>
                 Same as shipping address
               </label>
             </div>
@@ -134,19 +152,19 @@ const BillingAddress = () => {
                   onChange={handleDifferent}
                 />
                 <label
-                  htmlFor='defferentAddress'
-                  className='font-medium text-sm'>
+                  htmlFor='differentAddress'
+                  className='font-medium text-base'>
                   Use a different address
                 </label>
               </div>
               {/* Input fields for 'different address'*/}
               <div
                 className={`overflow-hidden ${
-                  differentAddressChecked ? 'h-auto' : 'h-0'
+                  differentAddressSelected ? 'h-auto' : 'h-0'
                 }`}>
                 <input
                   {...register('country', {
-                    required: differentAddressChecked ? true : false,
+                    required: differentAddressSelected ? true : false,
                   })}
                   autoComplete='on'
                   placeholder='Country/region'
@@ -163,7 +181,7 @@ const BillingAddress = () => {
                 />
                 <input
                   {...register('lastName', {
-                    required: differentAddressChecked ? true : false,
+                    required: differentAddressSelected ? true : false,
                   })}
                   autoComplete='on'
                   placeholder='Last name'
@@ -172,7 +190,7 @@ const BillingAddress = () => {
                 {errors.lastName && <Error msg='Provide a last name.' />}
                 <input
                   {...register('address', {
-                    required: differentAddressChecked ? true : false,
+                    required: differentAddressSelected ? true : false,
                   })}
                   autoComplete='on'
                   placeholder='Address'
@@ -187,7 +205,7 @@ const BillingAddress = () => {
                 />
                 <input
                   {...register('city', {
-                    required: differentAddressChecked ? true : false,
+                    required: differentAddressSelected ? true : false,
                   })}
                   autoComplete='on'
                   placeholder='City'

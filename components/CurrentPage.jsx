@@ -43,8 +43,6 @@ export const CurrentPage = ({ highlightColor, bgColor }) => {
     }
    }, [router.pathname]);
 
-   console.log(router.pathname, highLightReview);
-
   return (
     <div className='flex items-center text-xs py-3 font-medium pl-4'>
       <div className='flex'>

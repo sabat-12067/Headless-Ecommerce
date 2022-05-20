@@ -3,33 +3,26 @@ import { createSlice } from '@reduxjs/toolkit';
 const informationSlice = createSlice({
   name: 'userInfo',
   initialState: {
-    userInfo: '',
-    subscribe: false,
+    addressInfo: '',
+    deliveryMethod: '',
+    subscribers: [],
     saveUserInfo: false,
-    isValidated: false,
   },
   reducers: {
-    setUserInfo(state, action) {
-      const infoDetails = action.payload;
-      state.userInfo = {
-        email: infoDetails.email,
-        mobile: infoDetails.mobile,
-        country: infoDetails.country,
-        firstName: infoDetails.firstName,
-        lastName: infoDetails.lastName,
-        address: infoDetails.address,
-        city: infoDetails.city,
-        apartment: infoDetails.apartment,
-      };
+    setAddressInfo(state, action) {
+      state.addressInfo = action.payload;
+      if (state.addressInfo.subscribe) {
+        state.subscribers.push(state.addressInfo.email);
+      } 
     },
-    setSubscribe(state, action) {
-      state.subscribe = true;
+    setNewAddressInfo(state, action) {
+      state.addressInfo = action.payload;
+    },
+    deliveryMethod (state, action) {
+      state.deliveryMethod = action.payload;
     },
     setSaveUserInfo(state, action) {
       state.saveUserInfo = true;
-    },
-    setIsValidated(state, action) {
-      state.isValidated = action.payload;
     },
   },
 });
