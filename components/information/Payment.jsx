@@ -42,7 +42,7 @@ const PaymentInfo = () => {
   );
 };
 
-const InputElement = ({ placeholder, value}) => {
+const InputElement = ({ placeholder, value }) => {
   return (
     <input
       autoComplete='on'
@@ -54,20 +54,19 @@ const InputElement = ({ placeholder, value}) => {
   );
 };
 
-
 const BillingAddress = () => {
   const router = useRouter();
 
   const [shippingAddressSelected, setShippingAddressSelected] = useState(false);
-  const [differentAddressSelected, setDifferentAddressSelected] = useState(false);
+  const [differentAddressSelected, setDifferentAddressSelected] =
+    useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  
 
-  //grab shipping address filled from the address page
-  const firstShippingAddress = useSelector((state) => state.information.addressInfo);
-  
-  //shipping address filled from the address page is set as the billing address unless "use a different address" is selected
-  const [newAddressInfo, setNewAddressInfo] = useState(firstShippingAddress);
+  //grab shipping address
+  const shippingAddress = useSelector(
+    (state) => state.information.shippingAddress
+  );
+  //console.log(`shippingAddress`, shippingAddress);
 
   const dispatch = useDispatch();
 
@@ -93,15 +92,24 @@ const BillingAddress = () => {
       setShowAlert(false);
     }
 
-    //change shipping/billing address to the new address (data) when user clicks on " use a different address"
     if (differentAddressSelected) {
-      setNewAddressInfo(data);
+      //console.log(`New Billing Address:`, data);
+      dispatch(informationActions.setBillingAddress(data));
+    } else {
+      dispatch(
+        informationActions.setBillingAddress({
+          address: shippingAddress.address,
+          city: shippingAddress.city,
+          country: shippingAddress.country,
+          firstName: shippingAddress.firstName,
+          lastName: shippingAddress.lastName,
+          apartment: shippingAddress.apartment,
+        })
+      );
     }
-    
+
     router.push('/information/review');
   };
-  
-  dispatch(informationActions.setNewAddressInfo(newAddressInfo));
 
   const {
     register,
@@ -121,7 +129,7 @@ const BillingAddress = () => {
         <h4 className='text-left pt-4'>Billing address</h4>
         <div className='flex items-center py-4 flex-col'>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/* Same as shipping address container*/}
+            {/* 'Same as shipping address' container*/}
             <div className='flex items-center'>
               <input
                 {...register('country', { required: true })}
@@ -138,7 +146,7 @@ const BillingAddress = () => {
                 Same as shipping address
               </label>
             </div>
-            {/* Use a different address container*/}
+            {/* 'Use a different address' container*/}
             <div className='flex items-center flex-col pt-3'>
               <div className='w-full'>
                 <input

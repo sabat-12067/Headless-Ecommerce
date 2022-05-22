@@ -64,7 +64,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
     totalNumberOfItems += item.quantity;
   })
 
-  console.log('totalNumberOfItems', totalNumberOfItems);
+  //console.log('totalNumberOfItems', totalNumberOfItems);
 
   return (
     <section className='flex flex-col items-center justify-center shadow-lg shadow-primary-8 p-4 m-2 absolute z-20 top-13 bg-[white] sm:right-2 rounded-sm'>
@@ -163,7 +163,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
           </span>
         </button>
       </Link>
-      <p className='pt-2 underline'>
+      <p className='pt-2 underline' onClick={() => dispatch(cartActions.setShowCart())}>
         <Link href='./'>Continue Shopping</Link>{' '}
       </p>
     </section>

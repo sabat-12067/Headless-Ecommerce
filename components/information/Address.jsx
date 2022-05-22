@@ -32,7 +32,7 @@ const AddressDetails = () => {
   //OnSubmit() function is only called when the form is validated
   const onSubmit = (data) => {
     //console.log(data);
-    dispatch(informationActions.setAddressInfo(data));
+    dispatch(informationActions.setShippingAddress(data));
     router.push('/information/shipping');
   };
 

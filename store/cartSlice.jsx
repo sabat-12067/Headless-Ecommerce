@@ -40,6 +40,11 @@ const cartSlice = createSlice({
          state.cartItemsList = state.cartItemsList.filter(item => item.id !== id)
       }
     },
+
+    //clear cartItemsList 
+    clearCart(state) { 
+      state.cartItemsList = []
+    },
     
     //increment quantity of item within cart
     incrementCartQuantity(state, action) {

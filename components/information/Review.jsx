@@ -1,9 +1,18 @@
 import { Button, Navigation } from '../HorLine';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions } from '../../store/cartSlice';
 
 export default function Review() {
+  const dispatch = useDispatch();
+  const customerEmail = useSelector((state) => state.information.shippingAddress.email);
+  //console.log(customerEmail);
+  const handleClick = () => {
+    dispatch(cartActions.clearCart());
+    router.push('/thankyou');
+  };
+
   const router = useRouter();
   return (
     <section className='px-4'>
@@ -13,7 +22,7 @@ export default function Review() {
       <ShippingAddress />
       <DeliveryMethod />
       <PaymentInformation />
-      <Button text='Place order' onClick={() => router.push('/thankyou') } />
+      <Button text='Place order' onClick={handleClick} />
       <Navigation path='/information/payment' pathName='Return To Payment' />
     </section>
   );
@@ -21,7 +30,7 @@ export default function Review() {
 
 const ShippingAddress = () => {
 
-  const ShippingAddress = useSelector((state) => state.information.addressInfo);
+  const ShippingAddress = useSelector((state) => state.information.shippingAddress);
   const { firstName, lastName, address, city, apartment, email, country } =
     ShippingAddress;
   return (
@@ -40,7 +49,7 @@ const ShippingAddress = () => {
         <p>{apartment}</p>
         <p>{email}</p>
       </div>
-      <p className='underline text-secondary-7'>
+      <p className='underline text-secondary-7 text-xs'>
         <Link href='/information/address'>change</Link>
       </p>
     </section>
@@ -71,7 +80,7 @@ const DeliveryMethod = () => {
         <p>{deliveryMethod}</p>
         <p>{deliveryTime}</p>
       </div>
-      <p className='underline text-secondary-7'>
+      <p className='underline text-secondary-7 text-xs'>
         <Link href='/information/shipping'>change</Link>
       </p>
     </section>
@@ -89,7 +98,7 @@ const PaymentInformation = () => {
         <p>4124XXXXXXXX2028</p>
         <p>05/25</p>
       </div>
-      <p className='underline text-secondary-7'>
+      <p className='underline text-secondary-7 text-xs'>
         <Link href='/information/payment'>change</Link>
       </p>
     </section>

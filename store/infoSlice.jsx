@@ -3,20 +3,21 @@ import { createSlice } from '@reduxjs/toolkit';
 const informationSlice = createSlice({
   name: 'userInfo',
   initialState: {
-    addressInfo: '',
+    shippingAddress: '',
+    billingAddress: '',
     deliveryMethod: '',
     subscribers: [],
     saveUserInfo: false,
   },
   reducers: {
-    setAddressInfo(state, action) {
-      state.addressInfo = action.payload;
-      if (state.addressInfo.subscribe) {
+    setShippingAddress(state, action) {
+      state.shippingAddress = action.payload;
+      if (state.shippingAddress.subscribe) {
         state.subscribers.push(state.addressInfo.email);
       } 
     },
-    setNewAddressInfo(state, action) {
-      state.addressInfo = action.payload;
+    setBillingAddress(state, action) {
+      state.billingAddress = action.payload;
     },
     deliveryMethod (state, action) {
       state.deliveryMethod = action.payload;

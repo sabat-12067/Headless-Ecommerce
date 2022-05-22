@@ -31,6 +31,7 @@ const Shipping = () => {
 
   const handleChange = (e) => {
     const { value } = e.target;
+    //console.log(value);
     if (value) {
       setShippingMethodSelected(true);
       setShowAlert(false);
@@ -38,7 +39,6 @@ const Shipping = () => {
       setShippingMethodSelected(false);
       setShowAlert(true);
     }
-     console.log(value);
      dispatch(informationActions.deliveryMethod(value));
   };
 
