@@ -2,7 +2,7 @@
 import Payment from '../../components/information/Payment';
 import InfoLayout from '../../components/information/InfoLayout';
 
-export default function Shipping() {
+export default function PaymentPage() {
   return (
     <InfoLayout>
       <Payment />

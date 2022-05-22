@@ -13,7 +13,7 @@ export default function Review() {
       <ShippingAddress />
       <DeliveryMethod />
       <PaymentInformation />
-      <Button text='Place order' onClick={() => router.push('/lastpage') } />
+      <Button text='Place order' onClick={() => router.push('/thankyou') } />
       <Navigation path='/information/payment' pathName='Return To Payment' />
     </section>
   );
@@ -21,8 +21,6 @@ export default function Review() {
 
 const ShippingAddress = () => {
 
-  const subscribers = useSelector((state) => state.information.subscribers);
-  console.log(subscribers);
   const ShippingAddress = useSelector((state) => state.information.addressInfo);
   const { firstName, lastName, address, city, apartment, email, country } =
     ShippingAddress;
@@ -31,7 +29,7 @@ const ShippingAddress = () => {
       <h3 className='text-left pt-4 text-lg md:2xl lg:3xl font-bold tracking-wide pb-1'>
         Shipping Address
       </h3>
-      <div className='font-medium leading-5'>
+      <div className='font-medium leading-5 text-sm'>
         <div className='flex'>
           <p className='mr-1'>{firstName ? firstName : null}</p>
           <p>{lastName}</p>
@@ -69,7 +67,7 @@ const DeliveryMethod = () => {
       <h3 className='text-left pt-4 text-lg md:2xl lg:3xl font-bold tracking-wide pb-1'>
         delivery method
       </h3>
-      <div className='font-medium leading-5'>
+      <div className='font-medium leading-5 text-sm'>
         <p>{deliveryMethod}</p>
         <p>{deliveryTime}</p>
       </div>
@@ -86,7 +84,7 @@ const PaymentInformation = () => {
       <h3 className='text-left pt-4 text-lg md:2xl lg:3xl font-bold tracking-wide pb-1'>
         Payment Information
       </h3>
-      <div className='font-medium leading-5'>
+      <div className='font-medium leading-6 text-sm'>
         <p>Adam porter</p>
         <p>4124XXXXXXXX2028</p>
         <p>05/25</p>

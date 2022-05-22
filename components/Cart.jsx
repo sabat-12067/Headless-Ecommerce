@@ -59,12 +59,19 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
     dispatch(cartActions.setIsAddToCartBtnClicked());
   };
 
+  let totalNumberOfItems = 0;
+  cartItems.map((item) => {
+    totalNumberOfItems += item.quantity;
+  })
+
+  console.log('totalNumberOfItems', totalNumberOfItems);
+
   return (
-    <section className='flex flex-col items-center justify-center shadow-lg shadow-primary-8 p-4 m-2 absolute z-20 top-13 bg-[white] sm:right-2'>
+    <section className='flex flex-col items-center justify-center shadow-lg shadow-primary-8 p-4 m-2 absolute z-20 top-13 bg-[white] sm:right-2 rounded-sm'>
       <h3 className='self-start pb-3'>cart summary</h3>
-      <div className='flex w-full justify-between font-bold'>
+      <div className='flex w-full justify-between font-bold border-b-[1px]'>
         <p>
-          {numberOfCartItems} Item{numberOfCartItems > 1 ? 's' : null} added
+          {totalNumberOfItems} Item{totalNumberOfItems > 1 ? 's' : null} added
         </p>
         <p className='text-secondary-7'>
           USD{' '}
@@ -88,7 +95,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
 
           return (
             <div
-              className='p-2 border-t-[1px] border-b-[1px] b-primary-10 w-full'
+              className='p-2 border-b-[1px] b-primary-10 w-full'
               key={index}>
               <div className='flex text-xs sm:text-sm font-medium'>
                 <img

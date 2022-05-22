@@ -23,7 +23,7 @@ export default function BuyNowSummary() {
   total = formatPrice(total);
 
   return (
-    <section className='bg-primary-3 '>
+    <section className='bg-primary-4 col-span-2 xl:mr-12 lg:mr-4 lg:ml-4 lg:mt-12 lg:h-[fit-content] lg:py-4 lg:rounded-md'>
       <OrderSummaryHeader
         total={total}
         setShowOrderSummary={setShowOrderSummary}
@@ -40,6 +40,7 @@ export default function BuyNowSummary() {
   );
 }
 
+
 const OrderSummaryHeader = ({
   total,
   setShowOrderSummary,
@@ -47,7 +48,7 @@ const OrderSummaryHeader = ({
 }) => {
   return (
     <section
-      className='flex w-full p-4 justify-between  border-t-2 border-b-2 border-primary-4 text-sm items-center md:text-base'
+      className='flex w-full p-4 justify-between  border-t-2 border-b-2 border-primary-4 text-sm items-center lg:hidden'
       onClick={() => setShowOrderSummary(!showOrderSummary)}>
       <div className='flex p-2 items-center'>
         <HiOutlineShoppingCart className='w-6 h-6 text-primary-8 mr-2' />
@@ -75,7 +76,7 @@ const OrderSummaryInfo = ({
   return (
     <section
       className={`px-4 border-b-2 border-primary-4 overflow-hidden ${
-        showOrderSummary ? 'h-70' : 'h-0 border-b-0'
+        showOrderSummary ? 'h-70' : 'h-0 border-b-0 lg:h-auto'
       }`}>
       <ProductInfo buyItNowItemDetails={buyItNowItemDetails} />
       <Costs estimatedTaxes={estimatedTaxes} subTotal={subTotal} />

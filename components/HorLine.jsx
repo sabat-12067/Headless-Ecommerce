@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 import { ImCross } from 'react-icons/im';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import Link from 'next/link';
@@ -11,22 +11,25 @@ const HorLine = () => {
       <hr className='w-28 md:w-44 m-8' />
     </div>
   );
-}
+};
 
 //convert price to two decimal places
 export const formatprice = (price) => {
   return ((price * 100) / 100).toFixed(2);
-}
+};
 
 //convert price to string with commas
 export const formatpriceWithCommas = (price) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
+};
 
 //convert price to string with commas and two decimal places
 export const formatPrice = (price) => {
-  return ((price * 100) / 100).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
+  return ((price * 100) / 100)
+    .toFixed(2)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
 
 export const Alert = ({ setShowAlert, msg }) => {
   //clear alert after 3 secs
@@ -49,7 +52,6 @@ export const Alert = ({ setShowAlert, msg }) => {
   );
 };
 
-
 export const Navigation = ({ path, pathName }) => {
   return (
     <div className='my-3 flex items-center flex-col'>
@@ -68,10 +70,11 @@ export const Button = ({ text, onClick, type, disabled }) => {
     <button
       className='bg-primary-11 py-4 px-12 text-lg font-bold text-[white] w-full mt-6 disabled:opacity-50 uppercase rounded-none tracking-wider'
       onClick={onClick}
-      type={type} disabled={disabled}>
+      type={type}
+      disabled={disabled}>
       {text}
     </button>
   );
 };
 
-export default HorLine
+export default HorLine;

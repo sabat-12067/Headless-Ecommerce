@@ -2,7 +2,7 @@
 import Review from '../../components/information/Review';
 import InfoLayout from '../../components/information/InfoLayout';
 
-export default function Shipping() {
+export default function ReviewPage() {
   return (
     <InfoLayout>
       <Review />

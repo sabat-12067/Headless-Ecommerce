@@ -57,13 +57,13 @@ const SingleProduct = ({
   };
 
   return (
-    <article className='font-medium relative text-sm md:text-lg text-primary-11 bg-white mb-8 lg:cursor-pointer'>
+    <article className='font-medium relative text-sm md:text-base text-primary-11 bg-white mb-8 lg:cursor-pointer lg:hover:drop-shadow-md border- m-2 lg:hover:rounded-md'>
       <Link href={`/${productId}`} passHref>
         <div
           className='flex flex-col items-center p-3 h-full'
           onClick={grabProductId}>
           <img src={imageUrl} alt={name} className='' />
-          <h3 className='p-3 text-sm md:text-lg'>{name}</h3>
+          <h3 className='p-3 text-sm'>{name}</h3>
           <p className='font-bold '>$ {price}</p>
           <p className='line-through text-secondary-8'>$ {discountPrice}</p>
           <p className='bg-primary-3 rounded-xl px-3 py-1 outline-none font-bold text-primary-11 absolute top-[12px] text-base animate-wiggle'>

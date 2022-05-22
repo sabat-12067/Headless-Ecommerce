@@ -85,25 +85,28 @@ const Images = ({ image }) => {
                 <img
                   src={image.attributes.url}
                   alt='slide image'
-                  className='rounded-xl mt-8 ml-4 absolute h-full object-cover'
+                  className='rounded-xl mt-8 ml-4 absolute h-full object-cover md:object-fill'
                 />
               </article>
             );
           })}
         </div>
       </div>
-      {/*Thumbnails Container*/}
-      <div className={`hidden md:flex pl-4 pt-4 ${image.data.length <= 1 ? 'md:hidden' : 'null' }`}>
+      {/*Thumbnails Container. Only shown on medium screens and above*/}
+      <div className={`hidden md:grid grid-cols-grid-thumbs gap-4 pl-4 pt-4 ${image.data.length <= 1 ? 'md:hidden' : 'null' }`}>
         {image.data.map((image, index) => {
-           const imageId = image.id;
           return (
-            <article key={index} data-id={index}>
+            <article
+              key={index}
+              className={`rounded-lg  ${
+                currentSlideIndex === index ? 'border-2' : 'border-0'
+              }`}>
               <img
                 src={image.attributes.formats.thumbnail.url}
                 alt='slide image'
-                className={`mr-4 w-20 h-20 rounded-lg cursor-pointer ${
+                className={`mr-4 cursor-pointer rounded-lg  ${
                   currentSlideIndex === index
-                    ? 'opacity-50 border-2 border-primary-10'
+                    ? 'opacity-70 border-secondary-7'
                     : 'opacity-100 border-0'
                 }`}
                 onClick={() => changeSlide(index)}

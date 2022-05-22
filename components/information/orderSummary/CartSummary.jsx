@@ -18,8 +18,6 @@ export default function CartSummary() {
     return (totalPriceOfCartItems += cartItem.totalPrice);
   });
 
-  //NOTE: '.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ' inserts commas every 3 digits
-
   let estimatedTaxes = 0.03 * totalPriceOfCartItems;
   estimatedTaxes = formatPrice(estimatedTaxes);
 
@@ -27,7 +25,7 @@ export default function CartSummary() {
   total = formatPrice(total);
 
   return (
-    <section className='bg-primary-3 '>
+    <section className='bg-primary-4 col-span-2 xl:mr-12 lg:mr-4 xl:ml-0 lg:ml-4 lg:mt-12 lg:h-[fit-content] lg:py-4 lg:rounded-md'>
       <OrderSummaryHeader
         total={total}
         setShowOrderSummary={setShowOrderSummary}
@@ -44,6 +42,7 @@ export default function CartSummary() {
   );
 }
 
+
 const OrderSummaryHeader = ({
   total,
   setShowOrderSummary,
@@ -51,7 +50,7 @@ const OrderSummaryHeader = ({
 }) => {
   return (
     <section
-      className='flex w-full p-4 justify-between  border-t-2 border-b-2 border-primary-4 text-sm items-center md:text-base'
+      className='flex w-full p-4 justify-between  border-t-2 border-b-2 border-primary-4 text-sm items-center lg:hidden'
       onClick={() => setShowOrderSummary(!showOrderSummary)}>
       <div className='flex p-2 items-center'>
         <HiOutlineShoppingCart className='w-6 h-6 text-primary-8 mr-2' />
@@ -81,7 +80,7 @@ const OrderSummaryInfo = ({
   return (
     <section
       className={`px-4 border-b-2 border-primary-4 overflow-hidden ${
-        showOrderSummary ? 'h-70' : 'h-0 border-b-0'
+        showOrderSummary ? 'h-70' : 'h-0 border-b-0 lg:h-auto'
       }`}>
       <ProductInfo cartItemsDetails={cartItemsDetails} />
       <Costs
@@ -107,7 +106,7 @@ const ProductInfo = ({ cartItemsDetails }) => {
           
         return (
           <div
-            className='flex justify-between items-center mt-2 relative py-2.5'
+            className='flex justify-between items-center mt-2 relative py-2.5 lg:py-4 border-b-[1px]'
             key={index}>
             <div className='flex items-center'>
               <img
@@ -124,7 +123,7 @@ const ProductInfo = ({ cartItemsDetails }) => {
                 </p>
               </div>
             </div>
-            <div className='w-[50%] sm:w-auto text-right'>
+            <div className='w-[50%] lg:w-[70%] sm:w-auto text-right'>
               <p className='font-bold text-xs sm:text-sm text-secondary-7 '>
                 USD{' '}
                 {formatTotalPrice}
@@ -143,7 +142,7 @@ const ProductInfo = ({ cartItemsDetails }) => {
 
 const Costs = ({ totalPriceOfCartItems, estimatedTaxes }) => {
   return (
-    <section className='text-sm items-center  border-b-2 border-primary-4 py-4'>
+    <section className='text-sm items-center border-primary-4 py-4'>
       <div className='flex w-full justify-between font-semibold'>
         <p>Subtotal</p>
         <p>
@@ -167,7 +166,7 @@ const Costs = ({ totalPriceOfCartItems, estimatedTaxes }) => {
 
 const Total = ({ total }) => {
   return (
-    <div className='flex w-full justify-between font-semibold py-2'>
+    <div className='flex w-full justify-between font-semibold py-2 border-t-[1px]'>
       <p className=''>Total</p>
       <p className='text-lg text-secondary-8'>
         USD {total}

@@ -2,7 +2,7 @@
 import ShippingInfo from "../../components/information/Shipping";
 import InfoLayout from "../../components/information/InfoLayout";
 
-export default function Shipping() {
+export default function ShippingPage() {
   return (
     <InfoLayout>
       <ShippingInfo />

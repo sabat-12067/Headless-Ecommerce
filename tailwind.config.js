@@ -40,7 +40,9 @@ module.exports = {
       'autofill-sm': 'repeat(auto-fill, minmax(170px, 1fr))',
       'autofill-lg': 'repeat(auto-fit, minmax(260px, 1fr))',
       'autofill-details': 'repeat(auto-fit, minmax(250px, 1fr))',
-      'grid-sm': 'repeat(2, 2fr)'
+      'grid-sm': 'repeat(2, 2fr)',
+      'grid-thumbs': 'repeat(auto-fill, minmax(80px, 1fr))',
+      'grid-checkout-pg': 'repeat(5, 1fr)',
     },
     keyframes: {
       wiggle: {

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { MdKeyboardArrowLeft } from 'react-icons/md';
 import Link from 'next/link';
 import { Alert } from '../HorLine';
 import { Navigation } from '../HorLine';
 import { Button } from '../HorLine';
 import { informationActions } from '../../store/infoSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { BsCheckCircleFill } from 'react-icons/bs';
 
 export default function Payment() {
   return (
@@ -84,6 +84,7 @@ const BillingAddress = () => {
   };
 
   //OnSubmit() function is only called when the form is validated
+
   const onSubmit = (data) => {
     if (!shippingAddressSelected && !differentAddressSelected) {
       setShowAlert(true);
