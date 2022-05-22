@@ -40,11 +40,11 @@ export const Alert = ({ setShowAlert, msg }) => {
 
     //clean up function
     return () => clearTimeout(alertTimeOut);
-  }, []);
+  });
 
   return (
     <div className='flex items-center justify-center fixed top-0 left-0 w-full bg-secondary-3'>
-      <p className='text-center font-bold text-secondary-8 w-full py-2'>
+      <p className='text-center font-bold text-secondary-8 w-full py-2 text-sm tracking-wide'>
         {msg}
       </p>
       <ImCross className='mr-5' onClick={() => setShowAlert(false)} />

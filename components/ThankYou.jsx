@@ -18,9 +18,11 @@ const ThankYou = () => {
         <span className='text-secondary-8'>#{orderNumber}</span>
       </p>
       <p className='px-8 text-center py-4'>
-        You'll recieve an email confirming your order details shortly.
+        You&#39;ll recieve an email confirming your order details shortly.
       </p>
-       <button className='uppercase rounded-none'><Link href='/'>back to home</Link></button>
+      <button className='uppercase rounded-none'>
+        <Link href='/'>back to home</Link>
+      </button>
     </div>
   );
 };
