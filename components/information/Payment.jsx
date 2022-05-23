@@ -83,7 +83,6 @@ const BillingAddress = () => {
   };
 
   //OnSubmit() function is only called when the form is validated
-
   const onSubmit = (data) => {
     if (!shippingAddressSelected && !differentAddressSelected) {
       setShowAlert(true);
@@ -94,8 +93,10 @@ const BillingAddress = () => {
 
     if (differentAddressSelected) {
       //console.log(`New Billing Address:`, data);
+      //Set the billing address to the new address
       dispatch(informationActions.setBillingAddress(data));
     } else {
+      //Set billing address to shipping address
       dispatch(
         informationActions.setBillingAddress({
           address: shippingAddress.address,

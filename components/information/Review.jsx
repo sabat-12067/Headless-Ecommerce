@@ -3,12 +3,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cartSlice';
+import emailjs from 'emailjs-com';
 
 export default function Review() {
   const dispatch = useDispatch();
-  const customerEmail = useSelector((state) => state.information.shippingAddress.email);
+  const shippingAddress = useSelector((state) => state.information.shippingAddress);
   //console.log(customerEmail);
+
+ // const { firstName, lastName, address, city, apartment, email, country } = shippingAddress;
+
   const handleClick = () => {
+    // emailjs.sendForm('service_e7dtkgg', 'template_laitsyk', ).then(res => console.log(res)).catch(err => console.error(err));
     dispatch(cartActions.clearCart());
     router.push('/thankyou');
   };
@@ -40,7 +45,7 @@ const ShippingAddress = () => {
       </h3>
       <div className='font-medium leading-5 text-sm'>
         <div className='flex'>
-          <p className='mr-1'>{firstName ? firstName : null}</p>
+          <p className='mr-1 text-sm'>{firstName ? firstName : null}</p>
           <p>{lastName}</p>
         </div>
         <p>{address}</p>
