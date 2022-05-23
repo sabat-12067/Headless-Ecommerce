@@ -43,8 +43,20 @@ Within the application, users are be able to accomplish the following tasks
 - Strapi
 
 #### Why I Chose Next.js
-- The file-system based router **makes navigation in a multi-paged application easier and seamless.** That made development of the site more rapid. After my previous project, I learnt that page navigation - with the react-router - in react.js would not be as efficient. 
-- **Short page load time.** A Next.js application is super-fast thanks to static site generation. That helps to provide a rich user experience and that's important to an ecommerce website for obvious reasons - **increasing conversion rates and sales.** 
+- The file-system based router **makes navigation in a multi-paged application easier and seamless.** 
+
+That made development of the site more rapid. After my previous project, I learnt that page navigation 
+with the react-router - in react.js would not be as efficient. 
+
+- **Short page load time.** A Next.js application is super-fast thanks to static site generation. 
+
+That helps to provide a rich user experience and that's important to an ecommerce website for obvious reasons - **increasing conversion rates and sales.** 
+
+- **Improved SEO (Search Engine Optimization)** 
+
+It is super important for an ecommerce website to be easily discovered by customers searching for products online which will increase sales.
+
+The built-in pre-rendering functionality in Next.js makes crawling of the website by search engine and social media crawlers much more efficient. 
 
 ### Why I chose redux.
 - It enabled handling and managing state in one place where it can be accessed from any part of the application.
