@@ -101,10 +101,10 @@ const SignupForm = () => {
           </button>
         </form>
         <p className='text-primary-10 text-sm py-3 tracking-normal rounded-b-lg px-6 bg-[#f0f9ff]'>
-          By clicking "Sign Up" button, I expressly agree to the Asuman Sounds{' '}
-          <span className='underline'> Terms of Service</span> and understand
-          that my account information will be used according to Asuman Sounds{' '}
-          <span className='underline'>Privacy Policy</span>.
+          By clicking &#34;Sign Up&#34; button, I expressly agree to the Asuman
+          Sounds <span className='underline'> Terms of Service</span> and
+          understand that my account information will be used according to
+          Asuman Sounds <span className='underline'>Privacy Policy</span>.
         </p>
       </div>
     </section>
