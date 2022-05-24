@@ -20,7 +20,7 @@ const ThankYou = () => {
       <p className='px-8 text-center py-4'>
         You&#39;ll recieve an email confirming your order details shortly.
       </p>
-      <button className='uppercase rounded-none'>
+      <button className='uppercase rounded-none bg-primary-11 mb-6'>
         <Link href='/'>back to home</Link>
       </button>
     </div>

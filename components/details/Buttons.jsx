@@ -82,7 +82,7 @@ export default function Buttons({ singleProduct, productId }) {
       <div className='relative'>
         {/*Add to cart button */}
         <button
-          className='text-center w-full bg-secondary-2 mt-6 mb-4 text-2xl text-primary-10 flex flex-row items-center justify-center border-[1px] border-primary-10 outline-none rounded-none uppercase'
+          className='text-center w-full mt-6 mb-4 text-2xl text-primary-10 flex flex-row items-center justify-center border-[1px] border-primary-10 outline-none rounded-none uppercase'
           onClick={addToCart}>
           <HiOutlineShoppingCart className='absolute left-8 sm:left-20 md:left-12 lg:left-28' />
           Add to cart

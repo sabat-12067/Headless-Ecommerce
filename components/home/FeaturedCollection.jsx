@@ -7,7 +7,7 @@ export default function FeaturedCollection({ products }) {
 
   return (
     <section className='mt-5 md:relative'>
-      <h2>Top Deals</h2>
+      <h2 className='uppercase'>bringing you the <span className='text-secondary-7'>best</span> audio gear</h2>
       <div className='md:absolute top-6 flex items-center justify-center left-0 w-full'>
         <hr className='w-28 md:w-44 m-8' />
       </div>

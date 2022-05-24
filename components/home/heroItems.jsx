@@ -2,8 +2,8 @@ const heroItems = [
   {
     imageUrl:
       'https://d27jswm5an3efw.cloudfront.net/app/uploads/2019/11/audio-file-types-36.jpg',
-    h3: 'If you are looking for a new audio device to add to your collection,',
-    h1: 'look no further!',
+    h3: 'Experience natural lifelike audio and exceptional build quality,',
+    h1: 'made for the passionate music enthusiast.',
   },
   {
     imageUrl:

@@ -9,7 +9,7 @@ export default function Address() {
   const productId = useSelector((state) => state.Id.id);
 
   return (
-    <section className='px-2'>
+    <section className='px-'>
       <AddressDetails />
       <Navigation path={`/${productId}`} pathName='Return to Cart' />
     </section>
@@ -39,11 +39,11 @@ const AddressDetails = () => {
   //console.log(errors);
  
   const inputStyles =
-    'text-sm rounded-md bg-primary-3 text-primary-10 outline-1 outline-primary-5 text-sm w-full px-2 py-4 text-sm my-2 font-medium';
+    'text-sm rounded-md bg-primary-12 text-primary-10 outline-1 outline-primary-11 text-sm w-full px-2 py-4 text-sm my-2 font-medium';
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className='bg-white px-3 pb-6'>
         {/* Contact Information Container */}
         <div className='py-3'>
           <h4 className='text-left py-2'>Contact information</h4>
@@ -62,7 +62,7 @@ const AddressDetails = () => {
             })}
             autoComplete='on'
             placeholder='Email or mobile number'
-            className='w-full px-2 py-4 rounded-md text-sm'
+            className='w-full px-2 py-4 rounded-md text-sm bg-primary-12 outline-primary-11 text-primary-10'
           />
           {errors.email && <Alert msg={errors.email.message} />}
           <div className='flex items-center py-2'>
@@ -74,7 +74,7 @@ const AddressDetails = () => {
             />
             <label
               htmlFor='subscribe'
-              className='text-sm text-secondary-8 ml-2'>
+              className='text-sm text-secondary-7 ml-2 font-bold'>
               Email me with news and offers
             </label>
           </div>

@@ -15,14 +15,14 @@ export default function Description({ singleProduct }) {
   const splitSpecifications = specifications.split('\n');
 
   return (
-    <section className='px-4'>
+    <section className='px-4 mb-12'>
       {/*Descriptions container */}
       <div className='md:max-w-[500px]'>
         <p className='font-bold'>Description</p>
         <p>
           {readMore ? description : description.substr(0, 250)}
           <button
-            className='px-2 text-sm py-2 bg-secondary-2 text-primary-9'
+            className='px-2 text-sm py-2 text-primary-9'
             onClick={() => setReadMore(!readMore)}>
             {readMore ? 'Read less' : '... Read more'}
           </button>

@@ -10,12 +10,12 @@ import { useState } from 'react';
 //This is a component for the mobile navigation
 
 const listItems = [
-  { text: 'sign in', icon: <BiLogIn /> },
-  { text: 'home', icon: <FaHome /> },
-  { text: 'categories', icon: <BiCategoryAlt /> },
-  { text: 'about', icon: <SiAboutdotme /> },
-  { text: 'contact us', icon: <IoMdContact /> },
-  { text: 'shipping', icon: <FaShippingFast /> },
+  { text: 'sign in', icon: <BiLogIn />, path: '/auth/login' },
+  { text: 'home', icon: <FaHome />, path: '/' },
+  { text: 'categories', icon: <BiCategoryAlt />, path: '/categories' },
+  { text: 'about', icon: <SiAboutdotme />, path: '/about' },
+  { text: 'contact us', icon: <IoMdContact />, path: '/contact' },
+  { text: 'shipping', icon: <FaShippingFast />, path: '/shipping' },
 ];
 
 function MobileNavigation({ totalQuantity, toggleCart }) {
@@ -76,14 +76,13 @@ const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
       />
       <ul className='pt-[5rem] text-[white] uppercase font-bold tracking-wider '>
         {listItems.map((listItem, index) => {
-          const { icon, text } = listItem;
-          const linkTo = text === 'home' ? '/' : `/${text.split(' ').join('')}`;
+          const { icon, text, path } = listItem;
           return (
             <li
               key={index}
               className='border-b-[1px] border-b-[white] flex items-center '>
               <div className='mr-3 text-[1.5rem]'>{icon}</div>
-              <Link href={linkTo}>{text}</Link>
+              <Link href={path}>{text}</Link>
             </li>
           );
         })}

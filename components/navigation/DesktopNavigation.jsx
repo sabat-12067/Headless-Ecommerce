@@ -44,7 +44,7 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
 
 const Button = ({ action }) => {
   return (
-    <button className='py-2.5 px-5 capitalize text-xs ml-4 font-semibold'>
+    <button className='py-2.5 px-5 capitalize bg-primary-11 text-xs ml-4 font-semibold'>
       {action}
     </button>
   );

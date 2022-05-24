@@ -1,9 +1,9 @@
 import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { formatPrice } from '../../HorLine'
-import { formatpriceWithCommas } from '../../HorLine'; 
+import { useRouter } from 'next/router';
 
 //This component is used to display the cart summary when customer clicks the 'continue to checkout' button of the cart section
 
@@ -12,8 +12,11 @@ export default function CartSummary() {
   const cartItemsDetails = useSelector((state) => state.cart.cartItemsList);
   //console.log(cartItemsDetails);
 
-  let totalPriceOfCartItems = 0;
+  const deliveryMethod = useSelector((state) => state.information.deliveryMethod);
+   //console.log('deliveryMethod', deliveryMethod);
 
+
+  let totalPriceOfCartItems = 0;
   cartItemsDetails.map((cartItem) => {
     return (totalPriceOfCartItems += cartItem.totalPrice);
   });
@@ -22,10 +25,21 @@ export default function CartSummary() {
   estimatedTaxes = formatPrice(estimatedTaxes);
 
   let total = (totalPriceOfCartItems + parseFloat(estimatedTaxes))
-  total = formatPrice(total);
+
+  let deliveryFee = 0;
+  if (deliveryMethod === 'Standard') {
+    deliveryFee = 'FREE';
+      total = formatPrice(total);
+  } else if (deliveryMethod === 'Express') {
+    deliveryFee = 15;
+    total = formatPrice(total + deliveryFee);
+  } else {
+    deliveryFee = 25;
+    total = formatPrice(total + deliveryFee);
+  }
 
   return (
-    <section className='bg-primary-4 col-span-2 xl:mr-12 lg:mr-4 xl:ml-0 lg:ml-4 lg:mt-12 lg:h-[fit-content] lg:py-4 lg:rounded-md'>
+    <section className='bg-primary-11 col-span-2 text-white xl:mr-12 lg:mr-4 xl:ml-0 lg:ml-4 lg:mt-12 lg:h-[fit-content] lg:py-4 lg:rounded-md'>
       <OrderSummaryHeader
         total={total}
         setShowOrderSummary={setShowOrderSummary}
@@ -37,6 +51,7 @@ export default function CartSummary() {
         total={total}
         estimatedTaxes={estimatedTaxes}
         showOrderSummary={showOrderSummary}
+        deliveryFee={deliveryFee}
       />
     </section>
   );
@@ -50,21 +65,21 @@ const OrderSummaryHeader = ({
 }) => {
   return (
     <section
-      className='flex w-full p-4 justify-between  border-t-2 border-b-2 border-primary-4 text-sm items-center lg:hidden'
+      className='flex w-full p-4 justify-between  border-t-2 border-b-2 border-primary-11 text-sm items-center lg:hidden'
       onClick={() => setShowOrderSummary(!showOrderSummary)}>
       <div className='flex p-2 items-center'>
-        <HiOutlineShoppingCart className='w-6 h-6 text-primary-8 mr-2' />
+        <HiOutlineShoppingCart className='w-6 h-6 text-white mr-2' />
         <p className='font-medium '>
           {showOrderSummary ? 'Hide' : 'Show'} order summary
         </p>
         <MdKeyboardArrowDown
-          className={`w-6 h-6 text-primary-8 self-center duration-300 ease-in-out ${
+          className={`w-6 h-6 text-white self-center duration-300 ease-in-out ${
             showOrderSummary ? 'rotate-180' : null
           }`}
         />
       </div>
-      <p className='font-bold text-right'>
-        USD {total}
+      <p className='font-bold text-right text-secondary-7'>
+        ${total}
       </p>
     </section>
   );
@@ -75,17 +90,19 @@ const OrderSummaryInfo = ({
   estimatedTaxes,
   total,
   showOrderSummary,
-  totalPriceOfCartItems
+  totalPriceOfCartItems,
+  deliveryFee,
 }) => {
   return (
     <section
-      className={`px-4 border-b-2 border-primary-4 overflow-hidden ${
+      className={`px-4 border-b-2 border-white overflow-hidden ${
         showOrderSummary ? 'h-70' : 'h-0 border-b-0 lg:h-auto'
       }`}>
       <ProductInfo cartItemsDetails={cartItemsDetails} />
       <Costs
         estimatedTaxes={estimatedTaxes}
         totalPriceOfCartItems={totalPriceOfCartItems}
+        deliveryFee={deliveryFee}
       />
       <Total total={total} />
     </section>
@@ -94,7 +111,7 @@ const OrderSummaryInfo = ({
 
 const ProductInfo = ({ cartItemsDetails }) => {
   return (
-    <div className='border-b-2 border-primary-4 py-4'>
+    <div>
       {cartItemsDetails.map((cartItem, index) => {
         const { name, imageUrl, discountPrice, totalPrice, quantity } =
           cartItem;
@@ -114,23 +131,21 @@ const ProductInfo = ({ cartItemsDetails }) => {
                 alt={`Thumbnail of ${name}`}
                 className='rounded-lg w-20 h-20'
               />
-              <p className='absolute text-white w-5 h-5 text-xs rounded-[50%] top-0 text-center flex items-center justify-center font-bold left-[70px] bg-primary-11'>
+              <p className='absolute text-white w-5 h-5 text-xs rounded-[50%] top-0 text-center flex items-center justify-center font-bold left-[70px] bg-secondary-7'>
                 {quantity}
               </p>
               <div className='p-2 pl-4 w-[70%] sm:w-full'>
-                <p className='font-bold text-xs sm:text-sm text-secondary-7'>
+                <p className='font-bold text-xs sm:text-sm text-white'>
                   {name}
                 </p>
               </div>
             </div>
             <div className='w-[50%] lg:w-[70%] sm:w-auto text-right'>
-              <p className='font-bold text-xs sm:text-sm text-secondary-7 '>
-                USD{' '}
-                {formatTotalPrice}
+              <p className='font-bold text-xs sm:text-sm'>
+                ${formatTotalPrice}
               </p>
               <p className='font-medium line-through text-sm'>
-                USD{' '}
-                {totalDiscountPrice}
+                ${totalDiscountPrice}
               </p>
             </div>
           </div>
@@ -140,24 +155,51 @@ const ProductInfo = ({ cartItemsDetails }) => {
   );
 };
 
-const Costs = ({ totalPriceOfCartItems, estimatedTaxes }) => {
+const Costs = ({ totalPriceOfCartItems, estimatedTaxes, deliveryFee }) => {
+
+  const router = useRouter();
+
+  const [showDeliveryFee, setShowDeliveryFee] = useState(false);
+
+  useEffect(() => {
+    //show the delivery fee only on the payment and review pages
+    if (router.pathname === '/information/address' || router.pathname === '/information/shipping') {
+     // console.log('showDeliveryFee', showDeliveryFee, 'deliveryFee', deliveryFee);
+      setShowDeliveryFee(false);
+    } else {
+      setShowDeliveryFee(true);
+    }
+  }, [router.pathname]);
+
+  let dollarSign = '';
+  
+  if (deliveryFee === 'FREE') {
+    dollarSign = ''
+  } else {
+    dollarSign = '$'
+  }
+  
+  if (router.pathname === '/information/address' || router.pathname === '/information/shipping') {
+    dollarSign = ''
+  }
+  
+
   return (
-    <section className='text-sm items-center border-primary-4 py-4'>
+    <section className='text-sm items-center py-4'>
       <div className='flex w-full justify-between font-semibold'>
         <p>Subtotal</p>
         <p>
-          USD{' '}
-          {formatPrice(totalPriceOfCartItems)}
+          ${formatPrice(totalPriceOfCartItems)}
         </p>
       </div>
       <div className='flex w-full justify-between my-1 font-medium'>
         <p>Shipping</p>
-        <p>Calculated at next step</p>
+        <p>{dollarSign} { showDeliveryFee ? deliveryFee : 'Calculated at next step' }</p>
       </div>
       <div className='flex w-full justify-between font-medium'>
         <p>Taxes (estimated)</p>
         <p>
-          USD {estimatedTaxes}
+          ${estimatedTaxes}
         </p>
       </div>
     </section>
@@ -166,11 +208,9 @@ const Costs = ({ totalPriceOfCartItems, estimatedTaxes }) => {
 
 const Total = ({ total }) => {
   return (
-    <div className='flex w-full justify-between font-semibold py-2 border-t-[1px]'>
+    <div className='flex w-full justify-between font-semibold py-2 border-white border-t-[1px] text-secondary-8'>
       <p className=''>Total</p>
-      <p className='text-lg text-secondary-8'>
-        USD {total}
-      </p>
+      <p className='text-lg'>${total}</p>
     </div>
   );
 };
