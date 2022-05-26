@@ -11,7 +11,6 @@ const Alert = ({ alert, setAlert }) => {
 
     return () => clearTimeout(alertTimeOut);
   }, []);
-  console.log(msg);
 
   return <p className={` text-sm font-meduim tracking-wide py-2 px-4 rounded-sm left-2 w-[95%] mx-auto ${type === 'danger' ? 'text-red bg-light-red border-red border-[1px]' : 'text-green bg-light-green border-[1px] border-green'}`}>{msg}</p>;
 };

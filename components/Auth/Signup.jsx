@@ -35,13 +35,14 @@ const SignupForm = () => {
          }
        );
 
+        setAlert({ show: true, type: 'success', msg: 'Account created successfully!' });
+
       //console.log(response.data);
 
       setEmail('');
       setPassword('');
       setName('');
 
-      //setData(response.data);
     } catch (error) {
       //console.log(error.response.data);
       if (error) {
