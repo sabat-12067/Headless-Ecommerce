@@ -26,14 +26,16 @@ const SignupForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        'https://asuman-sounds-api.herokuapp.com/auth/signup',
-        JSON.stringify(userInfo)
-      );
+       const response = await axios.post(
+         'https://asuman-sounds-api.herokuapp.com/auth/signup',
+         JSON.stringify(userInfo),
+         {
+           headers: { 'Content-Type': 'application/json' },
+           withCredentials: true,
+         }
+       );
 
       //console.log(response.data);
-      setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
-
 
       setEmail('');
       setPassword('');
@@ -61,8 +63,8 @@ const SignupForm = () => {
       <div className='max-w-lg mx-auto w-[90vw] relative lg:top-0 shadow-md'>
         <form
           onSubmit={handleSubmit}
-          className=' bg-white pt-8 w-full px-8 sm:rounded-t-l relative'>
-          <div className='absolute w-full z-30 left-0'>
+          className=' bg-white pt-8 w-full px-8 sm:rounded-t-l'>
+          <div className='absolute w-full left-0 z-30'>
             {alert.show && <Alert alert={alert} setAlert={setAlert} />}
           </div>
           <h1 className='text-3xl text-left'>Sign up for a free account</h1>
