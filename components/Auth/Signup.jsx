@@ -1,56 +1,79 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import SVG from './SVG';
+import axios from 'axios';
+import Alert from './Alert';
 
 const Signup = () => {
   return <SignupForm />;
 };
 
-
 const SignupForm = () => {
- const [showPassword, setShowPassword] = useState(false);
- 
- const handleEmail = () => {
-   console.log('email');
- };
- 
- const handlePassword = () => {
-   console.log('password');
- };
- 
- const handleName = () => {
-   console.log('password');
- };
- 
- const handleSubmit = (e) => {
-   e.preventDefault();
- };
- 
- const togglePassword = () => {
-   if (showPassword) {
-     setShowPassword(false);
-   } else {
-     setShowPassword(true);
-   }
- };
+  const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [alert, setAlert] = useState({ show: false, type: '', msg: '' });
+
+  const userInfo = {
+    name,
+    email,
+    password,
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        'https://asuman-sounds-api.herokuapp.com/auth/signup',
+        JSON.stringify(userInfo)
+      );
+
+      //console.log(response.data);
+
+      setEmail('');
+      setPassword('');
+      setName('');
+
+      //setData(response.data);
+    } catch (error) {
+      //console.log(error.response.data);
+      if (error) {
+        setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
+      }
+    }
+  };
+
+  const togglePassword = () => {
+    if (showPassword) {
+      setShowPassword(false);
+    } else {
+      setShowPassword(true);
+    }
+  };
   return (
     <section className='pt-10 sm:flex flex-col items-start bg-primary-11 h-screen'>
       <SVG />
       <div className='max-w-lg mx-auto w-[90vw] relative lg:top-0 shadow-md'>
         <form
           onSubmit={handleSubmit}
-          className=' bg-white pt-8 w-full px-8 sm:rounded-t-lg'>
+          className=' bg-white pt-8 w-full px-8 sm:rounded-t-l relative'>
+          <div className='absolute w-full z-30 left-0'>
+            {alert.show && <Alert alert={alert} setAlert={setAlert} />}
+          </div>
           <h1 className='text-3xl text-left'>Sign up for a free account</h1>
           <div className='flex flex-col pt-4'>
-            <label htmlFor='email' className='text-sm font-medium'>
+            <label htmlFor='name' className='text-sm font-medium'>
               Your Name
             </label>
             <input
-              type='email'
-              id='email'
+              type='text'
+              id='name'
+              value={name}
               placeholder='Name'
-              onChange={handleName}
+              onChange={(e) => setName(e.target.value)}
               className='pl-2 py-2 mt-1 rounded-sm bg-primary-12'
             />
           </div>
@@ -61,8 +84,9 @@ const SignupForm = () => {
             <input
               type='email'
               id='email'
+              value={email}
               placeholder='Email'
-              onChange={handleEmail}
+              onChange={(e) => setEmail(e.target.value)}
               className='pl-2 py-2 mt-1 rounded-sm bg-primary-12'
             />
           </div>
@@ -72,10 +96,12 @@ const SignupForm = () => {
             </label>
             <div className='flex justify-between items-center bg-primary-12 relative mt-1'>
               <input
+                autoComplete='on'
                 type={showPassword ? 'text' : 'password'}
                 placeholder='Password'
                 id='password'
-                onChange={handlePassword}
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 className='pl-2 py-2 rounded-sm bg-primary-12 w-full'
                 required
               />

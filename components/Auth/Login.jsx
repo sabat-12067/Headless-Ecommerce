@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import SVG from './SVG';
+import Alert from './Alert';
+import axios from 'axios';
 
 function Login() {
   return <LoginForm />;
@@ -10,17 +12,39 @@ function Login() {
 const LoginForm = () => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const [alert, setAlert] = useState({
+    show: false,
+    type: 'danger',
+    msg: '',
+  });
 
-  const handleEmail = () => {
-    console.log('email');
-  };
+  const clientInfo = { email, password }
 
-  const handlePassword = () => {
-    console.log('password');
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await axios.post(
+        'https://asuman-sounds-api.herokuapp.com/auth/login',
+        JSON.stringify(clientInfo),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        }
+      );
+
+        setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
+
+        setEmail('');
+        setPassword('');
+        
+    } catch (error) {
+      if (error) {
+        setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
+      }
+    }
   };
 
   const togglePassword = () => {
@@ -35,11 +59,14 @@ const LoginForm = () => {
   //Svg is from gatwaves.io
   return (
     <section className='pt-16 sm:flex flex-col items-start bg-primary-11 h-screen'>
-     <SVG />
+      <SVG />
       <div className='max-w-lg w-[90vw] mx-auto relative top-10 lg:top-0 shadow-md'>
         <form
           onSubmit={handleSubmit}
-          className=' bg-white pt-10 w-full px-8 rounded-t-lg'>
+          className=' bg-white pt-10 w-full px-8 rounded-t-lg relative'>
+          <div className='absolute w-full left-0 z-30'>
+            {alert.show && <Alert alert={alert} setAlert={setAlert} />}
+          </div>
           <h1 className='text-3xl text-left'>Sign in to asuman sounds</h1>
           <div className='flex flex-col pt-4'>
             <label htmlFor='email' className='text-sm font-medium'>
@@ -48,8 +75,9 @@ const LoginForm = () => {
             <input
               type='email'
               id='email'
+              value={email}
               placeholder='Email'
-              onChange={handleEmail}
+              onChange={(e) => setEmail(e.target.value)}
               className='pl-2 py-2 mt-1 rounded-sm bg-primary-12'
             />
           </div>
@@ -62,7 +90,8 @@ const LoginForm = () => {
                 type={showPassword ? 'text' : 'password'}
                 placeholder='Password'
                 id='password'
-                onChange={handlePassword}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className='pl-2 py-2 rounded-sm bg-primary-12 w-full'
                 required
               />
@@ -89,7 +118,9 @@ const LoginForm = () => {
         </form>
         <div className='px-8 pt-4 bg-primary-12 pb-4 sm:flex rounded-b-lg'>
           <p className='font-medium mr-2'>New to Asuman Sounds?</p>
-          <p className='font-medium text-secondary-7 lg:cursor-pointer' onClick={() => router.push('/auth/signup')}>
+          <p
+            className='font-medium text-secondary-7 lg:cursor-pointer'
+            onClick={() => router.push('/auth/signup')}>
             Create your free account now!
           </p>
         </div>
