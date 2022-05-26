@@ -32,6 +32,8 @@ const SignupForm = () => {
       );
 
       //console.log(response.data);
+      setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
+
 
       setEmail('');
       setPassword('');
