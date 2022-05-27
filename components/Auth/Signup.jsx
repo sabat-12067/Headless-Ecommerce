@@ -64,7 +64,7 @@ const SignupForm = () => {
       <div className='max-w-lg mx-auto w-[90vw] relative lg:top-0 shadow-md'>
         <form
           onSubmit={handleSubmit}
-          className=' bg-white pt-8 w-full px-8 sm:rounded-t-lg'>
+          className=' bg-white pt-8 w-full px-8 rounded-t-lg'>
           <div className='absolute w-full left-0 z-30'>
             {alert.show && <Alert alert={alert} setAlert={setAlert} />}
           </div>
