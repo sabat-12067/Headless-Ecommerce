@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import SVG from './SVG';
 import axios from 'axios';
 import Alert from './Alert';
+import { useSelector, useDispatch } from 'react-redux';
+import { authActions } from '../../store/authSlice';
 
 const Signup = () => {
   return <SignupForm />;
@@ -22,20 +24,30 @@ const SignupForm = () => {
     password,
   };
 
+  //grab the id of the clicked product
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const productId = useSelector((state) => state.Id.id);
+  //console.log(productId);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-       const response = await axios.post(
-         'https://asuman-sounds-api.herokuapp.com/auth/signup',
-         JSON.stringify(userInfo),
-         {
-           headers: { 'Content-Type': 'application/json' },
-           withCredentials: true,
-         }
-       );
+      const response = await axios.post(
+        'https://asuman-sounds-api.herokuapp.com/auth/signup',
+        JSON.stringify(userInfo),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        }
+      );
 
-        setAlert({ show: true, type: 'success', msg: 'Account created successfully!' });
+      setAlert({
+        show: true,
+        type: 'success',
+        msg: 'Account created successfully!',
+      });
 
       //console.log(response.data);
 
@@ -43,8 +55,18 @@ const SignupForm = () => {
       setPassword('');
       setName('');
 
+        //Set logged-in status to true
+        dispatch(authActions.login());
+
+        //Redirect to home page after login and to the product page if a product id is present
+        if (productId) {
+          router.push(`/product/${productId}`);
+        } else {
+          router.push('/');
+        }
+
     } catch (error) {
-      //console.log(error.response.data);
+      console.log(error);
       if (error) {
         setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
       }

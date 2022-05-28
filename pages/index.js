@@ -4,6 +4,7 @@ import Hero from '../components/home/Hero';
 import Cart from '../components/Cart';
 import { Fragment } from 'react';
 import Head from 'next/head';
+import { useSelector, useDispatch } from 'react-redux';
 
 export default function Home({ products }) {
   //console.log(products);
@@ -11,7 +12,7 @@ export default function Home({ products }) {
     <Fragment>
      <Head>
     <title>Asuman Sounds</title>
-    <meta name="description" content="Asuman Sounds is a store for high end earphones, headphones, speakers and audio accessories. Helping you find the best quality personal audio" />
+    <meta name="description" content="Asuman Sounds is a store for high end earphones, headphones, speakers and audio accessories. We help you find the best quality personal audio" />
     </Head>  
    <section>
      <div className='relative top-12 z-40'>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { productIdActions } from '../../store/productIdSlice';
+import { useRouter } from 'next/router';
 
 export default function FeaturedCollection({ products }) {
   //console.log(products);
@@ -42,6 +43,7 @@ export default function FeaturedCollection({ products }) {
   );
 }
 
+//Component for single product
 const SingleProduct = ({
   name,
   price,
@@ -51,17 +53,19 @@ const SingleProduct = ({
   productId,
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const grabProductId = () => {
+  const handleClick = () => {
     dispatch(productIdActions.setProductId({ productId }));
+    isLoggedIn ? router.push(`/product/${productId}`) : router.push('/auth/login');
   };
 
   return (
     <article className='font-medium relative text-sm md:text-base text-primary-11 bg-white mb-8 lg:cursor-pointer lg:hover:drop-shadow-md border- m-2 lg:hover:rounded-md'>
-      <Link href={`/${productId}`} passHref>
         <div
           className='flex flex-col items-center p-3 h-full'
-          onClick={grabProductId}>
+          onClick={handleClick}>
           <img src={imageUrl} alt={name} className='' />
           <h3 className='p-3 text-sm'>{name}</h3>
           <p className='font-bold '>$ {price}</p>
@@ -70,7 +74,6 @@ const SingleProduct = ({
             - {discountPercentage}%
           </p>
         </div>
-      </Link>
     </article>
   );
 };

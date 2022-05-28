@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import SVG from './SVG';
 import Alert from './Alert';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { authActions } from '../../store/authSlice';
 
 function Login() {
   return <LoginForm />;
@@ -14,18 +16,25 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const [alert, setAlert] = useState({
     show: false,
     type: 'danger',
     msg: '',
   });
 
-  const clientInfo = { email, password }
+  //grab the id of the clicked product
+  const productId = useSelector((state) => state.Id.id);
+  //console.log(productId);
+
+  const dispatch = useDispatch();
+
+  const clientInfo = { email, password };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      //post the client login info to the server
       const response = await axios.post(
         'https://asuman-sounds-api.herokuapp.com/auth/login',
         JSON.stringify(clientInfo),
@@ -35,15 +44,25 @@ const LoginForm = () => {
         }
       );
 
-        setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
+      //console.log(response.data); 
 
-        setEmail('');
-        setPassword('');
-        
-    } catch (error) {
-      if (error) {
-        setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
+      setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
+      
+      setEmail('');
+      setPassword('');
+
+      //Set logged-in status to true
+      dispatch(authActions.login());
+
+      //Redirect to home page after login and to the product page if a product id is present
+      if (productId) {
+        router.push(`/product/${productId}`);
+      } else {
+        router.push('/');
       }
+
+    } catch (error) {
+      setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
     }
   };
 

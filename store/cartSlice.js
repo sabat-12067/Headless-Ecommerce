@@ -30,6 +30,7 @@ const cartSlice = createSlice({
           totalPrice: newProduct.price * newProduct.quantity,
         });
       }
+      console.log('cartItemsList rendered');
     },
 
     //delete item from cart

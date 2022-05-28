@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import Carousel from '../../components/details/Carousel';
-import ProductInfo from '../../components/details/ProductInfo';
-import Buttons from '../../components/details/Buttons';
-import Description from '../../components/details/Description';
-import Cart from '../../components/Cart';
+import Carousel from '../../../components/details/Carousel';
+import ProductInfo from '../../../components/details/ProductInfo';
+import Buttons from '../../../components/details/Buttons';
+import Description from '../../../components/details/Description';
+import Cart from '../../../components/Cart';
 
 //This page is the details page. It is displayed when customer clicks a product in the home page.
 
