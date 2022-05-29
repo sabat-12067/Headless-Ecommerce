@@ -11,7 +11,7 @@ export default function Address() {
   return (
     <section className='px-'>
       <AddressDetails />
-      <Navigation path={`/${productId}`} pathName='Return to Cart' />
+      <Navigation path={`/product/${productId}`} pathName='Return to Cart' />
     </section>
   );
   [];

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useRouter } from 'next/router';
 import SVG from './SVG';
 import axios from 'axios';
 import Alert from './Alert';
@@ -26,9 +25,6 @@ const SignupForm = () => {
 
   //grab the id of the clicked product
   const dispatch = useDispatch();
-  const router = useRouter();
-  const productId = useSelector((state) => state.Id.id);
-  //console.log(productId);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,15 +51,12 @@ const SignupForm = () => {
       setPassword('');
       setName('');
 
-        //Set logged-in status to true
-        dispatch(authActions.login());
+      //Set logged-in status to true
+      dispatch(authActions.login());
 
-        //Redirect to home page after login and to the product page if a product id is present
-        if (productId) {
-          router.push(`/product/${productId}`);
-        } else {
-          router.push('/');
-        }
+      //Store userId in the redux store
+      const userId = response.data.user.userId;
+      dispatch(authActions.setUserId(userId));
 
     } catch (error) {
       console.log(error);

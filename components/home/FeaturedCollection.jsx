@@ -52,13 +52,9 @@ const SingleProduct = ({
   imageUrl,
   productId,
 }) => {
-  const dispatch = useDispatch();
   const router = useRouter();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-
   const handleClick = () => {
-    dispatch(productIdActions.setProductId({ productId }));
-    isLoggedIn ? router.push(`/product/${productId}`) : router.push('/auth/login');
+    router.push(`/product/${productId}`)
   };
 
   return (

@@ -23,12 +23,7 @@ const LoginForm = () => {
     msg: '',
   });
 
-  //grab the id of the clicked product
-  const productId = useSelector((state) => state.Id.id);
-  //console.log(productId);
-
   const dispatch = useDispatch();
-
   const clientInfo = { email, password };
 
   const handleSubmit = async (e) => {
@@ -44,7 +39,9 @@ const LoginForm = () => {
         }
       );
 
-      //console.log(response.data); 
+      //Store userId in the redux store
+      const userId = response.data.user.userId;
+      dispatch(authActions.setUserId(userId));
 
       setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
       
@@ -53,13 +50,6 @@ const LoginForm = () => {
 
       //Set logged-in status to true
       dispatch(authActions.login());
-
-      //Redirect to home page after login and to the product page if a product id is present
-      if (productId) {
-        router.push(`/product/${productId}`);
-      } else {
-        router.push('/');
-      }
 
     } catch (error) {
       setAlert({ show: true, type: 'danger', msg: error.response.data.msg });

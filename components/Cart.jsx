@@ -5,71 +5,28 @@ import { cartActions } from '../store/cartSlice';
 import Link from 'next/link';
 import { formatPrice } from './HorLine';
 import { ImCross } from 'react-icons/im';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-//THIS component is for the cart section section and displaying the cart after clicking the cart icon
+//THIS component is for the cart section and displaying the cart after clicking the cart icon
 
 const Cart = () => {
   const showCart = useSelector((state) => state.cart.showCart);
-  const [cartItems, setCartItems] = useState([]);
-  const [storeCartItems, setStoreCartItems] = useState();
+  return showCart && <Carts />;
+};
 
+const Carts = () => {
+  
   //Get the cart items from the redux store
   const cartItemsList = useSelector((state) => state.cart.cartItemsList);
 
-  //set the cart items to the cartItems state of react so that react can monitor any changes to the state of the cartItemsList
   useEffect(() => {
-    setStoreCartItems(cartItemsList);
-  });
-  //  useEffect(() => {
-  //    console.log('useEffect invoked. cartItemsList has changed!');
-  //  }, [storeCartItems]);
-
- // console.log(storeCartItems);
-
-  //Post the cart items to the server
-  useEffect(() => {
-    
-      const postCartItems = async () => {
-        // console.log('Function for posting cart items to the server invoked');
-        try {
-          const response = await axios.post(
-            'http://localhost:5000/cart',
-            JSON.stringify(cartItemsList)
-          );
-          console.log(response);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      postCartItems();
-  }, [storeCartItems]);
-
-  //console.log(cartItemsList);
-
-  //console.log(cartItemsList);
-  //asuman-sounds-api.herokuapp.com
-
-  //Fetch the cart items from the server
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/cart');
-        setCartItems(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchCartItems();
+    //save the cart items from redux store to local storage and update whenever cartItemsList changes
+   localStorage.setItem('cartItemsList', JSON.stringify(cartItemsList));
   }, [cartItemsList]);
 
-  //console.log(cartItems);
-
-  return showCart && <Carts cartItems={cartItems} />;
-};
-
-const Carts = ({ cartItems }) => {
-  
+  //Get the cart items from local storage
+  const cartItems = JSON.parse(localStorage.getItem('cartItemsList'));
+ // console.log(cartItems);
   const numberOfCartItems = cartItems.length;
 
   return (
@@ -116,7 +73,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
   let totalNumberOfItems = 0;
   cartItems.map((item) => {
     totalNumberOfItems += item.quantity;
-  })
+  });
 
   //console.log('totalNumberOfItems', totalNumberOfItems);
 
@@ -127,10 +84,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
         <p>
           {totalNumberOfItems} Item{totalNumberOfItems > 1 ? 's' : null} added
         </p>
-        <p className='text-secondary-7'>
-          USD{' '}
-          {formattedTotalPriceOfAllItems}
-        </p>
+        <p className='text-secondary-7'>USD {formattedTotalPriceOfAllItems}</p>
       </div>
       <div className='w-full'>
         {cartItems.map((item, index) => {
@@ -148,9 +102,7 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
           const formatedTotalPrice = formatPrice(totalPrice);
 
           return (
-            <div
-              className='p-2 border-b-[1px] b-primary-10 w-full'
-              key={index}>
+            <div className='p-2 border-b-[1px] b-primary-10 w-full' key={index}>
               <div className='flex text-xs sm:text-sm font-medium'>
                 <img
                   src={imageUrl}
@@ -211,24 +163,24 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
           onClick={setIsAddToCartBtnClicked}>
           checkout{' '}
           <span className='text-secondary-7'>
-            (USD{' '}
-            {formattedTotalPriceOfAllItems}
-            )
+            (USD {formattedTotalPriceOfAllItems})
           </span>
         </button>
       </Link>
-      <p className='pt-2 underline' onClick={() => dispatch(cartActions.setShowCart())}>
-        <Link href='./'>Continue Shopping</Link>{' '}
+      <p
+        className='pt-2 underline'
+        onClick={() => dispatch(cartActions.setShowCart())}>
+        <Link href='/'>Continue Shopping</Link>{' '}
       </p>
     </section>
   );
 };
 
 const Emptycart = () => {
-    const dispatch = useDispatch();
-    const handleClick = () => {
-      dispatch(cartActions.setShowCart());
-    };
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(cartActions.setShowCart());
+  };
 
   return (
     <section className='shadow-lg shadow-primary-8 p-4 m-2 z-30 top-14 bg-white h-80 w-[90%] ml-[5%] md:w-[500px] md:h-[300px] md:right-3 absolute'>
