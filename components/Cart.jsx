@@ -15,18 +15,8 @@ const Cart = () => {
 };
 
 const Carts = () => {
-  
-  //Get the cart items from the redux store
-  const cartItemsList = useSelector((state) => state.cart.cartItemsList);
 
-  useEffect(() => {
-    //save the cart items from redux store to local storage and update whenever cartItemsList changes
-   localStorage.setItem('cartItemsList', JSON.stringify(cartItemsList));
-  }, [cartItemsList]);
-
-  //Get the cart items from local storage
-  const cartItems = JSON.parse(localStorage.getItem('cartItemsList'));
- // console.log(cartItems);
+  const cartItems = useSelector((state) => state.cart.cartItemsList);
   const numberOfCartItems = cartItems.length;
 
   return (

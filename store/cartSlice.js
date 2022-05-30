@@ -32,6 +32,10 @@ const cartSlice = createSlice({
       }
     },
 
+    setCartItemsList(state, action) {
+      state.cartItemsList = action.payload;
+    },
+
     //delete item from cart
     removeItem(state, action) {
       const id = action.payload

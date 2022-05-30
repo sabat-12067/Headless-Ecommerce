@@ -4,7 +4,6 @@ import { productIdActions } from '../../store/productIdSlice';
 import { useRouter } from 'next/router';
 
 export default function FeaturedCollection({ products }) {
-  //console.log(products);
 
   return (
     <section className='mt-5 md:relative'>

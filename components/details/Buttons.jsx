@@ -5,10 +5,12 @@ import { quantityActions } from '../../store/quantitySlice';
 import { cartActions } from '../../store/cartSlice';
 import Link from 'next/link';
 import { formatprice } from '../HorLine';
+import { useEffect, useState } from 'react';
 
 //This component is for the 'edit quantity',  'add to cart' and the 'buy now' buttons of the product details screen/page.
 
 export default function Buttons({ singleProduct, productId }) {
+  const [cartItems, setCartItems] = useState([]);
   const quantity = useSelector((state) => state.quantityValue.quantity);
 
   const dispatch = useDispatch();
@@ -19,13 +21,25 @@ export default function Buttons({ singleProduct, productId }) {
       let discountPrice = (price * 100) / (100 - discountPercentage);
       discountPrice = formatprice(discountPrice);
 
+      useEffect(() => {
+        const localStorageCart = localStorage.getItem('cartItems');
+        if (localStorageCart) {
+          setCartItems(JSON.parse(localStorageCart));
+        } else {
+          setCartItems([]);
+        }
+      }, []);
+
+      useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        dispatch(cartActions.setCartItemsList(cartItems));
+      }, [cartItems]);
+
 
   //grab thumbnail - of the first image - of the product
   const imageThumbnail = image.data[0].attributes.formats.thumbnail.url;
 
-  const addToCart = () => {
-    dispatch(
-      cartActions.addToCart({
+  const cartItem = {
         id: productId,
         name,
         price: price,
@@ -33,9 +47,25 @@ export default function Buttons({ singleProduct, productId }) {
         discountPrice,
         discountPercentage,
         quantity,
-      })
-    );
+        totalPrice: price * quantity,
   };
+
+
+  let cart = []
+     const addToCart = () => {
+       const existingCartItem = cartItems.find(
+         (cartItem) => cartItem.id === productId
+       );
+       if (existingCartItem) {
+         existingCartItem.quantity = cartItem.quantity;
+         existingCartItem.totalPrice = existingCartItem.quantity * existingCartItem.price;
+       } else {
+          cart.push(cartItem);
+          setCartItems(cart);
+        }
+     };
+
+     console.log(cartItems);
 
   const buyItNow = () => {
     dispatch(
@@ -99,3 +129,17 @@ export default function Buttons({ singleProduct, productId }) {
     </section>
   );
 }
+
+// const addToCart = () => {
+//   dispatch(
+//     cartActions.addToCart({
+//       id: productId,
+//       name,
+//       price: price,
+//       image: imageThumbnail,
+//       discountPrice,
+//       discountPercentage,
+//       quantity,
+//     })
+//   );
+// };
