@@ -2,10 +2,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { MdOutlineDelete } from 'react-icons/md';
 import { BiPlus, BiMinus } from 'react-icons/bi';
 import { cartActions } from '../store/cartSlice';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { formatPrice } from './HorLine';
 import { ImCross } from 'react-icons/im';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { useLocalStorage } from './UseLocalStorage';
 
 //THIS component is for the cart section and displaying the cart after clicking the cart icon
 
@@ -15,9 +17,12 @@ const Cart = () => {
 };
 
 const Carts = () => {
-
-  const cartItems = useSelector((state) => state.cart.cartItemsList);
+ 
+  //const cartItems = JSON.parse(localStorage.getItem('cartItems'))
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  
   const numberOfCartItems = cartItems.length;
+  //console.log('cartItems', cartItems);
 
   return (
     <>
@@ -35,6 +40,11 @@ const Carts = () => {
 
 const CartWithItems = ({ numberOfCartItems, cartItems }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log('buyItNow Item', JSON.parse(localStorage.getItem('buyItNowItem')));
+  });
 
   const handleIncrement = (id) => {
     dispatch(cartActions.incrementCartQuantity(id));
@@ -58,6 +68,8 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
 
   const setIsAddToCartBtnClicked = () => {
     dispatch(cartActions.setIsAddToCartBtnClicked());
+    localStorage.setItem('isAddToCartBtnClicked', true);
+    router.push('/information/address');
   };
 
   let totalNumberOfItems = 0;
@@ -90,7 +102,6 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
           } = item;
 
           const formatedTotalPrice = formatPrice(totalPrice);
-
           return (
             <div className='p-2 border-b-[1px] b-primary-10 w-full' key={index}>
               <div className='flex text-xs sm:text-sm font-medium'>
@@ -147,16 +158,14 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
           );
         })}
       </div>
-      <Link href='/information/address' passHref>
-        <button
-          className='w-full uppercase bg-primary-10 rounded-none text-lg sm:text-xl mt-4'
-          onClick={setIsAddToCartBtnClicked}>
-          checkout{' '}
-          <span className='text-secondary-7'>
-            (USD {formattedTotalPriceOfAllItems})
-          </span>
-        </button>
-      </Link>
+      <button
+        className='w-full uppercase bg-primary-10 rounded-none text-lg sm:text-xl mt-4'
+        onClick={setIsAddToCartBtnClicked}>
+        checkout{' '}
+        <span className='text-secondary-7'>
+          (USD {formattedTotalPriceOfAllItems})
+        </span>
+      </button>
       <p
         className='pt-2 underline'
         onClick={() => dispatch(cartActions.setShowCart())}>

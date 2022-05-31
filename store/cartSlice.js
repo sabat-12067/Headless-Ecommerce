@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getCartItemsFromLocalStorage } from '../components/HorLine';
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    cartItemsList: [],
+    cartItems: [],
     showCart: false,
     buyItNowItemDetails: '',
     isBuyItNowBtnClicked: false,
@@ -13,13 +14,13 @@ const cartSlice = createSlice({
     addToCart(state, action) {
       const newProduct = action.payload;
       //check if the product is already in the cart
-      const existingProduct = state.cartItemsList.find(item => item.id === newProduct.id);
+      const existingProduct = state.cartItems.find(item => item.id === newProduct.id);
 
       if(existingProduct) {
         existingProduct.quantity += newProduct.quantity;
         existingProduct.totalPrice = existingProduct.quantity * existingProduct.price 
       } else {
-        state.cartItemsList.push({
+        state.cartItems.push({
           id: newProduct.id,
           name: newProduct.name,
           price: newProduct.price,
@@ -32,47 +33,50 @@ const cartSlice = createSlice({
       }
     },
 
-    setCartItemsList(state, action) {
-      state.cartItemsList = action.payload;
+    setCartItems(state, action) {
+      state.cartItems = action.payload;
     },
 
     //delete item from cart
     removeItem(state, action) {
       const id = action.payload
-      const productToBeDeleted = state.cartItemsList.find(item => item.id === id);
+      const productToBeDeleted = state.cartItems.find(item => item.id === id);
       if(productToBeDeleted) {
-         state.cartItemsList = state.cartItemsList.filter(item => item.id !== id)
+         state.cartItems = state.cartItems.filter(item => item.id !== id)
       }
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
 
     //clear cartItemsList 
     clearCart(state) { 
-      state.cartItemsList = []
+      state.cartItems = []
     },
     
     //increment quantity of item within cart
     incrementCartQuantity(state, action) {
         const id = action.payload;
-        state.cartItemsList.map(item => {
+        state.cartItems.map(item => {
           if(item.id === id) {
             item.quantity += 1;
             item.totalPrice = item.quantity * item.price;
           }
         })
+        localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
       },
    
     //decrement quantity of item within cart
       decrementCartQuantity(state, action) {
         const id = action.payload;
-        state.cartItemsList.map(item => {
-          if(item.id === id) {
-            item.quantity -= 1;
-            if(item.quantity <= 1) {
-              item.quantity = 1;
+        state.cartItems.map(cartItem => {
+          if(cartItem.id === id) {
+            cartItem.quantity -= 1;
+            if(cartItem.quantity <= 1) {
+              cartItem.quantity = 1;
             }
-            item.totalPrice = item.quantity * item.price;
+            cartItem.totalPrice = cartItem.quantity * cartItem.price;
           }
         })
+        localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
       },
     
       setShowCart(state, action) {
@@ -91,15 +95,19 @@ const cartSlice = createSlice({
         discountPercentage: buyItNowItem.discountPercentage,
       };
     },
-    setIsBuyItNowBtnClicked(state, action) {
-      state.isBuyItNowBtnClicked = true;
-      state.isAddToCartBtnClicked = false;
-    },
-    setIsAddToCartBtnClicked(state, action) {
-      state.isAddToCartBtnClicked = true;
-      state.isBuyItNowBtnClicked = false;
-      console.log('add to cart button clicked');
-    }
+    // setIsBuyItNowBtnClicked(state, action) {
+    //   state.isBuyItNowBtnClicked = true;
+    //   state.isAddToCartBtnClicked = false;
+    //   localStorage.setItem('isBuyItNowBtnClicked', JSON.stringify(state.isBuyItNowBtnClicked));
+    //   localStorage.setItem('isAddToCartBtnClicked', JSON.stringify(state.isAddToCartBtnClicked));
+    // },
+    // setIsAddToCartBtnClicked(state, action) {
+    //   state.isAddToCartBtnClicked = true;
+    //   state.isBuyItNowBtnClicked = false;
+    //   localStorage.setItem('isBuyItNowBtnClicked', JSON.stringify(state.isBuyItNowBtnClicked));
+    //   localStorage.setItem('isAddToCartBtnClicked', JSON.stringify(state.isAddToCartBtnClicked));
+    //   console.log('add to cart button clicked');
+    // }
   }
 });
 

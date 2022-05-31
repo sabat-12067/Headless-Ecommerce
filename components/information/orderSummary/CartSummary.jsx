@@ -6,18 +6,16 @@ import { formatPrice } from '../../HorLine'
 import { useRouter } from 'next/router';
 
 //This component is used to display the cart summary when customer clicks the 'continue to checkout' button of the cart section
-
-export default function CartSummary() {
+export default function CartSummary({ cartItems }) {
   const [showOrderSummary, setShowOrderSummary] = useState(false);
-  const cartItemsDetails = useSelector((state) => state.cart.cartItemsList);
-  //console.log(cartItemsDetails);
+
 
   const deliveryMethod = useSelector((state) => state.information.deliveryMethod);
    //console.log('deliveryMethod', deliveryMethod);
-
+    console.log('cartItems Summary', cartItems);
 
   let totalPriceOfCartItems = 0;
-  cartItemsDetails.map((cartItem) => {
+  cartItems.map((cartItem) => {
     return (totalPriceOfCartItems += cartItem.totalPrice);
   });
 
@@ -46,7 +44,7 @@ export default function CartSummary() {
         showOrderSummary={showOrderSummary}
       />
       <OrderSummaryInfo
-        cartItemsDetails={cartItemsDetails}
+        cartItems={cartItems}
         totalPriceOfCartItems={totalPriceOfCartItems}
         total={total}
         estimatedTaxes={estimatedTaxes}
@@ -86,7 +84,7 @@ const OrderSummaryHeader = ({
 };
 
 const OrderSummaryInfo = ({
-  cartItemsDetails,
+  cartItems,
   estimatedTaxes,
   total,
   showOrderSummary,
@@ -98,7 +96,7 @@ const OrderSummaryInfo = ({
       className={`px-4 border-b-2 border-white overflow-hidden ${
         showOrderSummary ? 'h-70' : 'h-0 border-b-0 lg:h-auto'
       }`}>
-      <ProductInfo cartItemsDetails={cartItemsDetails} />
+      <ProductInfo cartItems={cartItems} />
       <Costs
         estimatedTaxes={estimatedTaxes}
         totalPriceOfCartItems={totalPriceOfCartItems}
@@ -109,10 +107,10 @@ const OrderSummaryInfo = ({
   );
 };
 
-const ProductInfo = ({ cartItemsDetails }) => {
+const ProductInfo = ({ cartItems }) => {
   return (
     <div>
-      {cartItemsDetails.map((cartItem, index) => {
+      {cartItems.map((cartItem, index) => {
         const { name, imageUrl, discountPrice, totalPrice, quantity } =
           cartItem;
           

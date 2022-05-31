@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import Link from 'next/link';

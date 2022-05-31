@@ -6,79 +6,79 @@ import { cartActions } from '../../store/cartSlice';
 import Link from 'next/link';
 import { formatprice } from '../HorLine';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 //This component is for the 'edit quantity',  'add to cart' and the 'buy now' buttons of the product details screen/page.
 
 export default function Buttons({ singleProduct, productId }) {
-  const [cartItems, setCartItems] = useState([]);
   const quantity = useSelector((state) => state.quantityValue.quantity);
 
   const dispatch = useDispatch();
 
-  const { price, name, image, discountPercentage } =
-    singleProduct;
+  const { price, name, image, discountPercentage } = singleProduct;
 
-      let discountPrice = (price * 100) / (100 - discountPercentage);
-      discountPrice = formatprice(discountPrice);
-
-      useEffect(() => {
-        const localStorageCart = localStorage.getItem('cartItems');
-        if (localStorageCart) {
-          setCartItems(JSON.parse(localStorageCart));
-        } else {
-          setCartItems([]);
-        }
-      }, []);
-
-      useEffect(() => {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        dispatch(cartActions.setCartItemsList(cartItems));
-      }, [cartItems]);
-
+  let discountPrice = (price * 100) / (100 - discountPercentage);
+  discountPrice = formatprice(discountPrice);
 
   //grab thumbnail - of the first image - of the product
   const imageThumbnail = image.data[0].attributes.formats.thumbnail.url;
 
   const cartItem = {
-        id: productId,
-        name,
-        price: price,
-        image: imageThumbnail,
-        discountPrice,
-        discountPercentage,
-        quantity,
-        totalPrice: price * quantity,
+    id: productId,
+    name,
+    price: price,
+    imageUrl: imageThumbnail,
+    discountPrice,
+    discountPercentage,
+    quantity,
+    totalPrice: price * quantity,
   };
 
+  const addToCart = () => {
+    console.log('added to cart');
+    const cartItems = localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : [];
 
-  let cart = []
-     const addToCart = () => {
-       const existingCartItem = cartItems.find(
-         (cartItem) => cartItem.id === productId
-       );
-       if (existingCartItem) {
-         existingCartItem.quantity = cartItem.quantity;
-         existingCartItem.totalPrice = existingCartItem.quantity * existingCartItem.price;
-       } else {
-          cart.push(cartItem);
-          setCartItems(cart);
-        }
-     };
+    const existingCartItem = cartItems.find(
+      (cartItem) => cartItem.id === productId
+    );
 
-     console.log(cartItems);
+    if (existingCartItem) {
+      existingCartItem.quantity = cartItem.quantity;
+      existingCartItem.totalPrice =
+        existingCartItem.quantity * existingCartItem.price;
+    } else {
+      cartItems.push(cartItem);
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    dispatch(cartActions.setCartItems(cartItems));
+  };
+
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    dispatch(cartActions.setCartItems(cartItems));
+  });
+
+  // useEffect(() => {
+  //   localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  // }, [cartItems]);
+
+  const buyItNowItem = {
+    name,
+    price,
+    imageThumbnail,
+    discountPrice,
+    discountPercentage,
+    quantity,
+  };
+
+  console.log('buyItNowItem original', buyItNowItem);
 
   const buyItNow = () => {
-    dispatch(
-      cartActions.buyItNow({
-        name,
-        price,
-        imageThumbnail,
-        discountPrice,
-        discountPercentage,
-        quantity,
-      })
-    );
-    dispatch(cartActions.setIsBuyItNowBtnClicked());
+    localStorage.setItem('buyItNowItem', JSON.stringify(buyItNowItem));
+    localStorage.setItem('isAddToCartBtnClicked', false);
   };
 
   const handleIncrement = () => {

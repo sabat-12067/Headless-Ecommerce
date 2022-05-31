@@ -2,19 +2,14 @@ import { Button, Navigation } from '../HorLine';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../store/cartSlice';
-import emailjs from 'emailjs-com';
+import { useEffect, useState } from 'react';
 
 export default function Review() {
-  const dispatch = useDispatch();
-  const shippingAddress = useSelector((state) => state.information.shippingAddress);
-  //console.log(customerEmail);
-
- // const { firstName, lastName, address, city, apartment, email, country } = shippingAddress;
 
   const handleClick = () => {
-    // emailjs.sendForm('service_e7dtkgg', 'template_laitsyk', ).then(res => console.log(res)).catch(err => console.error(err));
-    dispatch(cartActions.clearCart());
+    localStorage.setItem('cart', JSON.stringify([]));
+    localStorage.setItem('shippingAddress', JSON.stringify({}));
+    localStorage.setItem('deliveryMethod', JSON.stringify({}));
     router.push('/thankyou');
   };
 
@@ -34,8 +29,13 @@ export default function Review() {
 }
 
 const ShippingAddress = () => {
+ const [ShippingAddress, setShippingAddress] = useState('');
 
-  const ShippingAddress = useSelector((state) => state.information.shippingAddress);
+ useEffect(() => {
+  const shippingAddress = JSON.parse(localStorage.getItem('shippingAddress'));
+  setShippingAddress(shippingAddress);
+ })
+
   const { firstName, lastName, address, city, apartment, email, country } =
     ShippingAddress;
   return (
@@ -62,9 +62,12 @@ const ShippingAddress = () => {
 };
 
 const DeliveryMethod = () => {
-  const deliveryMethod = useSelector(
-    (state) => state.information.deliveryMethod
-  );
+  const [deliveryMethod, setDeliveryMethod] = useState('');
+  
+  useEffect(() => {
+    const deliveryMethod = JSON.parse(localStorage.getItem('deliveryMethod'));
+    setDeliveryMethod(deliveryMethod);
+  })
 
   let deliveryTime = '';
 

@@ -13,7 +13,7 @@ export default function MainNavigation() {
      dispatch(cartActions.setShowCart());
    };
      
-    const cartItems = useSelector((state) => state.cart.cartItemsList);
+    const cartItems = useSelector((state) => state.cart.cartItems);
 
   let totalQuantity = 0;
 

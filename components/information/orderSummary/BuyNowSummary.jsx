@@ -8,17 +8,17 @@ import { useRouter } from 'next/router';
 
 //This component is for the order summary information when customer has clicked on the buy now button
 
-export default function BuyNowSummary() {
+export default function BuyNowSummary({ buyItNowItem }) {
   const [showOrderSummary, setShowOrderSummary] = useState(false);
-  const buyItNowItemDetails = useSelector(
-    (state) => state.cart.buyItNowItemDetails
-  );
+  
+ //console.log('buyItNowItem', buyItNowItem);
+
   const deliveryMethod = useSelector(
     (state) => state.information.deliveryMethod
   );
   //console.log('deliveryMethod', deliveryMethod);
 
-  const { price, quantity } = buyItNowItemDetails;
+  const { price, quantity } = buyItNowItem;
 
   const subTotal = price * quantity;
 
@@ -47,7 +47,7 @@ export default function BuyNowSummary() {
         showOrderSummary={showOrderSummary}
       />
       <OrderSummaryInfo
-        buyItNowItemDetails={buyItNowItemDetails}
+        buyItNowItem={buyItNowItem}
         subTotal={subTotal}
         total={total}
         estimatedTaxes={estimatedTaxes}
@@ -85,7 +85,7 @@ const OrderSummaryHeader = ({
 };
 
 const OrderSummaryInfo = ({
-  buyItNowItemDetails,
+  buyItNowItem,
   subTotal,
   estimatedTaxes,
   total,
@@ -97,16 +97,16 @@ const OrderSummaryInfo = ({
       className={`px-4 border-b-2 border-primary-11 overflow-hidden ${
         showOrderSummary ? 'h-70' : 'h-0 border-b-0 lg:h-auto'
       }`}>
-      <ProductInfo buyItNowItemDetails={buyItNowItemDetails} />
+      <ProductInfo buyItNowItem={buyItNowItem} />
       <Costs estimatedTaxes={estimatedTaxes} subTotal={subTotal} deliveryFee={deliveryFee} />
       <Total total={total} />
     </section>
   );
 };
 
-const ProductInfo = ({ buyItNowItemDetails }) => {
-  const { name, price, imageUrl, discountPercentage, quantity } =
-    buyItNowItemDetails;
+const ProductInfo = ({ buyItNowItem }) => {
+  const { name, price, imageThumbnail, discountPercentage, quantity } =
+    buyItNowItem;
 
        let discountPrice = (price * 100) / (100 - discountPercentage);
        discountPrice = formatPrice(discountPrice);
@@ -115,7 +115,7 @@ const ProductInfo = ({ buyItNowItemDetails }) => {
     <div className='flex justify-between items-center border-white py-4 relative'>
       <div className='flex items-center'>
         <img
-          src={imageUrl}
+          src={imageThumbnail}
           alt={`Thumbnail of ${name}`}
           className='rounded-lg w-20 h-20'
         />
