@@ -139,5 +139,3 @@ _Alternative way:_
 - This project has enabled me to improve on my skills and confidence so I'm looking forward to building more complicated projects like this one.
 
 - During the project, I found myself required to read documentation as I could not find the solutions to my problems on google, you-tube, stack overflow e.t.c. So I'm going to get myself used to reading documentation in my next projects. 
-
-just in case
