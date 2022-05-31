@@ -6,6 +6,22 @@ import { cartActions } from '../../store/cartSlice';
 
 export default function MainNavigation() {
 
+  // const [cartItems, setCartItems] = useState([]);
+
+  // useEffect(() => {
+  //   localStorage.getItem('cartItems') && setCartItems(JSON.parse(localStorage.getItem('cartItems')));
+  // }, []);
+
+
+  let cartItems = useSelector(state => state.cart.cartItems);
+
+  if(!cartItems) {
+    cartItems = [];
+  }
+
+
+  //console.log('cartItems', cartItems);
+
    const dispatch = useDispatch();
 
    //hide and show the cart section when the cart icon is clicked
@@ -13,13 +29,14 @@ export default function MainNavigation() {
      dispatch(cartActions.setShowCart());
    };
      
-    const cartItems = useSelector((state) => state.cart.cartItems);
 
   let totalQuantity = 0;
 
   cartItems.map(cartItem => {
     totalQuantity += cartItem.quantity;
   })
+
+  console.log('totalQuantity', totalQuantity);
 
   return (
     <nav className='relative z-30'>

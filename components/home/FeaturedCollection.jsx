@@ -54,7 +54,7 @@ const SingleProduct = ({
   const router = useRouter();
   const handleClick = () => {
     dispatch(productIdActions.setProductId(productId));
-    router.push(`/${productId}`)
+    router.push(`/product/${productId}`)
   };
 
   return (

@@ -17,6 +17,9 @@ const Cart = () => {
 const Carts = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   
+  const numberOfCartItems = cartItems.length;
+  //console.log('cartItems', cartItems);
+
   return (
     <>
       {numberOfCartItems <= 0 ? (
