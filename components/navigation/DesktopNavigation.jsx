@@ -1,5 +1,6 @@
 import { HiShoppingCart } from 'react-icons/hi';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const listItems = ['categories', 'about', 'contact us'];
 
@@ -34,8 +35,8 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
         </div>
         {/**Sign-up and login buttons */}
         <div className='flex items-center'>
-          <Button action={'sign-up'} path='signup' />
-          <Button action={'login'} path='login'/>
+          <Button action={'sign-up'} path='auth/signup' />
+          <Button action={'login'} path='auth/login'/>
         </div>
       </div>
     </nav>
@@ -45,7 +46,7 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
 const Button = ({ action, path }) => {
   const router = useRouter();
   return (
-    <button className='py-2.5 px-5 capitalize bg-primary-11 text-xs ml-4 font-semibold' onClick={() => router.push('/path')}>
+    <button className='py-2.5 px-5 capitalize bg-primary-11 text-xs ml-4 font-semibold' onClick={() => router.push(`/${path}`)}>
       {action}
     </button>
   );
