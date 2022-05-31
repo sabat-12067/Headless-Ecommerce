@@ -34,17 +34,18 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
         </div>
         {/**Sign-up and login buttons */}
         <div className='flex items-center'>
-          <Button action={'sign-up'} />
-          <Button action={'login'} />
+          <Button action={'sign-up'} path='signup' />
+          <Button action={'login'} path='login'/>
         </div>
       </div>
     </nav>
   );
 }
 
-const Button = ({ action }) => {
+const Button = ({ action, path }) => {
+  const router = useRouter();
   return (
-    <button className='py-2.5 px-5 capitalize bg-primary-11 text-xs ml-4 font-semibold'>
+    <button className='py-2.5 px-5 capitalize bg-primary-11 text-xs ml-4 font-semibold' onClick={() => router.push('/path')}>
       {action}
     </button>
   );
