@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { informationActions } from '../../store/infoSlice';
 import { useRouter } from 'next/router';
-import { CurrentPage } from '../CurrentPage';
 import { Navigation, Button } from '../HorLine';
 
 export default function Address() {
@@ -11,7 +10,7 @@ export default function Address() {
   return (
     <section className='px-'>
       <AddressDetails />
-      <Navigation path={`/product/${productId}`} pathName='Return to Cart' />
+      <Navigation path={`/${productId}`} pathName='Return to Cart' />
     </section>
   );
   [];
