@@ -1,10 +1,7 @@
-import CustomerInfo from '../../components/information/Address';
 import CartSummary from './orderSummary/CartSummary';
 import BuyNowSummary from './orderSummary/BuyNowSummary';
-import { useSelector } from 'react-redux';
-import { Children, useEffect } from 'react';
+import { useEffect } from 'react';
 import { CurrentPage } from '../CurrentPage';
-import { useLocalStorage } from '../UseLocalStorage';
 import { useState } from 'react';
 
 //This is the layout component for checkout pages i.e shipping, payment, address, review
@@ -15,7 +12,6 @@ export default function InfoLayout({ children }) {
 
   const [isAddToCartBtnClicked, setIsAddToCartBtnClicked] = useState();
 
- 
   useEffect(() => {
     setBuyItNowItem(JSON.parse(localStorage.getItem('buyItNowItem')));
     setCartItems(JSON.parse(localStorage.getItem('cartItems')));

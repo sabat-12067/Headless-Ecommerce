@@ -5,9 +5,7 @@ import { cartActions } from '../store/cartSlice';
 import { useRouter } from 'next/router';
 import { formatPrice } from './HorLine';
 import { ImCross } from 'react-icons/im';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useLocalStorage } from './UseLocalStorage';
 
 //THIS component is for the cart section and displaying the cart after clicking the cart icon
 
@@ -17,13 +15,8 @@ const Cart = () => {
 };
 
 const Carts = () => {
- 
-  //const cartItems = JSON.parse(localStorage.getItem('cartItems'))
   const cartItems = useSelector((state) => state.cart.cartItems);
   
-  const numberOfCartItems = cartItems.length;
-  //console.log('cartItems', cartItems);
-
   return (
     <>
       {numberOfCartItems <= 0 ? (
@@ -38,7 +31,7 @@ const Carts = () => {
   );
 };
 
-const CartWithItems = ({ numberOfCartItems, cartItems }) => {
+const CartWithItems = ({ cartItems }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
