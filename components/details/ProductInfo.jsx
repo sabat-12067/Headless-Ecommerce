@@ -23,7 +23,7 @@ export default function ProductInfo({ singleProduct }) {
         <p className='font-medium line-through text-sm text-primary-11 animate-zoomInOut'>
           $ {discountPrice}
         </p>
-        <p className='font-bold bg-primary-4 px-2 rounded-sm text-primary-11'>
+        <p className='font-bold bg-primary-13 px-2 rounded-sm text-primary-11'>
           - {discountPercentage}%
         </p>
       </div>

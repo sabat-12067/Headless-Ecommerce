@@ -42,10 +42,6 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  useEffect(() => {
-    console.log('buyItNow Item', JSON.parse(localStorage.getItem('buyItNowItem')));
-  });
-
   const handleIncrement = (id) => {
     dispatch(cartActions.incrementCartQuantity(id));
   };
@@ -67,7 +63,6 @@ const CartWithItems = ({ numberOfCartItems, cartItems }) => {
   const formattedTotalPriceOfAllItems = formatPrice(totalPriceOfAllItems);
 
   const setIsAddToCartBtnClicked = () => {
-    dispatch(cartActions.setIsAddToCartBtnClicked());
     localStorage.setItem('isAddToCartBtnClicked', true);
     router.push('/information/address');
   };

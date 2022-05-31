@@ -7,7 +7,7 @@ import { Navigation, Button } from '../HorLine';
 
 export default function Address() {
   const productId = useSelector((state) => state.Id.id);
-
+  console.log(productId);
   return (
     <section className='px-'>
       <AddressDetails />
@@ -16,6 +16,7 @@ export default function Address() {
   );
   [];
 }
+//`/product/${productId}`
 
 const AddressDetails = () => {
 

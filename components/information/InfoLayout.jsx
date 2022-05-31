@@ -21,9 +21,6 @@ export default function InfoLayout({ children }) {
     setCartItems(JSON.parse(localStorage.getItem('cartItems')));
     setIsAddToCartBtnClicked(JSON.parse(localStorage.getItem('isAddToCartBtnClicked')));
   }, []);
-
-  console.log('buyItNowItem', buyItNowItem);
-
   //console.log('cartItemsinfolayout', cartItems);
  // console.log('isAddToCartBtnClicked', isAddToCartBtnClicked);
 

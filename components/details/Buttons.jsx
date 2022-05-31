@@ -35,15 +35,17 @@ export default function Buttons({ singleProduct, productId }) {
   };
 
   const addToCart = () => {
-    console.log('added to cart');
+ // Store the cart items in local storage to a cartItems array
     const cartItems = localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [];
 
+    // Check if the cartItems array already contains the item
     const existingCartItem = cartItems.find(
       (cartItem) => cartItem.id === productId
     );
 
+    // If the cartItems array already contains the item, increment the quantity amd update the totalPrice
     if (existingCartItem) {
       existingCartItem.quantity = cartItem.quantity;
       existingCartItem.totalPrice =
@@ -52,18 +54,18 @@ export default function Buttons({ singleProduct, productId }) {
       cartItems.push(cartItem);
     }
 
+    // Update the cartItems array in local storage
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+    // Update the cartItems array in the redux store
     dispatch(cartActions.setCartItems(cartItems));
   };
 
   useEffect(() => {
+    // Store the cart items in local storage to a cartItems array of the redux store so that it can be accessed by the cart component even after the page reloads
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     dispatch(cartActions.setCartItems(cartItems));
   });
-
-  // useEffect(() => {
-  //   localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  // }, [cartItems]);
 
   const buyItNowItem = {
     name,
@@ -73,8 +75,6 @@ export default function Buttons({ singleProduct, productId }) {
     discountPercentage,
     quantity,
   };
-
-  console.log('buyItNowItem original', buyItNowItem);
 
   const buyItNow = () => {
     localStorage.setItem('buyItNowItem', JSON.stringify(buyItNowItem));
@@ -129,17 +129,3 @@ export default function Buttons({ singleProduct, productId }) {
     </section>
   );
 }
-
-// const addToCart = () => {
-//   dispatch(
-//     cartActions.addToCart({
-//       id: productId,
-//       name,
-//       price: price,
-//       image: imageThumbnail,
-//       discountPrice,
-//       discountPercentage,
-//       quantity,
-//     })
-//   );
-// };

@@ -5,8 +5,9 @@ const productIdSlice = createSlice({
  initialState: {id: ''},
  reducers: {
    setProductId(state, action) {
-     const grabProductId = action.payload;
-     state.id = grabProductId.productId;
+     const productId = action.payload;
+     state.id = productId;
+     console.log(state.id);
    }
  }
 });

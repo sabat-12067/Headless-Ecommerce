@@ -34,7 +34,7 @@ const ShippingAddress = () => {
  useEffect(() => {
   const shippingAddress = JSON.parse(localStorage.getItem('shippingAddress'));
   setShippingAddress(shippingAddress);
- })
+ }, [])
 
   const { firstName, lastName, address, city, apartment, email, country } =
     ShippingAddress;
@@ -67,7 +67,7 @@ const DeliveryMethod = () => {
   useEffect(() => {
     const deliveryMethod = JSON.parse(localStorage.getItem('deliveryMethod'));
     setDeliveryMethod(deliveryMethod);
-  })
+  }, [])
 
   let deliveryTime = '';
 

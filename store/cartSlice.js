@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCartItemsFromLocalStorage } from '../components/HorLine';
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -11,32 +10,9 @@ const cartSlice = createSlice({
     isAddToCartBtnClicked: false,
   },
   reducers: {
-    addToCart(state, action) {
-      const newProduct = action.payload;
-      //check if the product is already in the cart
-      const existingProduct = state.cartItems.find(item => item.id === newProduct.id);
-
-      if(existingProduct) {
-        existingProduct.quantity += newProduct.quantity;
-        existingProduct.totalPrice = existingProduct.quantity * existingProduct.price 
-      } else {
-        state.cartItems.push({
-          id: newProduct.id,
-          name: newProduct.name,
-          price: newProduct.price,
-          quantity: newProduct.quantity,
-          imageUrl: newProduct.image,
-          discountPrice: newProduct.discountPrice,
-          discountPercentage: newProduct.discountPercentage,
-          totalPrice: newProduct.price * newProduct.quantity,
-        });
-      }
-    },
-
     setCartItems(state, action) {
       state.cartItems = action.payload;
     },
-
     //delete item from cart
     removeItem(state, action) {
       const id = action.payload
@@ -44,14 +20,9 @@ const cartSlice = createSlice({
       if(productToBeDeleted) {
          state.cartItems = state.cartItems.filter(item => item.id !== id)
       }
+      //update local storage with the new cart items state
       localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
-
-    //clear cartItemsList 
-    clearCart(state) { 
-      state.cartItems = []
-    },
-    
     //increment quantity of item within cart
     incrementCartQuantity(state, action) {
         const id = action.payload;
@@ -61,6 +32,7 @@ const cartSlice = createSlice({
             item.totalPrice = item.quantity * item.price;
           }
         })
+        //update local storage with the new cart items state
         localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
       },
    
@@ -76,38 +48,13 @@ const cartSlice = createSlice({
             cartItem.totalPrice = cartItem.quantity * cartItem.price;
           }
         })
+        //update local storage with the new cart items state
         localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
       },
     
       setShowCart(state, action) {
        state.showCart = !state.showCart;
     },
-   
-    //item info for the order summary section of the details page
-    buyItNow(state, action) {
-      const buyItNowItem = action.payload;
-      state.buyItNowItemDetails = {
-        name: buyItNowItem.name,
-        price: buyItNowItem.price,
-        quantity: buyItNowItem.quantity,
-        imageUrl: buyItNowItem.imageThumbnail,
-        discountPrice: buyItNowItem.discountPrice,
-        discountPercentage: buyItNowItem.discountPercentage,
-      };
-    },
-    // setIsBuyItNowBtnClicked(state, action) {
-    //   state.isBuyItNowBtnClicked = true;
-    //   state.isAddToCartBtnClicked = false;
-    //   localStorage.setItem('isBuyItNowBtnClicked', JSON.stringify(state.isBuyItNowBtnClicked));
-    //   localStorage.setItem('isAddToCartBtnClicked', JSON.stringify(state.isAddToCartBtnClicked));
-    // },
-    // setIsAddToCartBtnClicked(state, action) {
-    //   state.isAddToCartBtnClicked = true;
-    //   state.isBuyItNowBtnClicked = false;
-    //   localStorage.setItem('isBuyItNowBtnClicked', JSON.stringify(state.isBuyItNowBtnClicked));
-    //   localStorage.setItem('isAddToCartBtnClicked', JSON.stringify(state.isAddToCartBtnClicked));
-    //   console.log('add to cart button clicked');
-    // }
   }
 });
 

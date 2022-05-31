@@ -1,7 +1,6 @@
-import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
-import { productIdActions } from '../../store/productIdSlice';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { productIdActions } from '../../store/productIdSlice';
 
 export default function FeaturedCollection({ products }) {
 
@@ -51,8 +50,10 @@ const SingleProduct = ({
   imageUrl,
   productId,
 }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const handleClick = () => {
+    dispatch(productIdActions.setProductId(productId));
     router.push(`/product/${productId}`)
   };
 
@@ -65,7 +66,7 @@ const SingleProduct = ({
           <h3 className='p-3 text-sm'>{name}</h3>
           <p className='font-bold '>$ {price}</p>
           <p className='line-through text-secondary-8'>$ {discountPrice}</p>
-          <p className='bg-primary-3 rounded-xl px-3 py-1 outline-none font-bold text-primary-11 absolute top-[12px] text-base animate-wiggle'>
+          <p className='bg-primary-13 rounded-xl px-3 py-1 outline-none font-bold text-primary-11 absolute top-[12px] text-base animate-wiggle'>
             - {discountPercentage}%
           </p>
         </div>
