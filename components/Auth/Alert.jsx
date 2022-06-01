@@ -6,13 +6,13 @@ const Alert = ({ alert, setAlert }) => {
 
   const { type, show, msg } = alert;
 
-  // useEffect(() => {
-  //   const alertTimeOut = setTimeout(() => {
-  //     setAlert({ show: false });
-  //   }, 3500);
-  //       console.log('msg has changed');
-  //   return () => clearTimeout(alertTimeOut);
-  // });
+  useEffect(() => {
+    const alertTimeOut = setTimeout(() => {
+      setAlert({ show: false });
+    }, 3500);
+        console.log('msg has changed');
+    return () => clearTimeout(alertTimeOut);
+  });
 
   return (
     <div className='flex items-center'>

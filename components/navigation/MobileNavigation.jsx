@@ -64,7 +64,7 @@ const StaticNavigation = ({
 const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
   return (
     <div
-      className=' bg-primary-12 fixed h-screen right-0 left-[102%] top-0 p-4 leading-[4rem] z-10 duration-500 ease-in-out'
+      className=' bg-primary-12 fixed h-screen right-0 left-[102%] top-0 p-4 leading-[4rem] z-10 duration-300 ease-in-out'
       style={{
         left: isMobileNavOpen ? '25%' : '102%',
       }}>
@@ -107,7 +107,7 @@ const HamurgerMenu = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
           isMobileNavOpen ? 'hidden' : ''
         }`}></div>
       <div
-        className={`bg-primary-11 h-[2.8px] w-8 duration-500 ease-in-out ${
+        className={`bg-primary-11 h-[2.8px] w-8 duration-300 ease-in-out ${
           isMobileNavOpen ? 'rotate-[-45deg] absolute top-8' : ''
         }`}></div>
     </div>
