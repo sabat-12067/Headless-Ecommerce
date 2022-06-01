@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import Link from 'next/link';
-import { Alert } from '../HorLine';
+import Alert from '../Auth/Alert';
 import { Navigation } from '../HorLine';
 import { Button } from '../HorLine';
 import { informationActions } from '../../store/infoSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { BsCheckCircleFill } from 'react-icons/bs';
 
 export default function Payment() {
   return (
@@ -55,6 +53,11 @@ const InputElement = ({ placeholder, value }) => {
 };
 
 const BillingAddress = () => {
+  const [alert, setAlert] = useState({
+    show: false,
+    message: '',
+    type: '',
+  });
   const router = useRouter();
 
   const [shippingAddressSelected, setShippingAddressSelected] = useState(false);
@@ -85,10 +88,16 @@ const BillingAddress = () => {
   //OnSubmit() function is only called when the form is validated
   const onSubmit = (data) => {
     if (!shippingAddressSelected && !differentAddressSelected) {
-      setShowAlert(true);
+     setAlert({
+        show: true,
+        msg: 'Please select a billing address!',
+        type: 'danger',
+      });
       return;
     } else {
-      setShowAlert(false);
+      setAlert({
+        show: false,
+      });
     }
 
     if (differentAddressSelected) {
@@ -120,12 +129,9 @@ const BillingAddress = () => {
 
   return (
     <section>
-      {showAlert && (
-        <Alert
-          setShowAlert={setShowAlert}
-          msg='Please select a billing address'
-        />
-      )}
+      <div className='w-full left-0 fixed top-0 z-40'>
+        {alert.show && <Alert alert={alert} setAlert={setAlert} />}
+      </div>
       <div className='py-3'>
         <h4 className='text-left pt-4'>Billing address</h4>
         <div className='flex items-center py-4 flex-col'>

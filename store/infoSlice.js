@@ -12,9 +12,6 @@ const informationSlice = createSlice({
   reducers: {
     setShippingAddress(state, action) {
       state.shippingAddress = action.payload;
-      if (state.shippingAddress.subscribe) {
-        state.subscribers.push(state.addressInfo.email);
-      } 
       localStorage.setItem('shippingAddress', JSON.stringify(state.shippingAddress));
     },
     setBillingAddress(state, action) {
@@ -28,6 +25,10 @@ const informationSlice = createSlice({
     setSaveUserInfo(state, action) {
       state.saveUserInfo = true;
       localStorage.setItem('saveUserInfo', JSON.stringify(state.saveUserInfo));
+    },
+    setSubscription(state, action) {
+      state.subscribers = action.payload;
+      console.log('My subscribers:', state.subscribers);
     },
   },
 });

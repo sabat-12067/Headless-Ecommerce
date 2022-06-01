@@ -3,7 +3,6 @@ import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cartSlice';
-import { useRouter } from 'next/router';
 
 export default function MainNavigation() {
   const dispatch = useDispatch();
@@ -31,7 +30,7 @@ export default function MainNavigation() {
   //console.log('totalQuantity', totalQuantity);
 
   return (
-    <nav className='relative z-30'>
+    <nav className='fixed z-30'>
       <DesktopNavigation
         totalQuantity={totalQuantity}
         toggleCart={toggleCart}

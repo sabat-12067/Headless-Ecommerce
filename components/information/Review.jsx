@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react';
 export default function Review() {
 
   const handleClick = () => {
-    localStorage.setItem('cart', JSON.stringify([]));
-    localStorage.setItem('shippingAddress', JSON.stringify({}));
-    localStorage.setItem('deliveryMethod', JSON.stringify({}));
+    localStorage.setItem('cartItems', JSON.stringify([]));
+    localStorage.setItem('shippingAddress', JSON.stringify([]));
+    localStorage.setItem('deliveryMethod', JSON.stringify([]));
     router.push('/thankyou');
   };
 

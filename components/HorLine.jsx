@@ -37,10 +37,9 @@ export const Alert = ({ setShowAlert, msg }) => {
     const alertTimeOut = setTimeout(() => {
       setShowAlert(false);
     }, 3000);
-
     //clean up function
     return () => clearTimeout(alertTimeOut);
-  }, [setShowAlert]);
+  }, [msg]);
 
   return (
     <div className='flex items-center justify-center fixed top-0 left-0 w-full bg-secondary-3'>

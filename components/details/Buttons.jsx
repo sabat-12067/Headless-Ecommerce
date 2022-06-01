@@ -6,20 +6,23 @@ import { cartActions } from '../../store/cartSlice';
 import Link from 'next/link';
 import { formatprice } from '../HorLine';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import Alert  from '../Auth/Alert';
 
 //This component is for the 'edit quantity',  'add to cart' and the 'buy now' buttons of the product details screen/page.
 
 export default function Buttons({ singleProduct, productId }) {
+  const [alert, setAlert] = useState({
+    type: '',
+    show: false,
+    msg: '',
+  });
+
   const quantity = useSelector((state) => state.quantityValue.quantity);
-
   const dispatch = useDispatch();
-
   const { price, name, image, discountPercentage } = singleProduct;
 
   let discountPrice = (price * 100) / (100 - discountPercentage);
   discountPrice = formatprice(discountPrice);
-
   //grab thumbnail - of the first image - of the product
   const imageThumbnail = image.data[0].attributes.formats.thumbnail.url;
 
@@ -39,7 +42,6 @@ export default function Buttons({ singleProduct, productId }) {
     const cartItems = localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [];
-
     // Check if the cartItems array already contains the item
     const existingCartItem = cartItems.find(
       (cartItem) => cartItem.id === productId
@@ -56,9 +58,15 @@ export default function Buttons({ singleProduct, productId }) {
 
     // Update the cartItems array in local storage
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
     // Update the cartItems array in the redux store
     dispatch(cartActions.setCartItems(cartItems));
+    // Show the alert
+    console.log('function reached here');
+    setAlert({
+      type: 'success',
+      show: true,
+      msg: existingCartItem ? 'Item updated successfully' : 'Item successfully added to cart',
+    });
   };
 
   useEffect(() => {
@@ -84,7 +92,6 @@ export default function Buttons({ singleProduct, productId }) {
   const handleIncrement = () => {
     dispatch(quantityActions.increment());
   };
-
   const handleDecrement = () => {
     dispatch(quantityActions.decrement());
   };
@@ -92,6 +99,9 @@ export default function Buttons({ singleProduct, productId }) {
 
   return (
     <section className='px-4'>
+      <div className='w-full left-0 fixed top-0 z-50'>
+        { alert.show && <Alert alert={alert} setAlert={setAlert} /> }
+      </div>
       <div>
         <p className='text-base pb-1'>Quantity</p>
         {/* Edit Quantity container */}

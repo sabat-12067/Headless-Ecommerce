@@ -10,13 +10,20 @@ export default function Layout(props) {
    const [showFooter, setShowFooter] = useState(true);
 
    useEffect(() => {
-     //hide footer and navigation when user is on the details page
-     if (router.pathname === "/information/address" || router.pathname === "/information/shipping" || router.pathname === "/information/payment" || router.pathname === "/information/review" || router.pathname === '/auth/login' || router.pathname === '/auth/signup') {
-        setShowNavigation(false);
-        setShowFooter(false);
+     //hide footer and navigation when user is on the checkout pages
+     if (
+       router.pathname === '/checkout/address' ||
+       router.pathname === '/checkout/shipping' ||
+       router.pathname === '/checkout/payment' ||
+       router.pathname === '/checkout/review' ||
+       router.pathname === '/auth/login' ||
+       router.pathname === '/auth/signup'
+     ) {
+       setShowNavigation(false);
+       setShowFooter(false);
      } else {
-        setShowNavigation(true);
-        setShowFooter(true);
+       setShowNavigation(true);
+       setShowFooter(true);
      }
    }, [router.pathname]);
 

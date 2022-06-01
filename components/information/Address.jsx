@@ -32,6 +32,16 @@ const AddressDetails = () => {
   //OnSubmit() function is only called when the form is validated
   const onSubmit = (data) => {
     //console.log(data);
+  const { firstName, lastName, email, subscribe } = data;
+  if (subscribe) {
+    dispatch(
+      informationActions.setSubscription({
+        firstName,
+        lastName,
+        email,
+      }),
+    );
+  }
     dispatch(informationActions.setShippingAddress(data));
     router.push('/checkout/shipping');
   };

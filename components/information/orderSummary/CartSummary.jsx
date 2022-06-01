@@ -12,7 +12,7 @@ export default function CartSummary({ cartItems }) {
 
   const deliveryMethod = useSelector((state) => state.information.deliveryMethod);
    //console.log('deliveryMethod', deliveryMethod);
-    console.log('cartItems Summary', cartItems);
+    //console.log('cartItems Summary', cartItems);
 
   let totalPriceOfCartItems = 0;
   cartItems.map((cartItem) => {

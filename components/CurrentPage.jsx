@@ -2,7 +2,7 @@ import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-//This component highlights the pages that are currently being viewed. It is used to show the user where they are in the checkout process.
+//This component highlights the pages that are currently being viewed. It is used to show the user where they are in the checkout process. It is displayed on each page of the checkout process (address, shpping, payment and review).
 
 export const CurrentPage = ({ highlightColor, bgColor }) => {
  const [highlightShipping, setHightlightShipping] = useState(false);
@@ -14,22 +14,22 @@ export const CurrentPage = ({ highlightColor, bgColor }) => {
 
    //Styles for highlighting the current page
    const numberStyles = 'bg-primary-11 text-white border-none' //Highlight the number
-   const checkOutStepStyles = 'text-secondary-7' //Highlight name of the check out step
+   const checkOutStepStyles = 'text-secondary-7' //Highlight name of the check out page (Shipping, Address, Payment, Review)
    
    useEffect(() => {
-    if (router.pathname === '/information/address') {
+    if (router.pathname === '/checkout/address') {
      //Highlight only the address text when the user is on the address page
        setHighLightAddress(true);
        setHighLightPayment(false);
        setHightlightShipping(false);
        setHighLightReview(false);
-    } else if (router.pathname === '/information/shipping') {
+    } else if (router.pathname === '/checkout/shipping') {
      //Highlight the shipping and address text when the user is on the shipping page
        setHighLightAddress(true);
        setHightlightShipping(true);
        setHighLightPayment(false);
        setHighLightReview(false);
-    } else if (router.pathname === '/information/payment') {
+    } else if (router.pathname === '/checkout/payment') {
      //Highlight the payment text when the user is on the payment page
        setHighLightAddress(true);
        setHighLightPayment(true);

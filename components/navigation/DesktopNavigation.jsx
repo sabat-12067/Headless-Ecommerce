@@ -6,7 +6,7 @@ const listItems = ['categories', 'about', 'contact us'];
 
 export default function DesktopNavigation({ toggleCart, totalQuantity }) {
   return (
-    <nav className='hidden md:flex items-center w-screen justify-between py-2 px-6 text-[white] uppercase tracking-wider absolute bg-primary-9'>
+    <nav className='hidden md:flex items-center w-screen justify-between py-2 px-6 uppercase tracking-wider absolute bg-white'>
       <div className='font-["Arima_Madurai"] font-bold lg:text-base md:text-sm md:w-2 hover:scale-105 duration-300 ease-linear'>
         <Link href='/'>Asuman Sounds</Link>
       </div>

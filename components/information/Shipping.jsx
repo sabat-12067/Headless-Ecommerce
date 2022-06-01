@@ -1,16 +1,11 @@
 //This component is used to display shipping information
 
 import React from 'react';
-import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
-import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { informationActions } from '../../store/infoSlice';
 import { useRouter } from 'next/router';
-import { CurrentPage } from '../CurrentPage';
-//import Shipping from '../../pages/information/shipping';
-import { Alert, Button } from '../HorLine';
+import { Button } from '../HorLine';
 import { Navigation } from '../HorLine';
 
 export default function CustomerInfo() {
@@ -25,7 +20,6 @@ export default function CustomerInfo() {
 
 const Shipping = () => {
   const [shippingMethodSelected, setShippingMethodSelected] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
 
   const router = useRouter();
 
@@ -34,10 +28,8 @@ const Shipping = () => {
     //console.log(value);
     if (value) {
       setShippingMethodSelected(true);
-      setShowAlert(false);
     } else {
       setShippingMethodSelected(false);
-      setShowAlert(true);
     }
      dispatch(informationActions.deliveryMethod(value));
   };
@@ -46,23 +38,13 @@ const Shipping = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (shippingMethodSelected) {
-      router.push('/checkout/payment');
-    } else {
-      setShowAlert(true);
-    }
+      router.push('/checkout/payment');   
   };
 
   const dispatch = useDispatch();
 
   return (
     <section className='px-3'>
-      {showAlert && (
-        <Alert
-          setShowAlert={setShowAlert}
-          msg='Please select a shipping method'
-        />
-      )}
       <h2 className='text-left pt-4 text-xl md:2xl lg:3xl font-bold tracking-wide border-b-2 pb-3'>
         Shipping
       </h2>

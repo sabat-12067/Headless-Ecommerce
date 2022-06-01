@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import { formatPrice } from './HorLine';
 import { ImCross } from 'react-icons/im';
 import Link from 'next/link';
+import { useState } from 'react';
+import Alert from './Auth/Alert';
 
 //THIS component is for the cart section and displaying the cart after clicking the cart icon
 
@@ -56,19 +58,40 @@ const Carts = () => {
 };
 
 const CartWithItems = ({ cartItems }) => {
+    const [alert, setAlert] = useState({
+      type: '',
+      show: false,
+      msg: '',
+    });
+
   const dispatch = useDispatch();
   const router = useRouter();
 
   const handleIncrement = (id) => {
     dispatch(cartActions.incrementCartQuantity(id));
+      setAlert({
+        type: 'success',
+        show: true,
+        msg: 'Item updated successfully!',
+      });
   };
 
   const handleDecrement = (id) => {
     dispatch(cartActions.decrementCartQuantity(id));
+      setAlert({
+        type: 'success',
+        show: true,
+        msg: 'Item updated updated successfully!',
+      });
   };
 
   const removeItem = (id) => {
     dispatch(cartActions.removeItem(id));
+    setAlert({
+      type: 'success',
+      show: true,
+      msg: 'Item removed successfully!',
+    });
   };
 
   let totalPriceOfAllItems = 0;
@@ -94,6 +117,9 @@ const CartWithItems = ({ cartItems }) => {
   return (
     <section className='flex flex-col items-center justify-center shadow-lg shadow-primary-8 p-4 m-2 absolute z-20 top-13 bg-[white] sm:right-2 rounded-sm'>
       <h3 className='self-start pb-3'>cart summary</h3>
+      <div className='w-full left-0 absolute top-0 z-40'>
+        {alert.show && <Alert alert={alert} setAlert={setAlert} />}
+      </div>
       <div className='flex w-full justify-between font-bold border-b-[1px]'>
         <p>
           {totalNumberOfItems} Item{totalNumberOfItems > 1 ? 's' : null} added

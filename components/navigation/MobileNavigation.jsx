@@ -1,6 +1,5 @@
-
 import { HiShoppingCart } from 'react-icons/hi';
-import { IoMdContact} from 'react-icons/io';
+import { IoMdContact } from 'react-icons/io';
 import { SiAboutdotme } from 'react-icons/si';
 import { BiCategoryAlt, BiLogIn } from 'react-icons/bi';
 import { FaSignOutAlt, FaShippingFast, FaHome } from 'react-icons/fa';
@@ -19,7 +18,6 @@ const listItems = [
 ];
 
 function MobileNavigation({ totalQuantity, toggleCart }) {
-  
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   return (
@@ -45,7 +43,7 @@ const StaticNavigation = ({
   toggleCart,
 }) => {
   return (
-    <div className='text-[white] font-["Arima_Madurai"] font-bold text-lg flex justify-between w-full items-center p-4 pr-2 bg-primary-9'>
+    <div className=' font-["Arima_Madurai"] font-bold text-lg flex justify-between w-full items-center p-4 pr-2 bg-white'>
       <Link href='/'>Asuman Sounds</Link>
       <div className='relative flex' onClick={toggleCart}>
         <HiShoppingCart className='w-8 h-8' />
@@ -55,10 +53,10 @@ const StaticNavigation = ({
           </p>
         ) : null}
       </div>
-      <HamurgerMenu
-        isMobileNavOpen={isMobileNavOpen}
-        setIsMobileNavOpen={setIsMobileNavOpen}
-      />
+        <HamurgerMenu
+          isMobileNavOpen={isMobileNavOpen}
+          setIsMobileNavOpen={setIsMobileNavOpen}
+        />
     </div>
   );
 };
@@ -66,7 +64,7 @@ const StaticNavigation = ({
 const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
   return (
     <div
-      className=' bg-[#4b5563] fixed h-screen right-0 left-[102%] top-0 p-4 leading-[4rem] z-10 duration-500 ease-in-out'
+      className=' bg-primary-12 fixed h-screen right-0 left-[102%] top-0 p-4 leading-[4rem] z-10 duration-500 ease-in-out'
       style={{
         left: isMobileNavOpen ? '25%' : '102%',
       }}>
@@ -74,13 +72,13 @@ const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
         isMobileNavOpen={isMobileNavOpen}
         setIsMobileNavOpen={setIsMobileNavOpen}
       />
-      <ul className='pt-[5rem] text-[white] uppercase font-bold tracking-wider '>
+      <ul className='pt-[5rem] text-[white uppercase font-bold tracking-wider '>
         {listItems.map((listItem, index) => {
           const { icon, text, path } = listItem;
           return (
             <li
               key={index}
-              className='border-b-[1px] border-b-[white] flex items-center '>
+              className='border-b-[1px] flex items-center '>
               <div className='mr-3 text-[1.5rem]'>{icon}</div>
               <Link href={path}>{text}</Link>
             </li>
@@ -101,15 +99,15 @@ const HamurgerMenu = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
       className='flex flex-col items-end overflow-hidden mr-3 '
       onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}>
       <div
-        className={`bg-[white] h-[2.8px] w-8 duration-500 ease-in-out ${
+        className={`bg-primary-11 h-[2.8px] w-8 duration-500 ease-in-out ${
           isMobileNavOpen ? 'rotate-45 absolute top-8' : ''
         }`}></div>
       <div
-        className={`bg-[white] h-[2.8px] w-5 mt-2 mb-2 ${
+        className={`bg-primary-11 h-[2.8px] w-5 mt-2 mb-2 ${
           isMobileNavOpen ? 'hidden' : ''
         }`}></div>
       <div
-        className={`bg-[white] h-[2.8px] w-8 duration-500 ease-in-out ${
+        className={`bg-primary-11 h-[2.8px] w-8 duration-500 ease-in-out ${
           isMobileNavOpen ? 'rotate-[-45deg] absolute top-8' : ''
         }`}></div>
     </div>
