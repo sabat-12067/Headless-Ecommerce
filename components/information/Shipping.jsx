@@ -17,7 +17,7 @@ export default function CustomerInfo() {
   return (
     <section className='px-2'>
       <Shipping />
-      <Navigation path='/information/address' pathName='Return To Address' />
+      <Navigation path='/checkout/address' pathName='Return To Address' />
     </section>
   );
   [];
@@ -47,7 +47,7 @@ const Shipping = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (shippingMethodSelected) {
-      router.push('/information/payment');
+      router.push('/checkout/payment');
     } else {
       setShowAlert(true);
     }

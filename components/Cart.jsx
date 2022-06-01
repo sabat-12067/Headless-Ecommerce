@@ -15,8 +15,29 @@ const Cart = () => {
 };
 
 const Carts = () => {
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  /*I used cartItems from the redux store instead of local Storage because... 
   
+  I wanted to access the updated state of the cartItems array whenever a customer deletes an item from the cart or increaments/decrements the quantity of an item in the cart. */
+
+  /* Alternatively, 
+   const [cartItems, setCartItems] = useState([]);
+
+    useEffect(() => {
+      setCartItems(JSON.parse(localStorage.getItem('cartItems')));
+    }, [cartItems]);
+
+  Problem? It results into an infinite loop
+  
+  NOTE: // The following code helped to update the redux store each time cartItems in local storage was updated.  
+  useEffect(() => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+    dispatch(cartActions.setCartItems(cartItems));
+  });
+
+  */
+
+  const cartItems = useSelector((state) => state.cart.cartItems);
+
   const numberOfCartItems = cartItems.length;
   //console.log('cartItems', cartItems);
 
@@ -60,7 +81,7 @@ const CartWithItems = ({ cartItems }) => {
 
   const setIsAddToCartBtnClicked = () => {
     localStorage.setItem('isAddToCartBtnClicked', true);
-    router.push('/information/address');
+    router.push('/checkout/address');
   };
 
   let totalNumberOfItems = 0;

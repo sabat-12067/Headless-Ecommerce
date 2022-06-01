@@ -33,7 +33,7 @@ const AddressDetails = () => {
   const onSubmit = (data) => {
     //console.log(data);
     dispatch(informationActions.setShippingAddress(data));
-    router.push('/information/shipping');
+    router.push('/checkout/shipping');
   };
 
   //console.log(errors);
@@ -61,7 +61,7 @@ const AddressDetails = () => {
               // },
             })}
             autoComplete='on'
-            placeholder='Email or mobile number'
+            placeholder='Email'
             className='w-full px-2 py-4 rounded-md text-sm bg-primary-12 outline-primary-11 text-primary-10'
           />
           {errors.email && <Alert msg={errors.email.message} />}

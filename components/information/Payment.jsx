@@ -17,7 +17,7 @@ export default function Payment() {
       </h2>
       <PaymentInfo />
       <BillingAddress />
-      <Navigation path='/information/shipping' pathName='Return To Shipping' />
+      <Navigation path='/checkout/shipping' pathName='Return To Shipping' />
     </section>
   );
 }
@@ -109,7 +109,7 @@ const BillingAddress = () => {
       );
     }
 
-    router.push('/information/review');
+    router.push('/checkout/review');
   };
 
   const {

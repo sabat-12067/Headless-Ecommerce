@@ -23,7 +23,7 @@ export default function Review() {
       <DeliveryMethod />
       <PaymentInformation />
       <Button text='Place order' onClick={handleClick} />
-      <Navigation path='/information/payment' pathName='Return To Payment' />
+      <Navigation path='/checkout/payment' pathName='Return To Payment' />
     </section>
   );
 }
@@ -55,7 +55,7 @@ const ShippingAddress = () => {
         <p>{email}</p>
       </div>
       <p className='underline text-secondary-7 text-xs'>
-        <Link href='/information/address'>change</Link>
+        <Link href='/checkout/address'>change</Link>
       </p>
     </section>
   );
@@ -89,7 +89,7 @@ const DeliveryMethod = () => {
         <p>{deliveryTime}</p>
       </div>
       <p className='underline text-secondary-7 text-xs'>
-        <Link href='/information/shipping'>change</Link>
+        <Link href='/checkout/shipping'>change</Link>
       </p>
     </section>
   );
@@ -107,7 +107,7 @@ const PaymentInformation = () => {
         <p>05/25</p>
       </div>
       <p className='underline text-secondary-7 text-xs'>
-        <Link href='/information/payment'>change</Link>
+        <Link href='/checkout/payment'>change</Link>
       </p>
     </section>
   );

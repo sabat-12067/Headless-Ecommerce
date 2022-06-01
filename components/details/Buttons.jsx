@@ -62,7 +62,7 @@ export default function Buttons({ singleProduct, productId }) {
   };
 
   useEffect(() => {
-    // Store the cart items in local storage to a cartItems array of the redux store so that it can be accessed by the cart component even after the page reloads
+    // Store the cart items in local storage to a cartItems array of the redux store. This is to access an updated cartItems state by the cart component.
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     dispatch(cartActions.setCartItems(cartItems));
   });
@@ -118,7 +118,7 @@ export default function Buttons({ singleProduct, productId }) {
           Add to cart
         </button>
         {/*Buy It Now button */}
-        <Link href='/information/address' passHref>
+        <Link href='/checkout/address' passHref>
           <button
             className='text-center w-full bg-primary-11 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase'
             onClick={buyItNow}>
