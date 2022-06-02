@@ -1,9 +1,7 @@
-import { Button, Navigation } from '../HorLine';
+import { Navigation } from '../HorLine';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import StripeCheckout from 'react-stripe-checkout';
 import { informationActions } from '../../store/infoSlice';
 import { cartActions } from '../../store/cartSlice';
 
@@ -33,8 +31,6 @@ export default function Review() {
       </h2>
       <ShippingAddress />
       <DeliveryMethod />
-      <PaymentInformation />
-      <CheckoutBtn />
       <Navigation path='/checkout/payment' pathName='Return To Payment' />
     </section>
   );
@@ -97,99 +93,5 @@ const DeliveryMethod = () => {
         <Link href='/checkout/shipping'>change</Link>
       </p>
     </section>
-  );
-};
-const PaymentInformation = () => {
-  return (
-    <section className='border-b-2'>
-      <h3 className='text-left pt-4 text-lg md:2xl lg:3xl font-bold tracking-wide pb-1'>
-        Payment Information
-      </h3>
-      <div className='font-medium leading-6 text-sm'>
-        <p>Adam porter</p>
-        <p>4124XXXXXXXX2028</p>
-        <p>05/25</p>
-      </div>
-      <p className='underline text-secondary-7 text-xs'>
-        <Link href='/checkout/payment'>change</Link>
-      </p>
-    </section>
-  );
-};
-
-const CheckoutBtn = () => {
-  const KEY =
-    'pk_test_51L5v4dJNPOaQ7OSxTtcorhUjbauQDelTBowOvjmovJhV3wGXG8K3q23WY6VuIvBCXrOA6ZncUgErVZf04dEqQoSy00jeokRBG1';
-  const billingAddress = useSelector(
-    (state) => state.information.shippingAddress
-  );
-  const shippingAddress = useSelector(
-    (state) => state.information.shippingAddress
-  );
-  const router = useRouter();
-
-  const handleClick = () => {
-    localStorage.setItem('cart', JSON.stringify([]));
-    localStorage.setItem('shippingAddress', JSON.stringify([]));
-    localStorage.setItem('deliveryMethod', JSON.stringify([]));
-    router.push('/thankyou');
-  };
-
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  const buyItNowItem = useSelector((state) => state.cart.buyItNowItem);
-  const isAddToCartBtnClicked = useSelector(
-    (state) => state.cart.isAddToCartBtnClicked
-  );
-
- // console.log(buyItNowItem, isAddToCartBtnClicked);
-
-  let totalPrice = 0;
-
-  if (isAddToCartBtnClicked) {
-    cartItems.map((cartItem) => {
-      const { totalPrice } = cartItem;
-      totalPrice += totalPrice;
-      console.log(totalPrice);
-    });
-  } else {
-    const { price } = buyItNowItem;
-    totalPrice = price;
-  }
-
-  const [stripeToken, setStripeToken] = useState(null);
-
-
-  const onToken = (token) => {
-           console.log(token);
-  };
-
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-       const response = await  axios.post('http://localhost:5000/stripe/payment', {
-          tokenId: stripeToken.id,
-          amount: totalPrice,
-      });  
-      console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    makeRequest();
-  }, [stripeToken]);
-
-
-  return (
-    <div>
-      <StripeCheckout
-        name='Asuman Sounds'
-        billingAddress 
-        shippingAddress 
-        description={`Your price is ${totalPrice}`} amount={totalPrice} token={onToken}
-        stripeKey={KEY}
-        >
-        <Button text='Place order' onClick={handleClick} />
-      </StripeCheckout>
-    </div>
   );
 };

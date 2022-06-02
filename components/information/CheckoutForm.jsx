@@ -1,16 +1,20 @@
+import { Button } from '../HorLine';
+import Router, { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import {
   PaymentElement,
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
+import Alert from '../Auth/Alert';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const router = useRouter();
 
-  const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [alert, setAlert] = useState({ show: false, type: '', msg: '' });
 
   useEffect(() => {
     if (!stripe) {
@@ -28,16 +32,34 @@ export default function CheckoutForm() {
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
       switch (paymentIntent.status) {
         case 'succeeded':
-          setMessage('Payment succeeded!');
+          setAlert({
+            show: true,
+            type: 'success',
+            msg: 'Payment succeeded!',
+          });
           break;
         case 'processing':
           setMessage('Your payment is processing.');
+          setAlert({
+            show: true,
+            type: 'warning',
+            msg: 'Payment processing!',
+          });
           break;
         case 'requires_payment_method':
-          setMessage('Your payment was not successful, please try again.');
+          setMessage('');
+          setAlert({
+            show: true,
+            type: 'danger',
+            msg: 'Your payment was not successful, please try again!',
+          });
           break;
         default:
-          setMessage('Something went wrong.');
+          setAlert({
+            show: true,
+            type: 'danger',
+            msg: 'Something went wrong!',
+          });
           break;
       }
     });
@@ -57,33 +79,47 @@ export default function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: 'http://localhost:3000/checkout/review',
+        // navigate to payment completion page
+        return_url: '/thankyou',
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
+    /* This point will only be reached if there is an immediate error when
+      confirming the payment. 
+      Otherwise, customer will be redirected to
+      the `return_url`. For some payment methods like iDEAL, the customer will
+      be redirected to an intermediate site first to authorize the payment, then
+      redirected to the `return_url`.*/
     if (error.type === 'card_error' || error.type === 'validation_error') {
-      setMessage(error.message);
+      setAlert({
+        show: true,
+        type: 'danger',
+        msg: error.message,
+      });
     } else {
-      setMessage('An unexpected error occurred.');
+      setAlert({
+        show: true,
+        type: 'danger',
+        msg: 'An unexpected error occurred.',
+      });
     }
-
     setIsLoading(false);
   };
 
   return (
-    <form className='bg-primary-13 px-4 py-8 mt-4 rounded-md' onSubmit={handleSubmit}>
-      <PaymentElement id='payment-element' />
-      <button disabled={isLoading || !stripe || !elements} id='submit'>
-        <span id='button-text'>
-          {isLoading ? <div className='spinner' id='spinner'></div> : 'Pay now'}
-        </span>
-      </button>
+   <div className='w-full flex relative'>
+       <div className='absolute w-full lg:w-[80%] z-30 top-4'>
+          {alert.show && <Alert alert={alert} setAlert={setAlert} />}
+       </div>
+    <form
+      className=' bg-primary-13 px-4 py-8 mt-4 rounded-md w-full lg:w-[80%]'
+      onSubmit={handleSubmit}>
+        <PaymentElement />
+      <Button text='pay now' disabled={!stripe} type='submit' />
+      <p className='text-center pt-3 text-secondary-7 font-bold lg:cursor-pointer' onClick={() => router.push('/checkout/review')}>
+        Your checkout information summary
+      </p>
     </form>
+   </div>
   );
 }
