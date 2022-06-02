@@ -3,17 +3,29 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import StripeCheckout from 'react-stripe-checkout';
+import { informationActions } from '../../store/infoSlice';
+import { cartActions } from '../../store/cartSlice';
 
 export default function Review() {
+  const dispatch = useDispatch();
 
-  const handleClick = () => {
-    localStorage.setItem('cartItems', JSON.stringify([]));
-    localStorage.setItem('shippingAddress', JSON.stringify([]));
-    localStorage.setItem('deliveryMethod', JSON.stringify([]));
-    router.push('/thankyou');
-  };
+  useEffect(() => {
+    // Store the billingAddress, shippingAddress, deliveryMethod, buyItNowItem in local storage to the redux store.
+    const shippingAddress = JSON.parse(localStorage.getItem('shippingAddress'));
+    dispatch(informationActions.setShippingAddress(shippingAddress));
+    const billingAddress = JSON.parse(localStorage.getItem('billingAddress'));
+    dispatch(informationActions.setBillingAddress(billingAddress));
+    const deliveryMethod = JSON.parse(localStorage.getItem('deliveryMethod'));
+    dispatch(informationActions.deliveryMethod(deliveryMethod));
+    const isAddToCartBtnClicked = JSON.parse(
+      localStorage.getItem('isAddToCartBtnClicked')
+    );
+    dispatch(cartActions.setIsAddToCartBtnClicked(isAddToCartBtnClicked));
+    const buyItNowItem = JSON.parse(localStorage.getItem('buyItNowItem'));
+    dispatch(cartActions.setBuyItNowItem(buyItNowItem));
+  }, []);
 
-  const router = useRouter();
   return (
     <section className='px-4'>
       <h2 className='text-left pt-4 text-xl md:2xl lg:3xl font-bold tracking-wide border-b-2 pb-3'>
@@ -22,22 +34,19 @@ export default function Review() {
       <ShippingAddress />
       <DeliveryMethod />
       <PaymentInformation />
-      <Button text='Place order' onClick={handleClick} />
+      <CheckoutBtn />
       <Navigation path='/checkout/payment' pathName='Return To Payment' />
     </section>
   );
 }
 
 const ShippingAddress = () => {
- const [ShippingAddress, setShippingAddress] = useState('');
-
- useEffect(() => {
-  const shippingAddress = JSON.parse(localStorage.getItem('shippingAddress'));
-  setShippingAddress(shippingAddress);
- }, [])
+  const shippingAddress = useSelector(
+    (state) => state.information.shippingAddress
+  );
 
   const { firstName, lastName, address, city, apartment, email, country } =
-    ShippingAddress;
+    shippingAddress;
   return (
     <section className='border-b-2'>
       <h3 className='text-left pt-4 text-lg md:2xl lg:3xl font-bold tracking-wide pb-1'>
@@ -62,13 +71,9 @@ const ShippingAddress = () => {
 };
 
 const DeliveryMethod = () => {
-  const [deliveryMethod, setDeliveryMethod] = useState('');
-  
-  useEffect(() => {
-    const deliveryMethod = JSON.parse(localStorage.getItem('deliveryMethod'));
-    setDeliveryMethod(deliveryMethod);
-  }, [])
-
+  const deliveryMethod = useSelector(
+    (state) => state.information.deliveryMethod
+  );
   let deliveryTime = '';
 
   if (deliveryMethod === 'Standard') {
@@ -95,7 +100,6 @@ const DeliveryMethod = () => {
   );
 };
 const PaymentInformation = () => {
- 
   return (
     <section className='border-b-2'>
       <h3 className='text-left pt-4 text-lg md:2xl lg:3xl font-bold tracking-wide pb-1'>
@@ -110,5 +114,82 @@ const PaymentInformation = () => {
         <Link href='/checkout/payment'>change</Link>
       </p>
     </section>
+  );
+};
+
+const CheckoutBtn = () => {
+  const KEY =
+    'pk_test_51L5v4dJNPOaQ7OSxTtcorhUjbauQDelTBowOvjmovJhV3wGXG8K3q23WY6VuIvBCXrOA6ZncUgErVZf04dEqQoSy00jeokRBG1';
+  const billingAddress = useSelector(
+    (state) => state.information.shippingAddress
+  );
+  const shippingAddress = useSelector(
+    (state) => state.information.shippingAddress
+  );
+  const router = useRouter();
+
+  const handleClick = () => {
+    localStorage.setItem('cart', JSON.stringify([]));
+    localStorage.setItem('shippingAddress', JSON.stringify([]));
+    localStorage.setItem('deliveryMethod', JSON.stringify([]));
+    router.push('/thankyou');
+  };
+
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const buyItNowItem = useSelector((state) => state.cart.buyItNowItem);
+  const isAddToCartBtnClicked = useSelector(
+    (state) => state.cart.isAddToCartBtnClicked
+  );
+
+ // console.log(buyItNowItem, isAddToCartBtnClicked);
+
+  let totalPrice = 0;
+
+  if (isAddToCartBtnClicked) {
+    cartItems.map((cartItem) => {
+      const { totalPrice } = cartItem;
+      totalPrice += totalPrice;
+      console.log(totalPrice);
+    });
+  } else {
+    const { price } = buyItNowItem;
+    totalPrice = price;
+  }
+
+  const [stripeToken, setStripeToken] = useState(null);
+
+
+  const onToken = (token) => {
+           console.log(token);
+  };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+       const response = await  axios.post('http://localhost:5000/stripe/payment', {
+          tokenId: stripeToken.id,
+          amount: totalPrice,
+      });  
+      console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    makeRequest();
+  }, [stripeToken]);
+
+
+  return (
+    <div>
+      <StripeCheckout
+        name='Asuman Sounds'
+        billingAddress 
+        shippingAddress 
+        description={`Your price is ${totalPrice}`} amount={totalPrice} token={onToken}
+        stripeKey={KEY}
+        >
+        <Button text='Place order' onClick={handleClick} />
+      </StripeCheckout>
+    </div>
   );
 };

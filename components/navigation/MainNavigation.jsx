@@ -13,8 +13,12 @@ export default function MainNavigation() {
      dispatch(cartActions.setCartItems(cartItems));
    }, []);
 
-  const cartItems = useSelector(state => state.cart.cartItems);
+  let cartItems = useSelector(state => state.cart.cartItems);
   //console.log('cartItems', cartItems);
+
+  if(!cartItems) {
+    cartItems = [];
+  }
 
    //hide and show the cart section when the cart icon is clicked
    const toggleCart = () => {

@@ -5,7 +5,7 @@ const cartSlice = createSlice({
   initialState: {
     cartItems: [],
     showCart: false,
-    buyItNowItemDetails: '',
+    buyItNowItem: '',
     isBuyItNowBtnClicked: false,
     isAddToCartBtnClicked: false,
   },
@@ -55,7 +55,13 @@ const cartSlice = createSlice({
       setShowCart(state, action) {
        state.showCart = !state.showCart;
     },
-  }
+    setIsAddToCartBtnClicked(state, action) {
+      state.isAddToCartBtnClicked = action.payload;
+    },
+    setBuyItNowItem(state, action) {
+      state.buyItNowItem = action.payload;
+    }
+  },
 });
 
 export const cartActions = cartSlice.actions;

@@ -103,6 +103,7 @@ const CartWithItems = ({ cartItems }) => {
   const formattedTotalPriceOfAllItems = formatPrice(totalPriceOfAllItems);
 
   const setIsAddToCartBtnClicked = () => {
+   // dispatch(cartActions.setIsAddToCartBtnClicked(true));
     localStorage.setItem('isAddToCartBtnClicked', true);
     router.push('/checkout/address');
   };

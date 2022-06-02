@@ -11,6 +11,7 @@
   "dependencies": {
     "@apollo/client": "^3.6.2",
     "@reduxjs/toolkit": "^1.8.1",
+    "@stripe/react-stripe-js": "^1.8.1",
     "axios": "^0.27.2",
     "emailjs-com": "^3.2.0",
     "graphql": "^16.4.0",
@@ -20,6 +21,7 @@
     "react-hook-form": "^7.31.1",
     "react-icons": "^4.3.1",
     "react-redux": "^8.0.1",
+    "react-stripe-checkout": "^2.6.3",
     "redux": "^4.2.0",
     "redux-toolkit-form": "^1.2.1",
     "swiper": "^8.1.4"
