@@ -34,7 +34,7 @@ const PaymentInfo = () => {
 
    useEffect(() => {
      // Create PaymentIntent as soon as the page loads
-     fetch('http://localhost:5000/stripe/payment-intent', {
+     fetch('https://asuman-sounds-api.herokuapp.com/stripe/payment-intent', {
        method: 'POST',
        headers: { 'Content-Type': 'application/json' },
        body: JSON.stringify({
