@@ -80,7 +80,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // navigate to payment completion page
-        return_url: '/thankyou',
+        return_url: 'http://localhost:3000/thankyou',
       },
     });
 
@@ -97,6 +97,7 @@ export default function CheckoutForm() {
         msg: error.message,
       });
     } else {
+     console.log(error);
       setAlert({
         show: true,
         type: 'danger',

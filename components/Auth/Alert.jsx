@@ -25,7 +25,7 @@ const Alert = ({ alert, setAlert }) => {
         {msg}
       </p>
       <div
-        className={`absolute right-3 text-2xl ${
+        className={`absolute right-3 text-2xl lg:cursor-pointer ${
           type === 'danger' ? 'text-red' : 'text-green'
         }`}
         onClick={() => setAlert({ show: false })}>

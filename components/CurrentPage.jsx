@@ -81,7 +81,7 @@ export const CurrentPage = ({ highlightColor, bgColor }) => {
         </p>
       </div>
       <MdKeyboardArrowRight className='w-5 h-5 mx-2' />
-      <div className='flex '>
+      <div className={`router.pathname === '/checkout/review ? 'flex' : hidden`}>
         <p
           className={`${
             highLightReview && numberStyles
