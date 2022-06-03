@@ -13,7 +13,9 @@ export default function InfoLayout({ children }) {
   const [isAddToCartBtnClicked, setIsAddToCartBtnClicked] = useState();
 
   useEffect(() => {
+    //grab the buyItNowItem from local storage and set it to the state
     setBuyItNowItem(JSON.parse(localStorage.getItem('buyItNowItem')));
+    //grab cartItems from localStorage and set it to cartItems
     setCartItems(JSON.parse(localStorage.getItem('cartItems')));
     setIsAddToCartBtnClicked(JSON.parse(localStorage.getItem('isAddToCartBtnClicked')));
   }, []);

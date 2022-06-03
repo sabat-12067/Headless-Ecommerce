@@ -76,6 +76,7 @@ export default function Buttons({ singleProduct, productId }) {
   });
 
   const buyItNowItem = {
+    id: productId,
     name,
     price,
     imageThumbnail,

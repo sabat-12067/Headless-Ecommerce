@@ -16,7 +16,6 @@ const stripePromise = loadStripe(
 );
 
 export default function Payment() {
-
   return (
     <section className='px-4'>
       <h2 className='text-left pt-4 text-xl md:2xl lg:3xl font-bold tracking-wide border-b-2 pb-3'>
@@ -32,13 +31,38 @@ export default function Payment() {
 const PaymentInfo = () => {
    const [clientSecret, setClientSecret] = useState('');
 
+   const cartItems = useSelector((state) => state.cart.cartItems);
+   const buyItNowItem = useSelector((state) => state.cart.buyItNow);
+
    useEffect(() => {
+     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
+     const buyItNowItem = JSON.parse(localStorage.getItem('buyItNowItem'));
+     const shippingAddress = JSON.parse(
+       localStorage.getItem('shippingAddress')
+     );
+     const isAddToCartBtnClicked = JSON.parse(localStorage.getItem('isAddToCartBtnClicked'));
+     const customerEmail = shippingAddress.email;
+    
+     const shippingMethod = JSON.parse(localStorage.getItem('shippingMethod'));
+
+     console.log('cartItems', cartItems);
+
+     //get the ids of products
+     let idAndQuantity = []
+     if(isAddToCartBtnClicked){
+       cartItems.map(cartItem => idAndQuantity.push({id: cartItem.id, quantity: cartItem.quantity}))
+     } else {
+       idAndQuantity= [{id: buyItNowItem.id, quantity: buyItNowItem.quantity}]
+     }
+        console.log('idAndQuantity', idAndQuantity);
+     //https://asuman-sounds-api.herokuapp.com/stripe/payment-intent
+
      // Create PaymentIntent as soon as the page loads
-     fetch('https://asuman-sounds-api.herokuapp.com/stripe/payment-intent', {
+     fetch('http://localhost:5000/stripe/payment-intent', {
        method: 'POST',
        headers: { 'Content-Type': 'application/json' },
        body: JSON.stringify({
-         cartItem: { price: 22.46, email: 'isa@gmail.com' },
+         info: { idAndQuantity, email: customerEmail, shippingMethod },
        }),
      })
        .then((res) => res.json())
