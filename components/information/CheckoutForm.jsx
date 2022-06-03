@@ -81,7 +81,7 @@ export default function CheckoutForm() {
       confirmParams: {
         // navigate to payment completion page
         //https://asmn-grocery-store.netlify.app
-        return_url: 'http://localhost:3000/thankyou',
+        return_url: 'https://asmn-grocery-store.netlify.app/thankyou',
       },
     });
 
