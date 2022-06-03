@@ -18,37 +18,12 @@ export const formatprice = (price) => {
   return ((price * 100) / 100).toFixed(2);
 };
 
-//convert price to string with commas
-export const formatpriceWithCommas = (price) => {
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-
 //convert price to string with commas and two decimal places
 export const formatPrice = (price) => {
   return ((price * 100) / 100)
     .toFixed(2)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-
-export const Alert = ({ setShowAlert, msg }) => {
-  //clear alert after 3 secs
-  useEffect(() => {
-    const alertTimeOut = setTimeout(() => {
-      setShowAlert(false);
-    }, 3000);
-    //clean up function
-    return () => clearTimeout(alertTimeOut);
-  }, [msg]);
-
-  return (
-    <div className='flex items-center justify-center fixed top-0 left-0 w-full bg-secondary-3'>
-      <p className='text-center font-bold text-secondary-8 w-full py-2 text-sm tracking-wide'>
-        {msg}
-      </p>
-      <ImCross className='mr-5' onClick={() => setShowAlert(false)} />
-    </div>
-  );
 };
 
 export const Navigation = ({ path, pathName }) => {
