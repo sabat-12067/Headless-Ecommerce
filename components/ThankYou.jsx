@@ -10,6 +10,7 @@ import axios from 'axios';
 const ThankYou = () => {
   const [orderNumber, setOrderNumber] = useState('');
   const router = useRouter();
+  const dispatch = useDispatch();
   
 
   useEffect(() => {
