@@ -101,15 +101,15 @@ const PaymentInfo = () => {
         <h4 className='text-left'>Payment Instructions</h4>
         <p>
           Note that is a development web application. The following form doesnt
-          accept "real" card numbers and online payments, yet. <br />{' '}
+          accept &#34;real&#34; card numbers and online payments, yet. <br />{' '}
           For testing purposes... <br />
           <p className='pt-2'>
-            1. Enter the "testing card number" -{' '}
+            1. Enter the &#34;testing card number&#34; -{' '}
             <span className='font-bold'>4242 4242 4242 4242</span>. <br /> 2.
             Enter <span className='font-bold'>any future date</span> for the
-            "Expiration." <br /> 3. Enter{' '}
+            &#34;Expiration.&#34; <br /> 3. Enter{' '}
             <span className='font-bold'>any 3-digit number </span>
-            as the "CVV." <br />
+            as the &#34;CVV.&#34; <br />
           </p>
         </p>
       </div>
