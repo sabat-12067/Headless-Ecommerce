@@ -13,8 +13,10 @@ const ThankYou = () => {
   
 
   useEffect(() => {
+    //Reset all values in the local storage to empty values when customer confirms purchase.
     localStorage.setItem('cartItems', JSON.stringify([]));
-    //dispatch(cartActions.setCartItems([]));
+    //Also set cartItems to empty array to cart doesn't exist anymore at the home page.
+    dispatch(cartActions.setCartItems([]));
     localStorage.setItem('shippingAddress', JSON.stringify({}));
     localStorage.setItem('paymentMethod', JSON.stringify({}));
     localStorage.setItem('deliveryMethod', JSON.stringify(''));

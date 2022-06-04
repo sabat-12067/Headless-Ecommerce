@@ -18,9 +18,7 @@ export default function MainNavigation() {
    
    let cartItems = useSelector(state => state.cart.cartItems);
    
-
-  //console.log('cartItems', cartItems);
-
+//set cartItems to empty array if it is null or undefined to avoid error that could crash server and when on the last - thankyou - page. 
   if(!cartItems || router.pathname === '/thankyou') {
     cartItems = [];
   }
