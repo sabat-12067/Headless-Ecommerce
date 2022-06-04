@@ -100,18 +100,18 @@ const PaymentInfo = () => {
       <div className='lg:w-[80%] pt-8 pb-3'>
         <h4 className='text-left'>Payment Instructions</h4>
         <p>
-          Note that is a development web application. The following form doesnt
-          accept &#34;real&#34; card numbers and online payments, yet. <br />{' '}
-          For testing purposes... <br />
+          Note that this is a development web application. <br /> The following
+          form doesnt accept &#34;real&#34; card numbers and online payments,
+          yet. <br /> For testing purposes... <br />
         </p>
-          <p className='pt-2'>
-            1. Enter the &#34;testing card number&#34; -{' '}
-            <span className='font-bold'>4242 4242 4242 4242</span>. <br /> 2.
-            Enter <span className='font-bold'>any future date</span> for the
-            &#34;Expiration.&#34; <br /> 3. Enter{' '}
-            <span className='font-bold'>any 3-digit number </span>
-            as the &#34;CVV.&#34; <br />
-          </p>
+        <p className='pt-2'>
+          1. Enter the &#34;testing&#34; card number -{' '}
+          <span className='font-bold'>4242 4242 4242 4242</span>. <br /> 2.
+          Enter <span className='font-bold'>any future date</span> for the
+          &#34;Expiration.&#34; <br /> 3. Enter{' '}
+          <span className='font-bold'>any 3-digit number </span>
+          as the &#34;CVV.&#34; <br />
+        </p>
       </div>
       <div className='flex items-center justify-center lg:justify-start'>
         {isLoading && (

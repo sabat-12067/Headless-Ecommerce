@@ -1,7 +1,7 @@
 import { Button } from '../HorLine';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
+import SquareLoader from 'react-spinners/SquareLoader';
 import {
   PaymentElement,
   useStripe,
@@ -81,7 +81,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // navigate to payment completion page
-        return_url: 'https://asmn-grocery-store.netlify/thankyou',
+        return_url: 'https://asmn-grocery-store.netlify.app/thankyou',
         //https://asmn-grocery-store.netlify.app
         //http://localhost:3000
       },
@@ -113,8 +113,8 @@ export default function CheckoutForm() {
   return (
     <>
       {isLoading && (
-        <div className='absolute z-50 flex flex-col justify-center items-center bottom-0 top-0 bg-primary-12 right-0 left-0 h-screen w-screen'>
-          <ClimbingBoxLoader size={60} color={'#fb923c'} />
+        <div className='absolute z-50 flex flex-col justify-center items-center bottom-0 top-0 bg-primary-12 right-0 left-0 h-full w-screen'>
+          <SquareLoader size={60} color={'#fb923c'} />
           <p className='font-bold mt-12 animate-zoomInOut'>
             Loading next page... please wait!
           </p>

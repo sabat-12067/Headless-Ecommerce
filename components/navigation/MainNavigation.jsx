@@ -3,9 +3,11 @@ import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
 import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cartSlice';
+import { useRouter } from 'next/router';
 
 export default function MainNavigation() {
   const dispatch = useDispatch();
+  const router = useRouter();
 
    useEffect(() => {
      // Store the cart items in local storage to a cartItems array of the redux store so that we access 'quantity' state each time is updates in our redux store.
@@ -13,10 +15,12 @@ export default function MainNavigation() {
      dispatch(cartActions.setCartItems(cartItems));
    }, []);
 
-  let cartItems = useSelector(state => state.cart.cartItems);
+   
+   let cartItems = useSelector(state => state.cart.cartItems);
+   
   //console.log('cartItems', cartItems);
 
-  if(!cartItems) {
+  if(!cartItems || cartItems.length === 0) {
     cartItems = [];
   }
 

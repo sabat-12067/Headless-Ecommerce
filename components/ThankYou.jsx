@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../store/cartSlice';
 import axios from 'axios';
 
 //const orderNumber =  Math.floor(Math.random() * 1000000);
 const ThankYou = () => {
   const [orderNumber, setOrderNumber] = useState('');
+  const router = useRouter();
+  
 
   useEffect(() => {
     localStorage.setItem('cartItems', JSON.stringify([]));
+    //dispatch(cartActions.setCartItems([]));
     localStorage.setItem('shippingAddress', JSON.stringify({}));
     localStorage.setItem('paymentMethod', JSON.stringify({}));
     localStorage.setItem('deliveryMethod', JSON.stringify(''));
