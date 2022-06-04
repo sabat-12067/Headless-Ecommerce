@@ -66,7 +66,7 @@ const PaymentInfo = () => {
       //set the loading state to true while the client secret is being fetched
         setIsLoading(true);
       try {
-        console.log(isLoading);
+       // console.log(isLoading);
         const response = await axios.post(
           'https://asuman-sounds-api.herokuapp.com/stripe/payment-intent',
           //http://localhost:5000/stripe/payment-intent
@@ -103,6 +103,7 @@ const PaymentInfo = () => {
           Note that is a development web application. The following form doesnt
           accept &#34;real&#34; card numbers and online payments, yet. <br />{' '}
           For testing purposes... <br />
+        </p>
           <p className='pt-2'>
             1. Enter the &#34;testing card number&#34; -{' '}
             <span className='font-bold'>4242 4242 4242 4242</span>. <br /> 2.
@@ -111,7 +112,6 @@ const PaymentInfo = () => {
             <span className='font-bold'>any 3-digit number </span>
             as the &#34;CVV.&#34; <br />
           </p>
-        </p>
       </div>
       <div className='flex items-center justify-center lg:justify-start'>
         {isLoading && (
