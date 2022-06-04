@@ -3,9 +3,14 @@ import { useForm } from 'react-hook-form';
 import { informationActions } from '../../store/infoSlice';
 import { useRouter } from 'next/router';
 import { Navigation, Button } from '../HorLine';
+import { useEffect, useState } from 'react';
 
 export default function Address() {
-  const productId = useSelector((state) => state.Id.id);
+ const [productId, setProductId] = useState('');
+ useEffect(() => {
+    const id = localStorage.getItem('productId');
+    setProductId(id);
+ }, [])
   return (
     <section className='px-'>
       <AddressDetails />

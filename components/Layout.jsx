@@ -31,7 +31,7 @@ export default function Layout(props) {
   return (
     <div>
       {showNavigation && <MainNavigation />}
-      <main>{props.children}</main>
+      <main className="relative">{props.children}</main>
       {showFooter && <Footer />}
     </div>
   );

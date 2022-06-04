@@ -7,6 +7,7 @@ const productIdSlice = createSlice({
    setProductId(state, action) {
      const productId = action.payload;
      state.id = productId;
+     localStorage.setItem('productId', productId);
    }
  }
 });

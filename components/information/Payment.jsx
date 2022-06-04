@@ -5,6 +5,7 @@ import CheckoutForm from './CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import RingLoader from 'react-spinners/RingLoader';
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
@@ -28,6 +29,7 @@ export default function Payment() {
 
 const PaymentInfo = () => {
   const [clientSecret, setClientSecret] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
@@ -53,13 +55,20 @@ const PaymentInfo = () => {
     }
     //https://asuman-sounds-api.herokuapp.com/stripe/payment-intent
 
-    const info = { email: customerEmail, idAndQuantity, deliveryMethod, isAddToCartBtnClicked };
-    console.log('info', info);
+    const info = {
+      email: customerEmail,
+      idAndQuantity,
+      deliveryMethod,
+      isAddToCartBtnClicked,
+    };
     // Create PaymentIntent as soon as the page loads
     const createPaymentIntent = async () => {
+      //set the loading state to true while the client secret is being fetched
+        setIsLoading(true);
       try {
+        console.log(isLoading);
         const response = await axios.post(
-          'https://asuman-sounds-api.herokuapp.com/stripe/payment-intent',
+          'http://localhost:5000/stripe/payment-intent',
           JSON.stringify(info),
           {
             headers: { 'Content-Type': 'application/json' },
@@ -67,11 +76,13 @@ const PaymentInfo = () => {
           }
         );
 
-        const { clientSecret, orderNumber } = response.data;
+        const { clientSecret, orderNumber } =  response.data;
         setClientSecret(clientSecret);
 
         // Store orderNumber in the localStorage
         localStorage.setItem('orderNumber', orderNumber);
+       
+       setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -84,11 +95,37 @@ const PaymentInfo = () => {
     clientSecret,
   };
   return (
-    <section>
+    <section className='md:grid grid-cols-2 gap-4 lg:flex flex-col'>
+      <div className='lg:w-[80%] pt-8 pb-3'>
+        <h4 className='text-left'>Payment Instructions</h4>
+        <p>
+          Note that is a development web application. The following form doesnt
+          accept 'real' card numbers and online payments, yet. <br /> For
+          testing purposes... <br />
+          <p className='pt-2'>
+            1. Enter the 'testing card number' -{' '}
+            <span className='font-bold'>4242 4242 4242 4242</span>. <br /> 2.
+            Enter <span className='font-bold'>any future date</span> for the
+            'Expiration.' <br /> 3. Enter{' '}
+            <span className='font-bold'>any 3-digit number </span>
+            as the 'CVV.' <br />
+          </p>
+        </p>
+      </div>
       <div className='flex items-center justify-center lg:justify-start'>
+        {isLoading && (
+          <div className='absolute z-50 flex flex-col justify-center items-center bg-primary-12 h-[33%] w-full lg:w-[40%]'>
+            <RingLoader size={60} color={'#7c2d12'} />
+            <p className='font-bold mt-12 animate-zoomInOut'>
+              Wait a second! Form loading...
+            </p>
+          </div>
+        )}
         {clientSecret && (
           <Elements stripe={stripePromise} options={options}>
-            <CheckoutForm />
+            <div className='w-full'>
+              <CheckoutForm />
+            </div>
           </Elements>
         )}
       </div>

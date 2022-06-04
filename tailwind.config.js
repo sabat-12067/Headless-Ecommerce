@@ -48,6 +48,7 @@ module.exports = {
       'grid-sm': 'repeat(2, 2fr)',
       'grid-thumbs': 'repeat(auto-fill, minmax(80px, 1fr))',
       'grid-checkout-pg': 'repeat(5, 1fr)',
+      '2': 'repeat(2, 1fr)',
     },
     keyframes: {
       wiggle: {

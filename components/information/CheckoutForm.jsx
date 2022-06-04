@@ -1,6 +1,7 @@
 import { Button } from '../HorLine';
 import Router, { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 import {
   PaymentElement,
   useStripe,
@@ -81,7 +82,7 @@ export default function CheckoutForm() {
       confirmParams: {
         // navigate to payment completion page
         //https://asmn-grocery-store.netlify.app
-        return_url: 'https://asmn-grocery-store.netlify.app/thankyou',
+        return_url: 'http://localhost:3000/thankyou',
       },
     });
 
@@ -98,7 +99,7 @@ export default function CheckoutForm() {
         msg: error.message,
       });
     } else {
-     console.log(error);
+      console.log(error);
       setAlert({
         show: true,
         type: 'danger',
@@ -109,19 +110,32 @@ export default function CheckoutForm() {
   };
 
   return (
-   <div className='w-full flex relative'>
-       <div className='absolute w-full lg:w-[80%] z-30 top-4'>
+    <>
+      {isLoading && (
+        <div className='absolute z-50 flex flex-col justify-center items-center bottom-0 top-0 bg-primary-12 right-0 left-0 h-screen w-screen'>
+          <ClimbingBoxLoader size={60} color={'#fb923c'} />
+          <p className='font-bold mt-12 animate-zoomInOut'>
+            Loading next page... please wait!
+          </p>
+        </div>
+      )}
+      <div className='w-full flex relative'>
+        <div className='absolute w-full lg:w-[80%] z-30 top-4'>
           {alert.show && <Alert alert={alert} setAlert={setAlert} />}
-       </div>
-    <form
-      className=' bg-primary-13 px-4 py-8 mt-4 rounded-md w-full lg:w-[80%]'
-      onSubmit={handleSubmit}>
-        <PaymentElement />
-      <Button text='pay now' disabled={!stripe} type='submit' />
-      <p className='text-center pt-3 text-secondary-7 font-bold lg:cursor-pointer' onClick={() => router.push('/checkout/review')}>
-        Your checkout information summary
-      </p>
-    </form>
-   </div>
+        </div>
+        <form
+          className=' bg-primary-13 px-4 py-8 mt-4 rounded-md w-full lg:w-[80%]'
+          onSubmit={handleSubmit}>
+          <div></div>
+          <PaymentElement />
+          <Button text='pay now' disabled={!stripe} type='submit' />
+          <p
+            className='text-left pt-3 text-primary-10 underline font-bold lg:cursor-pointer'
+            onClick={() => router.push('/checkout/review')}>
+            Your checkout information summary
+          </p>
+        </form>
+      </div>
+    </>
   );
 }

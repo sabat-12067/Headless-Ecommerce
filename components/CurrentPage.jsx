@@ -80,8 +80,11 @@ export const CurrentPage = ({ highlightColor, bgColor }) => {
           Payment
         </p>
       </div>
-      <MdKeyboardArrowRight className='w-5 h-5 mx-2' />
-      <div className={`router.pathname === '/checkout/review ? 'flex' : hidden`}>
+      <MdKeyboardArrowRight
+        className={`w-5 h-5 mx-2 ${router.pathname === '/checkout/review' ? 'block' : 'hidden'}`}
+      />
+      <div
+        className={`${router.pathname === '/checkout/review' ? 'flex' : 'hidden'}`}>
         <p
           className={`${
             highLightReview && numberStyles
