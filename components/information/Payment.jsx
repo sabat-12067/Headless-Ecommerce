@@ -97,7 +97,7 @@ const PaymentInfo = () => {
   };
   return (
     <section className='md:grid grid-cols-2 gap-4 lg:flex flex-col'>
-      <div className='lg:w-[80%] pt-8 pb-3'>
+      <div className='lg:w-[80%] pt-8 pb-3 text-sm'>
         <h4 className='text-left'>Payment Instructions</h4>
         <p>
           Note that this is a development web application. <br /> The following

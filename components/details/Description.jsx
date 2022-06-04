@@ -7,6 +7,8 @@ import { useState } from 'react';
 export default function Description({ singleProduct }) {
   const { description, specifications } = singleProduct;
 
+ // console.log(description);
+
   const [showSpecs, setShowSpecs] = useState(false);
 
   const [readMore, setReadMore] = useState(false);
@@ -20,7 +22,7 @@ export default function Description({ singleProduct }) {
       <div className='md:max-w-[500px]'>
         <p className='font-bold'>Description</p>
         <p>
-          {readMore ? description : description.substr(0, 250)}
+          {readMore ? description: description.substr(0, 250)}
           <button
             className='px-2 text-sm py-2 text-primary-9'
             onClick={() => setReadMore(!readMore)}>
@@ -45,7 +47,9 @@ export default function Description({ singleProduct }) {
             showSpecs ? 'h-auto' : 'h-0'
           } duration-500 ease-in-out md:pt-2`}>
           {splitSpecifications.map((specification, index) => {
+            //get specification name e.g "Brand"
             const specificationType = specification.split(':')[0];
+            //get specification value e.g "Samsung"
             const specificationValue = specification.split(':')[1];
             return (
               <li key={index}>

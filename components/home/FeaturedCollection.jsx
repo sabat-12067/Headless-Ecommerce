@@ -7,7 +7,7 @@ export default function FeaturedCollection({ products }) {
   return (
    
       <section className='mt-5 md:relative'>
-        <h2 className='uppercase'>
+        <h2 className='uppercase text-left px-4'>
           bringing you the <span className='text-secondary-7'>best</span> audio
           gear
         </h2>
