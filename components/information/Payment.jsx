@@ -68,7 +68,8 @@ const PaymentInfo = () => {
       try {
         console.log(isLoading);
         const response = await axios.post(
-          'http://localhost:5000/stripe/payment-intent',
+          'https://asuman-sounds-api.herokuapp.com/stripe/payment-intent',
+          //http://localhost:5000/stripe/payment-intent
           JSON.stringify(info),
           {
             headers: { 'Content-Type': 'application/json' },
