@@ -18,9 +18,10 @@ export default function MainNavigation() {
    
    let cartItems = useSelector(state => state.cart.cartItems);
    
+
   //console.log('cartItems', cartItems);
 
-  if(!cartItems || cartItems.length === 0) {
+  if(!cartItems || router.pathname === '/thankyou') {
     cartItems = [];
   }
 
@@ -38,7 +39,7 @@ export default function MainNavigation() {
   //console.log('totalQuantity', totalQuantity);
 
   return (
-    <nav className='fixed z-30'>
+    <nav className='absolute z-30'>
       <DesktopNavigation
         totalQuantity={totalQuantity}
         toggleCart={toggleCart}

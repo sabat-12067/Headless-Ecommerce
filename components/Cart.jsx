@@ -116,7 +116,7 @@ const CartWithItems = ({ cartItems }) => {
   //console.log('totalNumberOfItems', totalNumberOfItems);
 
   return (
-    <section className='flex flex-col items-center justify-center shadow-lg shadow-primary-8 p-4 m-2 fixed z-20 top-13 bg-[white] sm:right-2 rounded-sm'>
+    <section className='flex flex-col items-center justify-center shadow-lg shadow-primary-8 p-4 m-2 absolute z-20 top-13 bg-[white] sm:right-2 rounded-sm'>
       <h3 className='self-start pb-3'>cart summary</h3>
       <div className='w-full left-0 absolute top-0 z-40'>
         {alert.show && <Alert alert={alert} setAlert={setAlert} />}
