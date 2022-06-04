@@ -63,15 +63,15 @@ const SingleProduct = ({
   };
 
   return (
-    <article className='font-medium relative text-xs md:text-sm text-primary-11 bg-white mb-8 lg:cursor-pointer lg:hover:drop-shadow-md border- m-2 lg:hover:rounded-md'>
+    <article className='font-medium relative text-xs md:text-sm text-primary-11 bg-white mb-8 lg:cursor-pointer lg:hover:drop-shadow-md m-2 lg:hover:rounded-md'>
       <div
-        className='flex flex-col items-center p-3 h-full'
+        className='flex flex-col items-start h-full'
         onClick={handleClick}>
         <img src={imageUrl} alt={name} className='' />
         <h3 className='p-3 text-xs md:text-sm text-left'>{name}</h3>
-        <p className='font-bold '>$ {price}</p>
-        <p className='line-through text-secondary-8'>$ {discountPrice}</p>
-        <p className='bg-primary-13 rounded-xl px-3 py-1 outline-none font-bold text-primary-11 absolute top-[12px] text-base animate-wiggle'>
+        <p className='font-bold px-3'>$ {price}</p>
+        <p className='line-through text-secondary-8 text-left px-3'>$ {discountPrice}</p>
+        <p className='bg-primary-13 rounded-xl ml-3 px-2 py-1 outline-none font-bold text-primary-11 absolute top-[12px] text-xs md:text-base animate-wiggle '>
           - {discountPercentage}%
         </p>
       </div>
