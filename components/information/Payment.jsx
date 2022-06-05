@@ -99,12 +99,12 @@ const PaymentInfo = () => {
     <section className='md:grid grid-cols-2 gap-4 lg:flex flex-col'>
       <div className='lg:w-[80%] pt-8 pb-3 text-sm'>
         <h4 className='text-left'>Payment Instructions</h4>
-        <p>
+        <p className='leading-7'>
           Note that this is a development web application. <br /> The following
           form doesnt accept &#34;real&#34; card numbers and online payments,
           yet. <br /> For testing purposes... <br />
         </p>
-        <p className='pt-2'>
+        <p className='pt-2 leading-7'>
           1. Enter the &#34;testing&#34; card number -{' '}
           <span className='font-bold'>4242 4242 4242 4242</span>. <br /> 2.
           Enter <span className='font-bold'>any future date</span> for the

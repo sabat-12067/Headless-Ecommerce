@@ -1,4 +1,3 @@
-
 //This component is for the name of the product and the product prices on the details page. 
 
 export default function ProductInfo({ singleProduct }) {

@@ -27,9 +27,9 @@ h1 {
     @apply text-2xl font-[Poppins] font-extrabold md:text-3xl tracking-widest
   }
 h3 {
-    @apply text-xl font-bold md:text-[1.9rem] tracking-wide
+    @apply text-lg font-bold md:text-[1.9rem] tracking-wide
   }
  h4 {
-    @apply text-lg font-bold md:text-[1.5rem]
+    @apply text-left text-sm font-bold md:text-base
   }
  }

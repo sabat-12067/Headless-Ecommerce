@@ -3,30 +3,41 @@ import ProductInfo from '../../../components/details/ProductInfo';
 import Buttons from '../../../components/details/Buttons';
 import Description from '../../../components/details/Description';
 import Cart from '../../../components/Cart';
+import markDownToHtml from '../../../components/details/markDownToHtml';
 
-//This page is the details page. It is displayed when customer clicks a product in the home page.
+//This page is the details/product page. It is displayed when customer clicks a product in the home page.
 
-export default function Product({ product, productId }) {
+export default function Product({
+  product,
+  productId,
+  specifications,
+  description,
+}) {
+  //This is the information about the product that is being displayed.
   const singleProduct = product.attributes;
 
   return (
     <section className='pt-[56px]'>
       <Cart />
       <div className='md:flex max-w-6xl mx-auto'>
-      <Carousel singleProduct={singleProduct} />
-      <div className='w-full'>
-        <ProductInfo singleProduct={singleProduct} />
-        <Buttons singleProduct={singleProduct} productId={productId} />
-        <Description singleProduct={singleProduct} />
-      </div>
+        <Carousel singleProduct={singleProduct} />
+        <div className='w-full'>
+          <ProductInfo singleProduct={singleProduct} />
+          <Buttons singleProduct={singleProduct} productId={productId} />
+          <Description
+            specifications={specifications}
+            description={description}
+          />
+        </div>
       </div>
     </section>
   );
 }
 
 export async function getStaticProps(context) {
+  //The id of the product displayed on the product/details page.
   const productId = context.params.productId;
-  console.log('product id',productId);
+  //  console.log('product id',productId);
 
   //console.log(productId);
   const response = await fetch(
@@ -35,10 +46,18 @@ export async function getStaticProps(context) {
   const productData = await response.json();
   const product = productData.data;
 
+  //description of the product converted to html
+  const description = await markDownToHtml(product.attributes.descriptions);
+  //specifications of the product converted to html
+  const specifications = await markDownToHtml(product.attributes.specifications);
+  console.log('specifications',specifications);
+
   return {
     props: {
       product,
       productId,
+      specifications,
+      description,
     },
   };
 }
