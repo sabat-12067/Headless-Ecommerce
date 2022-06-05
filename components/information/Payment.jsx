@@ -14,13 +14,13 @@ const stripePromise = loadStripe(
   'pk_test_51L5v4dJNPOaQ7OSxTtcorhUjbauQDelTBowOvjmovJhV3wGXG8K3q23WY6VuIvBCXrOA6ZncUgErVZf04dEqQoSy00jeokRBG1'
 );
 
-export default function Payment() {
+export default function Payment({ clientSecret }) {
   return (
     <section className='px-4'>
       <h2 className='text-left pt-4 text-xl md:2xl lg:3xl font-bold tracking-wide border-b-2 pb-3'>
         Payment
       </h2>
-      <PaymentInfo />
+      <PaymentInfo clientSecret={clientSecret} />
       {/* <BillingAddress /> */}
       <Navigation path='/checkout/shipping' pathName='Return To Shipping' />
     </section>
@@ -28,8 +28,8 @@ export default function Payment() {
 }
 
 const PaymentInfo = () => {
-  const [clientSecret, setClientSecret] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+ const [clientSecret, setClientSecret] = useState('');
+ const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
@@ -78,6 +78,7 @@ const PaymentInfo = () => {
         );
 
         const { clientSecret, orderNumber } =  response.data;
+        //save clientSecret to localStorage
         setClientSecret(clientSecret);
 
         // Store orderNumber in the localStorage
@@ -100,7 +101,7 @@ const PaymentInfo = () => {
       <div className='lg:w-[80%] pt-8 pb-3 text-sm'>
         <h4 className='text-left'>Payment Instructions</h4>
         <p className='leading-7'>
-          Note that this is a development web application. <br /> The following
+         The following
           form doesnt accept &#34;real&#34; card numbers and online payments,
           yet. <br /> For testing purposes... <br />
         </p>

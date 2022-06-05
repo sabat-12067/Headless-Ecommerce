@@ -6,21 +6,21 @@ import HorLine from './HorLine';
 
 function Footer() {
   return (
-    <footer className='flex flex-col items-center justify-center bg-primary-10 text-white relative bottom-0 py-12 font-medium  w-screen pb-10  max-w-6xl mx-auto'>
+    <footer className='flex flex-col items-center justify-center bg-primary-10 text-white relative bottom-0 py-12 font-normal  w-screen pb-10  max-w-6xl mx-auto'>
       {/* <HorLine /> */}
       <div className='md:flex md:w-full md:px-6 md:justify-between'>
         <article className='text-center mb-4'>
-          <h4 className=''>Company</h4>
+          <h4 className='text-center'>Company</h4>
           <p>About Us</p>
           <p>Return</p>
           <p>Help</p>
         </article>
         <article className='mb-4'>
-          <h4>Visit</h4>
+          <h4 className='text-center'>Visit</h4>
           <p>Store locator</p>
         </article>
         <article className='mb-4'>
-          <h4>Connect</h4>
+          <h4 className='text-center'>Connect</h4>
           <p>Contact Us</p>
         </article>
       </div>
