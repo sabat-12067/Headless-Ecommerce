@@ -2,11 +2,11 @@
 # [HEADLESS ECOMMERCE WEB APPLICATION](https://asmn-grocery-store.netlify.app)
 
 <!-- ![screenshot](https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530655/Screenshot_20220606_174245_Chrome_7d32a6a9f5.jpg?updated_at=2022-06-06T15:50:57.804Z) -->
-
+<div>
 <img src="https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530655/Screenshot_20220606_174245_Chrome_7d32a6a9f5.jpg?updated_at=2022-06-06T15:50:57.804Z" width="100" height="200">
 <img src="https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530656/Screenshot_20220606_174303_Chrome_02cef15d9a.jpg?updated_at=2022-06-06T15:50:59.103Z" width="100" height="200">
-<img src="" width="100" height="200">
 <img src="https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530657/Screenshot_20220606_174352_Chrome_ac216fd581.jpg?updated_at=2022-06-06T15:50:59.999Z" width="100" height="200">
+</div>
 
 ## Table of contents
 
