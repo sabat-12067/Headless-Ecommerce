@@ -1,7 +1,9 @@
 
 # [HEADLESS ECOMMERCE WEB APPLICATION](https://asmn-grocery-store.netlify.app)
 
-![screenshot](https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530655/Screenshot_20220606_174245_Chrome_7d32a6a9f5.jpg?updated_at=2022-06-06T15:50:57.804Z)
+<!-- ![screenshot](https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530655/Screenshot_20220606_174245_Chrome_7d32a6a9f5.jpg?updated_at=2022-06-06T15:50:57.804Z) -->
+
+<img src="https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530655/Screenshot_20220606_174245_Chrome_7d32a6a9f5.jpg?updated_at=2022-06-06T15:50:57.804Z" width="100" height="150">
 
 ## Table of contents
 
@@ -16,17 +18,17 @@
 ## OVERVIEW
 
 ### About the project
-This is a multi-page headless e-commerce website. The products were fetched from an API I built strapi.
+This is a multi-page headless e-commerce website. The products were fetched from an API I built with strapi.
 
 The site was built using static site generation to provide short page load times and serve customers with much better user experience. 
 
 I aslo employed static site generation as I won't be updating the invetory very often.
 
-Within the application, users are be able to accomplish the following tasks
+**Within the application, users are be able to accomplish the following tasks.**
  - See hover states for all interactive elements on the page.
  - **Add/Remove** products from the cart.
  - **Edit** product quantities in the cart.
- - Have a **'buy it now' option** that enables the customer to skip the cart.
+ - Have a **'buy it now'** option that enables the customer to skip the cart section.
  - **Fill** in all fields in the checkout.
  - Receive **form validations** if fields are missed or incorrect during checkout.
  - See **correct checkout totals** depending on the products in the cart.
@@ -74,7 +76,7 @@ I also tried to include long-tail keywords in the text of the site and more impo
 ### Stripe integration.
 I had two options - Prebuilt Stripe Checkout and stripe payment intents. The stripe checkout option is much easier to start with but it's less customisable.
 
-So it couldn't meet my needs. I went with stripe payment intents which though being more customisable, it has a steeper learning curve for working with its api.
+So it couldn't meet my needs. I went with stripe payment intents which though being more customisable, it has a steeper learning curve for working with its API.
 
 You can read more about the [stripe payment intents API](https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements&html-or-react=react)
  
@@ -135,6 +137,7 @@ const onSubmit = (data) => {
 - Creating forms and validating them using the [react hook form API documentation](https://react-hook-form.com/get-started)
 
 4. Alternative way of navigating between pages besides using the `Link` component. This was a very important lesson as it allowed me to add more complex interactivity to the app.
+  
    _The normal way:_
 
 ```js
@@ -155,6 +158,6 @@ _Alternative way:_
 6. Integrating stripe API to accept on line payments.
 ### Continued development
 
-- This project has enabled me to improve on my skills and confidence so I'm looking forward to building complicated projects like this one.
+- This project has enabled me to improve on my skills and confidence so I'm looking forward to building more complex projects like this one.
 
 - During the project, I found myself required to read documentation as I could not find the solutions to my problems on google, you-tube, stack overflow e.t.c. So I'm going to get myself used to reading documentation in my next projects. 
