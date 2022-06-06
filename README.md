@@ -66,19 +66,18 @@ I aslo employed static site generation as I won't be updating the invetory very 
 - Congrats! The site is up and running.
 
 Buy hey, wait a sec...
-The stripe form is pointing to my stripe account. You need to change that. 
+The stripe form is pointing to my stripe account. You need to change that.
 
 How?
 
 1. Just navigate to the `Payment.jsx` file under the information folder. You will find the information folder under the components folder.
-( Simply, you will have to navigate to `components/information/Payment.jsx` )
+   ( Simply, you will have to navigate to `components/information/Payment.jsx` )
 
 2. Then head over to the following code
 
-````js
+```js
 const response = await axios.post(
           'https://asuman-sounds-api.herokuapp.com/stripe/payment-intent',
-          //http://localhost:5000/stripe/payment-intent
           JSON.stringify(info),
           {
             headers: { 'Content-Type': 'application/json' },
@@ -86,6 +85,7 @@ const response = await axios.post(
           }
         );
 ```
+
 3. Change the url `https://asuman-sounds-api.herokuapp.com/stripe/payment-intent` to one that points to the backend handling your stripe integration.
 
  - Find the [git repo of this project's backend here.](https://github.com/asuman315/asuman-sounds-api)
