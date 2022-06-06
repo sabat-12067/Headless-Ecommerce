@@ -14,13 +14,13 @@ const stripePromise = loadStripe(
   'pk_test_51L5v4dJNPOaQ7OSxTtcorhUjbauQDelTBowOvjmovJhV3wGXG8K3q23WY6VuIvBCXrOA6ZncUgErVZf04dEqQoSy00jeokRBG1'
 );
 
-export default function Payment({ clientSecret }) {
+export default function Payment() {
   return (
     <section className='px-4'>
       <h2 className='text-left pt-4 text-xl md:2xl lg:3xl font-bold tracking-wide border-b-2 pb-3'>
         Payment
       </h2>
-      <PaymentInfo clientSecret={clientSecret} />
+      <PaymentInfo />
       {/* <BillingAddress /> */}
       <Navigation path='/checkout/shipping' pathName='Return To Shipping' />
     </section>
@@ -68,7 +68,7 @@ const PaymentInfo = () => {
       try {
        // console.log(isLoading);
         const response = await axios.post(
-          'https://asuman-sounds-api.herokuapp.com/stripe/payment-intent',
+          'http://localhost:5000/stripe/payment-intent',
           //http://localhost:5000/stripe/payment-intent
           JSON.stringify(info),
           {
@@ -101,9 +101,8 @@ const PaymentInfo = () => {
       <div className='lg:w-[80%] pt-8 pb-3 text-sm'>
         <h4 className='text-left'>Payment Instructions</h4>
         <p className='leading-7'>
-         The following
-          form doesnt accept &#34;real&#34; card numbers and online payments,
-          yet. <br /> For testing purposes... <br />
+          The following form doesnt accept &#34;real&#34; card numbers and
+          online payments, yet. <br /> For testing purposes... <br />
         </p>
         <p className='pt-2 leading-7'>
           1. Enter the &#34;testing&#34; card number -{' '}

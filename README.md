@@ -1,6 +1,8 @@
 
 # [HEADLESS ECOMMERCE WEB APPLICATION](https://asmn-grocery-store.netlify.app)
 
+![screenshot](https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530655/Screenshot_20220606_174245_Chrome_7d32a6a9f5.jpg?updated_at=2022-06-06T15:50:57.804Z)
+
 ## Table of contents
 
 - [Overview](#overview)
@@ -14,9 +16,9 @@
 ## OVERVIEW
 
 ### About the project
-This is a multi-page headless e-commerce website. The products were fetched from an API I built with strapi.
+This is a multi-page headless e-commerce website. The products were fetched from an API I built strapi.
 
-I built the site using static site generation to provide short page load times and serve customers with much better user experience. 
+The site was built using static site generation to provide short page load times and serve customers with much better user experience. 
 
 I aslo employed static site generation as I won't be updating the invetory very often.
 
@@ -32,6 +34,8 @@ Within the application, users are be able to accomplish the following tasks
    - Shipping always adds a certain amount to the order depending on the shippng method selected.
  - **Subscribe** to the email list after checking 'send me special offers'
  - See an **order confirmation modal** after checking out with an order summary.
+ - Retain their products in the cart after refreshing the page or after leaving the website.
+ - Checkout using stripe.
 
 ## MY PROCESS
 
@@ -41,12 +45,16 @@ Within the application, users are be able to accomplish the following tasks
 - Tailwind css
 - Redux for state management
 - Strapi
+- Stripe for handling payments.
+- Local storage for persisting data.
+- Nodejs for user authentication and handling stripe API integration.
+- MongoDb.
 
 #### Why I Chose Next.js
-- The file-system based router **makes navigation in a multi-paged application easier and seamless.** 
+- The file-system based routing **makes navigation in a multi-paged application easier and seamless.** 
 
 That made development of the site more rapid. After my previous project, I learnt that page navigation 
-with the react-router - in react.js would not be as efficient. 
+with the react-router - in react.js - would not be as efficient. 
 
 - **Short page load time.** A Next.js application is super-fast thanks to static site generation. 
 
@@ -56,10 +64,19 @@ That helps to provide a rich user experience and that's important to an ecommerc
 
 It is super important for an ecommerce website to be easily discovered by customers searching for products online which will increase sales.
 
-The built-in pre-rendering functionality in Next.js makes crawling of the website by search engine and social media crawlers much more efficient. 
+The built-in pre-rendering functionality in Next.js makes crawling of the website by search engine and social media crawlers much more efficient. Hence the chances of ranking the website in search engines increases.
+
+I also tried to include long-tail keywords in the text of the site and more importantly the headings to improve SEO.
 
 ### Why I chose redux.
 - It enabled handling and managing state in one place where it can be accessed from any part of the application.
+
+### Stripe integration.
+I had two options - Prebuilt Stripe Checkout and stripe payment intents. The stripe checkout option is much easier to start with but it's less customisable.
+
+So it couldn't meet my needs. I went with stripe payment intents which though being more customisable, it has a steeper learning curve for working with its api.
+
+You can read more about the [stripe payment intents API](https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements&html-or-react=react)
  
 ### Challenges
 
@@ -133,9 +150,11 @@ _Alternative way:_
   back to home
 </button>
 ```
+5. Integrating local storage into a project so as to persist data when a page reloads or if a user has to leave a site.
 
+6. Integrating stripe API to accept on line payments.
 ### Continued development
 
-- This project has enabled me to improve on my skills and confidence so I'm looking forward to building more complicated projects like this one.
+- This project has enabled me to improve on my skills and confidence so I'm looking forward to building complicated projects like this one.
 
 - During the project, I found myself required to read documentation as I could not find the solutions to my problems on google, you-tube, stack overflow e.t.c. So I'm going to get myself used to reading documentation in my next projects. 
