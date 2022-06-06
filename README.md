@@ -8,13 +8,10 @@
 <img src="https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530656/Screenshot_20220606_174303_Chrome_02cef15d9a.jpg?updated_at=2022-06-06T15:50:59.103Z" width="100" height="200">
 &nbsp;
 <img src="https://res.cloudinary.com/dbsbevgcj/image/upload/v1654530657/Screenshot_20220606_174352_Chrome_ac216fd581.jpg?updated_at=2022-06-06T15:50:59.999Z" width="100" height="200">
-</div>
 &nbsp;
 <img src="https://res.cloudinary.com/dbsbevgcj/image/upload/v1654533223/Screenshot_20220606_191542_Chrome_0134432b45.jpg?updated_at=2022-06-06T16:33:45.076Z" width="100" height="200">
-</div>
 &nbsp;
 <img src="https://res.cloudinary.com/dbsbevgcj/image/upload/v1654533226/Screenshot_20220606_191611_Chrome_b33e907217.jpg?updated_at=2022-06-06T16:33:48.580Z" width="100" height="200">
-</div>
 &nbsp;
 <img src="https://res.cloudinary.com/dbsbevgcj/image/upload/v1654533207/Screenshot_20220606_192548_Chrome_Copy_fa8f9fe212.jpg?updated_at=2022-06-06T16:33:29.998Z" width="100" height="200">
 &nbsp;
