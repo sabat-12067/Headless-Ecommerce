@@ -43,7 +43,7 @@ const StaticNavigation = ({
   toggleCart,
 }) => {
   return (
-    <div className=' font-["Arima_Madurai"] font-bold text-lg flex justify-between w-full items-center p-4 pr-2 bg-white'>
+    <div className=' font-["Arima_Madurai"] font-bold text-lg flex justify-between w-full items-center p-4 pr-2 bg-white relative z-20'>
       <Link href='/'>Asuman Sounds</Link>
       <div className='relative flex' onClick={toggleCart}>
         <HiShoppingCart className='w-8 h-8' />
@@ -61,30 +61,26 @@ const StaticNavigation = ({
   );
 };
 
-const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
+const ToggledNavigation = ({ isMobileNavOpen }) => {
   return (
     <div
-      className=' bg-primary-12 fixed h-screen right-0 left-[102%] top-0 p-4 leading-[4rem] z-10 duration-300 ease-in-out'
+      className=' bg-primary-10 fixed h-screen right-0 left-[102%] top-0 p-4 leading-[4rem] z-10 duration-300 ease-in-out opacity-90'
       style={{
-        left: isMobileNavOpen ? '25%' : '102%',
-      }}>
-      <HamurgerMenu
-        isMobileNavOpen={isMobileNavOpen}
-        setIsMobileNavOpen={setIsMobileNavOpen}
-      />
-      <ul className='pt-[5rem] text-[white uppercase font-bold tracking-wider '>
+        left: isMobileNavOpen ? '0' : '102%',
+      }}>  
+      <ul className='pt-[5rem] uppercase font-bold tracking-wider '>
         {listItems.map((listItem, index) => {
           const { icon, text, path } = listItem;
           return (
             <li
               key={index}
-              className='border-b-[1px] flex items-center '>
+              className='border-b-[1px] flex items-center text-white'>
               <div className='mr-3 text-[1.5rem]'>{icon}</div>
               <Link href={path}>{text}</Link>
             </li>
           );
         })}
-        <li className='mt-[4rem] flex items-center'>
+        <li className='mt-[4rem] flex items-center text-white'>
           <Link href='/login'>Sign Out</Link>
           <FaSignOutAlt className='ml-2' />
         </li>

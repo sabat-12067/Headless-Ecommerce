@@ -5,43 +5,42 @@ import { productIdActions } from '../../store/productIdSlice';
 export default function FeaturedCollection({ products }) {
 
   return (
-   
-      <section className='mt-5 md:relative'>
-        <h2 className='uppercase text-left px-4'>
-          bringing you the <span className='text-secondary-7'>best</span> audio
-          gear
-        </h2>
-        <div className='md:absolute top-6 flex items-center justify-center left-0 w-full'>
-          <hr className='w-28 md:w-44 m-8' />
-        </div>
-        <div className=' text-white grid grid-cols-grid-sm md:grid-cols-autofill-lg max-w-6xl md:my-12 my-2 pt-6 mx-auto bg-white'>
-          {products.map((product) => {
-            const item = product.attributes;
-            const { name, image, price, discountPercentage } = item;
+    <section name='products' className='mt-5 md:relative'>
+      <h2 className='uppercase text-left px-4'>
+        bringing you the <span className='text-secondary-7'>best</span> audio
+        gear
+      </h2>
+      <div className='md:absolute top-6 flex items-center justify-center left-0 w-full'>
+        <hr className='w-28 md:w-44 m-8' />
+      </div>
+      <div className=' text-white grid grid-cols-grid-sm md:grid-cols-autofill-lg max-w-6xl md:my-12 my-2 pt-6 mx-auto bg-white'>
+        {products.map((product) => {
+          const item = product.attributes;
+          const { name, image, price, discountPercentage } = item;
 
-            let discountPrice = (price * 100) / (100 - discountPercentage);
+          let discountPrice = (price * 100) / (100 - discountPercentage);
 
-            //convert to two decimal places
-            discountPrice = Math.round((discountPrice * 100) / 100).toFixed(2);
+          //convert to two decimal places
+          discountPrice = Math.round((discountPrice * 100) / 100).toFixed(2);
 
-            //get url of the first images
-            const imageUrl = image.data[0].attributes.url;
-            const id = product.id;
+          //get url of the first images
+          const imageUrl = image.data[0].attributes.url;
+          const id = product.id;
 
-            return (
-              <SingleProduct
-                key={id}
-                name={name}
-                imageUrl={imageUrl}
-                price={price}
-                discountPrice={discountPrice}
-                discountPercentage={discountPercentage}
-                productId={id}
-              />
-            );
-          })}
-        </div>
-      </section>
+          return (
+            <SingleProduct
+              key={id}
+              name={name}
+              imageUrl={imageUrl}
+              price={price}
+              discountPrice={discountPrice}
+              discountPercentage={discountPercentage}
+              productId={id}
+            />
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
