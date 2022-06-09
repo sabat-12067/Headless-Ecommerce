@@ -8,7 +8,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { BiHighlight } from 'react-icons/bi';
 
 export default function Carousel({ singleProduct }) {
      

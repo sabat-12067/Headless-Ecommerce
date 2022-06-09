@@ -1,7 +1,7 @@
 import { Button } from '../HorLine';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import SquareLoader from 'react-spinners/SquareLoader';
+import ClipLoader from 'react-spinners/ClipLoader';
 import {
   PaymentElement,
   useStripe,
@@ -14,7 +14,7 @@ export default function CheckoutForm() {
   const elements = useElements();
   const router = useRouter();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
   const [alert, setAlert] = useState({ show: false, type: '', msg: '' });
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function CheckoutForm() {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-    setIsLoading(true);
+    setIsProcessing(true);
 
     const { error } = await stripe.confirmPayment({
       elements,
@@ -106,19 +106,11 @@ export default function CheckoutForm() {
         msg: 'An unexpected error occurred.',
       });
     }
-    setIsLoading(false);
+    setIsProcessing(false);
   };
 
   return (
     <>
-      {isLoading && (
-        <div className='absolute z-50 flex flex-col justify-center items-center bottom-0 top-0 bg-primary-12 right-0 left-0 h-full w-screen'>
-          <SquareLoader size={60} color={'#fb923c'} />
-          <p className='font-bold mt-12 animate-zoomInOut'>
-            Loading next page... please wait!
-          </p>
-        </div>
-      )}
       <div className='w-full flex relative'>
         <div className='absolute w-full lg:w-[80%] z-30 top-4'>
           {alert.show && <Alert alert={alert} setAlert={setAlert} />}
@@ -128,7 +120,12 @@ export default function CheckoutForm() {
           onSubmit={handleSubmit}>
           <div></div>
           <PaymentElement />
-          <Button text='pay now' disabled={!stripe} type='submit' />
+          <div className='relative'>
+            <div className='absolute flex left-6 top-10 sm:left-12 md:left-16 lg:left-24 '>
+              {isProcessing && <ClipLoader size={25} color={'#ffff'} />}
+            </div>
+            <Button text={isProcessing ? 'Processing...' : 'pay now'} disabled={!stripe} type='submit' />
+          </div>
           <p
             className='text-left pt-3 text-primary-10 underline font-bold lg:cursor-pointer'
             onClick={() => router.push('/checkout/review')}>

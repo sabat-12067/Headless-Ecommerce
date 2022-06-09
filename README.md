@@ -56,7 +56,7 @@ I aslo employed static site generation as I won't be updating the invetory very 
 
 ## GETTING STARTED
 
-- To clone the repository, navigate to the directory where you want the cloned directory.
+- To clone the repository, open the folder where you want the cloned/copied project in vs code.
 - Paste `git clone https://github.com/asuman315/asuman-sounds` into the terminal.
 - Press enter to create your local clone/copy.
 - Run `cd asuman-sounds`
@@ -102,6 +102,14 @@ const response = await axios.post(
 - Local storage for persisting data.
 - Nodejs for user authentication and handling stripe API integration.
 - MongoDb.
+
+#### Third party APIs used
+- Strapi: Handling products data.
+- Stripe: For handling payments.
+- Swiper: Creating carousel.
+- useForm: Handling forms and form validations.
+- React-spinners: Creating loading spinners. This helped me improve user experince during data fetching. Customers need to know if there request is being handled.
+- Axios: Fetching data.
 
 #### Why I Chose Next.js
 - The file-system based routing **makes navigation in a multi-paged application easier and seamless.**
