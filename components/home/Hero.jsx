@@ -29,8 +29,8 @@ export default function Hero() {
               <div className='flex-col items-center justify-center flex absolute h-full w-full z-10 text-[white]'>
                 <h3 className='uppercase px-4'>{h3}</h3>
                 <h1 className='mt-8'>{h1}</h1>
-                <Link to='products' smooth={true} offset={0} duration={500} className='w-[80%]'>
-                  <button className='mt-32 rounded-none w-full md:w-[50%] lg:[20%] bg-primary-11 uppercase'>
+                <Link to='products' smooth={true} offset={0} duration={500} className='w-[80%] md:w-[50%]'>
+                  <button className='mt-32 rounded-none w-full mx-auto bg-primary-11 uppercase'>
                     shop now
                   </button>
                 </Link>
