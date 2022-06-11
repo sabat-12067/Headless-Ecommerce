@@ -5,7 +5,7 @@ import { productIdActions } from '../../store/productIdSlice';
 export default function FeaturedCollection({ products }) {
 
   return (
-    <section name='products' className='mt-5 md:relative'>
+    <section name='products' className='mt-5 md:relative max-w-6xl mx-auto'>
       <h2 className='uppercase text-left px-4'>
         bringing you the <span className='text-secondary-7'>best</span> audio
         gear
@@ -13,7 +13,7 @@ export default function FeaturedCollection({ products }) {
       <div className='md:absolute top-6 flex items-center justify-center left-0 w-full'>
         <hr className='w-28 md:w-44 m-8' />
       </div>
-      <div className=' text-white grid grid-cols-grid-sm md:grid-cols-autofill-lg max-w-6xl md:my-12 my-2 pt-6 mx-auto bg-white'>
+      <div className=' text-white grid grid-cols-grid-sm md:grid-cols-autofill-lg w-full md:my-12 my-2 p-6 mx-auto bg-white'>
         {products.map((product) => {
           const item = product.attributes;
           const { name, image, price, discountPercentage } = item;
