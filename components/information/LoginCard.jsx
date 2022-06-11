@@ -58,6 +58,7 @@ const LoginForm = ({ setShowLoginCard }) => {
     } catch (error) {
      console.log(error);
       setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
+      setLoading(false);
     }
   };
 
@@ -124,13 +125,13 @@ const LoginForm = ({ setShowLoginCard }) => {
             </div>
           </div>
           <div className='relative flex items-center'>
-            <div className='absolute flex left-6 sm:left-12 md:left-16 lg:left-24 '>
+            <div className='absolute flex left-6 sm:left-16 md:left-20 lg:left-28 '>
               {isLoading && <ClipLoader size={28} color={'#ffff'} />}
             </div>
             <button
               type='submit'
               className='bg-primary-11 my-4 w-full rounded-sm py-3 text-lg'>
-              {isLoading ? 'Loading...' : 'Sign in'}
+              {isLoading ? 'Logging in...' : 'Sign in'}
             </button>
           </div>
         </form>
