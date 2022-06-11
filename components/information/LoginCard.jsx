@@ -130,12 +130,12 @@ const LoginForm = ({ setShowLoginCard }) => {
             <button
               type='submit'
               className='bg-primary-11 my-4 w-full rounded-sm py-3 text-lg'>
-             { isLoading ? 'Loading...' : 'Sign in'}
+              {isLoading ? 'Loading...' : 'Sign in'}
             </button>
           </div>
         </form>
         <div className='px-8 pt-4 bg-primary-12 pb-4 sm:flex rounded-b-lg '>
-          <p className='font-medium mr-2'>Don't have an account?</p>
+          <p className='font-medium mr-2'>Don&#39;t have an account?</p>
           <p
             className='font-medium text-secondary-7 lg:cursor-pointer'
             onClick={() => router.push('/auth/signup')}>

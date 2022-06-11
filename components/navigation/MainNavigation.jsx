@@ -12,6 +12,7 @@ export default function MainNavigation() {
    useEffect(() => {
      // Store the cart items in local storage to a cartItems array of the redux store
      dispatch(cartActions.setCartItems(cartItems));
+     //eslint-disable-next-line
    }, []);
 
    // navigations are rendered on the server. 

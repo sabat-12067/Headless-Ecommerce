@@ -23,6 +23,7 @@ const ThankYou = () => {
     localStorage.setItem('deliveryMethod', JSON.stringify(''));
     localStorage.setItem('buyItNowItem', JSON.stringify({}));
     setOrderNumber(localStorage.getItem('orderNumber'));
+    //eslint-disable-next-line
   }, []);
 
   return (
