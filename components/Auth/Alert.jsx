@@ -10,7 +10,6 @@ const Alert = ({ alert, setAlert }) => {
     const alertTimeOut = setTimeout(() => {
       setAlert({ show: false });
     }, 3500);
-        console.log('msg has changed');
     return () => clearTimeout(alertTimeOut);
   });
 

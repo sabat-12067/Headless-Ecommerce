@@ -8,6 +8,7 @@ import { ImCross } from 'react-icons/im';
 import Link from 'next/link';
 import { useState } from 'react';
 import Alert from './Auth/Alert';
+import { useEffect } from 'react';
 
 //THIS component is for the cart section and displaying the cart after clicking the cart icon
 
@@ -19,7 +20,7 @@ const Cart = () => {
 const Carts = () => {
   /*I used cartItems from the redux store instead of local Storage because... 
   
-  I wanted to access the updated state of the cartItems array whenever a customer deletes an item from the cart or increaments/decrements the quantity of an item in the cart. */
+  I wanted to access the updated state of the cartItems array i.e whenever a customer deletes an item from the cart or increaments/decrements the quantity of an item in the cart. */
 
   /* Alternatively, 
    const [cartItems, setCartItems] = useState([]);
@@ -30,7 +31,7 @@ const Carts = () => {
 
   Problem? It results into an infinite loop
   
-  NOTE: // The following code helped to update the redux store each time cartItems in local storage was updated.  
+  NOTE: // The following code helped to update the redux store to the cart items in local storage when a page loads for the first time..  
   useEffect(() => {
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     dispatch(cartActions.setCartItems(cartItems));
@@ -38,10 +39,22 @@ const Carts = () => {
 
   */
 
-  const cartItems = useSelector((state) => state.cart.cartItems);
+ // const cartItems = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
+  const getCartItems = () => {
+      const myCartItems = JSON.parse(localStorage.getItem('cartItems'));
+      return myCartItems;
+  }
+
+  const [cartItems, setCartItems] = useState(getCartItems());
+  console.log('cartItems', cartItems);
+
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
+
 
   const numberOfCartItems = cartItems.length;
-  //console.log('cartItems', cartItems);
 
   return (
     <>
@@ -51,13 +64,14 @@ const Carts = () => {
         <CartWithItems
           numberOfCartItems={numberOfCartItems}
           cartItems={cartItems}
+          setCartItems={setCartItems}
         />
       )}
     </>
   );
 };
 
-const CartWithItems = ({ cartItems }) => {
+const CartWithItems = ({ cartItems, setCartItems }) => {
     const [alert, setAlert] = useState({
       type: '',
       show: false,
@@ -65,33 +79,58 @@ const CartWithItems = ({ cartItems }) => {
     });
 
   const dispatch = useDispatch();
-  const router = useRouter();
+  const router = useRouter();   
 
   const handleIncrement = (id) => {
-    dispatch(cartActions.incrementCartQuantity(id));
+   // dispatch(cartActions.incrementCartQuantity(id));
+   cartItems.map((item) => {
+     if (item.id === id) {
+       item.quantity = item.quantity + 1;
+       item.totalPrice = item.quantity * item.price;
+     }
+   });
       setAlert({
         type: 'success',
         show: true,
         msg: 'Item updated successfully!',
       });
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+       dispatch(cartActions.setCartItems(cartItems));
   };
 
   const handleDecrement = (id) => {
-    dispatch(cartActions.decrementCartQuantity(id));
+    //dispatch(cartActions.decrementCartQuantity(id));
+    cartItems.map((cartItem) => {
+      if (cartItem.id === id) {
+        cartItem.quantity -= 1;
+        if (cartItem.quantity <= 1) {
+          cartItem.quantity = 1;
+        }
+        cartItem.totalPrice = cartItem.quantity * cartItem.price;
+      }
+    });
       setAlert({
         type: 'success',
         show: true,
         msg: 'Item updated updated successfully!',
       });
+      // update the redux store and local storage after changes 
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+       dispatch(cartActions.setCartItems(cartItems));
   };
 
   const removeItem = (id) => {
-    dispatch(cartActions.removeItem(id));
+   // dispatch(cartActions.removeItem(id));
+   // const productToBeDeleted = cartItems.find((item) => item.id === id);
+    const remainingCartItems =  cartItems.filter((item) => item.id !== id);
+    setCartItems(remainingCartItems);
     setAlert({
       type: 'success',
       show: true,
       msg: 'Item removed successfully!',
     });
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+     dispatch(cartActions.setCartItems(cartItems));
   };
 
   let totalPriceOfAllItems = 0;

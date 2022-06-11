@@ -1,17 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+//Deleting items from cart and increamenting the quantity of items in cart was handled in the redux store becuase I failed to grab their updated state from the local storage. But after changing them, I synced the updated state to the one of local storage.
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     cartItems: [],
     showCart: false,
     buyItNowItem: '',
+    totalQuantity: 0,
     isBuyItNowBtnClicked: false,
     isAddToCartBtnClicked: false,
   },
   reducers: {
     setCartItems(state, action) {
-      state.cartItems = action.payload;
+      state.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     },
     //delete item from cart
     removeItem(state, action) {
@@ -42,9 +43,9 @@ const cartSlice = createSlice({
         state.cartItems.map(cartItem => {
           if(cartItem.id === id) {
             cartItem.quantity -= 1;
-            if(cartItem.quantity <= 1) {
-              cartItem.quantity = 1;
-            }
+            // if(cartItem.quantity <= 1) {
+            //   cartItem.quantity = 1;
+            // }
             cartItem.totalPrice = cartItem.quantity * cartItem.price;
           }
         })
@@ -60,6 +61,9 @@ const cartSlice = createSlice({
     },
     setBuyItNowItem(state, action) {
       state.buyItNowItem = action.payload;
+    },
+    setTotalQuantity(state, action) {
+      state.totalQuantity = action.payload;
     }
   },
 });

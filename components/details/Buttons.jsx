@@ -42,6 +42,7 @@ export default function Buttons({ singleProduct, productId }) {
     const cartItems = localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [];
+
     // Check if the cartItems array already contains the item
     const existingCartItem = cartItems.find(
       (cartItem) => cartItem.id === productId
@@ -60,8 +61,6 @@ export default function Buttons({ singleProduct, productId }) {
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     // Update the cartItems array in the redux store
     dispatch(cartActions.setCartItems(cartItems));
-    // Show the alert
-    console.log('function reached here');
     setAlert({
       type: 'success',
       show: true,

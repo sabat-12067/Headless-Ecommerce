@@ -9,7 +9,6 @@ import { useState } from 'react';
 export default function InfoLayout({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [buyItNowItem, setBuyItNowItem] = useState({});
-
   const [isAddToCartBtnClicked, setIsAddToCartBtnClicked] = useState();
 
   useEffect(() => {

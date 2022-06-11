@@ -17,9 +17,8 @@ const listItems = [
   { text: 'shipping', icon: <FaShippingFast />, path: '/shipping' },
 ];
 
-function MobileNavigation({ totalQuantity, toggleCart }) {
+function MobileNavigation({ toggleCart, totalQuantity }) {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-
   return (
     <nav className='md:hidden w-screen flex overflow-hidden absolute'>
       <StaticNavigation

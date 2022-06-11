@@ -5,6 +5,7 @@ import axios from 'axios';
 import Alert from './Alert';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions } from '../../store/authSlice';
+import { useRouter } from 'next/router';
 
 const Signup = () => {
   return <SignupForm />;
@@ -25,6 +26,7 @@ const SignupForm = () => {
 
   //grab the id of the clicked product
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +54,12 @@ const SignupForm = () => {
       setName('');
 
       //Set logged-in status to true
-      dispatch(authActions.login());
+      sessionStorage.setItem('isloggedIn', true);
+      const cartItems = localStorage.getItem('cartItems');
+      // Push the user to the checkout page if they have items in their cart
+      if (cartItems) {
+        router.push('/checkout/shipping');
+      }
 
       //Store userId in the redux store
       const userId = response.data.user.userId;
