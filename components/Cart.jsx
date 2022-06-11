@@ -47,12 +47,7 @@ const Carts = () => {
   }
 
   const [cartItems, setCartItems] = useState(getCartItems());
-  console.log('cartItems', cartItems);
-
-  useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
-
+  console.log(cartItems);
 
   const numberOfCartItems = cartItems.length;
 
@@ -120,18 +115,20 @@ const CartWithItems = ({ cartItems, setCartItems }) => {
   };
 
   const removeItem = (id) => {
-   // dispatch(cartActions.removeItem(id));
-   // const productToBeDeleted = cartItems.find((item) => item.id === id);
     const remainingCartItems =  cartItems.filter((item) => item.id !== id);
-    setCartItems(remainingCartItems);
     setAlert({
       type: 'success',
       show: true,
       msg: 'Item removed successfully!',
     });
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-     dispatch(cartActions.setCartItems(cartItems));
+    localStorage.setItem('cartItems', JSON.stringify(remainingCartItems));
+    dispatch(cartActions.setCartItems(cartItems));
+    setCartItems(remainingCartItems);
   };
+
+  
+
+  console.log('other cart items', cartItems);
 
   let totalPriceOfAllItems = 0;
 

@@ -12,7 +12,8 @@ const cartSlice = createSlice({
   },
   reducers: {
     setCartItems(state, action) {
-      state.cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      state.cartItems = JSON.parse(localStorage.getItem('cartItems'));
+      console.log('Redux cart items', state.cartItems);
     },
     //delete item from cart
     removeItem(state, action) {
