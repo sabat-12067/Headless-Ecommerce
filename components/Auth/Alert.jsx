@@ -6,26 +6,26 @@ const Alert = ({ alert, setAlert }) => {
 
   const { type, show, msg } = alert;
 
-  useEffect(() => {
-    const alertTimeOut = setTimeout(() => {
-      setAlert({ show: false });
-    }, 3500);
-    return () => clearTimeout(alertTimeOut);
-  });
+  // useEffect(() => {
+  //   const alertTimeOut = setTimeout(() => {
+  //     setAlert({ show: false });
+  //   }, 3500);
+  //   return () => clearTimeout(alertTimeOut);
+  // });
 
   return (
     <div className='flex items-center'>
       <p
-        className={` text-sm font-meduim tracking-wide py-3 px-4 rounded-sm left-2 w-full mx-auto ${
+        className={` text-sm font-extrabold tracking-wide py-3 px-4 rounded-sm left-2 w-full mx-auto ${
           type === 'danger'
-            ? 'text-red bg-light-red border-red border-[1px]'
-            : 'text-green bg-light-green border-[1px] border-green'
+            ? 'text-dark-red bg-light-red border-dark-red border-[1px]'
+            : 'text-dark-green bg-light-green border-[1px] border-dark-green'
         }`}>
         {msg}
       </p>
       <div
         className={`absolute right-3 text-2xl lg:cursor-pointer ${
-          type === 'danger' ? 'text-red' : 'text-green'
+          type === 'danger' ? 'text-dark-red' : 'text-dark-green'
         }`}
         onClick={() => setAlert({ show: false })}>
         <MdOutlineCancel />
