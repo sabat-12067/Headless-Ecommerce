@@ -14,17 +14,17 @@ const Alert = ({ alert, setAlert }) => {
   });
 
   return (
-    <div className='flex items-center'>
-      <p
-        className={` text-sm font-extrabold tracking-wide py-3 px-4 rounded-sm left-2 w-full mx-auto ${
-          type === 'danger'
-            ? 'text-dark-red bg-light-red border-dark-red border-[1px]'
-            : 'text-dark-green bg-light-green border-[1px] border-dark-green'
-        }`}>
+    <div
+      className={`flex items-center relative border-2 w-[95%] mx-auto ${
+        type === 'danger'
+          ? 'text-dark-red bg-light-red border-dark-red border-[1px]'
+          : 'text-dark-green bg-light-green border-[1px] border-dark-green'
+      }`}>
+      <p className='text-sm font-extrabold tracking-wide pl-3 py-3 w-[85%] rounded-sm'>
         {msg}
       </p>
       <div
-        className={`absolute right-3 text-2xl lg:cursor-pointer ${
+        className={`absolute right-3 pl-4 text-2xl lg:cursor-pointer ${
           type === 'danger' ? 'text-dark-red' : 'text-dark-green'
         }`}
         onClick={() => setAlert({ show: false })}>

@@ -70,11 +70,8 @@ const LoginForm = ({ setShowLoginCard }) => {
     }
   };
 
-  //border-2 h-[80vh] absolute bg-primary-11 w-screen bottom-0 lg:h-[70vh]
-  //Svg is from gatwaves.io
   return (
-    <section className='sm:flex flex-col items-start rounded-md bg-primary-11 w-full py-4 absolute z-30 duration-300 ease-in-out top-0 max-w-xl mx-auto left-0 sm:right-0'>
-      <div className=' w-[90%] mx-auto top-6 lg:top-0 shadow-md'>
+    <section className='sm:flex flex-col items-start rounded-md bg-primary-11 w-full p-4 absolute z-30 duration-300 ease-in-out top-0 max-w-xl mx-auto left-0 sm:right-0'>     
         <form
           onSubmit={handleSubmit}
           className=' bg-white pt-10 w-full px-4 rounded-t-lg relative border-'>
@@ -125,7 +122,7 @@ const LoginForm = ({ setShowLoginCard }) => {
             </div>
           </div>
           <div className='relative flex items-center'>
-            <div className='absolute flex left-6 sm:left-16 md:left-20 lg:left-28 '>
+            <div className='absolute flex left-6 sm:left-16 md:left-24 lg:left-28 '>
               {isLoading && <ClipLoader size={28} color={'#ffff'} />}
             </div>
             <button
@@ -135,7 +132,7 @@ const LoginForm = ({ setShowLoginCard }) => {
             </button>
           </div>
         </form>
-        <div className='px-8 pt-4 bg-primary-12 pb-4 sm:flex rounded-b-lg '>
+        <div className='px-8 pt-4 bg-primary-12 pb-4 sm:flex rounded-b-lg w-full'>
           <p className='font-medium mr-2'>Don&#39;t have an account?</p>
           <p
             className='font-medium text-secondary-7 lg:cursor-pointer'
@@ -143,7 +140,6 @@ const LoginForm = ({ setShowLoginCard }) => {
             Create your free account
           </p>
         </div>
-      </div>
     </section>
   );
 };
