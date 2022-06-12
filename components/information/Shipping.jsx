@@ -1,14 +1,13 @@
 //This component is used to display shipping information
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { informationActions } from '../../store/infoSlice';
 import { useRouter } from 'next/router';
 import { Button } from '../HorLine';
 import { Navigation } from '../HorLine';
 import LoginCard from './LoginCard';
-import { authActions } from '../../store/authSlice';
 
 export default function CustomerInfo() {
   const [showLoginCard, setShowLoginCard] = useState(false);
@@ -43,7 +42,6 @@ const Shipping = ({ setShowLoginCard, showLoginCard }) => {
     const { value } = e.target;
     if (value) {
       setShippingMethodSelected(true);
-      console.log('showLoginCard in if statement', showLoginCard);
     } else {
       setShippingMethodSelected(false);
     }

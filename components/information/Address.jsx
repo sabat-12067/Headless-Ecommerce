@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { informationActions } from '../../store/infoSlice';
 import { useRouter } from 'next/router';

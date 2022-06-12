@@ -8,7 +8,6 @@ import { ImCross } from 'react-icons/im';
 import Link from 'next/link';
 import { useState } from 'react';
 import Alert from './Auth/Alert';
-import { useEffect } from 'react';
 
 //THIS component is for the cart section and displaying the cart after clicking the cart icon
 
@@ -18,29 +17,8 @@ const Cart = () => {
 };
 
 const Carts = () => {
-  /*I used cartItems from the redux store instead of local Storage because... 
-  
-  I wanted to access the updated state of the cartItems array i.e whenever a customer deletes an item from the cart or increaments/decrements the quantity of an item in the cart. */
-
-  /* Alternatively, 
-   const [cartItems, setCartItems] = useState([]);
-
-    useEffect(() => {
-      setCartItems(JSON.parse(localStorage.getItem('cartItems')));
-    }, [cartItems]);
-
-  Problem? It results into an infinite loop
-  
-  NOTE: // The following code helped to update the redux store to the cart items in local storage when a page loads for the first time..  
-  useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-    dispatch(cartActions.setCartItems(cartItems));
-  });
-
-  */
 
  // const cartItems = useSelector((state) => state.cart.cartItems);
-  const dispatch = useDispatch();
   const getCartItems = () => {
       const myCartItems = JSON.parse(localStorage.getItem('cartItems'));
       return myCartItems;
@@ -125,10 +103,6 @@ const CartWithItems = ({ cartItems, setCartItems }) => {
     dispatch(cartActions.setCartItems(cartItems));
     setCartItems(remainingCartItems);
   };
-
-  
-
-  console.log('other cart items', cartItems);
 
   let totalPriceOfAllItems = 0;
 
