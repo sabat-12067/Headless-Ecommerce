@@ -32,7 +32,7 @@ export async function getStaticProps() {
   );
 const productsData = await response.json();
 const products = productsData.data;
-  //console.log(products);
+//console.log(products);
 
 return {
   props: {

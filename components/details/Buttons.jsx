@@ -38,7 +38,7 @@ export default function Buttons({ singleProduct, productId }) {
   };
 
   const addToCart = () => {
- // Store the cart items in local storage to a cartItems array
+ // Set 'cartItems' to the cartItems in local storage if it exists otherwise set it to an empty array
     const cartItems = localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [];
@@ -57,9 +57,9 @@ export default function Buttons({ singleProduct, productId }) {
       cartItems.push(cartItem);
     }
 
-    // Update the cartItems array in local storage
+    // Add the cartItems array in local storage
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    // Update the cartItems array in the redux store
+    // Add the cartItems array in the redux store
     dispatch(cartActions.setCartItems(cartItems));
     setAlert({
       type: 'success',

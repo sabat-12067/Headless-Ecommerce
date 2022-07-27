@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,7 +11,8 @@ export default function MainNavigation() {
 
    useEffect(() => {
      // Store the cart items in local storage to a cartItems array of the redux store
-     dispatch(cartActions.setCartItems(cartItems));
+      const myCartItems = JSON.parse(localStorage.getItem('cartItems'));
+     dispatch(cartActions.setCartItems(myCartItems));
      //eslint-disable-next-line
    }, []);
 
@@ -19,12 +20,12 @@ export default function MainNavigation() {
    //That makes keeping up with state of the cart items in local storage impossible.
     let cartItems = useSelector(state => state.cart.cartItems);
 
-  // //set cartItems to empty array if it is null or undefined to avoid error that could crash server and when on the last - thankyou - page.
+  // //set cartItems to empty array if it is null or undefined to avoid error that could crash the app in production and when on the last - thankyou - page.
     if(!cartItems || router.pathname === '/thankyou') {
       cartItems = [];
     }
 
-  // //    //hide and show the cart section when the cart icon is clicked
+  //hide and show the cart section when the cart icon is clicked
   const toggleCart = () => {
     dispatch(cartActions.setShowCart());
   };
