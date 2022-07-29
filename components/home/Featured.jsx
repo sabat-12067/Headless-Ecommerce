@@ -1,5 +1,6 @@
 import speaker from '../../public/images/speaker.png';
-import earbuds from '../../public/images/earbuds.jpg';
+import earbuds from '../../public/images/earbuds-copy.png';
+import lenoveHeadphones from '../../public/images/lenovo-copy.png';
 
 export default function Featured() {
   return (
@@ -12,16 +13,16 @@ export default function Featured() {
 
 const FeaturedOne = () => {
   return (
-    <div className='bg-secondary-6 text-primary-12 rounded-lg pt-6 md:flex'>
+    <div className='bg-secondary-6 text-primary-14 rounded-lg pt-6 md:flex'>
       <div className='flex justify-center'>
-        <img src={speaker.src} alt='Image of jbl speaker'/>
+        <img src={earbuds.src} alt='Image of jbl speaker' />
       </div>
       <div className='flex flex-col justify-center'>
         <h3 className='uppercase text-center text-xl px-5 tracking-wider mt-3'>
-          jbl flip 6 portable waterproof speaker
+          Robot Bluetooth Wireless Earbuds
         </h3>
         <p className='text-lg sm:text-xl text-center py-5 leading-8'>
-          Upgrade to premium speakers that are phenomenally built to deliver
+          Upgrade to premium earbuds that are phenomenally built to deliver
           truly remarkable sound.
         </p>
         <div className='flex justify-center'>
@@ -37,8 +38,17 @@ const FeaturedOne = () => {
 const FeaturedTwo = () => {
   return (
     <div className='md:flex'>
-      <div className='mt-5 rounded-lg lg:cursor-pointer md:mr-6'>
-        <img src={earbuds.src} alt='Image of earbuds' className='rounded-lg w-full'/>
+      <div className='relative mt-5 rounded-lg lg:cursor-pointer md:mr-6 bg-black'>
+        <img
+          src={lenoveHeadphones.src}
+          alt='Image of earbuds'
+          className='rounded-lg w-full'
+        />
+        <div className='absolute top-0 bottom-0 right-0 left-0 z-10 flex flex-col items-center justify-center p-5 text-white'>
+          <h3 className='sm:text-xl bg-primary-3 text-primary-11 py-2 px-3 rounded-3xl absolute top-3 left-3'>New</h3>
+          <h3 className='py-5 text-xl sm:text-2xl'>Lenovo</h3>
+          <h3 className='uppercase tracking-widest text-primary-14 text-2xl sm:text-4xl md:text-2xl'>headphones</h3>
+        </div>
       </div>
       <div className='mt-5 rounded-lg bg-primary-14 flex flex-col justify-center'>
         <h3 className='uppercase pt-8 px-5'>

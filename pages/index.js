@@ -6,6 +6,7 @@ import { Fragment } from 'react';
 import Head from 'next/head';
 import { useSelector, useDispatch } from 'react-redux';
 import Categories from '../components/home/Categories';
+import About from '../components/home/About';
 
 export default function Home({ products }) {
   //console.log(products);
@@ -22,7 +23,8 @@ export default function Home({ products }) {
      <Hero /> 
      <Categories />
      <Featured />
-     <FeaturedCollection products={products} />
+     <About />
+     {/* <FeaturedCollection products={products} /> */}
    </section>
     </Fragment>
   )

@@ -31,12 +31,6 @@ module.exports = {
       'dark-green': '#14532d',
       'light-green': '#f0fdf4',
       'black': '#000',
-
-      'secondary-1': '#fff7ed',
-      'secondary-2': '#ffedd5',
-      'secondary-3': '#fed7aa',
-      'secondary-4': '#fdba74',
-      'secondary-5': '#fb923c',
       'secondary-6': '#f97316',
       'secondary-7': '#ea580c',
       'secondary-8': '#c2410c',
@@ -51,6 +45,7 @@ module.exports = {
       'grid-thumbs': 'repeat(auto-fill, minmax(80px, 1fr))',
       'grid-checkout-pg': 'repeat(5, 1fr)',
       '2': 'repeat(2, 1fr)',
+      '4': 'repeat(4, 1fr)',
     },
     keyframes: {
       wiggle: {
