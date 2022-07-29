@@ -44,13 +44,13 @@ const FeaturedTwo = () => {
           alt='Image of earbuds'
           className='rounded-lg w-full'
         />
-        <div className='absolute top-0 bottom-0 right-0 left-0 z-10 flex flex-col items-center justify-center p-5 text-white'>
+        <div className='absolute top-0 bottom-0 right-0 left-0 z-10 flex flex-col items-center justify-center p-5'>
           <h3 className='sm:text-xl bg-primary-3 text-primary-11 py-2 px-3 rounded-3xl absolute top-3 left-3'>New</h3>
-          <h3 className='py-5 text-xl sm:text-2xl'>Lenovo</h3>
+          <h3 className='py-5 text-xl sm:text-2xl text-primary-2'>Lenovo</h3>
           <h3 className='uppercase tracking-widest text-primary-14 text-2xl sm:text-4xl md:text-2xl'>headphones</h3>
         </div>
       </div>
-      <div className='mt-5 rounded-lg bg-primary-14 flex flex-col justify-center'>
+      <div className='mt-5 rounded-lg bg-primary-14 flex flex-col justify-center w-[70%]'>
         <h3 className='uppercase pt-8 px-5'>
           LG Hometheatre System 1000 Watts - Black
         </h3>

@@ -3,16 +3,16 @@ import man from '../../public/images/man.png';
 
 const About = () => {
   return (
-    <section className='my-20 px-5 max-w-6xl mx-auto leading-8 md:grid grid-cols-4'>
-      <div className='bg-primary-11 rounded-lg col-span-2 h-[fit-content]'>
+    <section className='my-20 px-5 max-w-6xl mx-auto leading-8 md:flex grid-cols-4 flex-row-reverse'>
+      <div className='bg-primary-11 rounded-lg col-span-2 w-[100%] h-[fit-content]'>
         <img
           src={man.src}
           alt='image of a person listening to music on headsets'
           className=''
         />
       </div>
-      <div className='text-center px-4 col-span-2'>
-        <h2 className='uppercase text-center px-4 py-5'>
+      <div className='text-center px-4 col-span-2 md:text-left md:w-[90%]'>
+        <h2 className='uppercase text-center md:text-left py-5 md:pt-0'>
           bringing you the <span className='text-secondary-7'>best</span> audio
           gear
         </h2>
