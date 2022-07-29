@@ -5,6 +5,7 @@ import Cart from '../components/Cart';
 import { Fragment } from 'react';
 import Head from 'next/head';
 import { useSelector, useDispatch } from 'react-redux';
+import Categories from '../components/home/Categories';
 
 export default function Home({ products }) {
   //console.log(products);
@@ -19,6 +20,7 @@ export default function Home({ products }) {
       <Cart />
      </div>
      <Hero /> 
+     <Categories />
      <BrandInfo />
      <FeaturedCollection products={products} />
    </section>
