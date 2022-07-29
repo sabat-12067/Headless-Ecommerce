@@ -1,4 +1,4 @@
-import BrandInfo from '../components/home/BrandInfo';
+import Featured from '../components/home/Featured';
 import FeaturedCollection from '../components/home/FeaturedCollection';
 import Hero from '../components/home/Hero';
 import Cart from '../components/Cart';
@@ -21,7 +21,7 @@ export default function Home({ products }) {
      </div>
      <Hero /> 
      <Categories />
-     <BrandInfo />
+     <Featured />
      <FeaturedCollection products={products} />
    </section>
     </Fragment>

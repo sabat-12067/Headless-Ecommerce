@@ -24,11 +24,13 @@ module.exports = {
       'primary-11': 'hsl(205, 100%, 21%)',
       'primary-12': 'hsl(205, 100%, 97%)',
       'primary-13': 'hsl(205, 90%, 83%)',
+      'primary-14': 'hsl(205, 90%, 94%)',
       'white': '#fff',
       'dark-red': '#7f1d1d',
       'light-red': '#fef2f2',
       'dark-green': '#14532d',
       'light-green': '#f0fdf4',
+      'black': '#000',
 
       'secondary-1': '#fff7ed',
       'secondary-2': '#ffedd5',
