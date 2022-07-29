@@ -1,14 +1,13 @@
 import { HiShoppingCart } from 'react-icons/hi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
-const listItems = ['headphones', 'speakers', 'headsets', 'hometheaters'];
+const listItems = ['headphones', 'speakers', 'headsets', 'home theaters'];
 
 export default function DesktopNavigation({ toggleCart, totalQuantity }) {
   return (
     <nav className='hidden px-6 md:flex text-white w-screen'>
-      <div className='flex justify-between items-center w-full py-6 border-b-[1px]'>
+      <div className='flex justify-between items-center w-full pb-6 pt-3 border-b-[1px]'>
         <div className='font-["Arima_Madurai"] font-bold hover:scale-105 duration-300 ease-linear text-2xl'>
           <Link href='/'>asuman sounds</Link>
         </div>

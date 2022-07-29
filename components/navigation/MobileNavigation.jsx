@@ -1,8 +1,9 @@
 import { HiShoppingCart } from 'react-icons/hi';
-import { IoMdContact } from 'react-icons/io';
-import { SiAboutdotme } from 'react-icons/si';
-import { BiCategoryAlt, BiLogIn } from 'react-icons/bi';
-import { FaSignOutAlt, FaShippingFast, FaHome } from 'react-icons/fa';
+import { IoMdHeadset } from 'react-icons/io';
+import { MdHeadset } from 'react-icons/md';
+import { BsMusicPlayerFill, BsFillSpeakerFill } from 'react-icons/bs';
+import { BiLogIn } from 'react-icons/bi';
+import { FaSignOutAlt, FaHome } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -11,10 +12,10 @@ import { useState } from 'react';
 const listItems = [
   { text: 'sign in', icon: <BiLogIn />, path: '/auth/login' },
   { text: 'home', icon: <FaHome />, path: '/' },
-  { text: 'categories', icon: <BiCategoryAlt />, path: '/categories' },
-  { text: 'about', icon: <SiAboutdotme />, path: '/about' },
-  { text: 'contact us', icon: <IoMdContact />, path: '/contact' },
-  { text: 'shipping', icon: <FaShippingFast />, path: '/shipping' },
+  { text: 'headsets', icon: <IoMdHeadset />, path: '/categories' },
+  { text: 'speakers', icon: <BsFillSpeakerFill />, path: '/about' },
+  { text: 'home theaters', icon: <BsMusicPlayerFill />, path: '/contact' },
+  { text: 'headphones', icon: <MdHeadset />, path: '/shipping' },
 ];
 
 function MobileNavigation({ toggleCart, totalQuantity }) {
