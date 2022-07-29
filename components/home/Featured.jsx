@@ -50,7 +50,7 @@ const FeaturedTwo = () => {
           <h3 className='uppercase tracking-widest text-primary-14 text-2xl sm:text-4xl md:text-2xl'>headphones</h3>
         </div>
       </div>
-      <div className='mt-5 rounded-lg bg-primary-14 flex flex-col justify-center w-[70%]'>
+      <div className='mt-5 rounded-lg bg-primary-14 flex flex-col justify-center md:w-[70%]'>
         <h3 className='uppercase pt-8 px-5'>
           LG Hometheatre System 1000 Watts - Black
         </h3>

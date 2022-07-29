@@ -31,7 +31,7 @@ const Categories = () => {
               </div>
               <h3 className='uppercase  tracking-wider mt-3'>{name}</h3>
               <div className='py-5 flex justify-center items-center md:py-10'>
-                <h3 className='uppercase mr-3 font-medium tracking-wider lg:cursor-pointer'>
+                <h3 className='uppercase mr-3 font-medium tracking-wider lg:cursor-pointer hover:translate-x-2 duration-300 ease-out'>
                   shop
                 </h3>
                 <MdArrowForwardIos className='text-secondary-8 md:h-7 md:w-7' />
