@@ -12,10 +12,10 @@ export default function Layout(props) {
    useEffect(() => {
      //hide footer and navigation when user is on the checkout pages
      if (
-       router.pathname === '/checkout/address' ||
-       router.pathname === '/checkout/shipping' ||
-       router.pathname === '/checkout/payment' ||
-       router.pathname === '/checkout/review' ||
+       router.pathname === '/product/checkout/address' ||
+       router.pathname === '/product/checkout/shipping' ||
+       router.pathname === '/product/checkout/payment' ||
+       router.pathname === '/product/checkout/review' ||
        router.pathname === '/auth/login' ||
        router.pathname === '/auth/signup'
      ) {

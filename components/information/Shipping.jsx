@@ -28,7 +28,7 @@ export default function CustomerInfo() {
         setShowLoginCard={setShowLoginCard}
         showLoginCard={showLoginCard}
       />
-      <Navigation path='/checkout/address' pathName='Return To Address' />
+      <Navigation path='/product/checkout/address' pathName='Return To Address' />
     </section>
   );
 }
@@ -53,7 +53,7 @@ const Shipping = ({ setShowLoginCard, showLoginCard }) => {
     e.preventDefault();
     if (isloggedIn) {
       setShowLoginCard(false);
-      router.push('/checkout/payment');
+      router.push('/product/checkout/payment');
     } else {
       //Task the customer to login if they aren't logged in
       setShowLoginCard(true);

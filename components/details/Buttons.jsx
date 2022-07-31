@@ -89,7 +89,7 @@ export default function Buttons({ singleProduct, productId }) {
   const buyItNow = () => {
     localStorage.setItem('buyItNowItem', JSON.stringify(buyItNowItem));
     localStorage.setItem('isAddToCartBtnClicked', false);
-    router.push('/checkout/address');
+    router.push('/product/checkout/address');
   };
 
   const handleIncrement = () => {

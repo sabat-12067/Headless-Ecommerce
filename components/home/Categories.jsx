@@ -4,12 +4,13 @@ import headphone from '../../public/images/headphone.png';
 import headsets from '../../public/images/headsets.png';
 import hometheater from '../../public/images/hometheatre.png';
 import speaker from '../../public/images/speaker.png';
+import Link from 'next/link';
 
 const categories = [
-  { name: 'Headphones', image: headphone },
-  { name: 'Headsets', image: headsets },
-  { name: 'Home Theaters', image: hometheater },
-  { name: 'Speakers', image: speaker },
+  { name: 'Headphones', image: headphone, path: '/products/category/4'  },
+  { name: 'Headsets', image: headsets, path: '/products/category/3' },
+  { name: 'Home Theaters', image: hometheater, path: '/products/category/2' },
+  { name: 'Speakers', image: speaker, path: '/products/category/1' },
 ];
 
 const Categories = () => {
@@ -17,7 +18,7 @@ const Categories = () => {
     <section className='px-5 xl:px-0 max-w-6xl mx-auto pt-8'>
       <div className='sm:grid sm:grid-cols-2 gap-5'>
         {categories.map((category, index) => {
-          const { name, image } = category;
+          const { name, image, path } = category;
           return (
             <div
               key={index}
@@ -30,12 +31,14 @@ const Categories = () => {
                 />
               </div>
               <h3 className='uppercase  tracking-wider mt-3'>{name}</h3>
-              <div className='py-5 flex justify-center items-center md:py-10'>
-                <h3 className='uppercase mr-3 font-medium tracking-wider lg:cursor-pointer hover:translate-x-2 duration-300 ease-out'>
-                  shop
-                </h3>
-                <MdArrowForwardIos className='text-secondary-8 md:h-7 md:w-7' />
-              </div>
+              <Link href={`${path}`} passHref>
+                <div className='py-5 flex justify-center items-center md:py-10'>
+                  <h3 className='uppercase mr-3 font-medium tracking-wider lg:cursor-pointer hover:translate-x-2 duration-300 ease-out'>
+                    shop
+                  </h3>
+                  <MdArrowForwardIos className='text-secondary-8 md:h-7 md:w-7' />
+                </div>
+              </Link>
             </div>
           );
         })}

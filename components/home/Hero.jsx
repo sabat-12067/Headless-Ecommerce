@@ -14,7 +14,7 @@ return (
         <h4 className='normal-case text-xl tracking-wider text-center sm:text-left my-6 leading-10'>
           Experience natural life like audio and exceptional build quality made for the passionate music enthusiast
         </h4>
-        <button className='bg-secondary-8 text-primary-3 uppercase tracking-widest sm:w-[300px] md:text-xl py-4 my-4' onClick={() => router.push('/product/24')}>
+        <button className='bg-secondary-8 text-primary-3 uppercase tracking-widest sm:w-[300px] md:text-xl py-4 my-4' onClick={() => router.push('/product/details/24')}>
           see product
         </button>
       </div>

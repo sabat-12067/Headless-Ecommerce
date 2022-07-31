@@ -10,7 +10,7 @@ const CartNavigation = ({formattedTotalPriceOfAllItems}) => {
   const setIsAddToCartBtnClicked = () => {
     // dispatch(cartActions.setIsAddToCartBtnClicked(true));
     localStorage.setItem('isAddToCartBtnClicked', true);
-    router.push('/checkout/address');
+    router.push('/product/checkout/address');
   };
 
   return (

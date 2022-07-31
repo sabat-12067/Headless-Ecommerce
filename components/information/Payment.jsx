@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Navigation } from '../HorLine';
-import { useDispatch, useSelector } from 'react-redux';
 import CheckoutForm from './CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -22,7 +21,7 @@ export default function Payment() {
       </h2>
       <PaymentInfo />
       {/* <BillingAddress /> */}
-      <Navigation path='/checkout/shipping' pathName='Return To Shipping' />
+      <Navigation path='/product/checkout/shipping' pathName='Return To Shipping' />
     </section>
   );
 }

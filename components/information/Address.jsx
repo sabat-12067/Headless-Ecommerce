@@ -14,7 +14,7 @@ export default function Address() {
   return (
     <section className='px-'>
       <AddressDetails />
-      <Navigation path={`/product/${productId}`} pathName='Return to Cart' />
+      <Navigation path={`/product/details/${productId}`} pathName='Return to Cart' />
     </section>
   );
   [];
@@ -47,7 +47,7 @@ const AddressDetails = () => {
     );
   }
     dispatch(informationActions.setShippingAddress(data));
-    router.push('/checkout/shipping');
+    router.push('/product/checkout/shipping');
   };
 
   //console.log(errors);
