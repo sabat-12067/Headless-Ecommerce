@@ -6,8 +6,7 @@ import { BiLogIn } from 'react-icons/bi';
 import { FaSignOutAlt, FaHome } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState } from 'react';
-import Svg from '../home/Svg';
-
+import { useRouter } from 'next/router';
 //This is a component for the mobile navigation
 
 const listItems = [
@@ -22,7 +21,7 @@ const listItems = [
 function MobileNavigation({ toggleCart, totalQuantity }) {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   return (
-    <nav className='md:hidden w-screen flex overflow-hidden absolute'>
+    <nav className='md:hidden w-screen flex overflow-hidden absolute shadow-lg'>
       <StaticNavigation
         setIsMobileNavOpen={setIsMobileNavOpen}
         isMobileNavOpen={isMobileNavOpen}
@@ -62,7 +61,9 @@ const StaticNavigation = ({
   );
 };
 
-const ToggledNavigation = ({ isMobileNavOpen }) => {
+const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
+  const router = useRouter();
+
   return (
     <div
       className=' bg-primary-10 fixed h-screen right-0 left-[102%] top-0 p-4 leading-[4rem] z-10 duration-300 ease-in-out opacity-90'
@@ -72,12 +73,16 @@ const ToggledNavigation = ({ isMobileNavOpen }) => {
       <ul className='pt-[5rem] uppercase font-bold tracking-wider '>
         {listItems.map((listItem, index) => {
           const { icon, text, path } = listItem;
+          const handleClick = () => {
+            router.push(`/${path}`);
+            setIsMobileNavOpen(!isMobileNavOpen);
+          };
           return (
             <li
               key={index}
-              className='border-b-[1px] flex items-center text-white'>
+              className='border-b-[1px] flex items-center text-white' onClick={handleClick}>
               <div className='mr-3 text-[1.5rem]'>{icon}</div>
-              <Link href={path}>{text}</Link>
+              <p>{text}</p>
             </li>
           );
         })}
