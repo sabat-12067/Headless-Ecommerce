@@ -12,7 +12,7 @@ ul {
   @apply list-none
 }
 button {
-  @apply bg-[transparent] text-[white] font-extrabold py-4 rounded border-0 outline-none text-xl tracking-[1.2px] px-7 md:px-[4rem] md:py-[1.5rem] md:text-3xl lg:cursor-pointer lg:hover:scale-105 duration-300 ease-linear
+  @apply bg-secondary-8 text-[white] font-extrabold py-4 rounded border-0 outline-none text-xl tracking-[1.2px] px-7 md:px-[4rem] md:py-[1.5rem] md:text-3xl lg:cursor-pointer lg:hover:scale-105 duration-300 ease-linear
 }
 h1,
 h2,
