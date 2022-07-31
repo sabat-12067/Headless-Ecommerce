@@ -6,12 +6,10 @@ const listItems = ['headphones', 'speakers', 'headsets', 'home theaters'];
 
 export default function DesktopNavigation({ toggleCart, totalQuantity }) {
   const router = useRouter();
-  const isHomePage = router.path === '/';
-
-  console.log('is home Page?', isHomePage);
+  const isHomePage = router.pathname === '/';
 
   return (
-    <nav className={`hidden px-6 md:flex w-screen ${!isHomePage ? 'text-primary-11' : 'text-white'}`}>
+    <nav className={`hidden px-6 md:flex w-screen text-white ${isHomePage ? 'text-white' : 'text-primary-11'}`}>
       <div className='flex justify-between items-center w-full pb-4 pt-3 border-b-[1px]'>
         <div className='font-["Arima_Madurai"] font-bold hover:scale-105 duration-300 ease-linear text-2xl'>
           <Link href='/'>asuman sounds</Link>

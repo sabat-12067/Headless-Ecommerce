@@ -2,10 +2,8 @@
 
 export default function ProductInfo({ singleProduct }) {
 
-  const { price, name, percentageDiscount } =
-    singleProduct;
-
-    console.log('singleProduct', singleProduct);
+  const { price, name, percentageDiscount } = singleProduct;
+  
 
     let discountPrice =
       (price * 100) / (100 - percentageDiscount);

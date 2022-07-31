@@ -17,15 +17,12 @@ const Cart = () => {
 };
 
 const Carts = () => {
-
  // const cartItems = useSelector((state) => state.cart.cartItems);
   const getCartItems = () => {
       const myCartItems = JSON.parse(localStorage.getItem('cartItems'));
       return myCartItems;
   }
-
   const [cartItems, setCartItems] = useState(getCartItems());
-
   const numberOfCartItems = cartItems.length;
 
   return (
@@ -123,9 +120,9 @@ const CartWithItems = ({ cartItems, setCartItems }) => {
   });
 
   return (
-    <section className='flex flex-col items-center justify-center shadow-lg shadow-primary-8 p-4 m-2 absolute z-20 top-13 bg-[white] sm:right-2 rounded-sm'>
+    <section className='flex flex-col items-center justify-center shadow-lg shadow-primary-8 p-4 m-2 absolute z-40 top-13 bg-[white] sm:right-2 rounded-sm'>
       <h3 className='self-start pb-3'>cart summary</h3>
-      <div className='w-full left-0 absolute top-0 z-40'>
+      <div className='w-full left-0 absolute top-0 z-50'>
         {alert.show && <Alert alert={alert} setAlert={setAlert} />}
       </div>
       <div className='flex w-full justify-between font-bold border-b-[1px]'>
@@ -159,8 +156,7 @@ const CartWithItems = ({ cartItems, setCartItems }) => {
                 <div>
                   <p className='text-base font-bold'>{name}</p>
                   <p className='text-sm font-medium'>
-                    USD {/*Add a coma (,) every after 3 digits*/}
-                    {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    {formatPrice(price)}
                   </p>
                   <div className='flex'>
                     <p className='line-through mr-2'>USD {discountPrice}</p>
