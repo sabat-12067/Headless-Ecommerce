@@ -1,7 +1,7 @@
 import Featured from '../components/home/Featured';
 import FeaturedCollection from '../components/home/FeaturedCollection';
 import Hero from '../components/home/Hero';
-import Cart from '../components/Cart.jsx';
+import Cart from '../components/cart';
 import { Fragment } from 'react';
 import Head from 'next/head';
 import Categories from '../components/home/Categories';

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
+import { cartActions } from '../../store/cartSlice';
 
 const CartNavigation = ({formattedTotalPriceOfAllItems}) => {
    const dispatch = useDispatch();

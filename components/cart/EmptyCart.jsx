@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { ImCross } from 'react-icons/im';
+import { cartActions } from '../../store/cartSlice';
 
 const Emptycart = () => {
   const dispatch = useDispatch();

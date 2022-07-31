@@ -12,7 +12,7 @@ const CartItemInfo = ({item, cartItems, setCartItems, setAlert}) => {
     quantity,
     imageUrl,
     discountPrice,
-    discountPercentage,
+    percentageDiscount,
     totalPrice,
   } = item;
   const formatedTotalPrice = formatPrice(totalPrice);
@@ -82,7 +82,7 @@ const CartItemInfo = ({item, cartItems, setCartItems, setAlert}) => {
           <div className='flex'>
             <p className='line-through mr-2'>USD {discountPrice}</p>
             <p className='font-bold bg-secondary-3 px-2 rounded-sm text-secondary-7 w-[fit-content] '>
-              - {discountPercentage}%
+              - {percentageDiscount}%
             </p>
           </div>
         </div>

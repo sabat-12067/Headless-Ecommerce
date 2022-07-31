@@ -1,5 +1,5 @@
-import CartSummary from './orderSummary/CartSummary';
-import BuyNowSummary from './orderSummary/BuyNowSummary';
+import CartSummary from './orderSummary/cartSummary';
+import BuyNowSummary from './orderSummary/buyNowSummary';
 import { useEffect } from 'react';
 import { CurrentPage } from '../CurrentPage';
 import { useState } from 'react';

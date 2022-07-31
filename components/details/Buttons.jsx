@@ -3,7 +3,7 @@ import { HiOutlineShoppingCart } from 'react-icons/hi';
 import { useSelector, useDispatch } from 'react-redux';
 import { quantityActions } from '../../store/quantitySlice';
 import { cartActions } from '../../store/cartSlice';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { formatprice } from '../HorLine';
 import { useEffect, useState } from 'react';
 import Alert  from '../Auth/Alert';
@@ -17,11 +17,13 @@ export default function Buttons({ singleProduct, productId }) {
     msg: '',
   });
 
+  const router = useRouter();
+
   const quantity = useSelector((state) => state.quantityValue.quantity);
   const dispatch = useDispatch();
-  const { price, name, image, discountPercentage } = singleProduct;
+  const { price, name, image, percentageDiscount } = singleProduct;
 
-  let discountPrice = (price * 100) / (100 - discountPercentage);
+  let discountPrice = (price * 100) / (100 - percentageDiscount);
   discountPrice = formatprice(discountPrice);
   //grab thumbnail - of the first image - of the product
   const imageThumbnail = image.data[0].attributes.formats.thumbnail.url;
@@ -29,10 +31,10 @@ export default function Buttons({ singleProduct, productId }) {
   const cartItem = {
     id: productId,
     name,
-    price: price,
+    price,
     imageUrl: imageThumbnail,
     discountPrice,
-    discountPercentage,
+    percentageDiscount,
     quantity,
     totalPrice: price * quantity,
   };
@@ -80,13 +82,14 @@ export default function Buttons({ singleProduct, productId }) {
     price,
     imageThumbnail,
     discountPrice,
-    discountPercentage,
+    discountPercentage: percentageDiscount,
     quantity,
   };
 
   const buyItNow = () => {
     localStorage.setItem('buyItNowItem', JSON.stringify(buyItNowItem));
     localStorage.setItem('isAddToCartBtnClicked', false);
+    router.push('/checkout/address');
   };
 
   const handleIncrement = () => {
@@ -128,13 +131,11 @@ export default function Buttons({ singleProduct, productId }) {
           Add to cart
         </button>
         {/*Buy It Now button */}
-        <Link href='/checkout/address' passHref>
           <button
             className='text-center w-full bg-primary-11 mb-12 text-2xl text-white flex flex-row items-center justify-center border-0 outline-none rounded-none uppercase'
             onClick={buyItNow}>
             Buy it now
           </button>
-        </Link>
       </div>
     </section>
   );
