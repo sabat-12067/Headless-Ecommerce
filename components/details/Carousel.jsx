@@ -30,12 +30,12 @@ function MySwiper({ image }) {
     <Swiper
       // install Swiper modules
       className='bg-[white]'
-      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+      modules={[Navigation, Pagination, A11y, Autoplay]}
       spaceBetween={50}
       slidesPerView={1}
       speed={700}
       autoplay={{ delay: 4000, disableOnInteraction: true }}
-      navigation
+      // navigation
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       // onSwiper={(swiper) => console.log(swiper)}
