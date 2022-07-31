@@ -6,11 +6,10 @@ import { useState } from 'react';
 
 export default function Description({ specifications, description }) {
   const [showSpecs, setShowSpecs] = useState(false);
-
   const [readMore, setReadMore] = useState(false);
 
   //set number of the first characters of the description to be displayed.
-  const shortenDescriptioned = readMore
+  const shortenDescription = readMore
     ? description
     : description.substr(0, 250);
 
@@ -20,7 +19,7 @@ export default function Description({ specifications, description }) {
       <div className='md:max-w-[500px]'>
         <h3 className='font-bold pb-2 text-left'>Description</h3>
         <div>
-          <div dangerouslySetInnerHTML={{ __html: shortenDescriptioned }} className='text-sm leading-6'></div>
+          <div dangerouslySetInnerHTML={{ __html: shortenDescription }} className='text-sm leading-6'></div>
           <p
             className='px-2 text-sm py-2 text-primary-9 font-bold'
             onClick={() => setReadMore(!readMore)}>

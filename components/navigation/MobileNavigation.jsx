@@ -6,6 +6,7 @@ import { BiLogIn } from 'react-icons/bi';
 import { FaSignOutAlt, FaHome } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState } from 'react';
+import Svg from '../home/Svg';
 
 //This is a component for the mobile navigation
 

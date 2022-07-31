@@ -2,11 +2,13 @@
 
 export default function ProductInfo({ singleProduct }) {
 
-  const { price, name, discountPercentage } =
+  const { price, name, percentageDiscount } =
     singleProduct;
 
+    console.log('singleProduct', singleProduct);
+
     let discountPrice =
-      (price * 100) / (100 - discountPercentage);
+      (price * 100) / (100 - percentageDiscount);
 
       //convert to two decimal places
       discountPrice = ((discountPrice * 100) / 100).toFixed(2)
@@ -23,7 +25,7 @@ export default function ProductInfo({ singleProduct }) {
           $ {discountPrice}
         </p>
         <p className='font-bold bg-primary-13 px-2 rounded-sm text-primary-11'>
-          - {discountPercentage}%
+          - {percentageDiscount}%
         </p>
       </div>
     </section>

@@ -37,20 +37,16 @@ export default function Product({
 export async function getStaticProps(context) {
   //The id of the product displayed on the product/details page.
   const productId = context.params.productId;
-  //  console.log('product id',productId);
-
-  //console.log(productId);
   const response = await fetch(
-    `https://asmn-shopping-cart.herokuapp.com/api/shopping-carts/${productId}?populate=*`
+    `https://asmn-shopping-cart.herokuapp.com/api/audioproducts/${productId}?populate=*`
   );
   const productData = await response.json();
   const product = productData.data;
 
-  //description of the product converted to html
+  //description of the product converted from markdown to html
   const description = await markDownToHtml(product.attributes.descriptions);
   //specifications of the product converted to html
   const specifications = await markDownToHtml(product.attributes.specifications);
-  console.log('specifications',specifications);
 
   return {
     props: {
@@ -64,7 +60,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   const response = await fetch(
-    'https://asmn-shopping-cart.herokuapp.com/api/shopping-carts?populate=*'
+    'https://asmn-shopping-cart.herokuapp.com/api/audioproducts?populate=*'
   );
 
   const productsData = await response.json();

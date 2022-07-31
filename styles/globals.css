@@ -21,7 +21,7 @@ h4 {
   @apply text-center capitalize leading-[3rem]
 }
 h1 {
-  @apply text-4xl font-['Old_Standard_TT'] font-bold  md:text-[2.5rem] lg:text-6xl leading-[3rem] tracking-wide
+  @apply text-4xl font-['Old_Standard_TT'] font-bold  md:text-[2.5rem] lg:text-5xl xl:text-7xl leading-[3rem] tracking-wide
 }
   h2 {
     @apply text-2xl font-[Poppins] font-extrabold md:text-3xl tracking-widest

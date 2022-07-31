@@ -21,7 +21,7 @@ const FeaturedOne = () => {
         <h3 className='uppercase text-center text-xl px-5 tracking-wider mt-3'>
           Robot Bluetooth Wireless Earbuds
         </h3>
-        <p className='text-lg sm:text-xl text-center py-5 leading-8'>
+        <p className='text-lg px-4 sm:text-xl text-center py-5 leading-8'>
           Upgrade to premium earbuds that are phenomenally built to deliver
           truly remarkable sound.
         </p>
