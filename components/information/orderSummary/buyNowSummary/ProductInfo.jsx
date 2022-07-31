@@ -15,7 +15,7 @@ const ProductInfo = ({ buyItNowItem }) => {
           alt={`Thumbnail of ${name}`}
           className='rounded-lg w-20 h-20'
         />
-        <p className='absolute text-white w-5 h-5 text-xs rounded-[50%] text-center flex items-center justify-center top-[6px] font-bold left-[70px] bg-secondary-7'>
+        <p className='absolute text-white w-7 h-7 text-xs rounded-[50%] text-center flex items-center justify-center top-[5px] font-bold left-[70px] bg-secondary-7'>
           {quantity}
         </p>
         <div className='p-2 pl-4 w-[70%] sm:w-full'>
