@@ -70,9 +70,9 @@ const Images = ({ image }) => {
   }
 
   return (
-    <section>
+    <section >
       {/*Container for slide images */}
-      <div className='hidden md:block overflow-hidden h-[600px]'>
+      <div className='hidden md:block overflow-hidden lg:h-[600px] md:h-[450px]'>
         <div className='flex h-full relative w-[95%]'>
           {image.data.map((image, index) => {
             return (
@@ -84,7 +84,7 @@ const Images = ({ image }) => {
                 <img
                   src={image.attributes.url}
                   alt='slide image'
-                  className='rounded-xl mt-8 ml-4 absolute h-full object-cover md:object-fill'
+                  className='rounded-xl mt-8 ml-4 absolute h-[90%] w-full object-cover md:object-fill'
                 />
               </article>
             );
@@ -92,7 +92,7 @@ const Images = ({ image }) => {
         </div>
       </div>
       {/*Thumbnails Container. Only shown on medium screens and above*/}
-      <div className={`hidden md:grid grid-cols-grid-thumbs gap-4 pl-4 pt-4 ${image.data.length <= 1 ? 'md:hidden' : 'null' }`}>
+      <div className={`hidden md:grid grid-cols-grid-thumbs gap-4 pl-4 ${image.data.length <= 1 ? 'md:hidden' : 'null' }`}>
         {image.data.map((image, index) => {
           return (
             <article
@@ -105,8 +105,8 @@ const Images = ({ image }) => {
                 alt='slide image'
                 className={`mr-4 cursor-pointer rounded-lg  ${
                   currentSlideIndex === index
-                    ? 'opacity-70 border-secondary-7'
-                    : 'opacity-100 border-0'
+                    ? 'opacity-100 border-secondary-7'
+                    : 'opacity-70 border-0'
                 }`}
                 onClick={() => changeSlide(index)}
               />

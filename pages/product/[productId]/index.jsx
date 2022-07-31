@@ -17,7 +17,7 @@ export default function Product({
   const singleProduct = product.attributes;
 
   return (
-    <section className='pt-[56px]'>
+    <section className='pt-[56px] md:pt-[75px]'>
       <Cart />
       <div className='md:flex max-w-6xl mx-auto'>
         <Carousel singleProduct={singleProduct} />
