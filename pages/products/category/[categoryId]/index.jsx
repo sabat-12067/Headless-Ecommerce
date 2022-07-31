@@ -44,6 +44,7 @@ export const getStaticProps = async (context) => {
             attributes {
               name
               price
+              percentageDiscount
               image {
                 data {
                   attributes {
