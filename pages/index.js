@@ -1,13 +1,11 @@
 import Featured from '../components/home/Featured';
 import FeaturedCollection from '../components/home/FeaturedCollection';
 import Hero from '../components/home/Hero';
-import Cart from '../components/Cart';
+import Cart from '../components/Cart.jsx';
 import { Fragment } from 'react';
 import Head from 'next/head';
-import { useSelector, useDispatch } from 'react-redux';
 import Categories from '../components/home/Categories';
 import About from '../components/home/About';
-import Svg from '../components/home/Svg';
 
 export default function Home({ products }) {
   //console.log(products);
