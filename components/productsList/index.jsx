@@ -14,7 +14,7 @@ const HeaderImage = ({ productsData }) => {
   const categoryName = productsData.attributes.name;
   const imageUrl = productsData.attributes.image.data[0].attributes.url;
   return (
-    <div className='mt-8 flex items-cente justify-center relative bg-white max-w-6xl mx-auto'>
+    <div className='md:mt-8 flex items-cente justify-center relative bg-white max-w-6xl mx-auto'>
       <div>
         <img
           src={imageUrl}
