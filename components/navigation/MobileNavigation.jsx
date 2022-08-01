@@ -12,10 +12,18 @@ import { useRouter } from 'next/router';
 const listItems = [
   { text: 'sign in', icon: <BiLogIn />, path: '/auth/login' },
   { text: 'home', icon: <FaHome />, path: '/' },
-  { text: 'headsets', icon: <IoMdHeadset />, path: '/categories' },
-  { text: 'speakers', icon: <BsFillSpeakerFill />, path: '/about' },
-  { text: 'home theaters', icon: <BsMusicPlayerFill />, path: '/contact' },
-  { text: 'headphones', icon: <MdHeadset />, path: '/shipping' },
+  { text: 'headsets', icon: <IoMdHeadset />, path: '/products/category/3' },
+  {
+    text: 'speakers',
+    icon: <BsFillSpeakerFill />,
+    path: '/products/category/1',
+  },
+  {
+    text: 'home theaters',
+    icon: <BsMusicPlayerFill />,
+    path: '/products/category/2',
+  },
+  { text: 'headphones', icon: <MdHeadset />, path: '/products/category/4' },
 ];
 
 function MobileNavigation({ toggleCart, totalQuantity }) {
@@ -53,10 +61,10 @@ const StaticNavigation = ({
           </p>
         ) : null}
       </div>
-        <HamurgerMenu
-          isMobileNavOpen={isMobileNavOpen}
-          setIsMobileNavOpen={setIsMobileNavOpen}
-        />
+      <HamurgerMenu
+        isMobileNavOpen={isMobileNavOpen}
+        setIsMobileNavOpen={setIsMobileNavOpen}
+      />
     </div>
   );
 };
@@ -69,7 +77,7 @@ const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
       className=' bg-primary-10 fixed h-screen right-0 left-[102%] top-0 p-4 leading-[4rem] z-10 duration-300 ease-in-out opacity-90'
       style={{
         left: isMobileNavOpen ? '0' : '102%',
-      }}>  
+      }}>
       <ul className='pt-[5rem] uppercase font-bold tracking-wider '>
         {listItems.map((listItem, index) => {
           const { icon, text, path } = listItem;
@@ -80,7 +88,8 @@ const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
           return (
             <li
               key={index}
-              className='border-b-[1px] flex items-center text-white' onClick={handleClick}>
+              className='border-b-[1px] flex items-center text-white'
+              onClick={handleClick}>
               <div className='mr-3 text-[1.5rem]'>{icon}</div>
               <p>{text}</p>
             </li>

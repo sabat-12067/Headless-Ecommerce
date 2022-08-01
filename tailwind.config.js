@@ -45,6 +45,7 @@ module.exports = {
       'grid-thumbs': 'repeat(auto-fill, minmax(80px, 1fr))',
       'grid-checkout-pg': 'repeat(5, 1fr)',
       '2': 'repeat(2, 1fr)',
+      '3': 'repeat(3, 1fr)',
       '4': 'repeat(4, 1fr)',
     },
     keyframes: {

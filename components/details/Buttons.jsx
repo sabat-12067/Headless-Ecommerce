@@ -17,6 +17,8 @@ export default function Buttons({ singleProduct, productId }) {
     msg: '',
   });
 
+  console.log('single Product: ', singleProduct);
+
   const router = useRouter();
 
   const quantity = useSelector((state) => state.quantityValue.quantity);

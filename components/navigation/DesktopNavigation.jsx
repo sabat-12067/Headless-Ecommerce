@@ -2,7 +2,12 @@ import { HiShoppingCart } from 'react-icons/hi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const listItems = ['headphones', 'speakers', 'headsets', 'home theaters'];
+const listItems = [
+  { text: 'headsets', path: '/products/category/3' },
+  { text: 'speakers', path: '/products/category/1' },
+  { text: 'home theaters', path: '/products/category/2' },
+  { text: 'headphones', path: '/products/category/4' },
+];
 
 export default function DesktopNavigation({ toggleCart, totalQuantity }) {
   const router = useRouter();
@@ -17,12 +22,13 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
         <div className='flex'>
           <ul className='flex justify-between items-center md:text-xs lg:text-sm'>
             {listItems.map((listItem, index) => {
+              const { text, path } = listItem;
               return (
                 <li
                   key={index}
                   className='md:ml-6 uppercase font-semibold hover:translate-x-2 duration-300 ease-linear'>
-                  <Link href={`/${listItem.split(' ').join('')}`}>
-                    {listItem}
+                  <Link href={path}>
+                    {text}
                   </Link>
                 </li>
               );
