@@ -1,4 +1,5 @@
 import { formatprice } from '../HorLine';
+import Link from 'next/link';
 
 const ProductsList = ({ productsData }) => {
   return (
@@ -15,9 +16,15 @@ const HeaderImage = ({ productsData }) => {
   return (
     <div className='mt-8 flex items-cente justify-center relative bg-white max-w-6xl mx-auto'>
       <div>
-        <img src={imageUrl} alt={`Image of ${categoryName}`} className='w-[400px]'/>
+        <img
+          src={imageUrl}
+          alt={`Image of ${categoryName}`}
+          className='w-[400px]'
+        />
       </div>
-      <h1 className='absolute text-6xl md:text-7xl left-5 top-16'>{categoryName}</h1>
+      <h1 className='absolute text-6xl md:text-7xl left-5 top-16'>
+        {categoryName}
+      </h1>
     </div>
   );
 };
@@ -47,7 +54,9 @@ const Productslist = ({ productsData }) => {
                 <p>-{percentageDiscount}%</p>
               </div>
             </div>
-            <h3 className='pt-4 md:text-xl'>{name}</h3>
+            <Link href={`/product/details/${productId}`}>
+              <h3 className='pt-4 md:text-xl lg:cursor-pointer'>{name}</h3>
+            </Link>
             <div className='flex justify-center py-4'>
               <p className='text-lg sm:text-2xl font-bold mr-4'>${price}</p>
               <p className='font-medium sm:text-xl text-base line-through'>
