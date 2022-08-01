@@ -54,7 +54,7 @@ const Productslist = ({ productsData }) => {
               <p>-{percentageDiscount}%</p>
               </div>) : <div></div> }
             </div>
-            <Link href={`/product/details/${productId}`}>
+            <Link href={`/product/details/${productId}`} passHref>
               <h3 className='pt-4 md:text-xl lg:cursor-pointer'>{name}</h3>
             </Link>
             <div className='flex justify-center items-center py-4'>

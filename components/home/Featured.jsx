@@ -26,7 +26,7 @@ const FeaturedOne = () => {
           truly remarkable sound.
         </p>
         <div className='flex justify-center'>
-          <Link href={'/product/details/31'}>
+          <Link href={'/product/details/31'} passHref>
             <button className='uppercase tracking-widest px-10 bg-black mb-12 lg:cursor-pointer'>
               see product
             </button>
@@ -62,7 +62,7 @@ const FeaturedTwo = () => {
         <h3 className='uppercase pt-8 px-5'>
           LG Home theater System 1000 Watts - Black
         </h3>
-        <Link href='/product/details/3'>
+        <Link href='/product/details/3' passHref>
           <div className='flex justify-center py-8'>
             <button className=' text-primary-11 uppercase tracking-widest lg:cursor-pointer'>
               see product
