@@ -3,7 +3,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import SVG from './SVG';
 import axios from 'axios';
 import Alert from './Alert';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { authActions } from '../../store/authSlice';
 import { useRouter } from 'next/router';
 
