@@ -10,13 +10,13 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 export default function Carousel({ singleProduct }) {
-     
- const { image } = singleProduct;
+  const { image } = singleProduct;
+  console.log('image', image);
 
   return (
     <section className='md:w-full'>
       <MySwiper image={image} />
-     <Images image={image} />
+      <Images image={image} />
     </section>
   );
 }
@@ -24,53 +24,49 @@ export default function Carousel({ singleProduct }) {
 //Swiper is only shown on small screens (screens below 768px)
 //Swiper is a slider that can be used to display images, videos, or other content.
 function MySwiper({ image }) {
-  
   return (
-    <div className='md:hidden'>    
-    <Swiper
-      // install Swiper modules
-      className='bg-[white]'
-      modules={[Navigation, Pagination, A11y, Autoplay]}
-      spaceBetween={50}
-      slidesPerView={1}
-      speed={700}
-      autoplay={{ delay: 4000, disableOnInteraction: true }}
-      // navigation
-      pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
-      // onSwiper={(swiper) => console.log(swiper)}
-      // onSlideChange={() => console.log('slide change')}
-    >
-      {image.data.map((image, index) => {
-        return (
-          <SwiperSlide key={index}>
-            <img
-              key={index}
-              src={image.attributes.url}
-              alt='slide image'
-            />
-          </SwiperSlide>
-        );
-      })}
-      {/* <SwiperSlide>Slide 1</SwiperSlide> */}
-      ...
-    </Swiper>
+    <div className='md:hidden'>
+      <Swiper
+        // install Swiper modules
+        className='bg-[white]'
+        modules={[Navigation, Pagination, A11y, Autoplay]}
+        spaceBetween={50}
+        slidesPerView={1}
+        speed={700}
+        autoplay={{ delay: 4000, disableOnInteraction: true }}
+        // navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        // onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log('slide change')}
+      >
+        {image.data.map((image, index) => {
+          return (
+            <SwiperSlide key={index}>
+              <div className='flex justify-center'>
+                <img key={index} src={image.attributes.url} alt='slide image' />
+              </div>
+            </SwiperSlide>
+          );
+        })}
+        {/* <SwiperSlide>Slide 1</SwiperSlide> */}
+        ...
+      </Swiper>
     </div>
   );
-};
+}
 
 //This component is for displaying images of the product on medium and large screens (screens above 768px)
 const Images = ({ image }) => {
-
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
 
   //set current slide index to the index of the image that is clicked
   const changeSlide = (index) => {
     setCurrentSlideIndex(index);
-  }
+  };
 
   return (
-    <section >
+    <section>
       {/*Container for slide images */}
       <div className='hidden md:block overflow-hidden lg:h-[600px] md:h-[450px]'>
         <div className='flex h-full relative w-[95%]'>
@@ -92,8 +88,13 @@ const Images = ({ image }) => {
         </div>
       </div>
       {/*Thumbnails Container. Only shown on medium screens and above*/}
-      <div className={`hidden md:grid grid-cols-grid-thumbs gap-4 pl-4 ${image.data.length <= 1 ? 'md:hidden' : 'null' }`}>
+      <div
+        className={`hidden md:grid grid-cols-grid-thumbs gap-4 pl-4 ${
+          image.data.length <= 1 ? 'md:hidden' : 'null'
+        }`}>
         {image.data.map((image, index) => {
+          // set image to the thumbnail image/format or else it will be the full image
+          const imageUrl = image.attributes.formats ? image.attributes.formats.thumbnail.url : image.attributes.url;
           return (
             <article
               key={index}
@@ -101,7 +102,7 @@ const Images = ({ image }) => {
                 currentSlideIndex === index ? 'border-2' : 'border-0'
               }`}>
               <img
-                src={image.attributes.formats.thumbnail.url}
+                src={imageUrl}
                 alt='slide image'
                 className={`mr-4 cursor-pointer rounded-lg  ${
                   currentSlideIndex === index
@@ -116,4 +117,4 @@ const Images = ({ image }) => {
       </div>
     </section>
   );
-}
+};

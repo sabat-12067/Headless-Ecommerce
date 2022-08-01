@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../store/cartSlice';
 
@@ -25,7 +24,7 @@ const ThankYou = () => {
   }, []);
 
   return (
-    <div className='pt-[75px] flex flex-col items-center '>
+    <div className='pt-[75px] flex flex-col items-center mb-10'>
       <div className='flex items-center pt-10'>
         <BsCheckCircleFill className='md:w-6 md:h-6' />
         <h3 className='ml-2'>Your order was successful</h3>

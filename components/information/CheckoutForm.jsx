@@ -80,9 +80,10 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // navigate to payment completion page
-        return_url: 'https://asmn-grocery-store.netlify.app/thankyou',
+        return_url: 'https://asumansounds.com/thankyou',
         //https://asmn-grocery-store.netlify.app
         //http://localhost:3000
+        //https://asumansounds.com
       },
     });
 

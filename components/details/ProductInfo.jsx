@@ -17,12 +17,12 @@ export default function ProductInfo({ singleProduct }) {
       <h1 className='text-left md:pt-4'>{name}</h1>
       <div className='flex justify-between items-center py-5'>
         <p className='font-extrabold text-lg'>$ {price}</p>
-        <p className='font-medium line-through text-sm text-primary-11 animate-zoomInOut'>
+        { percentageDiscount ? (<p className='font-medium line-through text-sm text-primary-11 animate-zoomInOut'>
           $ {discountPrice}
-        </p>
-        <p className='font-bold bg-primary-13 px-2 rounded-sm text-primary-11'>
+        </p>) : <p></p> }
+        { percentageDiscount ? (<p className='font-bold bg-primary-13 px-2 rounded-sm text-primary-11'>
           - {percentageDiscount}%
-        </p>
+        </p>) : (<p></p>) }
       </div>
     </section>
   );

@@ -17,8 +17,6 @@ export default function Buttons({ singleProduct, productId }) {
     msg: '',
   });
 
-  console.log('single Product: ', singleProduct);
-
   const router = useRouter();
 
   const quantity = useSelector((state) => state.quantityValue.quantity);
@@ -27,8 +25,10 @@ export default function Buttons({ singleProduct, productId }) {
 
   let discountPrice = (price * 100) / (100 - percentageDiscount);
   discountPrice = formatprice(discountPrice);
-  //grab thumbnail - of the first image - of the product
-  const imageThumbnail = image.data[0].attributes.formats.thumbnail.url;
+  //grab thumbnail - of the first image - of the product if it has one - otherwise use the full image.
+  const imageThumbnail = image.data[0].attributes.formats
+    ? image.data[0].attributes.formats.thumbnail.url
+    : image.data[0].attributes.url;
 
   const cartItem = {
     id: productId,
@@ -76,7 +76,7 @@ export default function Buttons({ singleProduct, productId }) {
     // Store the cart items in local storage to a cartItems array of the redux store. This is to access an updated cartItems state by the cart component.
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     dispatch(cartActions.setCartItems(cartItems));
-  });
+  }, [cartItem]);
 
   const buyItNowItem = {
     id: productId,

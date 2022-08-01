@@ -31,6 +31,7 @@ module.exports = {
       'dark-green': '#14532d',
       'light-green': '#f0fdf4',
       'black': '#000',
+      'red': '#ff0000',
       'secondary-6': '#f97316',
       'secondary-7': '#ea580c',
       'secondary-8': '#c2410c',

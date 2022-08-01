@@ -80,10 +80,10 @@ const CartItemInfo = ({item, cartItems, setCartItems, setAlert}) => {
           <p className='text-base font-bold'>{name}</p>
           <p className='text-sm font-medium'>{formatPrice(price)}</p>
           <div className='flex'>
-            <p className='line-through mr-2'>USD {discountPrice}</p>
-            <p className='font-bold bg-secondary-3 px-2 rounded-sm text-secondary-7 w-[fit-content] '>
+            { percentageDiscount ? (<p className='line-through mr-2'>USD {discountPrice}</p>) : (<p></p>) }
+            { percentageDiscount ? (<p className='font-bold bg-secondary-3 px-2 rounded-sm text-secondary-7 w-[fit-content] '>
               - {percentageDiscount}%
-            </p>
+            </p>) : (<p></p>) }
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@ const CartItemInfo = ({item, cartItems, setCartItems, setAlert}) => {
       </div>
       <div className='flex w-full justify-between pt-3'>
         <div
-          className='flex text-red lg:cursor-pointer'
+          className='flex items-end text-[red] lg:cursor-pointer'
           onClick={() => removeItem(id)}>
           <MdOutlineDelete className='w-5 h-5 font-bold mr-2' />
           <p className='text-xs sm:text-sm'>REMOVE</p>

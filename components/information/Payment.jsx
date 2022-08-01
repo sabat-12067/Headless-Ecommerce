@@ -20,7 +20,6 @@ export default function Payment() {
         Payment
       </h2>
       <PaymentInfo />
-      {/* <BillingAddress /> */}
       <Navigation path='/product/checkout/shipping' pathName='Return To Shipping' />
     </section>
   );
@@ -69,6 +68,7 @@ const PaymentInfo = () => {
         const response = await axios.post(
           'https://asuman-sounds-api.herokuapp.com/stripe/payment-intent',
           //http://localhost:5000/stripe/payment-intent
+          //https://asuman-sounds-api.herokuapp.com/stripe/payment-intent
           JSON.stringify(info),
           {
             headers: { 'Content-Type': 'application/json' },

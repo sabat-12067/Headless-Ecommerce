@@ -5,7 +5,7 @@ import Description from '../../../../components/details/Description';
 import Cart from '../../../../components/cart';
 import markDownToHtml from '../../../../components/details/markDownToHtml';
 
-//This page is the details/product page. It is displayed when customer clicks a product in the home page.
+//This page is the details/product page.
 
 export default function Product({
   product,
@@ -60,13 +60,12 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   const response = await fetch(
-    'https://asmn-shopping-cart.herokuapp.com/api/audioproducts?populate=*'
+    'https://asmn-shopping-cart.herokuapp.com/api/audioproducts?pagination[start]=0&pagination[limit]=100&populate=*'
   );
 
   const productsData = await response.json();
 
   const paths = productsData.data.map((product) => {
-    console.log('product id: ', product.id);
     return { params: { productId: product.id.toString() } };
   });
 

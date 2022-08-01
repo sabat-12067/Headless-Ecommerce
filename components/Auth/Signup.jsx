@@ -58,7 +58,9 @@ const SignupForm = () => {
       const cartItems = localStorage.getItem('cartItems');
       // Push the user to the checkout page if they have items in their cart
       if (cartItems) {
-        router.push('/checkout/shipping');
+        router.push('/product/checkout/shipping');
+      } else {
+        router.push('/');
       }
 
       //Store userId in the redux store

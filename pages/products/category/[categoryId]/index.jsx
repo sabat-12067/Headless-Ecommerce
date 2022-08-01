@@ -1,5 +1,5 @@
 import ProductsList from '../../../../components/productsList';
-import Cart from '../../../../components/Cart';
+import Cart from '../../../../components/cart';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 export default function ProductsListPage({ productsData }) {
