@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import SVG from './SVG';
 import Alert from './Alert';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/authSlice';
 
 function Login() {

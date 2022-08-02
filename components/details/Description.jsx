@@ -1,5 +1,4 @@
 import { MdKeyboardArrowUp } from 'react-icons/md';
-
 import { useState } from 'react';
 
 //This is a component that returns the description of the product.

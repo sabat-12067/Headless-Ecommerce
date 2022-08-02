@@ -1,4 +1,4 @@
-import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -50,7 +50,7 @@ export const CurrentPage = ({ highlightColor, bgColor }) => {
           <p
             className={`${
               highLightAddress && numberStyles
-            } text-secondary-7 w-7 h-7 text-center text-xs rounded-full font-bold flex justify-center items-center`}>
+            } w-7 h-7 text-center text-xs rounded-full font-bold flex justify-center items-center`}>
             1
           </p>
         </div>
@@ -63,7 +63,7 @@ export const CurrentPage = ({ highlightColor, bgColor }) => {
         <p
           className={`${
             highlightShipping && numberStyles
-          }  h-7 w-7 text-center text-xs rounded-[50%] font-bold border-[1px] flex justify-center items-center`}>
+          } h-7 w-7 text-center text-xs rounded-[50%] font-bold border-[1px] flex justify-center items-center`}>
           2
         </p>
         <p className={`mx-1 ${highlightShipping && checkOutStepStyles}`}>
@@ -84,12 +84,12 @@ export const CurrentPage = ({ highlightColor, bgColor }) => {
       </div>
       <MdKeyboardArrowRight
         className={`w-5 h-5 mx-2 ${
-          router.pathname === '/checkout/review' ? 'block' : 'hidden'
+          router.pathname === '/product/checkout/review' ? 'block' : 'hidden'
         }`}
       />
       <div
         className={`${
-          router.pathname === '/checkout/review' ? 'flex' : 'hidden'
+          router.pathname === '/product/checkout/review' ? 'flex' : 'hidden'
         }`}>
         <p
           className={`${
