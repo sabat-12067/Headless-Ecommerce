@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { FaTimes } from 'react-icons/fa';
 import { MdOutlineCancel } from 'react-icons/md';
 
 const Alert = ({ alert, setAlert }) => {

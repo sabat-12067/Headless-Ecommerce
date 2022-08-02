@@ -14,7 +14,7 @@ const HeaderImage = ({ productsData }) => {
   const categoryName = productsData.attributes.name;
   const imageUrl = productsData.attributes.image.data[0].attributes.url;
   return (
-    <div className='mt-8 flex items-cente justify-center relative bg-white max-w-6xl mx-auto'>
+    <div className='md:mt-8 flex items-cente justify-center relative bg-white max-w-6xl mx-auto'>
       <div>
         <img
           src={imageUrl}
@@ -50,18 +50,18 @@ const Productslist = ({ productsData }) => {
                 alt={`Image of ${name}`}
                 className='rounded-md'
               />
-            { percentageDiscount ? (<div className='absolute flex items-center justify-center top-5 left-5 bg-secondary-6 w-16 h-16 rounded-full font-bold'>
+              { percentageDiscount ? (<div className='absolute flex items-center justify-center top-5 left-5 bg-secondary-6 w-16 h-16 rounded-full font-bold'>
               <p>-{percentageDiscount}%</p>
               </div>) : <div></div> }
             </div>
-            <Link href={`/product/details/${productId}`}>
-              <h3 className='pt-4 md:text-xl lg:cursor-pointer'>{name}</h3>
+            <Link href={`/product/details/${productId}`} passHref>
+              <h3 className='pt-4 md:text-lg xl:text-xl tracking-wider lg:cursor-pointer'>{name}</h3>
             </Link>
             <div className='flex justify-center items-center py-4'>
               <p className='text-lg sm:text-2xl font-bold mr-4'>${price}</p>
-              <p className='font-medium sm:text-xl text-base line-through'>
+              { percentageDiscount ? (<p className='font-medium sm:text-xl text-base line-through'>
                 {originalPrice}
-              </p>
+              </p>) : <p></p> }
             </div>
           </div>
         );
