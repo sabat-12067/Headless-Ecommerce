@@ -7,7 +7,6 @@ import Categories from '../components/home/Categories';
 import About from '../components/home/About';
 
 export default function Home({ products }) {
-  //console.log(products);
   return (
     <Fragment>
       <Head>
