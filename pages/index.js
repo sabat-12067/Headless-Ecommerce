@@ -1,5 +1,4 @@
 import Featured from '../components/home/Featured';
-import FeaturedCollection from '../components/home/FeaturedCollection';
 import Hero from '../components/home/Hero';
 import Cart from '../components/cart';
 import { Fragment } from 'react';
@@ -23,7 +22,6 @@ export default function Home({ products }) {
         <Categories />
         <Featured />
         <About />
-        {/* <FeaturedCollection products={products} /> */}
       </section>
     </Fragment>
   )
