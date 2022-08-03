@@ -14,7 +14,7 @@ function Footer() {
   ];
 
   return (
-    <footer className='flex flex-col items-center justify-center bg-primary-11 border text-white py-12 w-screen'>
+    <footer className='flex flex-col items-center bg-primary-11 border text-white py-12 w-screen'>
       <div className='max-w-6xl mx-auto'>
         <div className='flex items-center md:items-end flex-col md:flex-row md:justify-between md:px-6'>
           <h3 className='text-3xl font-extrabold'>asuman sounds</h3>
