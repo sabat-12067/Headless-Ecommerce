@@ -14,7 +14,7 @@ function Footer() {
   ];
 
   return (
-    <footer className='bg-primary-11 border text-white pt-12 w-screen'>
+    <footer className='flex flex-col items-center justify-center bg-primary-11 border text-white py-12 w-screen'>
       <div className='max-w-6xl mx-auto'>
         <div className='flex items-center md:items-end flex-col md:flex-row md:justify-between md:px-6'>
           <h3 className='text-3xl font-extrabold'>asuman sounds</h3>
@@ -49,11 +49,13 @@ function Footer() {
             <RiTwitterLine className='w-8 h-8 cursor-pointer hover:text-secondary-7 duration-300 ease-in' />
           </div>
         </div>
-        {/* <p className="text-sm font-bold text-primary-13 font-['Dancing_Script']">
+      </div>
+      <Link href='https://www.linkedin.com/in/ssendegeya-asuman' passHref>
+        <h3 className="text-base lg:cursor-pointer font-bold text-primary-13 font-['Dancing_Script']">
           Developed by{' '}
           <span className='text-secondary-7'>Asuman Ssendegeya</span>
-        </p> */}
-      </div>
+        </h3>
+      </Link>
     </footer>
   );
 }

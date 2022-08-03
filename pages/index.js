@@ -1,5 +1,4 @@
 import Featured from '../components/home/Featured';
-import FeaturedCollection from '../components/home/FeaturedCollection';
 import Hero from '../components/home/Hero';
 import Cart from '../components/cart';
 import { Fragment } from 'react';
@@ -8,7 +7,6 @@ import Categories from '../components/home/Categories';
 import About from '../components/home/About';
 
 export default function Home({ products }) {
-  //console.log(products);
   return (
     <Fragment>
       <Head>
@@ -23,7 +21,6 @@ export default function Home({ products }) {
         <Categories />
         <Featured />
         <About />
-        {/* <FeaturedCollection products={products} /> */}
       </section>
     </Fragment>
   )
