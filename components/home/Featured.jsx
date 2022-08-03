@@ -1,6 +1,7 @@
 import earbuds from '../../public/images/earbuds-copy.png';
 import lenoveHeadphones from '../../public/images/lenovo-copy.png';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Featured() {
   return (
@@ -15,7 +16,8 @@ const FeaturedOne = () => {
   return (
     <div className='bg-secondary-6 text-primary-14 rounded-lg pt-6 md:flex'>
       <div className='flex justify-center'>
-        <img src={earbuds.src} alt='Image of jbl speaker' />
+        {/* <img src={earbuds.src} alt='Image of jbl speaker' /> */}
+        <Image src={earbuds} alt='image of jbl speaker' width={400} height={400} />
       </div>
       <div className='flex flex-col justify-center'>
         <h3 className='uppercase text-center text-xl px-5 tracking-wider mt-3'>
