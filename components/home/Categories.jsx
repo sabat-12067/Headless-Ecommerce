@@ -5,9 +5,10 @@ import headsets from '../../public/images/headsets.png';
 import hometheater from '../../public/images/hometheatre.png';
 import speaker from '../../public/images/speaker.png';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const categories = [
-  { name: 'Headphones', image: headphone, path: '/products/category/4'  },
+  { name: 'Headphones', image: headphone, path: '/products/category/4' },
   { name: 'Headsets', image: headsets, path: '/products/category/3' },
   { name: 'Home Theaters', image: hometheater, path: '/products/category/2' },
   { name: 'Speakers', image: speaker, path: '/products/category/1' },
@@ -24,11 +25,9 @@ const Categories = () => {
               key={index}
               className=' bg-primary-14 mt-20 sm:mt-18 rounded-lg'>
               <div className='flex justify-center items-center mb-20 md:mb-28'>
-                <img
-                  src={image.src}
-                  alt={name}
-                  className='w-40 md:w-48 absolute'
-                />
+                <div className='absolute'>
+                  <Image src={image} alt={name} width={160} height={160} />
+                </div>
               </div>
               <h3 className='uppercase  tracking-wider mt-3'>{name}</h3>
               <Link href={`${path}`} passHref>

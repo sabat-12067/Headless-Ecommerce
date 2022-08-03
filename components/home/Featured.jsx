@@ -1,6 +1,7 @@
 import earbuds from '../../public/images/earbuds-copy.png';
 import lenoveHeadphones from '../../public/images/lenovo-copy.png';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Featured() {
   return (
@@ -15,7 +16,7 @@ const FeaturedOne = () => {
   return (
     <div className='bg-secondary-6 text-primary-14 rounded-lg pt-6 md:flex'>
       <div className='flex justify-center'>
-        <img src={earbuds.src} alt='Image of jbl speaker' />
+        <Image src={earbuds} alt='image of jbl speaker' width={400} height={400} />
       </div>
       <div className='flex flex-col justify-center'>
         <h3 className='uppercase text-center text-xl px-5 tracking-wider mt-3'>
@@ -26,7 +27,7 @@ const FeaturedOne = () => {
           truly remarkable sound.
         </p>
         <div className='flex justify-center'>
-          <Link href={'/product/details/31'}>
+          <Link href={'/product/details/31'} passHref>
             <button className='uppercase tracking-widest px-10 bg-black mb-12 lg:cursor-pointer'>
               see product
             </button>
@@ -42,11 +43,7 @@ const FeaturedTwo = () => {
     <div className='md:flex'>
       <Link href='/product/details/34' passHref>
         <div className='relative mt-5 rounded-lg lg:cursor-pointer md:mr-6 bg-black'>
-          <img
-            src={lenoveHeadphones.src}
-            alt='Image of earbuds'
-            className='rounded-lg w-full'
-          />
+          <Image src={lenoveHeadphones} alt='image of earbuds' width={400} height={400} />
           <div className='absolute top-0 bottom-0 right-0 left-0 z-10 flex flex-col items-center justify-center p-5'>
             <h3 className='sm:text-xl bg-primary-3 text-primary-11 py-2 px-3 rounded-3xl absolute top-3 left-3'>
               New
@@ -62,7 +59,7 @@ const FeaturedTwo = () => {
         <h3 className='uppercase pt-8 px-5'>
           LG Home theater System 1000 Watts - Black
         </h3>
-        <Link href='/product/details/3'>
+        <Link href='/product/details/3' passHref>
           <div className='flex justify-center py-8'>
             <button className=' text-primary-11 uppercase tracking-widest lg:cursor-pointer'>
               see product

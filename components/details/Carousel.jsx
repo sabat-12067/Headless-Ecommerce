@@ -1,5 +1,6 @@
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import { useState } from 'react';
+import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -44,7 +45,7 @@ function MySwiper({ image }) {
           return (
             <SwiperSlide key={index}>
               <div className='flex justify-center'>
-                <img key={index} src={image.attributes.url} alt='slide image' />
+                <Image src={image.attributes.url} alt='slide image' width={400} height={400} />
               </div>
             </SwiperSlide>
           );

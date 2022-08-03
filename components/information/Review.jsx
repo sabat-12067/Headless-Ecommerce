@@ -22,6 +22,7 @@ export default function Review() {
     dispatch(cartActions.setIsAddToCartBtnClicked(isAddToCartBtnClicked));
     const buyItNowItem = JSON.parse(localStorage.getItem('buyItNowItem'));
     dispatch(cartActions.setBuyItNowItem(buyItNowItem));
+   // eslint-disable-next-line  
   }, []);
 
   return (

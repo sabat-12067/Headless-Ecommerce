@@ -1,5 +1,6 @@
 import jblHeadphone from '../../public/images/jblheadsets.png';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export default function Hero() {
   const router = useRouter();
@@ -19,11 +20,7 @@ return (
         </button>
       </div>
       <div className='absolute md:static md:mt-20'>
-        <img
-          src={jblHeadphone.src}
-          alt='inage of jbl headphones'
-          className='md:w-[400px]'
-        />
+        <Image src={jblHeadphone} alt='image of jbl headphones' width={400} height={400} />
       </div>
     </div>
   </section>

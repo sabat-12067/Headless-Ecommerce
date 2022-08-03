@@ -76,7 +76,7 @@ export default function Buttons({ singleProduct, productId }) {
     // Store the cart items in local storage to a cartItems array of the redux store. This is to access an updated cartItems state by the cart component.
     const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     dispatch(cartActions.setCartItems(cartItems));
-  }, [cartItem]);
+  }, [dispatch]);
 
   const buyItNowItem = {
     id: productId,
