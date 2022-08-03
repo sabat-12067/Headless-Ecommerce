@@ -44,11 +44,12 @@ const FeaturedTwo = () => {
     <div className='md:flex'>
       <Link href='/product/details/34' passHref>
         <div className='relative mt-5 rounded-lg lg:cursor-pointer md:mr-6 bg-black'>
-          <img
+          {/* <img
             src={lenoveHeadphones.src}
             alt='Image of earbuds'
             className='rounded-lg w-full'
-          />
+          /> */}
+          <Image src={lenoveHeadphones} alt='image of earbuds' width={400} height={400} />
           <div className='absolute top-0 bottom-0 right-0 left-0 z-10 flex flex-col items-center justify-center p-5'>
             <h3 className='sm:text-xl bg-primary-3 text-primary-11 py-2 px-3 rounded-3xl absolute top-3 left-3'>
               New
