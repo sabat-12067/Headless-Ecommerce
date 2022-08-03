@@ -25,11 +25,6 @@ const Categories = () => {
               key={index}
               className=' bg-primary-14 mt-20 sm:mt-18 rounded-lg'>
               <div className='flex justify-center items-center mb-20 md:mb-28'>
-                {/* <img
-                  src={image.src}
-                  alt={name}
-                  className='w-40 md:w-48 absolute'
-                /> */}
                 <div className='absolute'>
                   <Image src={image} alt={name} width={160} height={160} />
                 </div>
