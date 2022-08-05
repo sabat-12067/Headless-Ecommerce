@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from  'next/image';
+import Cart from './cart';
+import { IoMdRemove } from 'react-icons/io';
 
 const Favorites = () => {
 
@@ -14,9 +16,10 @@ const Favorites = () => {
 
   return (
     <div className='pt-24 lg:mb-20'>
-      <h1 className='text-center uppercase'>Your favorite items</h1>
+      <Cart />
+      <h1 className='text-center uppercase lg:py-12'>Your favorite items</h1>
       {favoriteItems.length > 0 ? (
-        <WithItems favoriteItems={favoriteItems} />
+        <WithItems favoriteItems={favoriteItems} setFavoriteItems={setFavoriteItems} />
       ) : (
         <WithOutItems />
       )}
@@ -24,9 +27,9 @@ const Favorites = () => {
   );
 };
 
-const WithItems = ({ favoriteItems }) => {
+const WithItems = ({ favoriteItems, setFavoriteItems}) => {
   return (
-    <div>
+    <div className='my-8 sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 px-4 max-w-6xl lg:mx-auto'>
       {favoriteItems.map((favoriteItem) => {
         const {
           id,
@@ -38,6 +41,14 @@ const WithItems = ({ favoriteItems }) => {
           isFavorite,
         } = favoriteItem;
 
+        const handleClick = () => {
+          const newFavoriteItems = favoriteItems.filter(
+            (item) => item.id !== id
+          );
+          setFavoriteItems(newFavoriteItems);
+          localStorage.setItem('favoriteItems', JSON.stringify(newFavoriteItems));
+        }
+
         return (
           <article key={id}>
             <div className='relative rounded-md'>
@@ -46,6 +57,7 @@ const WithItems = ({ favoriteItems }) => {
                 alt={`Image of ${name}`}
                 width={450}
                 height={400}
+                className='rounded-md'
               />
               {percentageDiscount ? (
                 <div className='absolute flex items-center justify-center top-5 left-5 bg-secondary-6 w-16 h-16 rounded-full font-bold'>
@@ -54,6 +66,7 @@ const WithItems = ({ favoriteItems }) => {
               ) : (
                 <div></div>
               )}
+                <IoMdRemove className='absolute text-primary-2 rounded-full top-5 right-5 text-4xl bg-dark-red' onClick={handleClick}/>
             </div>
             <Link href={`/product/details/${id}`} passHref>
               <h3 className='pt-4 md:text-lg xl:text-xl tracking-wider lg:cursor-pointer'>

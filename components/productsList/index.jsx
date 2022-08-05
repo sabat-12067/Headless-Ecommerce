@@ -17,11 +17,6 @@ const HeaderImage = ({ productsData }) => {
   return (
       <div className='md:mt-8 flex justify-center relative bg-white max-w-[1120px] mx-auto'>
         <div>
-          {/* <img
-          src={imageUrl}
-          alt={`Image of ${categoryName}`}
-          className='w-[400px]'
-        /> */}
           <Image
             src={imageUrl}
             alt={`Image of ${categoryName}`}
