@@ -67,7 +67,7 @@ const WithItems = ({ favoriteItems, setFavoriteItems }) => {
                 className='rounded-md'
               />
               {percentageDiscount ? (
-                <div className='absolute flex text-primary-1 items-center justify-center top-5 left-5 bg-secondary-6 w-16 h-16 rounded-full font-bold'>
+                <div className='absolute flex text-primary-10 bg-primary-12 items-center justify-center top-5 left-5 w-16 h-16 rounded-full font-bold'>
                   <p>-{percentageDiscount}%</p>
                 </div>
               ) : (
@@ -78,21 +78,21 @@ const WithItems = ({ favoriteItems, setFavoriteItems }) => {
                 onClick={handleClick}
               />
             </div>
-              <Link href={`/product/details/${id}`} passHref>
-                <h3 className='pt-4 md:text-lg xl:text-xl tracking-wider lg:cursor-pointer'>
-                  {name}
-                </h3>
-              </Link>
-              <div className='flex justify-center items-center py-4'>
-                <p className='text-lg sm:text-2xl font-bold mr-4'>${price}</p>
-                {percentageDiscount ? (
-                  <p className='font-medium sm:text-xl text-base line-through'>
-                    {discountPrice}
-                  </p>
-                ) : (
-                  <p></p>
-                )}
-              </div>
+            <Link href={`/product/details/${id}`} passHref>
+              <h3 className='pt-4 text-secondary-8 md:text-lg xl:text-xl tracking-wider lg:cursor-pointer'>
+                {name}
+              </h3>
+            </Link>
+            <div className='flex justify-center items-center py-4'>
+              <p className='text-lg sm:text-2xl font-bold mr-4'>${price}</p>
+              {percentageDiscount ? (
+                <p className='font-medium sm:text-xl text-base line-through'>
+                  {discountPrice}
+                </p>
+              ) : (
+                <p></p>
+              )}
+            </div>
           </article>
         );
       })}

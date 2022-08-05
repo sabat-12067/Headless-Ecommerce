@@ -52,9 +52,10 @@ const Productslist = ({ productsData }) => {
                 alt={`Image of ${name}`}
                 width={450}
                 height={400}
+                className='rounded-md'
               />
               {percentageDiscount ? (
-                <div className='absolute flex items-center justify-center top-5 left-5 bg-secondary-6 w-16 h-16 rounded-full font-bold'>
+                <div className='absolute flex items-center justify-center top-5 left-5 text-primary-10 bg-primary-12 w-16 h-16 rounded-full font-bold'>
                   <p>-{percentageDiscount}%</p>
                 </div>
               ) : (
@@ -62,11 +63,11 @@ const Productslist = ({ productsData }) => {
               )}
             </div>
             <Link href={`/product/details/${productId}`} passHref>
-              <h3 className='pt-4 md:text-lg xl:text-xl tracking-wider lg:cursor-pointer'>
+              <h3 className='pt-4 md:text-lg text-secondary-6 xl:text-xl tracking-wider lg:cursor-pointer'>
                 {name}
               </h3>
             </Link>
-            <div className='flex justify-center items-center py-4'>
+            <div className='flex justify-center text-secondary-10 items-center py-4'>
               <p className='text-lg sm:text-2xl font-bold mr-4'>${price}</p>
               {percentageDiscount ? (
                 <p className='font-medium sm:text-xl text-base line-through'>
