@@ -2,7 +2,7 @@ import { BiPlus, BiMinus } from 'react-icons/bi';
 import { useSelector, useDispatch } from 'react-redux';
 import { quantityActions } from '../../store/quantitySlice';
 
-const QuantityButtons = ({ singleProduct, productId, setAlert }) => {
+const QuantityButtons = () => {
   const dispatch = useDispatch();
   const quantity = useSelector((state) => state.quantityValue.quantity);
 

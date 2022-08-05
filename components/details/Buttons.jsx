@@ -20,7 +20,7 @@ export default function Buttons({ singleProduct, productId }) {
       <div className='w-full left-0 fixed top-0 z-50'>
         {alert.show && <Alert alert={alert} setAlert={setAlert} />}
       </div>
-      <div className='flex items-center justify-between'>
+      <div className='flex justify-between'>
         <QuantityButtons />
         <FavoritesButton
           singleProduct={singleProduct}
