@@ -17,6 +17,11 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
           <Link href='/'>asuman sounds</Link>
         </div>
         <div className='flex items-center'>
+          <Link href='/products/favorites'>
+            <h3 className='uppercase text-base mr-8 hover:translate-x-1 duration-300 ease-linear cursor-pointer'>
+              favorites
+            </h3>
+          </Link>
           <Categories />
           {/**Cart icon container */}
           <div className='relative flex' onClick={toggleCart}>
@@ -58,12 +63,12 @@ const Categories = () => {
 
   return (
     <div
-      className='relative mr-24'
+      className='relative mr-4 lg:mr-8'
       onMouseEnter={displayCategories}
       onMouseLeave={hideCategories}>
       <h3 className='uppercase text-base cursor-pointer'>categories</h3>
       {showCategories ? (
-        <ul className='fle absolute justify-between items-center bg-primary-4 text-primary-10 pl-3 pb-3 text-xs lg:text-sm w-44'>
+        <ul className='fle absolute justify-between items-center bg-primary-4 text-primary-10 pl-3 pb-3 text-xs lg:text-sm w-36'>
           {listItems.map((listItem, index) => {
             const { text, path } = listItem;
             return (
