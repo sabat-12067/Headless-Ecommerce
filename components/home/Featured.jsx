@@ -61,7 +61,7 @@ const FeaturedTwo = () => {
         </h3>
         <Link href='/product/details/3' passHref>
           <div className='flex justify-center py-8'>
-            <button className=' text-primary-11 uppercase tracking-widest lg:cursor-pointer'>
+            <button className=' text-primary-2 my-4 uppercase tracking-widest lg:cursor-pointer'>
               see product
             </button>
           </div>
