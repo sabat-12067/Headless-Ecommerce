@@ -17,7 +17,7 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
           <Link href='/'>asuman sounds</Link>
         </div>
         <div className='flex items-center'>
-           <Categories />
+          <Categories />
           {/**Cart icon container */}
           <div className='relative flex' onClick={toggleCart}>
             <HiShoppingCart className='md:ml-10 w-8 h-8 md:h-9 md:w-9 cursor-pointer hover:scale-105 duration-300 ease-linear self-center' />
@@ -39,38 +39,48 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
 }
 
 const Categories = () => {
-
   const [showCategories, setShowCategories] = useState(false);
-  
+
   const listItems = [
-  { text: 'headsets', path: '/products/category/3' },
-  { text: 'speakers', path: '/products/category/1' },
-  { text: 'home theaters', path: '/products/category/2' },
-  { text: 'headphones', path: '/products/category/4' },
-];
+    { text: 'headsets', path: '/products/category/3' },
+    { text: 'speakers', path: '/products/category/1' },
+    { text: 'home theaters', path: '/products/category/2' },
+    { text: 'headphones', path: '/products/category/4' },
+  ];
 
   const displayCategories = () => {
-    
-  }
+    setShowCategories(true);
+  };
+
+  const hideCategories = () => {
+    setShowCategories(false);
+  };
 
   return (
-    <div className='relative mr-24' onMouseEnter={displayCategories}>
+    <div
+      className='relative mr-24'
+      onMouseEnter={displayCategories}
+      onMouseLeave={hideCategories}>
       <h3 className='uppercase text-base cursor-pointer'>categories</h3>
-      <ul className='fle absolute justify-between items-center bg-primary-4 text-primary-10 pl-3 pb-3 md:text-xs lg:text-sm w-44'>
-        {listItems.map((listItem, index) => {
-          const { text, path } = listItem;
-          return (
-            <li
-              key={index}
-              className='uppercase font-semibold mt-3 hover:text-secondary-7 duration-300 ease-linear'>
-              <Link href={path}>{text}</Link>
-            </li>
-          );
-        })}
-      </ul>
+      {showCategories ? (
+        <ul className='fle absolute justify-between items-center bg-primary-4 text-primary-10 pl-3 pb-3 text-xs lg:text-sm w-44'>
+          {listItems.map((listItem, index) => {
+            const { text, path } = listItem;
+            return (
+              <li
+                key={index}
+                className='capitalize font-semibold mt-3 tracking-wider hover:text-secondary-7 hover:translate-x-1 duration-300 ease-linear'>
+                <Link href={path}>{text}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <ul></ul>
+      )}
     </div>
   );
-}
+};
 
 const Button = ({ action, path }) => {
   const router = useRouter();
