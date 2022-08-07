@@ -11,10 +11,6 @@ export default function Buttons({ singleProduct, productId }) {
     msg: '',
   });
 
-  console.log('Buttons component rendered');
-
-  // console.log('is Add To Cart Button Clicked:', isAddToCartClicked);
-
   return (
     <section className='px-4'>
       <div className='w-full left-0 fixed top-0 z-50'>

@@ -38,7 +38,7 @@ export const getStaticProps = async (context) => {
             }
           }
         }
-        audioproducts {
+        audioproducts(pagination: { start: 0, limit: 300 }) {
           data {
             id
             attributes {

@@ -74,12 +74,12 @@ const WithItems = ({ favoriteItems, setFavoriteItems }) => {
                 <div></div>
               )}
               <IoMdRemove
-                className='absolute text-primary-2 rounded-full top-5 right-5 text-4xl bg-dark-red'
+                className='absolute text-primary-2 rounded-full top-5 right-5 text-4xl bg-dark-red cursor-pointer'
                 onClick={handleClick}
               />
             </div>
             <Link href={`/product/details/${id}`} passHref>
-              <h3 className='pt-4 text-secondary-8 md:text-lg xl:text-xl tracking-wider lg:cursor-pointer'>
+              <h3 className='pt-4 text-secondary-8 text-sm md:text-base xl:text-lg tracking-wider lg:cursor-pointer'>
                 {name}
               </h3>
             </Link>
