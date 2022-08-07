@@ -33,7 +33,7 @@ const Productslist = ({ products }) => {
                   <div></div>
                 )}
               </div>
-              <h3 className='pt-4 text-sm md:text-lg text-secondary-6 xl:text-xl tracking-wider lg:cursor-pointer'>
+              <h3 className='pt-4 text-xs sm:text-sm md:text-base text-secondary-6 xl:text-lg tracking-wider lg:cursor-pointer'>
                 {name}
               </h3>
               <div className='flex justify-center text-secondary-10 items-center py-4'>
