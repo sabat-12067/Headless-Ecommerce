@@ -1,9 +1,5 @@
-import Carousel from '../../../../components/details/Carousel';
-import ProductInfo from '../../../../components/details/ProductInfo';
-import Buttons from '../../../../components/details/Buttons';
-import Description from '../../../../components/details/Description';
-import Cart from '../../../../components/cart';
 import markDownToHtml from '../../../../components/details/markDownToHtml';
+import ProductDetailsPage from '../../../../components/details';
 
 //This page is the details/product page.
 
@@ -17,20 +13,9 @@ export default function Product({
   const singleProduct = product.attributes;
 
   return (
-    <section className='pt-[56px] md:pt-[75px]'>
-      <Cart />
-      <div className='md:flex max-w-6xl mx-auto'>
-        <Carousel singleProduct={singleProduct} />
-        <div className='w-full'>
-          <ProductInfo singleProduct={singleProduct} />
-          <Buttons singleProduct={singleProduct} productId={productId} />
-          <Description
-            specifications={specifications}
-            description={description}
-          />
-        </div>
-      </div>
-    </section>
+    <main>
+      <ProductDetailsPage singleProduct={singleProduct} productId={productId} specifications={specifications} description={description} />
+    </main>
   );
 }
 

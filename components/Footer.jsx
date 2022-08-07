@@ -19,16 +19,16 @@ function Footer() {
         <div className='flex items-center md:items-end flex-col md:flex-row md:justify-between md:px-6'>
           <h3 className='text-3xl font-extrabold'>asuman sounds</h3>
           <div className='mt-6 md:mt-0 md:flex items-center'>
-             {listItems.map((listItem, index) => {
+            {listItems.map((listItem, index) => {
               const { text, path } = listItem;
               return (
-                <h4 className='uppercase text-center py-3 md:py-0 md:px-4 text-sm cursor-pointer hover:text-secondary-7 duration-300 ease-in' key={index}>
-                  <Link href={path}>
-                    {text}
-                  </Link>
+                <h4
+                  className='uppercase text-center py-3 md:py-0 md:px-4 text-sm cursor-pointer hover:text-secondary-7 duration-300 ease-in'
+                  key={index}>
+                  <Link href={path}>{text}</Link>
                 </h4>
               );
-             })}
+            })}
           </div>
         </div>
         <div className='md:flex items-center justify-between'>

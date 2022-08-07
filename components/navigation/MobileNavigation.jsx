@@ -1,6 +1,6 @@
 import { HiShoppingCart } from 'react-icons/hi';
 import { IoMdHeadset } from 'react-icons/io';
-import { MdHeadset } from 'react-icons/md';
+import { MdHeadset, MdFavorite } from 'react-icons/md';
 import { BsMusicPlayerFill, BsFillSpeakerFill } from 'react-icons/bs';
 import { BiLogIn } from 'react-icons/bi';
 import { FaSignOutAlt, FaHome } from 'react-icons/fa';
@@ -24,6 +24,7 @@ const listItems = [
     path: '/products/category/2',
   },
   { text: 'headphones', icon: <MdHeadset />, path: '/products/category/4' },
+  { text: 'favorites', icon: <MdFavorite />, path: '/products/favorites' },
 ];
 
 function MobileNavigation({ toggleCart, totalQuantity }) {

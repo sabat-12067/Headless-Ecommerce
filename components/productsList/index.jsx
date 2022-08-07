@@ -1,91 +1,64 @@
-import { formatprice } from '../HorLine';
-import Link from 'next/link';
-import Image from 'next/image';
+import { useState } from 'react';
+import HeaderImage from './HeaderImage';
+import Productslist from './Productslist';
+import Search from './Search';
+import Sort from './Sort';
 
 const ProductsList = ({ productsData }) => {
+  const [searchedProducts, setSearchedProducts] = useState('');
+  const [sortHighToLow, setSortHighToLow] = useState(false);
+  const [sortLowToHigh, setSortLowToHigh] = useState(false);
+  const categoryName = productsData.attributes.name;
+
+  const productsListData = productsData.attributes.audioproducts.data;
+
+  //filter products by name
+  const filteredProducts = productsListData.filter((productsList) => {
+    if (searchedProducts === '') {
+      return productsList;
+    } else {
+      return productsList.attributes.name
+        .toLowerCase()
+        .includes(searchedProducts.toLocaleLowerCase());
+    }
+  });
+
+  if (sortHighToLow) {
+    // sort products by price high to low
+    filteredProducts.sort((a, b) => b.attributes.price - a.attributes.price);
+  }
+
+  if (sortLowToHigh) {
+    // sort products by price low to high
+    filteredProducts.sort((a, b) => a.attributes.price - b.attributes.price);
+  }
+
   return (
     <section>
       <HeaderImage productsData={productsData} />
-      <Productslist productsData={productsData} />
+      <div className='max-w-6xl lg:mx-auto px-4'>
+        <Search
+          setSearchedProducts={setSearchedProducts}
+          categoryName={categoryName}
+        />
+        <Sort
+          setSortHighToLow={setSortHighToLow}
+          setSortLowToHigh={setSortLowToHigh}
+          sortLowToHigh={sortLowToHigh}
+          sortHighToLow={sortHighToLow}
+        />
+        { filteredProducts.length > 0 ? (<Productslist products={filteredProducts} />) : (<NotFound />) }
+      </div>
     </section>
   );
 };
 
-const HeaderImage = ({ productsData }) => {
-  const categoryName = productsData.attributes.name;
-  const imageUrl = productsData.attributes.image.data[0].attributes.url;
+const NotFound = () => {
   return (
-      <div className='md:mt-8 flex justify-center relative bg-white max-w-[1120px] mx-auto'>
-        <div>
-          {/* <img
-          src={imageUrl}
-          alt={`Image of ${categoryName}`}
-          className='w-[400px]'
-        /> */}
-          <Image
-            src={imageUrl}
-            alt={`Image of ${categoryName}`}
-            width={400}
-            height={450}
-          />
-        </div>
-        <h1 className='absolute text-6xl md:text-7xl left-5 top-16'>
-          {categoryName}
-        </h1>
-      </div>
-  );
-};
-
-const Productslist = ({ productsData }) => {
-  const productsListData = productsData.attributes.audioproducts.data;
-  return (
-    <div className='my-8 sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 px-4 max-w-6xl lg:mx-auto'>
-      {productsListData.map((product) => {
-        const productId = product.id;
-        const name = product.attributes.name;
-        const price = product.attributes.price;
-        const imageUrl = product.attributes.image.data[0].attributes.url;
-        const percentageDiscount = product.attributes.percentageDiscount;
-        let originalPrice = (price * 100) / (100 - percentageDiscount);
-        originalPrice = formatprice(originalPrice);
-
-        return (
-          <div className='sm:mx-0' key={productId}>
-            <div className='relative rounded-md'>
-              <Image
-                src={imageUrl}
-                alt={`Image of ${name}`}
-                width={450}
-                height={400}
-              />
-              {percentageDiscount ? (
-                <div className='absolute flex items-center justify-center top-5 left-5 bg-secondary-6 w-16 h-16 rounded-full font-bold'>
-                  <p>-{percentageDiscount}%</p>
-                </div>
-              ) : (
-                <div></div>
-              )}
-            </div>
-            <Link href={`/product/details/${productId}`} passHref>
-              <h3 className='pt-4 md:text-lg xl:text-xl tracking-wider lg:cursor-pointer'>
-                {name}
-              </h3>
-            </Link>
-            <div className='flex justify-center items-center py-4'>
-              <p className='text-lg sm:text-2xl font-bold mr-4'>${price}</p>
-              {percentageDiscount ? (
-                <p className='font-medium sm:text-xl text-base line-through'>
-                  {originalPrice}
-                </p>
-              ) : (
-                <p></p>
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
+    <section className='my-8 bg-light-red text-dark-red max-w-lg mx-auto'>
+      <h3 className='py-16'>item not found!!!</h3>
+    </section>
+  )
+}
 
 export default ProductsList;
