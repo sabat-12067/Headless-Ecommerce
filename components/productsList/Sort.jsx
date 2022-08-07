@@ -18,7 +18,7 @@ const Sort = ({
 
   return (
     <section>
-      <div className='mt-8'>
+      <div className='mt-5'>
         <h3 className='pb-3 text-left md:text-xl'>Sort products by price</h3>
         <div className='flex justify-center'>
           <div

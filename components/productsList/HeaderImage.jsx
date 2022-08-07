@@ -10,7 +10,7 @@ const HeaderImage = ({ productsData }) => {
           src={imageUrl}
           alt={`Image of ${categoryName}`}
           width={400}
-          height={450}
+          height={400}
         />
       </div>
       <h1 className='absolute text-6xl md:text-7xl left-5 top-16'>

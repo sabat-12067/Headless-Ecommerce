@@ -8,7 +8,7 @@ const Search = ({ setSearchedProducts, categoryName }) => {
           type='text'
           placeholder={`Search ${categoryName}`}
           onChange={(e) => setSearchedProducts(e.target.value)}
-          className='p-3 rounded-md w-full border-none outline-none mt-16'
+          className='p-3 rounded-md w-full border-none outline-none mt-8'
         />
       </div>
     </section>
