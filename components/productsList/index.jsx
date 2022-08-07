@@ -1,12 +1,32 @@
 import { formatprice } from '../HorLine';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const ProductsList = ({ productsData }) => {
+
+   const [searchedProducts, setSearchedProducts] = useState('');
+
+   const productsListData = productsData.attributes.audioproducts.data;
+
+   console.log('productsListData', productsListData);
+
+   //filter products by name
+   const filteredProducts = productsListData.filter((productsList) => {
+     if (searchedProducts === '') {
+       return productsList;
+     } else {
+       return productsList.attributes.name
+         .toLowerCase()
+         .includes(searchedProducts.toLocaleLowerCase());
+     }
+   });
+
   return (
     <section>
       <HeaderImage productsData={productsData} />
-      <Productslist productsData={productsData} />
+      <Search setSearchedProducts={setSearchedProducts} />
+      <Productslist products={filteredProducts} />
     </section>
   );
 };
@@ -31,11 +51,11 @@ const HeaderImage = ({ productsData }) => {
   );
 };
 
-const Productslist = ({ productsData }) => {
-  const productsListData = productsData.attributes.audioproducts.data;
+const Productslist = ({ products }) => {
+  
   return (
     <div className='my-8 sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 px-4 max-w-6xl lg:mx-auto'>
-      {productsListData.map((product) => {
+      {products.map((product) => {
         const productId = product.id;
         const name = product.attributes.name;
         const price = product.attributes.price;
@@ -51,7 +71,7 @@ const Productslist = ({ productsData }) => {
                 src={imageUrl}
                 alt={`Image of ${name}`}
                 width={450}
-                height={400}
+                height={500}
                 className='rounded-md'
               />
               {percentageDiscount ? (
@@ -81,6 +101,22 @@ const Productslist = ({ productsData }) => {
         );
       })}
     </div>
+  );
+};
+
+const Search = ({ setSearchedProducts }) => {
+
+  return (
+    <section>
+      <div>
+        <input
+          type='text'
+          placeholder='Search For A Product'
+          onChange={(e) => setSearchedProducts(e.target.value)}
+          className='p-2 rounded-md w-full border-none outline-none mt-4'
+        />
+      </div>
+    </section>
   );
 };
 
