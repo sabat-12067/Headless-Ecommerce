@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 
-const YouMayAlsoLike = () => {
+const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
+ 
   function slideLeft() {
     let slider = document.getElementById('slider');
     slider.scrollLeft = slider.scrollLeft - 300;
@@ -12,6 +13,10 @@ const YouMayAlsoLike = () => {
     let slider = document.getElementById('slider');
     slider.scrollLeft = slider.scrollLeft + 300;
   }
+
+  const youMayAlsoLikeProducts = youMayAlsoLikeData.attributes.audioproducts.data
+  console.log('You May Also Like Products', youMayAlsoLikeProducts);
+
   return (
     <section className='px-4 py-8 max-w-6xl mx-auto text-center mb-4'>
       <h2 className='py-5'>You may also like</h2>
@@ -19,22 +24,21 @@ const YouMayAlsoLike = () => {
         <div
           id='slider'
           className='relative overflow-x-scroll scrollbar-hide whitespace-nowrap scroll-smooth h-full w-full space-x-3'>
-          {/* {recommendedData.map((item) => (
-            <Link href={item.path} key={item.name}>
+          {/* {youMayAlsoLikeProducts.map((item) => {
+           const { id, attributes } = item;
+           const { name, image, price, percentageDiscount } = attributes;
+           const imageUrl = image.data[0].attributes.url;
+            <Link href={`product/details/${id}`} key={id}>
               <div className='bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
                 <div>
-                 <Zoom bottom>
-                    <Image src={item.image} alt={item.name} objectFit='cover' />
-                 </Zoom>        
+                    <Image src={imageUrl} alt={`image of ${name}`} objectFit='cover' />       
                 </div>
                 <div className='p-5'>
-                  <Slide left>
-                  <p className='font-bold tracking-wide'>{item.name}</p>
-                  </Slide>
+                  <p className='font-bold tracking-wide'>{name}</p>
                 </div>
               </div>
             </Link>
-          ))} */}
+          })} */}
         </div>
         <div
           onClick={slideLeft}
