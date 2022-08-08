@@ -6,16 +6,14 @@ const Productslist = ({ products }) => {
   return (
     <div className='my-8 grid grid-cols-2 md:grid-cols-3 gap-4'>
       {products.map((product) => {
-        const productId = product.id;
-        const name = product.attributes.name;
-        const price = product.attributes.price;
-        const imageUrl = product.attributes.image.data[0].attributes.url;
-        const percentageDiscount = product.attributes.percentageDiscount;
+        const {id, attributes} = product;
+        const {name, price, percentageDiscount, image} = attributes;
+        const imageUrl = image.data[0].attributes.url;
         let originalPrice = (price * 100) / (100 - percentageDiscount);
         originalPrice = formatprice(originalPrice);
 
         return (
-          <Link href={`/product/details/${productId}`} key={productId} passHref>
+          <Link href={`/product/details/${id}`} key={id} passHref>
             <div className='sm:mx-0 cursor-pointer'>
               <div className='relative rounded-md'>
                 <Image

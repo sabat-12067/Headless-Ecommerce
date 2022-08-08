@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+import { formatprice } from './HorLine';
 
 const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
- 
   function slideLeft() {
     let slider = document.getElementById('slider');
     slider.scrollLeft = slider.scrollLeft - 300;
@@ -14,7 +14,8 @@ const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
     slider.scrollLeft = slider.scrollLeft + 300;
   }
 
-  const youMayAlsoLikeProducts = youMayAlsoLikeData.attributes.audioproducts.data
+  const youMayAlsoLikeProducts =
+    youMayAlsoLikeData.attributes.audioproducts.data;
   console.log('You May Also Like Products', youMayAlsoLikeProducts);
 
   return (
@@ -24,21 +25,30 @@ const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
         <div
           id='slider'
           className='relative overflow-x-scroll scrollbar-hide whitespace-nowrap scroll-smooth h-full w-full space-x-3'>
-          {/* {youMayAlsoLikeProducts.map((item) => {
-           const { id, attributes } = item;
-           const { name, image, price, percentageDiscount } = attributes;
-           const imageUrl = image.data[0].attributes.url;
-            <Link href={`product/details/${id}`} key={id}>
-              <div className='bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
-                <div>
-                    <Image src={imageUrl} alt={`image of ${name}`} objectFit='cover' />       
+          {youMayAlsoLikeProducts.map((item) => {
+            const { id, attributes } = item;
+            const { name, image, price, percentageDiscount } = attributes;
+            const imageUrl = image.data[0].attributes.url;
+            let originalPrice = (price * 100) / (100 - percentageDiscount);
+            originalPrice = formatprice(originalPrice);
+            return (
+              <Link href={`/product/details/${id}`} key={id}>
+                <div className='bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
+                  <div>
+                    <Image
+                      src={imageUrl}
+                      alt={`image of ${name}`}
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                  <div className='p-5'>
+                    <h3 className='font-bold tracking-wide border'>{name}</h3>
+                  </div>
                 </div>
-                <div className='p-5'>
-                  <p className='font-bold tracking-wide'>{name}</p>
-                </div>
-              </div>
-            </Link>
-          })} */}
+              </Link>
+            );
+          })}
         </div>
         <div
           onClick={slideLeft}
