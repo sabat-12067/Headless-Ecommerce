@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section className='flex items-center w-screen h-screen bg-primary-10 relative'>
       <div className='flex justify-center items-center max-w-7xl mx-auto h-full'>
-        <div className='absolute md:static text-white flex flex-col justify-center md:justify-start px-6 md:p-0 md:pl-12 md:w-[50%] md:mt-28 z-30'>
+        <div className='absolute md:static text-white flex flex-col justify-center md:justify-start px-6 md:p-0 md:pl-12 md:w-[50%] md:mt-28 z-20'>
           <h5 className='uppercase tracking-widest text-center sm:text-left pb-4'>
             new product
           </h5>
@@ -25,7 +25,7 @@ export default function Hero() {
             see product
           </button>
         </div>
-        <div className='relative z-20'>
+        <div className='relative z-10'>
           <Image
             src={jblHeadphone}
             alt='image of jbl headphones'
