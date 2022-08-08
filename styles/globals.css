@@ -34,6 +34,7 @@ h3 {
   }
  }
 
+ /* Styles for SVG for the hero section of home page*/
 .custom-shape-divider-bottom-1659914417 {
     position: absolute;
     bottom: 0;
@@ -53,4 +54,26 @@ h3 {
 
 .custom-shape-divider-bottom-1659914417 .shape-fill {
     fill: #003e6b;
+}
+
+  /* Styles for SVG for the hero section of home page*/
+  .custom-shape-divider-bottom-1659991802 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1659991802 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 500px;
+}
+
+.custom-shape-divider-bottom-1659991802 .shape-fill {
+    fill: #2563eb;
 }

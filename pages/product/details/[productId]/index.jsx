@@ -1,5 +1,6 @@
 import markDownToHtml from '../../../../components/details/markDownToHtml';
 import ProductDetailsPage from '../../../../components/details';
+import YouMayAlsoLike from '../../../../components/YouMayAlsoLike';
 
 //This page is the details/product page.
 
@@ -15,6 +16,7 @@ export default function Product({
   return (
     <main>
       <ProductDetailsPage singleProduct={singleProduct} productId={productId} specifications={specifications} description={description} />
+      <YouMayAlsoLike />
     </main>
   );
 }
@@ -27,6 +29,7 @@ export async function getStaticProps(context) {
   );
   const productData = await response.json();
   const product = productData.data;
+  console.log('product data: ', product);
 
   //description of the product converted from markdown to html
   const description = await markDownToHtml(product.attributes.descriptions);
