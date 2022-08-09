@@ -29,7 +29,8 @@
     "redux-toolkit-form": "^1.2.1",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
-    "swiper": "^8.1.4"
+    "swiper": "^8.1.4",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.5",

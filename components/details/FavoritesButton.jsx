@@ -3,13 +3,18 @@ import { useEffect, useState } from 'react';
 import { formatprice } from '../HorLine';
 
 const FavoritesButton = ({ singleProduct, productId, setAlert }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
 
  const { name, image, price, percentageDiscount } = singleProduct;
+
+ useEffect(() => {
+  // set isFavorite to false whenever a new product is selected
+  setIsFavorite(false);
+  } , [productId]);
 
  let discountPrice = (price * 100) / (100 - percentageDiscount);
  discountPrice = formatprice(discountPrice);
  
-  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     const favoriteItems = localStorage.getItem('favoriteItems')

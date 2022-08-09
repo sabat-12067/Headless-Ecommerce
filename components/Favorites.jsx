@@ -3,12 +3,20 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Cart from './cart';
 import { IoMdRemove } from 'react-icons/io';
+import Alert from './Auth/Alert';
 
 const Favorites = () => {
   const [favoriteItems, setFavoriteItems] = useState([]);
+  const [alert, setAlert] = useState({
+    show: false,
+    type: '',
+    msg: '',
+  });
+
 
   useEffect(() => {
-    const favoriteItems = JSON.parse(localStorage.getItem('favoriteItems'));
+    const favoriteItems =
+      JSON.parse(localStorage.getItem('favoriteItems')) || [];
     setFavoriteItems(favoriteItems);
     // eslint-disable-next-line
   }, []);
@@ -16,6 +24,7 @@ const Favorites = () => {
   return (
     <div className='pt-24 lg:mb-20'>
       <Cart />
+      {alert.show && <Alert alert={alert} setAlert={setAlert} />}
       <h1 className='text-center uppercase px-4 lg:py-12'>
         Your favorite items
       </h1>
@@ -23,6 +32,7 @@ const Favorites = () => {
         <WithItems
           favoriteItems={favoriteItems}
           setFavoriteItems={setFavoriteItems}
+          setAlert={setAlert}
         />
       ) : (
         <WithOutItems />
@@ -31,7 +41,8 @@ const Favorites = () => {
   );
 };
 
-const WithItems = ({ favoriteItems, setFavoriteItems }) => {
+const WithItems = ({ favoriteItems, setFavoriteItems, setAlert }) => {
+  
   return (
     <div className='my-8 sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 px-4 max-w-6xl lg:mx-auto'>
       {favoriteItems.map((favoriteItem) => {
@@ -42,7 +53,6 @@ const WithItems = ({ favoriteItems, setFavoriteItems }) => {
           imageUrl,
           discountPrice,
           percentageDiscount,
-          isFavorite,
         } = favoriteItem;
 
         const handleClick = () => {
@@ -54,7 +64,12 @@ const WithItems = ({ favoriteItems, setFavoriteItems }) => {
             'favoriteItems',
             JSON.stringify(newFavoriteItems)
           );
-        };
+          setAlert({
+            show: true,
+            type: 'success',
+            msg: 'Item removed from favorites',
+        });
+      };
 
         return (
           <article key={id}>
@@ -66,12 +81,10 @@ const WithItems = ({ favoriteItems, setFavoriteItems }) => {
                 height={400}
                 className='rounded-md'
               />
-              {percentageDiscount ? (
+              {percentageDiscount && (
                 <div className='absolute flex text-primary-10 bg-primary-12 items-center justify-center top-5 left-5 w-16 h-16 rounded-full font-bold'>
                   <p>-{percentageDiscount}%</p>
                 </div>
-              ) : (
-                <div></div>
               )}
               <IoMdRemove
                 className='absolute text-primary-2 rounded-full top-5 right-5 text-4xl bg-dark-red cursor-pointer'
@@ -85,12 +98,10 @@ const WithItems = ({ favoriteItems, setFavoriteItems }) => {
             </Link>
             <div className='flex justify-center items-center py-4'>
               <p className='text-lg sm:text-2xl font-bold mr-4'>${price}</p>
-              {percentageDiscount ? (
+              {percentageDiscount && (
                 <p className='font-medium sm:text-xl text-base line-through'>
                   {discountPrice}
                 </p>
-              ) : (
-                <p></p>
               )}
             </div>
           </article>

@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function DesktopNavigation({ toggleCart, totalQuantity }) {
   const router = useRouter();
   const isHomePage = router.pathname === '/';
+  console.log('route path: ', router.pathname);
 
   return (
     <nav
@@ -68,13 +69,13 @@ const Categories = () => {
       onMouseLeave={hideCategories}>
       <h3 className='uppercase text-base cursor-pointer'>categories</h3>
       {showCategories ? (
-        <ul className='fle absolute justify-between items-center bg-primary-4 text-primary-10 pl-3 pb-3 text-xs lg:text-sm w-36'>
+        <ul className='fle absolute justify-between items-center bg-primary-13 rounded-md shadow-2xl text-primary-10 pl-3 pb-4 text-xs lg:text-sm w-36'>
           {listItems.map((listItem, index) => {
             const { text, path } = listItem;
             return (
               <li
                 key={index}
-                className='capitalize font-semibold mt-3 tracking-wider hover:text-secondary-7 hover:translate-x-1 duration-300 ease-linear'>
+                className='capitalize font-semibold mt-3 tracking-wider hover:text-secondary-7 duration-200 ease-linear' >
                 <Link href={path}>{text}</Link>
               </li>
             );

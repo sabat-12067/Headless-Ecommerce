@@ -54,13 +54,16 @@ const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
                     <h3 className='font-bold tracking-wide text-base md:text-lg'>
                       {price}
                     </h3>
-                    { percentageDiscount && (<h3 className='font-bold tracking-wide text-sm md:text-base line-through ml-4'>
-                      {originalPrice}
-                    </h3>)}
                     {percentageDiscount && (
-                  <div className='absolute flex items-center justify-center top-5 left-5 text-primary-10 bg-primary-12 w-12 h-12 p-2 rounded-full font-bold'>
-                    <p>-{percentageDiscount}%</p>
-                  </div>)}
+                      <h3 className='font-bold tracking-wide text-sm md:text-base line-through ml-4'>
+                        {originalPrice}
+                      </h3>
+                    )}
+                    {percentageDiscount && (
+                      <div className='absolute flex items-center justify-center top-5 left-5 text-primary-10 bg-primary-12 w-12 h-12 p-2 rounded-full font-bold'>
+                        <p>-{percentageDiscount}%</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </Link>
@@ -69,12 +72,12 @@ const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
         </div>
         <div
           onClick={slideLeft}
-          className='hidden absolute -left-2 md:-left-6 top-1/2 -translate-y-1/2 text-2xl bg-white/70 w-10 h-10 md:w-14 md:h-14 rounded-full lg:flex items-center justify-center cursor-pointer group-hover:bg-primary-1 hover:text-white'>
+          className='hidden absolute -left-2 md:-left-6 top-1/2 -translate-y-1/2 text-2xl bg-white/70 w-10 h-10 md:w-14 md:h-14 rounded-full lg:flex items-center justify-center cursor-pointer group-hover:bg-primary-10 text-white hover:text-secondary-7'>
           <BsChevronCompactLeft />
         </div>
         <div
           onClick={slideRight}
-          className='hidden absolute -right-2 md:-right-6 top-1/2 -translate-y-1/2 text-2xl bg-white/70 w-10 h-10 md:w-14 md:h-14 rounded-full lg:flex items-center justify-center cursor-pointer group-hover:bg-primary-1 hover:text-white'>
+          className='hidden absolute -right-2 md:-right-6 top-1/2 -translate-y-1/2 text-2xl bg-white/70 w-10 h-10 md:w-14 md:h-14 rounded-full lg:flex items-center justify-center cursor-pointer group-hover:bg-primary-10 text-white hover:text-secondary-7'>
           <BsChevronCompactRight />
         </div>
       </div>
