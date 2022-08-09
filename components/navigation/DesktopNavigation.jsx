@@ -6,7 +6,6 @@ import { useState } from 'react';
 export default function DesktopNavigation({ toggleCart, totalQuantity }) {
   const router = useRouter();
   const isHomePage = router.pathname === '/';
-  console.log('route path: ', router.pathname);
 
   return (
     <nav
