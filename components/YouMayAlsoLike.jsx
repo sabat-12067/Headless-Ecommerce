@@ -16,7 +16,6 @@ const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
 
   const youMayAlsoLikeProducts =
     youMayAlsoLikeData.attributes.audioproducts.data;
-  console.log('You May Also Like Products', youMayAlsoLikeProducts);
 
   return (
     <section className='px-4 py-8 max-w-6xl mx-auto text-center mb-4'>
