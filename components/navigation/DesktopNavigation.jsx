@@ -18,7 +18,7 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
           <Link href='/'>asuman sounds</Link>
         </div>
         <div className='flex items-center'>
-          <Link href='/products/favorites'>
+          <Link href='/products/favorites' passHref>
             <h3 className='uppercase text-base mr-8 hover:translate-x-1 duration-300 ease-linear cursor-pointer'>
               favorites
             </h3>

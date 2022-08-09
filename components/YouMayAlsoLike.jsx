@@ -32,7 +32,7 @@ const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
             let originalPrice = (price * 100) / (100 - percentageDiscount);
             originalPrice = formatprice(originalPrice);
             return (
-              <Link href={`/product/details/${id}`} key={id}>
+              <Link href={`/product/details/${id}`} key={id} passHref>
                 <div className='bg-white w-[230px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
                   <div>
                     <Image
