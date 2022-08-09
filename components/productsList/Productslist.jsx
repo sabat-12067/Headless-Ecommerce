@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Productslist = ({ products }) => {
   return (
-    <div className='my-8 grid grid-cols-2 md:grid-cols-3 gap-4'>
+    <div className='my-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
       {products.map((product) => {
         const {id, attributes} = product;
         const {name, price, percentageDiscount, image} = attributes;
@@ -23,12 +23,10 @@ const Productslist = ({ products }) => {
                   height={500}
                   className='rounded-md'
                 />
-                {percentageDiscount ? (
+                {percentageDiscount && (
                   <div className='absolute flex items-center justify-center top-5 left-5 text-primary-10 bg-primary-12 w-12 h-12 p-2 rounded-full font-bold'>
                     <p>-{percentageDiscount}%</p>
                   </div>
-                ) : (
-                  <div></div>
                 )}
               </div>
               <h3 className='pt-4 text-xs sm:text-sm md:text-base text-secondary-6 xl:text-lg tracking-wider lg:cursor-pointer'>
@@ -36,12 +34,10 @@ const Productslist = ({ products }) => {
               </h3>
               <div className='flex justify-center text-secondary-10 items-center py-4'>
                 <p className='text-lg sm:text-2xl font-bold mr-4'>${price}</p>
-                {percentageDiscount ? (
+                {percentageDiscount && (
                   <p className='font-medium sm:text-xl text-base line-through'>
                     {originalPrice}
                   </p>
-                ) : (
-                  <p></p>
                 )}
               </div>
             </div>
