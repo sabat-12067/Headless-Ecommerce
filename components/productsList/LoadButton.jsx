@@ -1,31 +1,31 @@
 import { useState, useEffect } from 'react';
 
-const LoadButton = ({ setLastItem, filteredProducts, lastItem }) => {
+const LoadButton = ({ setLastItemIndex, filteredProducts, lastItemIndex }) => {
  const [showLess, setShowLess] = useState(false);
 
  useEffect(() => {
    // if all the items in the array are displayed
-   if (lastItem >= filteredProducts.length) {
+   if (lastItemIndex >= filteredProducts.length) {
      setShowLess(true);
    }
    //if more items in the array can be displayed
-   if (lastItem < filteredProducts.length) {
+   if (lastItemIndex < filteredProducts.length) {
      setShowLess(false);
    }
- }, [filteredProducts.length, lastItem]);
+ }, [filteredProducts.length, lastItemIndex]);
 
  const handleLoadMore = () => {
    // Display the next 4 items each time the load more button is clicked
-   setLastItem(lastItem + 4);
+   setLastItemIndex(lastItemIndex + 4);
    // if all the items in the array are displayed
    if (showLess) {
-     setLastItem(4);
+     setLastItemIndex(4);
    }
  };
   return (
-    <section>
+    <section className='flex justify-center'>
       <button
-        className='rounded-sm bg-primary-1 py-2 px-8 mt-6 disabled:opacity-50'
+        className='rounded-sm bg-primary-11 py-2 px-8 mb-12 disabled:opacity-50'
         onClick={handleLoadMore}>
         {showLess ? 'Show less' : 'Load more'}
       </button>

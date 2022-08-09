@@ -10,7 +10,7 @@ const ProductsList = ({ productsData }) => {
   const [sortHighToLow, setSortHighToLow] = useState(false);
   const [sortLowToHigh, setSortLowToHigh] = useState(false);
   const categoryName = productsData.attributes.name;
-  const [lastItem, setLastItem] = useState(4);
+  const [lastItemIndex, setLastItemIndex] = useState(4);
 
   const productsListData = productsData.attributes.audioproducts.data;
 
@@ -36,7 +36,7 @@ const ProductsList = ({ productsData }) => {
   }
 
   // Get a given number of the first items from the filteredProducts array
-  const dispalyedProducts = filteredProducts.slice(0, lastItem);
+  const dispalyedProducts = filteredProducts.slice(0, lastItemIndex);
 
   return (
     <section>
@@ -59,9 +59,9 @@ const ProductsList = ({ productsData }) => {
           <NotFound />
         )}
         <LoadButton
-          setLastItem={setLastItem}
+          setLastItemIndex={setLastItemIndex}
           filteredProducts={filteredProducts}
-          lastItem={lastItem}
+          lastItemIndex={lastItemIndex}
         />
       </div>
     </section>
