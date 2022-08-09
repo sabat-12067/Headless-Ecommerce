@@ -33,7 +33,7 @@ const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
             originalPrice = formatprice(originalPrice);
             return (
               <Link href={`/product/details/${id}`} key={id}>
-                <div className='bg-white w-[200px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
+                <div className='bg-white w-[230px] md:w-[300px] inline-block text-center cursor-pointer rounded relative group overflow-hidden shadow-xl'>
                   <div>
                     <Image
                       src={imageUrl}
@@ -42,8 +42,25 @@ const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
                       height={200}
                     />
                   </div>
-                  <div className='p-5'>
-                    <h3 className='font-bold tracking-wide border'>{name}</h3>
+                  <div className='pb-4'>
+                    <h3 className='font-bold tracking-wide md:hidden text-xs md:text-sm'>
+                      {name.slice(0, 30)}...
+                    </h3>
+                    <h3 className='font-bold tracking-wide hidden md:block text-xs md:text-sm'>
+                      {name.slice(0, 40)}...
+                    </h3>
+                  </div>
+                  <div className='flex items-center pl-3 pb-5'>
+                    <h3 className='font-bold tracking-wide text-base md:text-lg'>
+                      {price}
+                    </h3>
+                    { percentageDiscount && (<h3 className='font-bold tracking-wide text-sm md:text-base line-through ml-4'>
+                      {originalPrice}
+                    </h3>)}
+                    {percentageDiscount && (
+                  <div className='absolute flex items-center justify-center top-5 left-5 text-primary-10 bg-primary-12 w-12 h-12 p-2 rounded-full font-bold'>
+                    <p>-{percentageDiscount}%</p>
+                  </div>)}
                   </div>
                 </div>
               </Link>
