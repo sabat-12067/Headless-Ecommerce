@@ -6,6 +6,7 @@ import hometheater from '../../public/images/hometheatre.png';
 import speaker from '../../public/images/speaker.png';
 import Link from 'next/link';
 import Image from 'next/image';
+import SVGOne from './SVGOne'
 
 const categories = [
   { name: 'Headphones', image: headphone, path: '/products/category/4' },
@@ -16,8 +17,8 @@ const categories = [
 
 const Categories = () => {
   return (
-    <section className='px-5 xl:px-0 max-w-6xl mx-auto pt-8'>
-      <div className='sm:grid sm:grid-cols-2 gap-5'>
+    <section className='px-5 xl:px-0 max-w-6xl mx-auto py-8 relative'>
+      <div className='sm:grid sm:grid-cols-2 gap-5 relative z-30'>
         {categories.map((category, index) => {
           const { name, image, path } = category;
           return (
@@ -42,6 +43,7 @@ const Categories = () => {
           );
         })}
       </div>
+      <SVGOne />
     </section>
   );
 };

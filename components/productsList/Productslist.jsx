@@ -6,16 +6,14 @@ const Productslist = ({ products }) => {
   return (
     <div className='my-8 grid grid-cols-2 md:grid-cols-3 gap-4'>
       {products.map((product) => {
-        const productId = product.id;
-        const name = product.attributes.name;
-        const price = product.attributes.price;
-        const imageUrl = product.attributes.image.data[0].attributes.url;
-        const percentageDiscount = product.attributes.percentageDiscount;
+        const {id, attributes} = product;
+        const {name, price, percentageDiscount, image} = attributes;
+        const imageUrl = image.data[0].attributes.url;
         let originalPrice = (price * 100) / (100 - percentageDiscount);
         originalPrice = formatprice(originalPrice);
 
         return (
-          <Link href={`/product/details/${productId}`} key={productId} passHref>
+          <Link href={`/product/details/${id}`} key={id} passHref>
             <div className='sm:mx-0 cursor-pointer'>
               <div className='relative rounded-md'>
                 <Image
@@ -33,7 +31,7 @@ const Productslist = ({ products }) => {
                   <div></div>
                 )}
               </div>
-              <h3 className='pt-4 text-sm md:text-lg text-secondary-6 xl:text-xl tracking-wider lg:cursor-pointer'>
+              <h3 className='pt-4 text-xs sm:text-sm md:text-base text-secondary-6 xl:text-lg tracking-wider lg:cursor-pointer'>
                 {name}
               </h3>
               <div className='flex justify-center text-secondary-10 items-center py-4'>

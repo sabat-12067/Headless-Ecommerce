@@ -10,6 +10,7 @@ const Alert = ({ alert, setAlert }) => {
       setAlert({ show: false });
     }, 3500);
     return () => clearTimeout(alertTimeOut);
+  // eslint-disable-next-line  
   });
 
   return (

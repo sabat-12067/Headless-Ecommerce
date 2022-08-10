@@ -12,7 +12,6 @@ import 'swiper/css/scrollbar';
 
 export default function Carousel({ singleProduct }) {
   const { image } = singleProduct;
-  console.log('image', image);
 
   return (
     <section className='md:w-full'>
