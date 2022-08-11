@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
 
-const LoadButton = ({ setLastItemIndex, filteredProducts, lastItemIndex }) => {
+const LoadButton = ({ setLastItemIndex, searchResults, lastItemIndex }) => {
  const [showLess, setShowLess] = useState(false);
+ const numberOfProducts = searchResults.length;
 
  useEffect(() => {
    // if all the items in the array are displayed
-   if (lastItemIndex >= filteredProducts.length) {
+   if (lastItemIndex >=  numberOfProducts) {
      setShowLess(true);
    }
    //if more items in the array can be displayed
-   if (lastItemIndex < filteredProducts.length) {
+   if (lastItemIndex <  numberOfProducts) {
      setShowLess(false);
    }
- }, [filteredProducts.length, lastItemIndex]);
+ }, [ numberOfProducts, lastItemIndex]);
 
  const handleLoadMore = () => {
    // Display the next 4 items each time the load more button is clicked

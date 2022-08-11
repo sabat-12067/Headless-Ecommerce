@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Search = ({ setSearchedProducts, categoryName, filteredProducts }) => {
+const Search = ({ setSearchedProducts, categoryName, searchResults }) => {
   const [isUserSearching, setIsUserSearching] = useState(false);
   const handleSearch = (e) => {
     const inputValue = e.target.value;
@@ -11,6 +11,9 @@ const Search = ({ setSearchedProducts, categoryName, filteredProducts }) => {
     setIsUserSearching(false);
     }
   }
+
+  const moreThanOneProduct =  searchResults.length > 1;
+  const noProductsFound =  searchResults.length === 0;
   
   return (
     <section>
@@ -24,9 +27,9 @@ const Search = ({ setSearchedProducts, categoryName, filteredProducts }) => {
       </div>
       {isUserSearching && (
         <p className="text-base pt-2 font-medium tracking-wider">
-          {filteredProducts.length} item
-          {filteredProducts.length > 1 && 's' ||
-            (filteredProducts.length === 0 && 's')}{' '}
+          { searchResults.length} item
+          { moreThanOneProduct  && 's' ||
+            ( noProductsFound && 's')}{' '}
           found
         </p>
       )}

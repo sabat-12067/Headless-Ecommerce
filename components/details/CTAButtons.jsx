@@ -2,7 +2,6 @@ import { cartActions } from '../../store/cartSlice';
 import { useRouter } from 'next/router';
 import { formatprice } from '../HorLine';
 import { HiOutlineShoppingCart } from 'react-icons/hi';
-import {  useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CTAButtons = ({ singleProduct, productId, setAlert }) => {
@@ -62,12 +61,6 @@ const CTAButtons = ({ singleProduct, productId, setAlert }) => {
         : 'Item successfully added to cart',
     });
   };
-
-  // useEffect(() => {
-  //   // Store the cart items in local storage to a cartItems array of the redux store. This is to access an updated cartItems state by the cart component.
-  //   const cartItems = JSON.parse(localStorage.getItem('cartItems'));
-  //   dispatch(cartActions.setCartItems(cartItems));
-  // }, [dispatch]);
 
   const buyItNowItem = {
     id: productId,
