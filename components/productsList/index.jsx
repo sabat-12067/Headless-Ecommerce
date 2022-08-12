@@ -4,6 +4,7 @@ import Productslist from './Productslist';
 import Search from './Search';
 import Sort from './Sort';
 import LoadButton from './LoadButton';
+import About from '../home/About';
 
 const ProductsList = ({ productsData }) => {
   const [searchedProducts, setSearchedProducts] = useState('');
@@ -13,7 +14,7 @@ const ProductsList = ({ productsData }) => {
   const [lastItemIndex, setLastItemIndex] = useState(4);
 
   const productsListData = productsData.attributes.audioproducts.data;
-
+  
   //filter products by name
   const searchResults = productsListData.filter((productsList) => {
     if (searchedProducts === '') {
@@ -64,6 +65,7 @@ const ProductsList = ({ productsData }) => {
           searchResults={searchResults}
           lastItemIndex={lastItemIndex}
         />
+        <About />
       </div>
     </section>
   );
