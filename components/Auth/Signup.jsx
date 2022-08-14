@@ -40,7 +40,7 @@ const SignupForm = () => {
           withCredentials: true,
         }
       );
-
+      //http://localhost:5000/auth/signup
       setAlert({
         show: true,
         type: 'success',
@@ -66,7 +66,6 @@ const SignupForm = () => {
       //Store userId in the redux store
       const userId = response.data.user.userId;
       dispatch(authActions.setUserId(userId));
-
     } catch (error) {
       console.log(error);
       if (error) {

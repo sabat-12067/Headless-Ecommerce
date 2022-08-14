@@ -31,26 +31,30 @@ function Login() {
     try {
       //post the client login info to the server
       const response = await axios.post(
-        'https://asuman-sounds-api.herokuapp.com/auth/login',
+        'http://localhost:5000/auth/login',
         JSON.stringify(clientInfo),
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
       );
+      //https://asuman-sounds-api.herokuapp.com/auth/login
 
       //Store userId in the redux store
       const userId = response.data.user.userId;
       dispatch(authActions.setUserId(userId));
 
+      const token = response.data.token
+      //Store token in local storage
+      localStorage.setItem('token', token);
+
       setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
-      
+
       setEmail('');
       setPassword('');
 
       //Set logged-in status to true
       sessionStorage.setItem('isloggedIn', true);
-
     } catch (error) {
       setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
     }

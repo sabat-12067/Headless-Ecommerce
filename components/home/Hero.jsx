@@ -13,7 +13,11 @@ export default function Hero() {
             new product
           </h5>
           <h1 className='uppercase sm:text-left md:leading-[70px] xl:leading-[100px]'>
-            500bt jbl wireless headphones
+            500bt jbl wireless
+          </h1>
+          <h1
+            className='text-primary-10 text-left w-[fit-content] mx-auto sm:mx-0 bg-primary-2 pt-3 mt-3 pb-1 px-2 rotate-[4deg]'>
+            headphones
           </h1>
           <h4 className='normal-case text-xl tracking-wider text-center sm:text-left my-6 leading-10'>
             Experience natural life like audio and exceptional build quality
