@@ -17,6 +17,7 @@ const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState({ show: false, type: '', msg: '' });
+  const [isSigningUp, setIsSigningUp] = useState(false);
 
   const userInfo = {
     name,
@@ -30,6 +31,7 @@ const SignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSigningUp(true);
 
     try {
       const response = await axios.post(
@@ -41,20 +43,15 @@ const SignupForm = () => {
         }
       );
       //http://localhost:5000/auth/signup
+      const token = response.data.token;
+      //Store token in local storage
+      localStorage.setItem('token', token);
       setAlert({
         show: true,
         type: 'success',
         msg: 'Account created successfully!',
       });
 
-      //console.log(response.data);
-
-      setEmail('');
-      setPassword('');
-      setName('');
-
-      //Set logged-in status to true
-      sessionStorage.setItem('isloggedIn', true);
       const cartItems = localStorage.getItem('cartItems');
       // Push the user to the checkout page if they have items in their cart
       if (cartItems) {
@@ -64,12 +61,13 @@ const SignupForm = () => {
       }
 
       //Store userId in the redux store
-      const userId = response.data.user.userId;
-      dispatch(authActions.setUserId(userId));
+      // const userId = response.data.user.userId;
+      // dispatch(authActions.setUserId(userId));
+      setIsSigningUp(false);
     } catch (error) {
-      console.log(error);
       if (error) {
         setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
+        setIsSigningUp(false);
       }
     }
   };
@@ -151,7 +149,7 @@ const SignupForm = () => {
           <button
             type='submit'
             className='bg-primary-11 my-8 w-full rounded-sm py-3'>
-            Sign up
+            { isSigningUp ? 'Signing you up...' : 'Sign up'}
           </button>
         </form>
         <p className='text-primary-10 text-sm py-3 tracking-normal rounded-b-lg px-6 bg-[#f0f9ff]'>

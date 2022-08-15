@@ -2,6 +2,7 @@ import { HiShoppingCart } from 'react-icons/hi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import handleSignOut from './Signout';
 
 export default function DesktopNavigation({ toggleCart, totalQuantity }) {
   const router = useRouter();
@@ -18,14 +19,14 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
         </div>
         <div className='flex items-center'>
           <Link href='/products/favorites' passHref>
-            <h3 className='uppercase text-base mr-8 hover:translate-x-1 duration-300 ease-linear cursor-pointer'>
+            <h3 className='uppercase text-xs lg:text-sm xl:text-base mr-8 hover:translate-x-1 duration-300 ease-linear cursor-pointer'>
               favorites
             </h3>
           </Link>
           <Categories />
           {/**Cart icon container */}
           <div className='relative flex' onClick={toggleCart}>
-            <HiShoppingCart className='md:ml-10 w-8 h-8 md:h-9 md:w-9 cursor-pointer hover:scale-105 duration-300 ease-linear self-center' />
+            <HiShoppingCart className='md:ml-4 lg:ml-6 w-8 h-8 md:h-9 md:w-9 cursor-pointer hover:scale-105 duration-300 ease-linear self-center' />
             {totalQuantity >= 1 ? (
               <p className='absolute pt-[1px] bg-secondary-8 text-xs top-2 right-0 w-5 h-5 rounded-[50%] flex items-center justify-center font-bold cursor-pointer'>
                 {totalQuantity}
@@ -36,6 +37,7 @@ export default function DesktopNavigation({ toggleCart, totalQuantity }) {
           <div className='flex items-center'>
             <Button action={'signup'} path='auth/signup' />
             <Button action={'login'} path='auth/login' />
+            <SignOutButton />
           </div>
         </div>
       </div>
@@ -63,18 +65,20 @@ const Categories = () => {
 
   return (
     <div
-      className='relative mr-4 lg:mr-8'
+      className='relative lg:mr-8'
       onMouseEnter={displayCategories}
       onMouseLeave={hideCategories}>
-      <h3 className='uppercase text-base cursor-pointer'>categories</h3>
+      <h3 className='uppercase text-xs lg:text-sm xl:text-base cursor-pointer'>
+        categories
+      </h3>
       {showCategories ? (
-        <ul className='fle absolute justify-between items-center bg-primary-13 rounded-md shadow-2xl text-primary-10 pl-3 pb-4 text-xs lg:text-sm w-36'>
+        <ul className='absolute justify-between items-center bg-primary-13 rounded-md shadow-2xl text-primary-10 pl-3 pb-4 text-xs lg:text-sm w-36'>
           {listItems.map((listItem, index) => {
             const { text, path } = listItem;
             return (
               <li
                 key={index}
-                className='capitalize font-semibold mt-3 tracking-wider hover:text-secondary-7 duration-200 ease-linear' >
+                className='capitalize font-semibold mt-3 tracking-wider hover:text-secondary-7 duration-200 ease-linear'>
                 <Link href={path}>{text}</Link>
               </li>
             );
@@ -91,9 +95,21 @@ const Button = ({ action, path }) => {
   const router = useRouter();
   return (
     <button
-      className='py-2.5 px-5 capitalize bg-primary-11 md:text-xs lg:text-base ml-4 font-semibold'
+      className='py-2.5 px-5 capitalize bg-primary-11 text-xs lg:text-sm xl:text-base ml-4 font-semibold'
       onClick={() => router.push(`/${path}`)}>
       {action}
     </button>
+  );
+};
+
+const SignOutButton = () => {
+  return (
+    <Link href='/' passHref>
+      <button
+        className='py-2.5 px-5 capitalize bg-primary-11 text-xs lg:text-sm xl:text-base ml-4 font-semibold'
+        onClick={handleSignOut}>
+        signout
+      </button>
+    </Link>
   );
 };

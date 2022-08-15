@@ -50,21 +50,10 @@ const Shipping = ({ setShowLoginCard }) => {
   };
 
   const handleSubmit = async (e) => {
-    //const isloggedIn = JSON.parse(sessionStorage.getItem('isloggedIn'));
     e.preventDefault();
-
     // fetch token from local storage
     const token = localStorage.getItem('token');
-
-    // if (isloggedIn) {
-    //   setShowLoginCard(false);
-    //   router.push('/product/checkout/payment');
-    // } else {
-    //   //Task the customer to login if they aren't logged in
-    //   setShowLoginCard(true);
-    // }
-    //const token = `Bearer ${bearerToken}`;
-    try {
+     try {
       const response = await axios.post(
       'http://localhost:5000/token/validate-token',
       JSON.stringify({token}),
@@ -78,13 +67,13 @@ const Shipping = ({ setShowLoginCard }) => {
 
       if (msg.includes('verified')) {
         setShowLoginCard(false);
-        //router.push('/product/checkout/payment');
+        router.push('/product/checkout/payment');
       } else {
         setShowLoginCard(true);
       }
-      console.log('Does message include "valid"? ', msg.includes('verified'));
     } catch (error) {
-      console.log('Error...',error);
+      console.log('Error...', error);
+      setShowLoginCard(true);
     }
   };
 

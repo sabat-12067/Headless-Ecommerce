@@ -58,6 +58,7 @@ function Login() {
       //Set logged-in status to true
       sessionStorage.setItem('isloggedIn', true);
       setIsLoggingIn(false);
+      router.push('/');
     } catch (error) {
       setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
       setIsLoggingIn(false);
@@ -130,7 +131,7 @@ function Login() {
           <button
             type='submit'
             className='bg-primary-11 my-10 w-full rounded-sm'>
-            { isLoggingIn ? 'Logging in...' : 'Login in'}
+            { isLoggingIn ? 'Logging in...' : 'Login in' }
           </button>
         </form>
         <div className='px-8 pt-4 bg-primary-12 pb-4 sm:flex rounded-b-lg'>
