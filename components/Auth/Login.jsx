@@ -47,6 +47,7 @@ function Login() {
       const token = response.data.token
       //Store token in local storage
       localStorage.setItem('token', token);
+      console.log('token', token);
 
       setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
 

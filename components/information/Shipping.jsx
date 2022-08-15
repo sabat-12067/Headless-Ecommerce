@@ -19,6 +19,7 @@ export default function CustomerInfo() {
     if (sessionStorage.getItem('isloggedIn') == null) {
       sessionStorage.setItem('isloggedIn', false);
     }
+
   }, []);
 
   return (
@@ -26,14 +27,13 @@ export default function CustomerInfo() {
       {showLoginCard && <LoginCard setShowLoginCard={setShowLoginCard} />}
       <Shipping
         setShowLoginCard={setShowLoginCard}
-        showLoginCard={showLoginCard}
       />
       <Navigation path='/product/checkout/address' pathName='Return To Address' />
     </section>
   );
 }
 
-const Shipping = ({ setShowLoginCard, showLoginCard }) => {
+const Shipping = ({ setShowLoginCard }) => {
   const [shippingMethodSelected, setShippingMethodSelected] = useState(false);
 
   const router = useRouter();
@@ -48,16 +48,29 @@ const Shipping = ({ setShowLoginCard, showLoginCard }) => {
     dispatch(informationActions.deliveryMethod(value));
   };
 
-  const handleSubmit = (e) => {
-    const isloggedIn = JSON.parse(sessionStorage.getItem('isloggedIn'));
+  const handleSubmit = async (e) => {
+    //const isloggedIn = JSON.parse(sessionStorage.getItem('isloggedIn'));
     e.preventDefault();
-    if (isloggedIn) {
-      setShowLoginCard(false);
-      router.push('/product/checkout/payment');
-    } else {
-      //Task the customer to login if they aren't logged in
-      setShowLoginCard(true);
-    }
+
+    // fetch token from local storage
+    const token = localStorage.getItem('token');
+
+    // if (isloggedIn) {
+    //   setShowLoginCard(false);
+    //   router.push('/product/checkout/payment');
+    // } else {
+    //   //Task the customer to login if they aren't logged in
+    //   setShowLoginCard(true);
+    // }
+    const response = await axios.post(
+      'http://localhost:5000/auth/validate-token',
+      JSON.stringify(token),
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    );
+    console.log('Response', response);
   };
 
   const dispatch = useDispatch();
