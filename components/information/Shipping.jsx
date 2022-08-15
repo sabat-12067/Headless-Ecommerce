@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { Button } from '../HorLine';
 import { Navigation } from '../HorLine';
 import LoginCard from './LoginCard';
+import axios from 'axios';
 
 export default function CustomerInfo() {
   const [showLoginCard, setShowLoginCard] = useState(false);
@@ -62,15 +63,29 @@ const Shipping = ({ setShowLoginCard }) => {
     //   //Task the customer to login if they aren't logged in
     //   setShowLoginCard(true);
     // }
-    const response = await axios.post(
-      'http://localhost:5000/auth/validate-token',
-      JSON.stringify(token),
+    //const token = `Bearer ${bearerToken}`;
+    try {
+      const response = await axios.post(
+      'http://localhost:5000/token/validate-token',
+      JSON.stringify({token}),
       {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       }
-    );
-    console.log('Response', response);
+      );
+
+      const msg = response.data.msg;
+
+      if (msg.includes('verified')) {
+        setShowLoginCard(false);
+        //router.push('/product/checkout/payment');
+      } else {
+        setShowLoginCard(true);
+      }
+      console.log('Does message include "valid"? ', msg.includes('verified'));
+    } catch (error) {
+      console.log('Error...',error);
+    }
   };
 
   const dispatch = useDispatch();

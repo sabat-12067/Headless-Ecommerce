@@ -16,6 +16,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const [alert, setAlert] = useState({
     show: false,
@@ -28,6 +29,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoggingIn(true);
     try {
       //post the client login info to the server
       const response = await axios.post(
@@ -47,7 +49,6 @@ function Login() {
       const token = response.data.token
       //Store token in local storage
       localStorage.setItem('token', token);
-      console.log('token', token);
 
       setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
 
@@ -56,8 +57,10 @@ function Login() {
 
       //Set logged-in status to true
       sessionStorage.setItem('isloggedIn', true);
+      setIsLoggingIn(false);
     } catch (error) {
       setAlert({ show: true, type: 'danger', msg: error.response.data.msg });
+      setIsLoggingIn(false);
     }
   };
 
@@ -127,7 +130,7 @@ function Login() {
           <button
             type='submit'
             className='bg-primary-11 my-10 w-full rounded-sm'>
-            Sign in
+            { isLoggingIn ? 'Logging in...' : 'Login in'}
           </button>
         </form>
         <div className='px-8 pt-4 bg-primary-12 pb-4 sm:flex rounded-b-lg'>
