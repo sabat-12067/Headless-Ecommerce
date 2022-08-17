@@ -2,7 +2,6 @@ import { HiShoppingCart } from 'react-icons/hi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import handleSignOut from './Signout';
 
 export default function DesktopNavigation({ toggleCart, totalQuantity }) {
   const router = useRouter();
@@ -103,13 +102,16 @@ const Button = ({ action, path }) => {
 };
 
 const SignOutButton = () => {
+  const router = useRouter();
+   function handleSignOut() {
+     localStorage.removeItem('token');
+     router.push('/');
+   }
   return (
-    <Link href='/' passHref>
       <button
         className='py-2.5 px-5 capitalize bg-primary-11 text-xs lg:text-sm xl:text-base ml-4 font-semibold'
         onClick={handleSignOut}>
         signout
       </button>
-    </Link>
   );
 };
