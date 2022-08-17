@@ -41,18 +41,14 @@ const LoginForm = ({ setShowLoginCard }) => {
         }
       );
 
+        const token = response.data.token;
+        //Store token in local storage
+        localStorage.setItem('token', token);
+
       //Store userId in the redux store
-      const userId = response.data.user.userId;
-      dispatch(authActions.setUserId(userId));
+      // const userId = response.data.user.userId;
+      // dispatch(authActions.setUserId(userId));
 
-      setAlert({ show: true, type: 'success', msg: 'Login successfull!' });
-
-      setEmail('');
-      setPassword('');
-
-      //Set logged-in status to true
-      //dispatch(authActions.setIsLoggedIn(true));
-      sessionStorage.setItem('isloggedIn', true);
       setShowLoginCard(false);
       setLoading(false);
     } catch (error) {
@@ -78,6 +74,7 @@ const LoginForm = ({ setShowLoginCard }) => {
           <div className='absolute w-full left-0 z-30'>
             {alert.show && <Alert alert={alert} setAlert={setAlert} />}
           </div>
+          <p className='absolute right-5 top-3 cursor-pointer text-dark-red bg-light-red px-2' onClick={() => setShowLoginCard(false)}>Remove</p>
           <h1 className='text-xl text-left'>Sign in to asuman sounds</h1>
           <div className='flex flex-col pt-2'>
             <label htmlFor='email' className='text-sm font-medium'>

@@ -7,6 +7,7 @@ import { FaSignOutAlt, FaHome } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import handleSignOut from './Signout';
 //This is a component for the mobile navigation
 
 const listItems = [
@@ -96,8 +97,8 @@ const ToggledNavigation = ({ isMobileNavOpen, setIsMobileNavOpen }) => {
             </li>
           );
         })}
-        <li className='mt-[4rem] flex items-center text-white'>
-          <Link href='/login'>Sign Out</Link>
+        <li className='mt-[4rem] flex items-center text-white' onClick={handleSignOut}>
+          <Link href='/'>Sign Out</Link>
           <FaSignOutAlt className='ml-2' />
         </li>
       </ul>

@@ -4,6 +4,7 @@ import Productslist from './Productslist';
 import Search from './Search';
 import Sort from './Sort';
 import LoadButton from './LoadButton';
+import About from '../home/About';
 
 const ProductsList = ({ productsData }) => {
   const [searchedProducts, setSearchedProducts] = useState('');
@@ -13,9 +14,9 @@ const ProductsList = ({ productsData }) => {
   const [lastItemIndex, setLastItemIndex] = useState(4);
 
   const productsListData = productsData.attributes.audioproducts.data;
-
+  
   //filter products by name
-  const filteredProducts = productsListData.filter((productsList) => {
+  const searchResults = productsListData.filter((productsList) => {
     if (searchedProducts === '') {
       return productsList;
     } else {
@@ -27,16 +28,17 @@ const ProductsList = ({ productsData }) => {
 
   if (sortHighToLow) {
     // sort products by price high to low
-    filteredProducts.sort((a, b) => b.attributes.price - a.attributes.price);
+    searchResults.sort((a, b) => b.attributes.price - a.attributes.price);
   }
 
   if (sortLowToHigh) {
     // sort products by price low to high
-    filteredProducts.sort((a, b) => a.attributes.price - b.attributes.price);
+    searchResults.sort((a, b) => a.attributes.price - b.attributes.price);
   }
 
-  // Get a given number of the first items from the filteredProducts array
-  const dispalyedProducts = filteredProducts.slice(0, lastItemIndex);
+  // Get a given number of the first items from the  searchResultsarray
+  const dispalyedProducts = searchResults.slice(0, lastItemIndex);
+  const areProductsFound = searchResults.length > 0;
 
   return (
     <section>
@@ -45,7 +47,7 @@ const ProductsList = ({ productsData }) => {
         <Search
           setSearchedProducts={setSearchedProducts}
           categoryName={categoryName}
-          filteredProducts={filteredProducts}
+          searchResults={searchResults}
         />
         <Sort
           setSortHighToLow={setSortHighToLow}
@@ -53,16 +55,17 @@ const ProductsList = ({ productsData }) => {
           sortLowToHigh={sortLowToHigh}
           sortHighToLow={sortHighToLow}
         />
-        {filteredProducts.length > 0 ? (
+        {areProductsFound ? (
           <Productslist products={dispalyedProducts} />
         ) : (
           <NotFound />
         )}
         <LoadButton
           setLastItemIndex={setLastItemIndex}
-          filteredProducts={filteredProducts}
+          searchResults={searchResults}
           lastItemIndex={lastItemIndex}
         />
+        <About />
       </div>
     </section>
   );
