@@ -26,14 +26,16 @@ export default function CustomerInfo() {
       {showLoginCard && <LoginCard setShowLoginCard={setShowLoginCard} />}
       <Shipping
         setShowLoginCard={setShowLoginCard}
+        showLoginCard={showLoginCard}
       />
       <Navigation path='/product/checkout/address' pathName='Return To Address' />
     </section>
   );
 }
 
-const Shipping = ({ setShowLoginCard }) => {
+const Shipping = ({ setShowLoginCard, showLoginCard }) => {
   const [shippingMethodSelected, setShippingMethodSelected] = useState(false);
+  const [verifyingLogin, setVerifyingLogin] = useState(false);
 
   const router = useRouter();
 
@@ -50,6 +52,7 @@ const Shipping = ({ setShowLoginCard }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // fetch token from local storage
+    setVerifyingLogin(true);
     const token = localStorage.getItem('token');
      try {
       const response = await axios.post(
@@ -60,19 +63,26 @@ const Shipping = ({ setShowLoginCard }) => {
           withCredentials: true,
         }
       );
-
       const msg = response.data.msg;
+      setVerifyingLogin(false);
+
+      // if (!showLoginCard) {
+      //   setIsLoggedIn(true);
+      // }
 
       if (msg.includes('verified')) {
         setShowLoginCard(false);
+        setVerifyingLogin(false);
         router.push('/product/checkout/payment');
       } else {
         setShowLoginCard(true);
       }
     } catch (error) {
-      console.log('Error...', error);
       setShowLoginCard(true);
+      setVerifyingLogin(false);
     }
+
+    console.log('verifying login...', verifyingLogin);
   };
 
   const dispatch = useDispatch();
@@ -105,7 +115,7 @@ const Shipping = ({ setShowLoginCard }) => {
           <Button
             type='submit'
             disabled={!shippingMethodSelected}
-            text='Proceed to payment'
+            text={ verifyingLogin ? 'Please wait...' : 'Proceed to payment'}
           />
         </form>
       </div>
