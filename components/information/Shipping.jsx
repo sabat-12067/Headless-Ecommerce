@@ -13,8 +13,6 @@ import axios from 'axios';
 export default function CustomerInfo() {
   const [showLoginCard, setShowLoginCard] = useState(false);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     //set isloggedIn to false if it doesn't exist in session storage
     if (sessionStorage.getItem('isloggedIn') == null) {
@@ -55,12 +53,12 @@ const Shipping = ({ setShowLoginCard }) => {
     const token = localStorage.getItem('token');
      try {
       const response = await axios.post(
-      'http://localhost:5000/token/validate-token',
-      JSON.stringify({token}),
-      {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      }
+        'https://asuman-sounds-api.herokuapp.com/token/validate-token',
+        JSON.stringify({ token }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        }
       );
 
       const msg = response.data.msg;

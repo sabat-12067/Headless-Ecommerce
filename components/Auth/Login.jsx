@@ -33,14 +33,13 @@ function Login() {
     try {
       //post the client login info to the server
       const response = await axios.post(
-        'http://localhost:5000/auth/login',
+        'https://asuman-sounds-api.herokuapp.com/auth/login',
         JSON.stringify(clientInfo),
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
       );
-      //https://asuman-sounds-api.herokuapp.com/auth/login
 
       //Store userId in the redux store
       const userId = response.data.user.userId;
