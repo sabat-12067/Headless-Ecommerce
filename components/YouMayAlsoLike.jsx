@@ -51,11 +51,11 @@ const YouMayAlsoLike = ({ youMayAlsoLikeData }) => {
                   </div>
                   <div className='flex items-center pl-3 pb-5'>
                     <h3 className='font-bold tracking-wide text-base md:text-lg'>
-                      {price}
+                      ${price}
                     </h3>
                     {percentageDiscount && (
                       <h3 className='font-bold tracking-wide text-sm md:text-base line-through ml-4'>
-                        {originalPrice}
+                        ${originalPrice}
                       </h3>
                     )}
                     {percentageDiscount && (
