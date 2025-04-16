@@ -77,7 +77,7 @@ How?
 
 ```js
 const response = await axios.post(
-          'https://Headless-Ecommerce-api.herokuapp.com/stripe/payment-intent',
+          'https://Headless-Ecommerce-Api.herokuapp.com/stripe/payment-intent',
           JSON.stringify(info),
           {
             headers: { 'Content-Type': 'application/json' },
@@ -86,9 +86,9 @@ const response = await axios.post(
         );
 ```
 
-3. Change the url `https://Headless-Ecommerce-api.herokuapp.com/stripe/payment-intent` to one that points to the backend handling your stripe integration.
+3. Change the url `https://Headless-Ecommerce-Api.herokuapp.com/stripe/payment-intent` to one that points to the backend handling your stripe integration.
 
- - Find the [git repo of this project's backend here.](https://github.com/sabat-12067/Headless-Ecommerce-api)
+ - Find the [git repo of this project's backend here.](https://github.com/sabat-12067/Headless-Ecommerce-Api)
 
 ## MY PROCESS
 
