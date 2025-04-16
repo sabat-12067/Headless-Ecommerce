@@ -57,9 +57,9 @@ I aslo employed static site generation as I won't be updating the invetory very 
 ## GETTING STARTED
 
 - To clone the repository, open the folder where you want the cloned/copied project in vs code.
-- Paste `git clone https://github.com/asuman315/asuman-sounds` into the terminal.
+- Paste `git clone https://github.com/sabat-12067/Headless-Ecommerce` into the terminal.
 - Press enter to create your local clone/copy.
-- Run `cd asuman-sounds`
+- Run `cd Headless-Ecommerce`
 - Run `npm install` to download all the project dependencies.
 - Run the command `npm run dev` or `yarn dev` (if you have yarn installed.)
 - Then follow the url `http://localhost:3000` shown to you in the terminal.
@@ -77,7 +77,7 @@ How?
 
 ```js
 const response = await axios.post(
-          'https://asuman-sounds-api.herokuapp.com/stripe/payment-intent',
+          'https://Headless-Ecommerce-api.herokuapp.com/stripe/payment-intent',
           JSON.stringify(info),
           {
             headers: { 'Content-Type': 'application/json' },
@@ -86,9 +86,9 @@ const response = await axios.post(
         );
 ```
 
-3. Change the url `https://asuman-sounds-api.herokuapp.com/stripe/payment-intent` to one that points to the backend handling your stripe integration.
+3. Change the url `https://Headless-Ecommerce-api.herokuapp.com/stripe/payment-intent` to one that points to the backend handling your stripe integration.
 
- - Find the [git repo of this project's backend here.](https://github.com/asuman315/asuman-sounds-api)
+ - Find the [git repo of this project's backend here.](https://github.com/sabat-12067/Headless-Ecommerce-api)
 
 ## MY PROCESS
 
